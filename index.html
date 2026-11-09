@@ -2,7 +2,7 @@
 <html lang="he" dir="rtl"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="theme-color" content="#211333"><meta name="description" content="ממלכת התבונה - מפגש תלת ממדי משותף בממלכה קסומה">
-<title>ממלכת התבונה | הקולנוע המלכותי - גרסת מפגש 59</title>
+<title>ממלכת התבונה | הקולנוע המלכותי - גרסת מפגש 62</title>
 <style>
 /* V56: readable, correctly ordered participant names, free of mirrored textures. */
 #avatar-names{position:fixed;inset:0;z-index:7;pointer-events:none;overflow:hidden;direction:rtl}
@@ -119,6 +119,11 @@
 #cinema-dim-overlay.is-dim{opacity:.82}
 #cinema-dim-overlay.departing{opacity:1;transition-duration:1.65s}
 @media(prefers-reduced-motion:reduce){#cinema-dim-overlay{transition-duration:.3s!important}}
+/* V62: participant names remain clear across the complete visible scene, including distant guests. */
+#avatar-names{z-index:13}
+.avatar-name{opacity:1!important;max-width:190px;font-size:14px;font-weight:800;
+  text-shadow:0 2px 5px #000,0 0 6px #14051a;box-shadow:0 3px 12px #120919b3,0 0 8px #edd3ff5c}
+@media(max-width:650px){.avatar-name{font-size:12px;max-width:138px;padding:4px 9px}}
 </style></head><body>
 <div id="scene"></div><div id="cinema-dim-overlay" aria-hidden="true"></div><div id="avatar-names" aria-hidden="true"></div><div id="world-screen" class="hidden"><img id="world-screen-image" alt="תמונה סטטית של הממלכה" draggable="false"><button id="screen-play" class="screen-play hidden" aria-label="Play">▶</button><button id="screen-enter" class="screen-enter hidden" aria-label="כניסה לממלכה"></button></div><div id="fade"></div><div id="screen-vortex" class="hidden"><div class="vortex-stars">✦　✧　✦　✧　✦</div><div class="vortex-title">נכנסים לממלכה…</div></div>
 <div id="intro" class="overlay"><div class="intro-card">
@@ -174,7 +179,7 @@
 <button id="copy-rules" type="button" class="soft-button">העתק כללים (למסד חדש בלבד)</button></details>
 <strong>שימו לב:</strong> הגדרות Web של Firebase אינן סיסמה. אין להדביק כאן private key או serviceAccount. השיתוף עובד רק בדף המתפרסם ב־HTTPS ובמסד שהוגדר בפועל.
 </div></details>
-<div class="small foot">גרסת מפגש v57 · יושבים בכיכר עד שהמנחה פותח את הקולנוע · דמויות ניסיון אינן משתתפים אמיתיים</div>
+<div class="small foot">גרסת מפגש v62 · יושבים בכיכר עד שהמנחה פותח את הקולנוע · דמויות ניסיון אינן משתתפים אמיתיים</div>
 </div></div>
 <div id="load" class="overlay hidden"><div class="intro-card center"><div class="load-crown">♛</div><h2>פותחים את שערי הממלכה...</h2><p id="load-info">טוענים עולם ודמויות תלת־ממדיות</p><div class="progress"><div id="progress-bar"></div></div></div></div>
 <div id="hud" class="hidden"><div id="topright"><div class="bsd">בס״ד</div><div class="brand">ממלכת התבונה</div><div id="zone-name">כיכר ההתכנסות</div><div id="connection-pill">ניסיון מקומי</div><div id="my-identity"><strong id="my-identity-name">אורח הממלכה</strong><span id="my-identity-avatar" style="font-size:11px;color:#e9cdbb"></span></div></div>
@@ -295,6 +300,7 @@ function normalizedInput(x,y){
 
 const LOBBY_OFFSET=-20.35, PORTAL_Z=LOBBY_OFFSET-16.4, THEATER_OFFSET=-63.6;
 let hallDoors=[], hallwayLights=[], localWaveAt=0, autoSeat=null, corridorTravel=0;
+let mainDoorHoldUntil=0, hallDoorHoldUntil={function:0,tech:0};
 let prevZone='exterior';
 let firebaseConfig=window.KINGDOM_FIREBASE_CONFIG||null;
 try{let c=url.searchParams.get('c');if(c)firebaseConfig=JSON.parse(decodeURIComponent(escape(atob(c.replace(/-/g,'+').replace(/_/g,'/')))));else if(!firebaseConfig)firebaseConfig=JSON.parse((localStorage.getItem('kingdom_firebase_v39')||localStorage.getItem('kingdom_firebase_v38'))||'null')}catch(e){console.warn('Invalid connection config',e)}
@@ -1609,6 +1615,26 @@ function electricLighting(dt){
    world.visible=true;ext.visible=true;lobby.visible=true;sky.visible=true;
  }
 }
+// V62: door sensors work for every participant and both travel directions.
+// A visitor must be physically near the entrance; being in an open room alone
+// does not hold the doors open. Remote presence is interpolated only for display.
+function anyVisitorNearDoor(which){
+ function near(x,z,where){
+  if(!Number.isFinite(x)||!Number.isFinite(z))return false;
+  if(which==='main'){
+    return (where==='exterior'&&Math.abs(x)<7.5&&z>=-2.5&&z<15.5)
+       || (where==='lobby'&&Math.abs(x)<7.5&&z>-9&&z<8);
+  }
+  const cx=which==='function'?8.5:-8.5;
+  return where==='lobby'&&Math.abs(x-cx)<7.0&&z>=PORTAL_Z-3.5&&z<=PORTAL_Z+13;
+ }
+ if(player&&near(player.position.x,player.position.z,zone))return true;
+ for(const r of remote.values()){
+  const d=r.data;
+  if(d&&near(d.x,d.z,d.zone))return true;
+ }
+ return false;
+}
 function draw(now){requestAnimationFrame(draw);if(!loadersDone)return;const dt=Math.min((now-last)/1000,.055);last=now;clock+=dt;if(!selfieMode)updateMovement(dt);else{movement.x=0;movement.z=0;}updateCam(dt);updateFoliageTransparency(dt);electricLighting(dt);updateNPCs(clock);
  for(const [id,r] of remote){const d=r.data;if(!d||!r.g)continue;let p=r.g.position,k=1-Math.exp(-dt*8);p.x=lerp(p.x,d.x,k);p.z=lerp(p.z,d.z,k);let newRot=d.yaw??0;r.g.rotation.y+=Math.atan2(Math.sin(newRot-r.g.rotation.y),Math.cos(newRot-r.g.rotation.y))*k;r.g.visible=(d.zone===zone&&(zone!=='theater'||(d.hall||'function')===hall));const nowSeated=!!d.seated&&(d.zone==='exterior'||d.zone==='theater');
  if(r.seatedState!==nowSeated){applySeatPose(r.g,nowSeated);r.seatedState=nowSeated;}
@@ -1618,32 +1644,50 @@ function draw(now){requestAnimationFrame(draw);if(!loadersDone)return;const dt=M
  if(sky?.material?.uniforms)sky.material.uniforms.time.value=clock;
  
  if(connected&&now-syncAt>210){syncAt=now;syncSelf()}
- // Door openness is shared, not dependent on this client's local position.
- doorOpenAmount=lerp(doorOpenAmount,(phase!=='plaza'||demo||introComplete)?1:0,1-Math.exp(-dt*2.8));
+ // V62: proximity-controlled automatic doors, including OTHER live participants.
+ // The facilitator still chooses when the cinema is unlocked; once unlocked, any guest
+ // approaching from either side can open and cross the door independently.
+ const accessible=phase!=='plaza'||demo||introComplete;
+ if(anyVisitorNearDoor('main'))mainDoorHoldUntil=now+1500;
+ const shouldOpenMain=accessible&&now<mainDoorHoldUntil;
+ doorOpenAmount=lerp(doorOpenAmount,shouldOpenMain?1:0,1-Math.exp(-dt*(shouldOpenMain?4.2:2.0)));
  for(const d of doorLeaves)d.o.position.x=d.x+d.sign*4.25*doorOpenAmount;
  for(const d of hallDoors){
-   // Both theater entrances stay physically open while the cinema is active.
-   const accessible=phase!=='plaza'||demo||introComplete;
-   d.open=lerp(d.open||0,accessible?1:0,1-Math.exp(-dt*2.8));
+   const side=d.center>0?'function':'tech';
+   if(anyVisitorNearDoor(side))hallDoorHoldUntil[side]=now+1500;
+   const shouldOpenHall=accessible&&now<hallDoorHoldUntil[side];
+   d.open=lerp(d.open||0,shouldOpenHall?1:0,1-Math.exp(-dt*(shouldOpenHall?4.2:2.0)));
    d.o.position.x=d.base+d.sign*3.42*d.open;
  }
 
  if(zone==='theater'&&!autoSeat){world.visible=false;ext.visible=false;lobby.visible=false;sky.visible=false;}
  renderer.render(scene,camera);syncWorldScreen();renderAvatarNames();
 }
+function improveModelTextureClarity(root){
+ const maxAniso=Math.min(8,renderer.capabilities.getMaxAnisotropy());
+ if(maxAniso<=1)return;
+ root.traverse(o=>{
+  if(!o.material)return;
+  for(const m of (Array.isArray(o.material)?o.material:[o.material])){
+   for(const key of ['map','emissiveMap','normalMap','roughnessMap','metalnessMap','aoMap']){
+    const t=m[key];if(t?.isTexture&&t.anisotropy<maxAniso){t.anisotropy=maxAniso;t.needsUpdate=true;}
+   }
+  }
+ });
+}
 async function buildScene(){setProgress(8,'מכינים תאורה, גנים, שמיים ודמויות...');scene=new THREE.Scene();scene.background=new THREE.Color(0x8e94c1);camera=new THREE.PerspectiveCamera(64,innerWidth/innerHeight,.10,500);
  const phoneGPU=(/Android|iPhone|iPad/i.test(navigator.userAgent)||innerWidth<=650);
- renderer=new THREE.WebGLRenderer({antialias:!phoneGPU,alpha:false,powerPreference:phoneGPU?'default':'high-performance'});renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,phoneGPU?1:1.50));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.38;renderer.shadowMap.enabled=innerWidth>900;renderer.shadowMap.type=THREE.PCFSoftShadowMap;$('#scene').append(renderer.domElement);
+ renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,phoneGPU?2:1.65));renderer.setSize(innerWidth,innerHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.38;renderer.shadowMap.enabled=innerWidth>900;renderer.shadowMap.type=THREE.PCFSoftShadowMap;$('#scene').append(renderer.domElement);
  try{const pmrem=new THREE.PMREMGenerator(renderer);const env=pmrem.fromScene(new RoomEnvironment(renderer),.05);scene.environment=env.texture;pmrem.dispose()}catch(e){console.warn('No reflection probes',e)}
  buildDecor();buildTheater('function');buildTheater('tech');theater=theaters.function;const loader=new GLTFLoader();setProgress(38,'טוענים את מבנה הקולנוע המפוסל...');
  async function fetchModel(k,p){if(window.KINGDOM_EMBED_MODELS?.[k]){const raw=atob(window.KINGDOM_EMBED_MODELS[k]),arr=new Uint8Array(raw.length);for(let i=0;i<raw.length;i++)arr[i]=raw.charCodeAt(i);return (await new Promise((resolve,reject)=>loader.parse(arr.buffer,'',resolve,reject))).scene}return (await loader.loadAsync(p)).scene}
- ext=await fetchModel('exterior','assets/cinema_exterior.glb');ext.visible=false;scene.add(ext);replaceModelSigns(ext,{cinema_title:'cinema_main.png'});
+ ext=await fetchModel('exterior','assets/cinema_exterior.glb');improveModelTextureClarity(ext);ext.visible=false;scene.add(ext);replaceModelSigns(ext,{cinema_title:'cinema_main.png'});
  // Coarse facade/lobby collision volumes prevent the chase camera clipping
  // through walls. Doorway gaps stay free for uninterrupted threshold crossings.
  for(const side of [-1,1])cameraBox(side*11.0,6.0,1.1,12.0,12.0,4.5,'facade');
  for(const side of [-1,1])cameraBox(side*16.0,7.0,-18.0,2.0,14.0,38.0,'lobby');
  for(const [cx,width] of [[0,9],[-14.0,4],[14.0,4]])cameraBox(cx,6.0,PORTAL_Z, width,12.0,2.0,'lobby');
- ext.traverse(o=>{if(/cinema_door_(left|right)_/.test(o.name)){doorLeaves.push({o,x:o.position.x,sign:o.name.includes('_left_')?-1:1})}});setProgress(58,'פותחים את הלובי המלכותי...');lobby=await fetchModel('lobby','assets/cinema_lobby.glb');lobby.position.z=LOBBY_OFFSET;lobby.visible=false;scene.add(lobby);replaceModelSigns(lobby,{lobby_title:'lobby_main.png',lobby_subtitle:'lobby_sub.png',portal_0:'portal_function.png',portal_1:'portal_tech.png'});
+ ext.traverse(o=>{if(/cinema_door_(left|right)_/.test(o.name)){doorLeaves.push({o,x:o.position.x,sign:o.name.includes('_left_')?-1:1})}});setProgress(58,'פותחים את הלובי המלכותי...');lobby=await fetchModel('lobby','assets/cinema_lobby.glb');improveModelTextureClarity(lobby);lobby.position.z=LOBBY_OFFSET;lobby.visible=false;scene.add(lobby);replaceModelSigns(lobby,{lobby_title:'lobby_main.png',lobby_subtitle:'lobby_sub.png',portal_0:'portal_function.png',portal_1:'portal_tech.png'});
  // Sliding doors sit INSIDE the imported portal arch and respond to approach.
  for(let i=0;i<2;i++){
   const center=i? -8.5:8.5;
@@ -1718,7 +1762,7 @@ function initInput(){
  document.addEventListener('visibilitychange',()=>{if(document.hidden)resetJoy()});
  // Camera always locks to the player's heading; no manual look-drag is required.
  window.addEventListener('keydown',e=>{if(['INPUT','TEXTAREA'].includes(document.activeElement?.tagName))return;let k=e.key.toLowerCase();keys.add(k);if((['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright'].includes(k)))e.preventDefault()});window.addEventListener('keyup',e=>keys.delete(e.key.toLowerCase()));window.addEventListener('blur',()=>{keys.clear();keyboardActive=false;resetJoy()});
- window.addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,phoneGPU?1:1.5))});
+ window.addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,phoneGPU?2:1.65))});
  $('#wave').onclick=()=>{localWaveAt=Date.now();syncSelf(true,true)};
  $('#leave-theater').onclick=leaveTheaterToCarpet;
  $('#camera-mode').onclick=()=>{viewMode=viewMode==='cinematic'?'panorama':'cinematic';note(viewMode==='panorama'?'מבט רחב יציב מאחורי הדמות':'מבט קרוב יציב מאחורי הדמות');};
@@ -1779,13 +1823,14 @@ function renderAvatarNames(){
   namePoint.set(0,3.10,0);model.localToWorld(namePoint);
   const dist=namePoint.distanceTo(camera.position);
   const p=namePoint.project(camera);
-  if(p.z<-.99||p.z>.99||p.x < -1.04||p.x>1.04||p.y< -1.02||p.y>1.02){
+  // NDC depth reaches almost 1 at modest distance; clipping at .99 hid labels beyond about 20 m.
+  if(p.z < -1||p.z > 1||p.x < -1.04||p.x>1.04||p.y< -1.02||p.y>1.02){
     e.style.display='none';return;
   }
   e.style.display='block';
   e.style.left=((p.x+1)*innerWidth*.5)+'px';
   e.style.top=((1-p.y)*innerHeight*.5-5)+'px';
-  e.style.opacity=String(self?1:Math.max(.60,Math.min(1,1.22-dist/90)));
+  e.style.opacity="1"; // never fade out readable names with distance
  }
  place('self',player,personName(),true);
  for(const [id,r] of remote){
@@ -1894,6 +1939,6 @@ window.KINGDOM_TEST_CONTROLS=()=>{
  steeringRightIsNegativeYaw:true,deadzone:axisCurve(.04)===0,
  cameraRigidToHeading:true};
 };
-window.KINGDOM_DIAGNOSTICS=()=>({version:'v61-stable-room-mobile-exit-shared-doors-recall',zone,phase,seated,seatIndex,loaded:loadersDone,characters:npcs.length,connected,realParticipants:online.size,room,auditoriums:[{side:'right',key:'function'},{side:'left',key:'tech'}],hall,donutAt,donutRemaining,camera:'V54 rigid rear follow; unchanged',linksConfigured:!!(linkMap.function&&linkMap.tech),screenLive,doorProgress:doorOpenAmount,portalDepth:PORTAL_Z,donutPosition:DONUT_POS,professionalFacilitator:false,joystickRightLeft:'right is negative yaw; heading persists after straightening stick',joystickActive:joyActive,cameraClear:lastCameraClear,cameraAvoidanceHits:cameraSafetyHits,cameraSafetyShift:cameraSafetyShift,ponyActors:festivalPonyRigs.length,fireworkBursts:festivalParticles.length,sceneryColliders:solidScenery.length,escortActive:!!autoSeat,lobbyAligned:Math.abs(lobby?.position.z-LOBBY_OFFSET)<.01});
+window.KINGDOM_DIAGNOSTICS=()=>({version:'v62-mobile-sharp-remote-names-proximity-auto-doors',zone,phase,seated,seatIndex,loaded:loadersDone,characters:npcs.length,connected,realParticipants:online.size,room,auditoriums:[{side:'right',key:'function'},{side:'left',key:'tech'}],hall,donutAt,donutRemaining,camera:'V54 rigid rear follow; unchanged',linksConfigured:!!(linkMap.function&&linkMap.tech),screenLive,doorProgress:doorOpenAmount,mainDoorSensor:anyVisitorNearDoor('main'),pixelRatio:renderer?.getPixelRatio(),portalDepth:PORTAL_Z,donutPosition:DONUT_POS,professionalFacilitator:false,joystickRightLeft:'right is negative yaw; heading persists after straightening stick',joystickActive:joyActive,cameraClear:lastCameraClear,cameraAvoidanceHits:cameraSafetyHits,cameraSafetyShift:cameraSafetyShift,ponyActors:festivalPonyRigs.length,fireworkBursts:festivalParticles.length,sceneryColliders:solidScenery.length,escortActive:!!autoSeat,lobbyAligned:Math.abs(lobby?.position.z-LOBBY_OFFSET)<.01});
 </script>
 </body></html>
