@@ -2,7 +2,7 @@
 <html lang="he" dir="rtl"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="theme-color" content="#211333"><meta name="description" content="ממלכת התבונה - מפגש תלת ממדי משותף בממלכה קסומה">
-<title>ממלכת התבונה | הקולנוע המלכותי - V64</title>
+<title>ממלכת התבונה | הקולנוע המלכותי - V65</title>
 <style>
 /* V56: readable, correctly ordered participant names, free of mirrored textures. */
 #avatar-names{position:fixed;inset:0;z-index:7;pointer-events:none;overflow:hidden;direction:rtl}
@@ -201,7 +201,7 @@
 <button id="copy-rules" type="button" class="soft-button">העתק כללי V64 למיזוג במסד</button></details>
 <strong>גרסה V64:</strong> להגדרת קישורי מנחה קבועים מכל מכשיר יש לעדכן גם את כללי Firebase שלמטה (תוך שמירה על יתר הכללים הקיימים). הגדרות Web אינן סיסמה; אין להדביק private key או serviceAccount.
 </div></details>
-<div class="small foot">v64 · עולם קבוע · קישור מנחה פרטי וקישור תלמידים נפרד · כניסה ישירה לכיסא</div>
+<div class="small foot">v65 · עולם קבוע · דמות המשתתף נראית מאחור · דלתות דו-כיווניות</div>
 </div></div>
 <div id="load" class="overlay hidden"><div class="intro-card center"><div class="load-crown">♛</div><h2>פותחים את שערי הממלכה...</h2><p id="load-info">טוענים עולם ודמויות תלת־ממדיות</p><div class="progress"><div id="progress-bar"></div></div></div></div>
 <div id="hud" class="hidden"><div id="topright"><div class="bsd">בס״ד</div><div class="brand">ממלכת התבונה</div><div id="zone-name">כיכר ההתכנסות</div><div id="connection-pill">ניסיון מקומי</div><div id="my-identity"><strong id="my-identity-name">אורח הממלכה</strong><span id="my-identity-avatar" style="font-size:11px;color:#e9cdbb"></span></div></div>
@@ -225,11 +225,11 @@ const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)), lerp=(a,b,t)=>a+(b-a)*t;
 const DEFAULT_LINKS={function:'https://idanahvan-commits.github.io/funki-kingdom/',tech:'https://idanahvan-commits.github.io/technique-kingdom/Kingdom_Technique_V106.html'};
 const url=new URL(location.href);
 // V64: a facilitator link is a bearer capability; a guest link never contains it.
-const hostParam=url.searchParams.get('host')||'';
+const hostParam=url.searchParams.get('h')||url.searchParams.get('host')||'';
 const hostParts=/^([A-Z2-9]{15})\.([A-Za-z0-9_-]{40,80})$/.exec(hostParam);
 const incomingHostRoom=hostParts?hostParts[1]:'';
 const incomingHostKey=hostParts?hostParts[2]:'';
-const incomingRoom=incomingHostRoom||((url.searchParams.get('room')||'').replace(/[^A-Z0-9]/g,'').slice(0,24));
+const incomingRoom=incomingHostRoom||((url.searchParams.get('r')||url.searchParams.get('room')||'').replace(/[^A-Z0-9]/g,'').slice(0,24));
 const isHostInvitation=!!incomingHostKey;
 
 const avatars=[['👸','נסיכת האור','#e9b4e5'],['🤴','נסיך הכוכבים','#6d8bcc'],['🧙','קוסם היער','#77bb9e'],['🛡️','האביר','#b9a5d7'],['👑','מלכת האגדות','#f2b687'],['🪄','קוסמת האודם','#d76c9b'],['⚔️','שומר הקריסטלים','#7ec4d6'],['✨','נסיכת השחר','#f2d5f4']];
@@ -1435,7 +1435,7 @@ function solidAt(x,z){
   if(solidSceneryAt(x,z,'theater'))return true;
   // Concession stalls and rows of seats have physical footprints.
   const cx=hall==='function'?8.5:-8.5,localX=x-cx,localZ=z-THEATER_OFFSET;
-  for(const stallX of [-16.5,0,16.5])if(hitRect(localX,localZ,stallX,22,5.8,2.8))return true;
+  for(const stallX of [-16.5,16.5])if(hitRect(localX,localZ,stallX,22,5.8,2.8))return true;
   for(let r=0;r<6;r++)for(let c=0;c<8;c++){
    const chairX=(c-3.5)*4.7,chairZ=14-r*5;
    if(Math.abs(chairX)<2.1)continue;
@@ -1456,6 +1456,7 @@ function moveWithCollision(dx,dz,bounds){
 }
 
 function updateMovement(dt){
+ if(retiredHost)return;
  const action=$('#action');action.disabled=false;
  if(autoSeat){
    autoSeat.elapsed+=dt;
@@ -1470,7 +1471,7 @@ function updateMovement(dt){
  }
 
  if(seated){
-  if(zone!=='theater'&&getDirectionInput())standFromSeat();
+  if(getDirectionInput())standFromSeat();
   else{animatePerson(player,clock,0);applySeatPose(player,true);wavePerson(player,clock,localWaveAt);movement.x=movement.z=0;
     if(zone==='theater'){action.classList.add('hidden');toggleStageButtons();}
     else action.classList.add('hidden');
@@ -1500,7 +1501,7 @@ function updateMovement(dt){
  if(zone==='lobby'&&player.position.z<PORTAL_Z+4.0&&Math.min(Math.abs(player.position.x-8.5),Math.abs(player.position.x+8.5))>3.7){player.position.z=Math.max(PORTAL_Z+4.0,player.position.z)}
  // Stage gate: no accidental exit to the outside; entering the building finishes the exterior stage.
  if(zone==='exterior'&&player.position.z<=-1.0&&Math.abs(player.position.x)<4.1){
-  if((phase!=='plaza'||demo||introComplete)&&doorOpenAmount>.80){enterZone('lobby',false);return;}
+  if((phase!=='plaza'||demo)&&doorOpenAmount>.80){enterZone('lobby',false);return;}
   player.position.z=-.80;
   if(Date.now()-gateHintAt>4000){note('דלת הקולנוע תיפתח כאשר המנחה יזמין את הקבוצה');gateHintAt=Date.now();}
  }
@@ -1522,7 +1523,16 @@ function updateMovement(dt){
   // Auditorium portals remain walk-through on approach.
  }else if(zone==='theater'){
   action.classList.add('hidden'); toggleStageButtons();
-  if(player.position.z>THEATER_OFFSET+26.0){enterZone('lobby',true);return;}
+  if(player.position.z>THEATER_OFFSET+25.5){
+    const outgoingHall=hall;
+    enterZone('lobby',true);
+    // Arrive immediately INSIDE the matching lobby doorway, not in a sealed wall.
+    player.position.set(outgoingHall==='function'?8.5:-8.5,0,PORTAL_Z+3.1);
+    player.rotation.y=0;userYaw=0;camHeading=0;camReady=false;
+    seated=false;applySeatPose(player,false);syncSelf(true);
+    hallDoorHoldUntil[outgoingHall]=performance.now()+2600;
+    return;
+   }
  }
 }
 function updateFoliageTransparency(dt){
@@ -1544,16 +1554,20 @@ function updateCam(dt){
  const facing=new THREE.Vector3(Math.sin(userYaw),0,Math.cos(userYaw));
  let eye,target;
  if(zone==='exterior'&&seated&&!isHost){
-  // True seat-level POV: every chair looks at the presenter at the CENTER of
-  // its OWN perspective, not a wide chase view aligned to a global yaw.
-  // We keep the camera a little forward of the chair back, at the occupant's eye height.
-  const chair=plazaSeats[seatIndex];
-  eye=new THREE.Vector3(chair.x,2.63,chair.z-.40);
+  // V65: over-the-shoulder seated camera. The participant sees their own royal
+  // avatar from behind from the FIRST frame, while the presenter stays at the
+  // center of their sight line, including the extreme left/right seats.
+  const chair=plazaSeats[seatIndex],toStage=presenterSeatYaw(chair);
+  const forward=new THREE.Vector3(Math.sin(toStage),0,Math.cos(toStage));
+  const sideways=new THREE.Vector3(-forward.z,0,forward.x);
+  const cameraDistance=innerWidth<650?6.2:6.9;
+  eye=new THREE.Vector3(chair.x,0,chair.z-.08)
+    .addScaledVector(forward,-cameraDistance)
+    .addScaledVector(sideways,innerWidth<650?1.6:2.0);
+  eye.y=innerWidth<650?5.0:5.15;
   target=new THREE.Vector3(PRESENTER_STAGE.x,PRESENTER_STAGE.y,PRESENTER_STAGE.z);
-  // A slightly tighter angle for remote edge seats keeps the speaker legible,
-  // without changing the actual perspective or cropping the presenter.
   const distance=eye.distanceTo(target);
-  camera.fov=innerWidth<650?clamp(67-distance*.43,49,60):clamp(62-distance*.43,44,55);
+  camera.fov=innerWidth<650?clamp(78-distance*.34,59,68):clamp(70-distance*.32,53,63);
  }else if(selfieMode){
   // Step in front of the royal avatar and show the face. No smoothing/orbit.
   // This temporary preview does not alter userYaw, joystick, or saved camera mode.
@@ -1561,7 +1575,7 @@ function updateCam(dt){
   eye.y+=2.75;
   target=player.position.clone();target.y+=1.8;
   camera.fov=innerWidth<650?56:47;
- }else if(zone==='theater'&&!autoSeat){
+ }else if(zone==='theater'&&seated&&!autoSeat){
   // Auditorium view is in auditorium's WORLD location, without shifting player coordinates.
   theater.updateMatrixWorld(true);
   eye=theater.localToWorld(new THREE.Vector3(0,8.8,10.0));
@@ -1590,7 +1604,7 @@ function updateCam(dt){
    eye.x=clamp(eye.x,-12.7,12.7);
    eye.z=clamp(eye.z,LOBBY_OFFSET-12.8,LOBBY_OFFSET+8.4);
  }
- // Do not let chase-camera obstacle avoidance move the eye away from a seated chair.
+ // The seated boom remains stable; avoid clipping through the audience.
  camera.position.copy(zone==='exterior'&&seated&&!isHost?eye:unobstructedCamera(eye));camTarget.copy(target);camReady=true;
  camera.lookAt(camTarget);
 }
@@ -1695,19 +1709,20 @@ function electricLighting(dt){
 // A visitor must be physically near the entrance; being in an open room alone
 // does not hold the doors open. Remote presence is interpolated only for display.
 function anyVisitorNearDoor(which){
- function near(x,z,where){
+ function near(x,z,where,personHall){
   if(!Number.isFinite(x)||!Number.isFinite(z))return false;
-  if(which==='main'){
-    return (where==='exterior'&&Math.abs(x)<7.5&&z>=-2.5&&z<15.5)
-       || (where==='lobby'&&Math.abs(x)<7.5&&z>-9&&z<8);
-  }
+  if(which==='main')return (where==='exterior'&&Math.abs(x)<7.5&&z>=-2.5&&z<16)
+       || (where==='lobby'&&Math.abs(x)<7.5&&z>-12&&z<8);
   const cx=which==='function'?8.5:-8.5;
-  return where==='lobby'&&Math.abs(x-cx)<7.0&&z>=PORTAL_Z-3.5&&z<=PORTAL_Z+13;
+  return Math.abs(x-cx)<7.0&&(
+   (where==='lobby'&&z>=PORTAL_Z-4&&z<=PORTAL_Z+14)
+   ||(where==='theater'&&personHall===which&&z>=PORTAL_Z-17&&z<=PORTAL_Z+4)
+  );
  }
- if(player&&near(player.position.x,player.position.z,zone))return true;
- for(const r of remote.values()){
-  const d=r.data;
-  if(d&&near(d.x,d.z,d.zone))return true;
+ if(player&&!retiredHost&&near(player.position.x,player.position.z,zone,hall))return true;
+ for(const [id,r] of remote){
+  const d=r.data;if(isRetiredPresenter(id,d))continue;
+  if(d&&near(d.x,d.z,d.zone,d.hall))return true;
  }
  return false;
 }
@@ -1723,21 +1738,21 @@ function draw(now){requestAnimationFrame(draw);if(!loadersDone)return;const dt=M
  // V62: proximity-controlled automatic doors, including OTHER live participants.
  // The facilitator still chooses when the cinema is unlocked; once unlocked, any guest
  // approaching from either side can open and cross the door independently.
- const accessible=phase!=='plaza'||demo||introComplete;
- if(anyVisitorNearDoor('main'))mainDoorHoldUntil=now+1500;
+ const accessible=phase!=='plaza'||demo;
+ if(anyVisitorNearDoor('main'))mainDoorHoldUntil=now+2500;
  const shouldOpenMain=accessible&&now<mainDoorHoldUntil;
  doorOpenAmount=lerp(doorOpenAmount,shouldOpenMain?1:0,1-Math.exp(-dt*(shouldOpenMain?4.2:2.0)));
  for(const d of doorLeaves)d.o.position.x=d.x+d.sign*4.25*doorOpenAmount;
  for(const d of hallDoors){
    const side=d.center>0?'function':'tech';
-   if(anyVisitorNearDoor(side))hallDoorHoldUntil[side]=now+1500;
+   if(anyVisitorNearDoor(side))hallDoorHoldUntil[side]=now+2600;
    const shouldOpenHall=accessible&&now<hallDoorHoldUntil[side];
    d.open=lerp(d.open||0,shouldOpenHall?1:0,1-Math.exp(-dt*(shouldOpenHall?4.2:2.0)));
    d.o.position.x=d.base+d.sign*3.42*d.open;
  }
 
  if(zone==='theater'&&!autoSeat){world.visible=false;ext.visible=false;lobby.visible=false;sky.visible=false;}
- player.visible=!(zone==='exterior'&&seated&&!isHost);
+ player.visible=!retiredHost;
  renderer.render(scene,camera);syncWorldScreen();renderAvatarNames();
 }
 function improveModelTextureClarity(root){
@@ -1851,7 +1866,7 @@ function initInput(){
  $('#new-tab').onclick=()=>{if(window.KINGDOM_SCREEN_URL)window.open(window.KINGDOM_SCREEN_URL,'_blank','noopener,noreferrer')};
  $$('[data-close]').forEach(b=>b.onclick=()=>{const id=b.dataset.close;$('#'+id).classList.add('hidden');if(id==='screen-overlay')$('#screen-frame').src='about:blank'});
 }
-function renderStatus(){syncMyIdentity();if(demo)$('#connection-pill').textContent='⚠ ניסיון מקומי בלבד • לא מחובר למשתתפים';else if(connected)$('#connection-pill').textContent=`מחוברים בזמן אמת: ${online.size} • חדר ${room}`;else $('#connection-pill').textContent='לא מחובר • הדגמה';$('#host-count').textContent=`משתתפים בחדר: ${Math.max(0,online.size-1)} / 32 + מנחה`;}
+function renderStatus(){syncMyIdentity();if(retiredHost)$('#connection-pill').textContent='👑 ההנחיה הועברה למכשיר אחר';else if(demo)$('#connection-pill').textContent='⚠ ניסיון מקומי בלבד • לא מחובר למשתתפים';else if(connected)$('#connection-pill').textContent=`מחוברים בזמן אמת: ${online.size} • חדר ${room}`;else $('#connection-pill').textContent='לא מחובר • הדגמה';$('#host-count').textContent=`משתתפים בחדר: ${Math.max(0,online.size-1)} / 32 + מנחה`;}
 function encodedPublicConfig(){
  if(!firebaseConfig||window.KINGDOM_FIREBASE_CONFIG)return '';
  return btoa(unescape(encodeURIComponent(JSON.stringify(firebaseConfig)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
@@ -1861,8 +1876,8 @@ function inviteUrl(mode){
  if(mode==='host'){
   const key=hostCapability||incomingHostKey;
   if(!key)throw Error('קישור המנחה אינו זמין לפני פתיחת העולם.');
-  u.searchParams.set('host',room+'.'+key);
- }else u.searchParams.set('room',room);
+  u.searchParams.set('h',room+'.'+key);
+ }else u.searchParams.set('r',room);
  // Temporary fallback for sites whose public Firebase Web config isn't embedded yet.
  const c=encodedPublicConfig();if(c)u.searchParams.set('c',c);
  return u.href;
@@ -1937,7 +1952,7 @@ function renderAvatarNames(){
  const touched=new Set();
  function place(id,model,label,self=false){
   const e=getAvatarNameLabel(id,label,self);touched.add(id);
-  if(!model?.visible||(self&&selfieMode)||(zone==='theater'&&self)){
+  if(!model?.visible||(self&&(selfieMode||retiredHost||(zone==='exterior'&&seated)))||(zone==='theater'&&self)){
     e.style.display='none';return;
   }
   model.updateWorldMatrix(true,false);
@@ -1962,10 +1977,20 @@ function renderAvatarNames(){
  for(const id of [...avatarLabelNodes.keys()])if(!touched.has(id))cleanAvatarLabel(id);
 }
 
-function ownData(waveAt=localWaveAt){return {name:personName(),avatar:selected,zone,hall,seatIndex,seated:seated&&(zone==='exterior'||zone==='theater'), x:+player.position.x.toFixed(2),z:+player.position.z.toFixed(2),yaw:+player.rotation.y.toFixed(3),waveAt,donutAt,updatedAt:Date.now()}}
-function syncSelf(force=false,wave=false){if(!player||!connected||!rtdb||!presenceRef)return;if(!force&&Date.now()-latestUserMove<350)return;latestUserMove=Date.now();const p=ownData(localWaveAt);rtdb.update(presenceRef,p).catch(e=>console.warn('Player update:',e.message))}
+function ownData(waveAt=localWaveAt){return {name:personName(),hostRole:isHost?'host':'guest',avatar:selected,zone,hall,seatIndex,seated:seated&&(zone==='exterior'||zone==='theater'), x:+player.position.x.toFixed(2),z:+player.position.z.toFixed(2),yaw:+player.rotation.y.toFixed(3),waveAt,donutAt,updatedAt:Date.now()}}
+function syncSelf(force=false,wave=false){if(retiredHost||!player||!connected||!rtdb||!presenceRef)return;if(!force&&Date.now()-latestUserMove<350)return;latestUserMove=Date.now();const p=ownData(localWaveAt);rtdb.update(presenceRef,p).catch(e=>console.warn('Player update:',e.message))}
 function clearRemotes(){for(const p of remote.values())scene.remove(p.g);remote.clear();online.clear()}
-function refreshPlayers(data){let next=new Map(Object.entries(data||{}));online=next;for(const [id,p] of next){if(id===uid)continue;if(typeof p!=='object'||typeof p.x!=='number'||typeof p.z!=='number')continue;let r=remote.get(id);if(!r){const g=makeCharacter(p.avatar||0,p.name||'אורח',true);scene.add(g);g.position.set(p.x,0,p.z);g.rotation.y=p.yaw||0;r={g,data:p};remote.set(id,r)}else if(r.g.userData.kind!==p.avatar){scene.remove(r.g);r.g=makeCharacter(p.avatar||0,p.name||'אורח',true);r.g.position.set(p.x,0,p.z);scene.add(r.g)}r.data=p;r.g.visible=(p.zone===zone&&(zone!=='theater'||(p.hall||'function')===hall))}
+// When the same private facilitator link is used on another browser, the old
+// anonymous Firebase UID may remain briefly in /players. Never draw that older
+// presenter alongside the current one; retain all ordinary audience members.
+function isRetiredPresenter(id,p){
+ const active=roomMeta?.activeHostUid||roomMeta?.hostUid;
+ return !!(active&&id!==active&&(id===roomMeta?.hostUid||p?.hostRole==='host'||p?.seatIndex===-1));
+}
+function refreshPlayers(data){
+ const next=new Map(Object.entries(data||{}).filter(([id,p])=>!isRetiredPresenter(id,p)));
+ online=next;
+ for(const [id,p] of next){if(id===uid)continue;if(typeof p!=='object'||typeof p.x!=='number'||typeof p.z!=='number')continue;let r=remote.get(id);if(!r){const g=makeCharacter(p.avatar||0,p.name||'אורח',true);scene.add(g);g.position.set(p.x,0,p.z);g.rotation.y=p.yaw||0;r={g,data:p};remote.set(id,r)}else if(r.g.userData.kind!==p.avatar){scene.remove(r.g);r.g=makeCharacter(p.avatar||0,p.name||'אורח',true);r.g.position.set(p.x,0,p.z);scene.add(r.g)}r.data=p;r.g.visible=(p.zone===zone&&(zone!=='theater'||(p.hall||'function')===hall))}
  for(const [id,r] of remote){if(!next.has(id)){scene.remove(r.g);remote.delete(id)}}renderStatus()}
 async function loadFirebase(asHost){
  if(session)return session;
@@ -1980,6 +2005,7 @@ async function loadFirebase(asHost){
  uid=signed.user.uid;db=data.getDatabase(fapp);rtdb=data;session={app,auth,data};return session;
 }
 let roomMeta=null,offPlayers=null,offMeta=null,offInfo=null,offDonuts=null;
+let retiredHost=false; // active host URL was opened on another device
 async function connectLive(asHost){
  await loadFirebase(asHost);
  room=asHost?(incomingHostRoom||permanentHostRoom()):incomingRoom;
@@ -2025,7 +2051,7 @@ async function connectLive(asHost){
  const people=await rtdb.get(playersRef),roster=people.val()||{};
  // The room ID survives between meetings; the room is JOINABLE only while its host is actually connected.
  if(!asHost&&!roster[roomMeta.activeHostUid||roomMeta.hostUid])throw Error('המנחה עדיין לא פתח את המפגש. אפשר לנסות שוב לאחר הפתיחה.');
- const count=Object.keys(roster).filter(id=>id!==(roomMeta.activeHostUid||roomMeta.hostUid)).length;
+ const count=Object.entries(roster).filter(([id,p])=>id!==(roomMeta.activeHostUid||roomMeta.hostUid)&&!isRetiredPresenter(id,p)).length;
  if(count>=32&&!people.child(uid).exists())throw Error('הכיכר מלאה כרגע (32 מקומות ישיבה).');
  // Atomic seat reservation: two participants joining simultaneously cannot claim the same chair.
  if(!asHost){
@@ -2046,7 +2072,7 @@ async function connectLive(asHost){
  
  const infoRef=rtdb.ref(db,'.info/connected');presenceRef=rtdb.ref(db,base+'/players/'+uid);
  // Re-register onDisconnect after each reconnect BEFORE publishing presence.
- if(offInfo)offInfo();offInfo=rtdb.onValue(infoRef,async snap=>{if(!snap.val()||!connected)return;try{await rtdb.onDisconnect(presenceRef).remove();if(seatClaimRef)await rtdb.onDisconnect(seatClaimRef).remove();await rtdb.set(presenceRef,ownData())}catch(e){console.error('Presence registration:',e)}});
+ if(offInfo)offInfo();offInfo=rtdb.onValue(infoRef,async snap=>{if(!snap.val()||!connected||retiredHost)return;try{await rtdb.onDisconnect(presenceRef).remove();if(seatClaimRef)await rtdb.onDisconnect(seatClaimRef).remove();await rtdb.set(presenceRef,ownData())}catch(e){console.error('Presence registration:',e)}});
  await rtdb.onDisconnect(presenceRef).remove();if(seatClaimRef)await rtdb.onDisconnect(seatClaimRef).remove();await rtdb.set(presenceRef,ownData());connected=true;
  if(offPlayers)offPlayers();if(offMeta)offMeta();
  // No late-join teleport: guests start seated in the square in every room phase.
@@ -2056,6 +2082,15 @@ async function connectLive(asHost){
  offPlayers=rtdb.onValue(playersRef,s=>refreshPlayers(s.val()),e=>note('שגיאת קריאת משתתפים: '+e.message));
  offMeta=rtdb.onValue(metaRef,s=>{if(!s.exists())return;const fresh=s.val(),old=roomMeta?.phase,oldHall=roomMeta?.hall,oldRecall=roomMeta?.recallSeq||0;
  roomMeta=fresh;phase=fresh.phase||'plaza';
+ // A single private host link may be opened on multiple devices, but only the
+ // last active session owns the presenter. Retire its previous live avatar.
+ if(isHost&&!retiredHost&&fresh.activeHostUid&&fresh.activeHostUid!==uid){
+  retiredHost=true;isHost=false;
+  $('#host-controls').classList.add('hidden');$('#host-panel').classList.add('hidden');
+  if(presenceRef)rtdb.remove(presenceRef).catch(e=>console.warn('Old facilitator presence:',e.message));
+  $('#connection-pill').textContent='👑 ההנחיה הועברה למכשיר אחר';
+ }
+ if(connected&&online.size)refreshPlayers(Object.fromEntries(online));
  linkMap={...DEFAULT_LINKS,...Object.fromEntries(Object.entries(fresh.links||{}).filter(([k,v])=>v&&typeof v==='string'))};updateHostUrls();
  if((old!==phase||oldHall!==fresh.hall||oldRecall!==(fresh.recallSeq||0))&&old){
    if(phase==='lobby'){$('#zone-name').textContent='כיכר המלכותית · הקולנוע פתוח';note('דלת הקולנוע נפתחה · מתקדמים דרך הכניסה')}
@@ -2107,6 +2142,6 @@ window.KINGDOM_TEST_CONTROLS=()=>{
  steeringRightIsNegativeYaw:true,deadzone:axisCurve(.04)===0,
  cameraRigidToHeading:true};
 };
-window.KINGDOM_DIAGNOSTICS=()=>({version:'v64-single-permanent-world-two-links',zone,phase,seated,seatIndex,loaded:loadersDone,characters:npcs.length,connected,realParticipants:online.size,room,auditoriums:[{side:'right',key:'function'},{side:'left',key:'tech'}],hall,donutAt,donutRemaining,camera:'V63 seated eye-level stage-centered POV / free-roam rear follow',linksConfigured:!!(linkMap.function&&linkMap.tech),screenLive,doorProgress:doorOpenAmount,mainDoorSensor:anyVisitorNearDoor('main'),pixelRatio:renderer?.getPixelRatio(),portalDepth:PORTAL_Z,donutPosition:DONUT_POS,professionalFacilitator:false,joystickRightLeft:'right is negative yaw; heading persists after straightening stick',joystickActive:joyActive,cameraClear:lastCameraClear,cameraAvoidanceHits:cameraSafetyHits,cameraSafetyShift:cameraSafetyShift,ponyActors:festivalPonyRigs.length,fireworkBursts:festivalParticles.length,sceneryColliders:solidScenery.length,escortActive:!!autoSeat,lobbyAligned:Math.abs(lobby?.position.z-LOBBY_OFFSET)<.01});
+window.KINGDOM_DIAGNOSTICS=()=>({version:'v65-single-visible-host-over-shoulder-two-way-doors',zone,phase,seated,seatIndex,loaded:loadersDone,characters:npcs.length,connected,realParticipants:online.size,room,auditoriums:[{side:'right',key:'function'},{side:'left',key:'tech'}],hall,donutAt,donutRemaining,camera:'V65 seated rear three-quarter with stage-centered sight line; free-roam chase',linksConfigured:!!(linkMap.function&&linkMap.tech),screenLive,doorProgress:doorOpenAmount,mainDoorSensor:anyVisitorNearDoor('main'),pixelRatio:renderer?.getPixelRatio(),portalDepth:PORTAL_Z,donutPosition:DONUT_POS,professionalFacilitator:false,joystickRightLeft:'right is negative yaw; heading persists after straightening stick',joystickActive:joyActive,cameraClear:lastCameraClear,cameraAvoidanceHits:cameraSafetyHits,cameraSafetyShift:cameraSafetyShift,ponyActors:festivalPonyRigs.length,fireworkBursts:festivalParticles.length,sceneryColliders:solidScenery.length,escortActive:!!autoSeat,lobbyAligned:Math.abs(lobby?.position.z-LOBBY_OFFSET)<.01});
 </script>
 </body></html>
