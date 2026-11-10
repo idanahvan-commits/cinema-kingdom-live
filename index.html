@@ -143,6 +143,17 @@
 #intro.master-entry #live-setup-help{display:none!important}
 #intro #connection-summary.hidden{display:none!important}
 #intro .intro-card{scrollbar-width:thin}
+/* V69 — quiet cinema screen, with invitations on the entry panel and crown panel. */
+#topright .brand,#topright #zone-name,#topright #connection-pill,#topright #my-identity{display:none!important}
+#topright{top:max(9px,env(safe-area-inset-top));right:13px}
+#topright .bsd{font-size:11px}
+#topbuttons #share{display:none!important}
+#hint{display:none!important}
+#intro-share-wrap{margin-top:12px;display:flex;flex-direction:column;gap:5px}
+#intro-share-player{width:100%;min-height:45px;font-size:13px;border-color:#e5bc82;background:#36234e}
+#intro-share-player:disabled{opacity:.62}
+#intro-share-note{font-size:11px;text-align:center;color:#e1cee8;line-height:1.4}
+@media(max-width:650px){#topbuttons{top:max(12px,env(safe-area-inset-top))!important;left:9px}}
 /* V68: a single obvious one-click player invitation on every facilitator's HUD. */
 #topbuttons #share.facilitator-share{width:auto;min-width:160px;max-width:184px;height:43px;border-radius:24px;padding:0 12px;white-space:nowrap;font-size:12px;font-weight:800;background:linear-gradient(125deg,#8860a2ee,#432e68ef);color:#ffeebd;border:1px solid #f5cf89;box-shadow:0 3px 14px #0b071bb8}
 #topbuttons #host-controls,#topbuttons #teacher-controls{font-family:Arial,sans-serif}
@@ -158,6 +169,10 @@
 <div class="tiny-bsd">בס״ד</div><div class="eyebrow">מסע מלכותי במתמטיקה</div><h1 id="intro-title">ממלכת הקולנוע</h1><p class="subtitle" id="intro-help">בחרו שם ודמות</p>
 <label for="player-name">איך יקראו לכם בממלכה?</label><input id="player-name" maxlength="22" placeholder="השם שלי" autocomplete="nickname">
 <div class="label-title">בחרו את הדמות שלכם</div><div id="avatar-picker" class="avatar-grid"></div>
+<div id="intro-share-wrap" class="intro-share hidden" dir="rtl">
+  <button type="button" id="intro-share-player" class="soft-button" title="העתיקו את הקישור לתלמידים של החדר שלכם">🔗 העתק קישור לשחקנים</button>
+  <div id="intro-share-note" class="small hidden" role="status"></div>
+</div>
 
 <div id="connection-summary"></div><button id="configured-export" class="soft-button" type="button">📄 הורדת index.html עם חיבור Firebase קבוע וקישורים קצרים</button>
 <details id="fb-panel"><summary>⚙️ הגדרות Firebase לקראת המפגש</summary><p class="small">הדביקו את הגדרות אפליקציית Web מתוך Firebase. המערכת משתמשת ב־Anonymous Authentication וב־Realtime Database. הגדרות Web אינן סיסמה; אין להדביק מפתחות של חשבון שירות.</p><textarea id="firebase-json" dir="ltr" spellcheck="false" placeholder='{"apiKey":"...","authDomain":"...","databaseURL":"https://...","projectId":"...","appId":"..."}'></textarea><button id="save-fb" class="soft-button">שמור הגדרות</button><div id="live-setup-help" class="small" dir="rtl" style="margin-top:12px;padding:13px;border:1px solid #d9af6d88;border-radius:12px;background:#1a1130b8;line-height:1.85">
@@ -413,6 +428,7 @@ $('#intro').classList.toggle('master-entry',isMasterInvitation);
 $('#intro-title').textContent=ENTRY_ROLE==='master'?'ממלכת הקולנוע- מאסטר':ENTRY_ROLE==='teacher'?'ממלכת הקולנוע- מנחה':'ממלכת הקולנוע- שחקן';
 $('#intro-help').textContent='בחרו שם ודמות והיכנסו לממלכה';
 $('#join-room').textContent=ENTRY_ROLE==='master'?'👑 כניסה כמאסטר':ENTRY_ROLE==='teacher'?'👑 כניסה כמנחה':'כניסה לממלכה';
+refreshIntroSharing();
 $('#fb-panel').classList.toggle('hidden',!isMasterInvitation);
 $('#configured-export').style.display='none';
 if(!firebaseConfig&&isMasterInvitation)helpIntro('יש להזין את הגדרות Firebase');
@@ -1917,8 +1933,8 @@ function initInput(){
  $('#leave-theater').onclick=leaveTheaterToCarpet;
  $('#camera-mode').onclick=()=>{viewMode=viewMode==='cinematic'?'panorama':'cinematic';note(viewMode==='panorama'?'מבט רחב יציב מאחורי הדמות':'מבט קרוב יציב מאחורי הדמות');};
  $('#full').onclick=()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen?.().catch(()=>{});else document.exitFullscreen?.()};
- $('#screen-play').onclick=()=>openProjection();$('#screen-enter').onclick=()=>enterScreen();$('#exit').onclick=()=>{selfieMode=false;for(const id of [...avatarLabelNodes.keys()])cleanAvatarLabel(id);if(connected&&presenceRef&&rtdb){rtdb.remove(presenceRef).catch(console.warn);if(seatClaimRef)rtdb.remove(seatClaimRef).catch(console.warn);seatClaimRef=null;connected=false}if(offDonuts){offDonuts();offDonuts=null}if(offPlayers){offPlayers();offPlayers=null}if(offMeta){offMeta();offMeta=null}if(offInfo){offInfo();offInfo=null}clearRemotes();screenLive=false;$('#world-screen').classList.remove('playing');$('#world-screen').classList.add('hidden');$('#screen-vortex').classList.add('hidden');$('#screen-vortex').classList.remove('active');$('#intro').classList.remove('hidden');$('#hud').classList.add('hidden');$('#leave-theater').classList.add('hidden');$('#host-panel').classList.add('hidden');$('#screen-overlay').classList.add('hidden')};
- $('#share').onclick=()=>copyShare();$('#host-controls').onclick=()=>openHost();$('#teacher-controls').onclick=()=>{if(isHost&&!isMaster)$('#teacher-panel').classList.remove('hidden')};$('#teacher-copy-player').onclick=()=>copyShare();$('#teacher-copy-personal').onclick=()=>copyPersonalTeacher();$('#copy-room').onclick=()=>copyShare();$('#copy-host').onclick=()=>copyHost();$('#copy-teacher').onclick=()=>copyTeacher();
+ $('#screen-play').onclick=()=>openProjection();$('#screen-enter').onclick=()=>enterScreen();$('#exit').onclick=()=>{selfieMode=false;for(const id of [...avatarLabelNodes.keys()])cleanAvatarLabel(id);if(connected&&presenceRef&&rtdb){rtdb.remove(presenceRef).catch(console.warn);if(seatClaimRef)rtdb.remove(seatClaimRef).catch(console.warn);seatClaimRef=null;connected=false}if(offDonuts){offDonuts();offDonuts=null}if(offPlayers){offPlayers();offPlayers=null}if(offMeta){offMeta();offMeta=null}if(offInfo){offInfo();offInfo=null}clearRemotes();screenLive=false;$('#world-screen').classList.remove('playing');$('#world-screen').classList.add('hidden');$('#screen-vortex').classList.add('hidden');$('#screen-vortex').classList.remove('active');$('#intro').classList.remove('hidden');refreshIntroSharing();$('#hud').classList.add('hidden');$('#leave-theater').classList.add('hidden');$('#host-panel').classList.add('hidden');$('#screen-overlay').classList.add('hidden')};
+ $('#share').onclick=()=>copyShare();$('#intro-share-player').onclick=()=>copyIntroPlayers();$('#host-controls').onclick=()=>openHost();$('#teacher-controls').onclick=()=>{if(isHost&&!isMaster)$('#teacher-panel').classList.remove('hidden')};$('#teacher-copy-player').onclick=()=>copyShare();$('#teacher-copy-personal').onclick=()=>copyPersonalTeacher();$('#copy-room').onclick=()=>copyShare();$('#copy-host').onclick=()=>copyHost();$('#copy-teacher').onclick=()=>copyTeacher();
  $('#host-lobby').onclick=()=>setPhase('lobby');$('#host-function').onclick=()=>setPhase('theater','function');$('#host-tech').onclick=()=>setPhase('theater','tech');$('#host-garden').onclick=()=>setPhase('plaza');
  $('#save-links').onclick=()=>saveLinks();
  $('#new-tab').onclick=()=>{if(window.KINGDOM_SCREEN_URL)window.open(window.KINGDOM_SCREEN_URL,'_blank','noopener,noreferrer')};
@@ -1941,6 +1957,36 @@ function inviteUrl(mode){
  }else u.searchParams.set('r',room);
  const c=encodedPublicConfig();if(c)u.searchParams.set('c',c);
  return u.href;
+}
+function introPlayerRoom(){
+ if(isMasterInvitation)return incomingHostRoom;
+ if(!isTeacherInvitation)return '';
+ if(!isTeacherPortal)return incomingTeacherRoom;
+ const remembered=savedTeacherRoom();
+ if(remembered)return remembered.room;
+ if(connected&&isHost&&room!==HOME_ROOM)return room;
+ return '';
+}
+function refreshIntroSharing(){
+ const wrap=$('#intro-share-wrap'),button=$('#intro-share-player'),info=$('#intro-share-note');
+ if(!wrap||!button||!info)return;
+ const allowed=ENTRY_ROLE==='master'||ENTRY_ROLE==='teacher';
+ wrap.classList.toggle('hidden',!allowed);
+ if(!allowed)return;
+ const ready=!!introPlayerRoom();
+ button.disabled=!ready;
+ button.textContent=ready?'🔗 העתק קישור לשחקנים':'🔗 קישור השחקנים ייווצר לאחר הכניסה הראשונה';
+ info.classList.toggle('hidden',ready);
+ info.textContent=ready?'':'לאחר יצירת החדר, אפשר להעתיק את הקישור גם מחלונית הכתר.';
+}
+async function copyIntroPlayers(){
+ const id=introPlayerRoom();
+ if(!id){refreshIntroSharing();return;}
+ const u=new URL(location.href);u.search='';u.hash='';u.searchParams.set('r',id);
+ try{
+  await navigator.clipboard.writeText(u.href);
+  const info=$('#intro-share-note');info.textContent='✓ קישור השחקנים הועתק. אפשר לשלוח אותו עכשיו.';info.classList.remove('hidden');
+ }catch(e){prompt('העתיקו את קישור השחקנים',u.href)}
 }
 function roomLink(){return inviteUrl('player')}
 function hostLink(){return inviteUrl('master')}
@@ -2007,9 +2053,9 @@ try{const prior=sessionStorage.getItem('kingdom_v56_player_name');
  if(prior&&!$('#player-name').value)$('#player-name').value=prior.slice(0,22);
 }catch(e){}
 $('#player-name').addEventListener('input',()=>{
- syncMyIdentity();try{sessionStorage.setItem('kingdom_v56_player_name',$('#player-name').value.slice(0,22))}catch(e){}
+ syncMyIdentity();refreshIntroSharing();try{sessionStorage.setItem('kingdom_v56_player_name',$('#player-name').value.slice(0,22))}catch(e){}
 });
-syncMyIdentity();
+syncMyIdentity();refreshIntroSharing();
 
 function getAvatarNameLabel(id,label,isSelf=false){
  let e=avatarLabelNodes.get(id);
@@ -2237,7 +2283,7 @@ async function connectLive(asHost){
  },e=>note('שגיאת נתוני חדר: '+e.message));
  $('#host-controls').classList.toggle('hidden',!(isMaster&&isHost));
  $('#teacher-controls').classList.toggle('hidden',!(isHost&&!isMaster));
- const shareButton=$('#share');shareButton.classList.toggle('hidden',!isHost);shareButton.classList.toggle('facilitator-share',isHost);shareButton.textContent='🔗 העתק קישור לשחקנים';
+ const shareButton=$('#share');shareButton.classList.add('hidden');
  $('#room-label').textContent=`קוד חדר: ${room}`;renderStatus();}
 function updateHostUrls(){if(!isMaster||!isHost)return;$('#url-function').value=linkMap.function||DEFAULT_LINKS.function;$('#url-tech').value=linkMap.tech||DEFAULT_LINKS.tech;}
 function openHost(){if(!isMaster||!isHost){note('לוח הניהול זמין למאסטר בלבד');return}$('#host-panel').classList.remove('hidden');renderStatus()}
@@ -2261,7 +2307,7 @@ async function start(asHost=false,tryDemo=false){
  $('#intro').classList.add('hidden');$('#load').classList.remove('hidden');try{
  if(!loadersDone)await buildScene();if(tryDemo){setDoughnutRemaining(26);demo=true;phase='plaza';isHost=true;standAsHost();connected=false;room='DEMO';uid='demo';$('#host-controls').classList.remove('hidden');$('#room-label').textContent='מצב ניסיון בלבד';clearRemotes();}
  else{demo=false;await connectLive(asHost);}
- $('#load').classList.add('hidden');$('#hud').classList.remove('hidden');syncMyIdentity();renderStatus();if(asHost){note(isMasterInvitation?'👑 כניסת מאסטר פעילה':'👑 החדר האישי שלך מוכן');if(isMasterInvitation)openHost();else if(teacherRoomCreated)$('#teacher-panel').classList.remove('hidden')}
+ $('#load').classList.add('hidden');$('#hud').classList.remove('hidden');syncMyIdentity();renderStatus();refreshIntroSharing();if(asHost){note(isMasterInvitation?'👑 כניסת מאסטר פעילה':'👑 החדר האישי שלך מוכן · הקישורים בחלונית הכתר')}
  else if(tryDemo){note('הדמויות שמסביב הן אורחים ממוחשבים; חיבור אמיתי דורש Firebase');}
  else note('ברוכים הבאים למפגש המשותף!')
  }catch(e){console.error(e);$('#load').classList.add('hidden');$('#intro').classList.remove('hidden');helpIntro('שגיאה: '+e.message+'. בדקו אינטרנט, Firebase והרשאות.');}}
@@ -2279,6 +2325,6 @@ window.KINGDOM_TEST_CONTROLS=()=>{
  steeringRightIsNegativeYaw:true,deadzone:axisCurve(.04)===0,
  cameraRigidToHeading:true};
 };
-window.KINGDOM_DIAGNOSTICS=()=>({version:'v68-isolated-teacher-rooms-one-click-sharing',zone,phase,seated,seatIndex,loaded:loadersDone,characters:npcs.length,connected,realParticipants:online.size,room,auditoriums:[{side:'right',key:'function'},{side:'left',key:'tech'}],hall,donutAt,donutRemaining,camera:'V66 seated rear three-quarter with visible self name; free-roam chase',linksConfigured:!!(linkMap.function&&linkMap.tech),screenLive,doorProgress:doorOpenAmount,mainDoorSensor:anyVisitorNearDoor('main'),pixelRatio:renderer?.getPixelRatio(),portalDepth:PORTAL_Z,donutPosition:DONUT_POS,professionalFacilitator:false,joystickRightLeft:'right is negative yaw; heading persists after straightening stick',joystickActive:joyActive,cameraClear:lastCameraClear,cameraAvoidanceHits:cameraSafetyHits,cameraSafetyShift:cameraSafetyShift,ponyActors:festivalPonyRigs.length,fireworkBursts:festivalParticles.length,sceneryColliders:solidScenery.length,escortActive:!!autoSeat,lobbyAligned:Math.abs(lobby?.position.z-LOBBY_OFFSET)<.01});
+window.KINGDOM_DIAGNOSTICS=()=>({version:'v69-clean-interfaces-entry-and-crown-sharing',zone,phase,seated,seatIndex,loaded:loadersDone,characters:npcs.length,connected,realParticipants:online.size,room,auditoriums:[{side:'right',key:'function'},{side:'left',key:'tech'}],hall,donutAt,donutRemaining,camera:'V66 seated rear three-quarter with visible self name; free-roam chase',linksConfigured:!!(linkMap.function&&linkMap.tech),screenLive,doorProgress:doorOpenAmount,mainDoorSensor:anyVisitorNearDoor('main'),pixelRatio:renderer?.getPixelRatio(),portalDepth:PORTAL_Z,donutPosition:DONUT_POS,professionalFacilitator:false,joystickRightLeft:'right is negative yaw; heading persists after straightening stick',joystickActive:joyActive,cameraClear:lastCameraClear,cameraAvoidanceHits:cameraSafetyHits,cameraSafetyShift:cameraSafetyShift,ponyActors:festivalPonyRigs.length,fireworkBursts:festivalParticles.length,sceneryColliders:solidScenery.length,escortActive:!!autoSeat,lobbyAligned:Math.abs(lobby?.position.z-LOBBY_OFFSET)<.01});
 </script>
 </body></html>
