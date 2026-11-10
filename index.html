@@ -2,7 +2,7 @@
 <html lang="he" dir="rtl"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="theme-color" content="#211333"><meta name="description" content="ממלכת התבונה - מפגש תלת ממדי משותף בממלכה קסומה">
-<title>ממלכת התבונה | הקולנוע המלכותי - V65</title>
+<title>ממלכת התבונה | הקולנוע המלכותי - V66</title>
 <style>
 /* V56: readable, correctly ordered participant names, free of mirrored textures. */
 #avatar-names{position:fixed;inset:0;z-index:7;pointer-events:none;overflow:hidden;direction:rtl}
@@ -1499,11 +1499,12 @@ function updateMovement(dt){
  // Side walls of the entrance: the only continuous route into the cinema is through the open center.
  if(zone==='exterior'&&player.position.z<7.0&&Math.abs(player.position.x)>4.0){player.position.z=Math.max(7.0,player.position.z)}
  if(zone==='lobby'&&player.position.z<PORTAL_Z+4.0&&Math.min(Math.abs(player.position.x-8.5),Math.abs(player.position.x+8.5))>3.7){player.position.z=Math.max(PORTAL_Z+4.0,player.position.z)}
- // Stage gate: no accidental exit to the outside; entering the building finishes the exterior stage.
+ // Seamless outside-to-lobby threshold; entry is not gated by the facilitator phase.
  if(zone==='exterior'&&player.position.z<=-1.0&&Math.abs(player.position.x)<4.1){
-  if((phase!=='plaza'||demo)&&doorOpenAmount>.80){enterZone('lobby',false);return;}
-  player.position.z=-.80;
-  if(Date.now()-gateHintAt>4000){note('דלת הקולנוע תיפתח כאשר המנחה יזמין את הקבוצה');gateHintAt=Date.now();}
+  // The proximity sensor starts opening the leaves well before arrival.
+  // Crossing the doorway always enters the lobby, without a separate unlock button.
+  mainDoorHoldUntil=performance.now()+3000;
+  enterZone('lobby',false);return;
  }
  animatePerson(player,clock,moved?Math.hypot(movement.x,movement.z):0);wavePerson(player,clock,localWaveAt);animateDoughnut(player,donutAt);
  nextToPortal=zone==='lobby'&&player.position.z< PORTAL_Z+7.0?portalSlots.findIndex(x=>Math.abs(player.position.x-x)<3.7):-1;
@@ -1511,7 +1512,7 @@ function updateMovement(dt){
  action.classList.add('hidden');
  if(zone==='exterior'){
   if(Math.hypot(player.position.x-DONUT_POS.x,player.position.z-DONUT_POS.z)<7.6){action.textContent='🍩';action.title='סופגנייה';action.classList.remove('hidden');action.onclick=eatDoughnut;}
-  else if(Math.abs(player.position.x)<6.0&&player.position.z<7){if(phase==='plaza'&&!demo){action.textContent='🔒';action.title='סגור';action.disabled=true;action.classList.remove('hidden');}}
+  // V66: the cinema entrance is always a proximity-operated, walk-through door.
  }else if(zone==='lobby'){
   // Doorways work both ways: walk towards the outside along the entrance carpet.
   // Preserve the exact position/yaw; don't teleport to a new starting place.
@@ -1711,8 +1712,8 @@ function electricLighting(dt){
 function anyVisitorNearDoor(which){
  function near(x,z,where,personHall){
   if(!Number.isFinite(x)||!Number.isFinite(z))return false;
-  if(which==='main')return (where==='exterior'&&Math.abs(x)<7.5&&z>=-2.5&&z<16)
-       || (where==='lobby'&&Math.abs(x)<7.5&&z>-12&&z<8);
+  if(which==='main')return (where==='exterior'&&Math.abs(x)<7.5&&z>=-3.5&&z<21)
+       || (where==='lobby'&&Math.abs(x)<7.5&&z>-15&&z<10);
   const cx=which==='function'?8.5:-8.5;
   return Math.abs(x-cx)<7.0&&(
    (where==='lobby'&&z>=PORTAL_Z-4&&z<=PORTAL_Z+14)
@@ -1735,13 +1736,13 @@ function draw(now){requestAnimationFrame(draw);if(!loadersDone)return;const dt=M
  if(sky?.material?.uniforms)sky.material.uniforms.time.value=clock;
  
  if(connected&&now-syncAt>210){syncAt=now;syncSelf()}
- // V62: proximity-controlled automatic doors, including OTHER live participants.
- // The facilitator still chooses when the cinema is unlocked; once unlocked, any guest
- // approaching from either side can open and cross the door independently.
- const accessible=phase!=='plaza'||demo;
- if(anyVisitorNearDoor('main'))mainDoorHoldUntil=now+2500;
+ // V66: proximity-controlled doors are accessible to all live participants.
+ // Both the entrance and auditorium panels slide aside on approach from either direction.
+ // The facilitator phase still controls shared lesson announcements, not physical passage.
+ const accessible=true;
+ if(anyVisitorNearDoor('main'))mainDoorHoldUntil=now+3200;
  const shouldOpenMain=accessible&&now<mainDoorHoldUntil;
- doorOpenAmount=lerp(doorOpenAmount,shouldOpenMain?1:0,1-Math.exp(-dt*(shouldOpenMain?4.2:2.0)));
+ doorOpenAmount=lerp(doorOpenAmount,shouldOpenMain?1:0,1-Math.exp(-dt*(shouldOpenMain?5.2:1.65)));
  for(const d of doorLeaves)d.o.position.x=d.x+d.sign*4.25*doorOpenAmount;
  for(const d of hallDoors){
    const side=d.center>0?'function':'tech';
@@ -1952,7 +1953,7 @@ function renderAvatarNames(){
  const touched=new Set();
  function place(id,model,label,self=false){
   const e=getAvatarNameLabel(id,label,self);touched.add(id);
-  if(!model?.visible||(self&&(selfieMode||retiredHost||(zone==='exterior'&&seated)))||(zone==='theater'&&self)){
+  if(!model?.visible||(self&&(selfieMode||retiredHost))||(zone==='theater'&&self)){
     e.style.display='none';return;
   }
   model.updateWorldMatrix(true,false);
@@ -2142,6 +2143,6 @@ window.KINGDOM_TEST_CONTROLS=()=>{
  steeringRightIsNegativeYaw:true,deadzone:axisCurve(.04)===0,
  cameraRigidToHeading:true};
 };
-window.KINGDOM_DIAGNOSTICS=()=>({version:'v65-single-visible-host-over-shoulder-two-way-doors',zone,phase,seated,seatIndex,loaded:loadersDone,characters:npcs.length,connected,realParticipants:online.size,room,auditoriums:[{side:'right',key:'function'},{side:'left',key:'tech'}],hall,donutAt,donutRemaining,camera:'V65 seated rear three-quarter with stage-centered sight line; free-roam chase',linksConfigured:!!(linkMap.function&&linkMap.tech),screenLive,doorProgress:doorOpenAmount,mainDoorSensor:anyVisitorNearDoor('main'),pixelRatio:renderer?.getPixelRatio(),portalDepth:PORTAL_Z,donutPosition:DONUT_POS,professionalFacilitator:false,joystickRightLeft:'right is negative yaw; heading persists after straightening stick',joystickActive:joyActive,cameraClear:lastCameraClear,cameraAvoidanceHits:cameraSafetyHits,cameraSafetyShift:cameraSafetyShift,ponyActors:festivalPonyRigs.length,fireworkBursts:festivalParticles.length,sceneryColliders:solidScenery.length,escortActive:!!autoSeat,lobbyAligned:Math.abs(lobby?.position.z-LOBBY_OFFSET)<.01});
+window.KINGDOM_DIAGNOSTICS=()=>({version:'v66-immediate-self-name-unlocked-proximity-doors',zone,phase,seated,seatIndex,loaded:loadersDone,characters:npcs.length,connected,realParticipants:online.size,room,auditoriums:[{side:'right',key:'function'},{side:'left',key:'tech'}],hall,donutAt,donutRemaining,camera:'V66 seated rear three-quarter with visible self name; free-roam chase',linksConfigured:!!(linkMap.function&&linkMap.tech),screenLive,doorProgress:doorOpenAmount,mainDoorSensor:anyVisitorNearDoor('main'),pixelRatio:renderer?.getPixelRatio(),portalDepth:PORTAL_Z,donutPosition:DONUT_POS,professionalFacilitator:false,joystickRightLeft:'right is negative yaw; heading persists after straightening stick',joystickActive:joyActive,cameraClear:lastCameraClear,cameraAvoidanceHits:cameraSafetyHits,cameraSafetyShift:cameraSafetyShift,ponyActors:festivalPonyRigs.length,fireworkBursts:festivalParticles.length,sceneryColliders:solidScenery.length,escortActive:!!autoSeat,lobbyAligned:Math.abs(lobby?.position.z-LOBBY_OFFSET)<.01});
 </script>
 </body></html>
