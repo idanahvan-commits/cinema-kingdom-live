@@ -1704,11 +1704,23 @@ function updateCam(dt){
   target=player.position.clone();target.y+=1.8;
   camera.fov=innerWidth<650?56:47;
  }else if(zone==='theater'&&seated&&!autoSeat){
-  // Auditorium view is in auditorium's WORLD location, without shifting player coordinates.
+  // V74: every seated guest receives a front-on, complete view of the same
+  // projection, regardless of which actual chair their avatar occupies.
+  // This is a viewing camera ONLY: the player's seat, pose and Firebase state
+  // remain unchanged. In portrait mode the complete wide screen is letterboxed
+  // naturally, not cropped or stretched.
   theater.updateMatrixWorld(true);
-  eye=theater.localToWorld(new THREE.Vector3(0,8.8,10.0));
-  target=theater.localToWorld(new THREE.Vector3(0,8.65,-32.6));
-  camera.fov=innerWidth<650?81:66;
+  const screenWidth=31.25,screenHeight=17.1;
+  const screenCenterY=9.05,screenZ=-32.92;
+  const cinemaCameraZ=-9.0;
+  const distance=cinemaCameraZ-screenZ;
+  const aspect=Math.max(.20,innerWidth/Math.max(1,innerHeight));
+  const fill=.92; // Keep all four edges and the royal screen frame in view.
+  const halfHeight=Math.max(screenHeight/2,screenWidth/(2*aspect));
+  const fittedFov=2*Math.atan(halfHeight/(distance*fill))*180/Math.PI;
+  eye=theater.localToWorld(new THREE.Vector3(0,screenCenterY,cinemaCameraZ));
+  target=theater.localToWorld(new THREE.Vector3(0,screenCenterY,screenZ));
+  camera.fov=clamp(fittedFov,20,150);
  }else{
   const wide=viewMode==='panorama',dist=zone==='exterior'?(wide?13.0:9.6):zone==='lobby'?(wide?7.0:5.5):(wide?9.8:7.9);
   const h=zone==='exterior'?(wide?9.7:8.1):zone==='lobby'?(wide?6.6:5.4):(wide?7.3:6.1);
