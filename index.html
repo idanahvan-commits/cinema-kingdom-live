@@ -180,6 +180,9 @@
  #intro:not(.master-entry) .cta-row{position:sticky;bottom:-2px;z-index:6;margin-top:10px!important;padding:9px 0 max(9px,env(safe-area-inset-bottom));background:linear-gradient(#21142de6,#21142dfb 18%);border-top:1px solid #cba97570;box-shadow:0 -8px 16px #140b2366}
  #intro:not(.master-entry) .cta-row #join-room{min-height:54px}
 }
+/* V76: keep the exit, gesture and joystick reachable around the enlarged cinema screen. */
+#hud{z-index:14}
+#world-screen{z-index:12}
 </style></head><body>
 <div id="scene"></div><div id="cinema-dim-overlay" aria-hidden="true"></div><div id="avatar-names" aria-hidden="true"></div><div id="world-screen" class="hidden"><img id="world-screen-image" alt="תמונה סטטית של הממלכה" draggable="false"><button id="screen-play" class="screen-play hidden" aria-label="Play">▶</button><button id="screen-enter" class="screen-enter hidden" aria-label="כניסה לממלכה"></button></div><div id="fade"></div><div id="screen-vortex" class="hidden"><div class="vortex-stars">✦　✧　✦　✧　✦</div><div class="vortex-title">נכנסים לממלכה…</div></div>
 <div id="intro" class="overlay"><div class="intro-card">
@@ -1704,20 +1707,15 @@ function updateCam(dt){
   target=player.position.clone();target.y+=1.8;
   camera.fov=innerWidth<650?56:47;
  }else if(zone==='theater'&&seated&&!autoSeat){
-  // V74: every seated guest receives a front-on, complete view of the same
-  // projection, regardless of which actual chair their avatar occupies.
-  // This is a viewing camera ONLY: the player's seat, pose and Firebase state
-  // remain unchanged. In portrait mode the complete wide screen is letterboxed
-  // naturally, not cropped or stretched.
+  // V76: a single virtual spectator camera faces the projection HEAD-ON from
+  // every actual chair. Camera-only movement; all avatar seats and Firebase
+  // coordinates stay unchanged. Match FOV to the fitted projection rectangle.
   theater.updateMatrixWorld(true);
-  const screenWidth=31.25,screenHeight=17.1;
-  const screenCenterY=9.05,screenZ=-32.92;
-  const cinemaCameraZ=-9.0;
+  const viewing=theaterScreenViewport();
+  const screenCenterY=9.05, screenZ=-32.92, cinemaCameraZ=-12.0;
   const distance=cinemaCameraZ-screenZ;
-  const aspect=Math.max(.20,innerWidth/Math.max(1,innerHeight));
-  const fill=.92; // Keep all four edges and the royal screen frame in view.
-  const halfHeight=Math.max(screenHeight/2,screenWidth/(2*aspect));
-  const fittedFov=2*Math.atan(halfHeight/(distance*fill))*180/Math.PI;
+  const heightFill=viewing.height/Math.max(1,innerHeight);
+  const fittedFov=2*Math.atan((17.1/2)/(distance*heightFill))*180/Math.PI;
   eye=theater.localToWorld(new THREE.Vector3(0,screenCenterY,cinemaCameraZ));
   target=theater.localToWorld(new THREE.Vector3(0,screenCenterY,screenZ));
   camera.fov=clamp(fittedFov,20,150);
@@ -1769,19 +1767,44 @@ function openProjection(){
  toggleStageButtons();
 }
 
+// V76: the same complete 31.25:17.1 projection rectangle for ALL seats.
+// Fitting inside the actual viewport guarantees four visible corners, whether
+// the viewer is at the side/rear of the hall or rotates their phone. No crop.
+function theaterScreenViewport(){
+ const w=Math.max(1,innerWidth),h=Math.max(1,innerHeight);
+ const ratio=31.25/17.1;
+ const sideMargin=Math.max(8,Math.min(26,w*.016));
+ const portrait=w<h;
+ const availableH=Math.max(1,h-(portrait?Math.max(40,h*.09):24));
+ const width=Math.min(w-2*sideMargin,availableH*ratio);
+ const height=width/ratio;
+ return {left:(w-width)/2,top:(h-height)/2,width,height};
+}
 function syncWorldScreen(){
- const el=$('#world-screen');if(selfieMode||zone!=='theater'||!stageScreen||autoSeat){el.classList.add('hidden'); toggleStageButtons(); return} if(!screenLive){el.classList.remove('hidden');} 
- camera.updateMatrixWorld();stageScreen.updateWorldMatrix(true,false);
- const W=stageScreen.geometry.parameters.width,H=stageScreen.geometry.parameters.height;
- const corners=[[-W/2,H/2],[W/2,H/2],[-W/2,-H/2],[W/2,-H/2]].map(([x,y])=>{
-   const p=stageScreen.localToWorld(new THREE.Vector3(x,y,.015)).project(camera);
-   return [(p.x+1)*innerWidth/2,(1-p.y)*innerHeight/2];
- });
- const xs=corners.map(p=>p[0]),ys=corners.map(p=>p[1]);
- let left=Math.min(...xs),top=Math.min(...ys),width=Math.max(...xs)-left,height=Math.max(...ys)-top;
- const inset=Math.max(2,width*.008);left+=inset;top+=inset;width-=inset*2;height-=inset*2;
- el.style.left=left+'px';el.style.top=top+'px';el.style.width=width+'px';el.style.height=height+'px';
- el.classList.remove('hidden'); toggleStageButtons();
+ const el=$('#world-screen');
+ if(selfieMode||zone!=='theater'||!stageScreen||autoSeat||cinemaArrival){
+  el.classList.add('hidden');toggleStageButtons();return;
+ }
+ // Seat-independent on-screen projection: no glancing angle, no foreshortening,
+ // no clipping by theater chairs, and no image behind attendee name labels.
+ if(seated){
+  const rect=theaterScreenViewport();
+  el.style.left=rect.left+'px';el.style.top=rect.top+'px';
+  el.style.width=rect.width+'px';el.style.height=rect.height+'px';
+ }else{
+  // While walking, preserve the original 3D-projected screen behavior.
+  camera.updateMatrixWorld();stageScreen.updateWorldMatrix(true,false);
+  const W=stageScreen.geometry.parameters.width,H=stageScreen.geometry.parameters.height;
+  const corners=[[-W/2,H/2],[W/2,H/2],[-W/2,-H/2],[W/2,-H/2]].map(([x,y])=>{
+    const p=stageScreen.localToWorld(new THREE.Vector3(x,y,.015)).project(camera);
+    return [(p.x+1)*innerWidth/2,(1-p.y)*innerHeight/2];
+  });
+  const xs=corners.map(p=>p[0]),ys=corners.map(p=>p[1]);
+  let left=Math.min(...xs),top=Math.min(...ys),width=Math.max(...xs)-left,height=Math.max(...ys)-top;
+  const inset=Math.max(2,width*.008);left+=inset;top+=inset;width-=inset*2;height-=inset*2;
+  el.style.left=left+'px';el.style.top=top+'px';el.style.width=width+'px';el.style.height=height+'px';
+ }
+ el.classList.remove('hidden');toggleStageButtons();
 }
 
 // V71: Android/iOS navigation stays in the SAME tab. A regular browser Back
@@ -2231,7 +2254,7 @@ function getAvatarNameLabel(id,label,isSelf=false){
 function cleanAvatarLabel(id){const e=avatarLabelNodes.get(id);if(e){e.remove();avatarLabelNodes.delete(id)}}
 function renderAvatarNames(){
  const hud=$('#hud');
- if(!player||!camera||hud?.classList.contains('hidden')){
+ if(!player||!camera||hud?.classList.contains('hidden')||(zone==='theater'&&seated)){
    for(const e of avatarLabelNodes.values())e.style.display='none';return;
  }
  const touched=new Set();
