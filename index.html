@@ -2,7 +2,7 @@
 <html lang="he" dir="rtl"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="theme-color" content="#211333"><meta name="description" content="ממלכת התבונה - מפגש תלת ממדי משותף בממלכה קסומה">
-<title>ממלכת הקולנוע — V70 | חדר אישי לכל מנחה</title>
+<title>ממלכת הקולנוע — V73 | כניסה יציבה לקבוצה</title>
 <style>
 /* V56: readable, correctly ordered participant names, free of mirrored textures. */
 #avatar-names{position:fixed;inset:0;z-index:7;pointer-events:none;overflow:hidden;direction:rtl}
@@ -171,6 +171,15 @@
 #teacher-panel .teacher-actions button{min-height:47px}
 @media(max-width:650px){#topbuttons{top:max(106px,calc(env(safe-area-inset-top) + 92px));gap:5px;left:7px}#topbuttons .circle{height:38px;width:38px;font-size:19px}#topbuttons #share.facilitator-share{min-width:135px;max-width:150px;height:39px;font-size:11px;padding:0 7px}#topright{right:8px}.brand{font-size:19px}}
 @media(max-width:400px){#topbuttons #share.facilitator-share{min-width:118px;max-width:130px;font-size:10px}}
+/* V72 — group admission: visible join button and explicit inline errors on phones. */
+#join-error{display:block;background:#582a37;border:1px solid #edb59c;border-radius:12px;padding:9px 11px;color:#fff6df;font-size:13px;line-height:1.5;text-align:center;margin:0 0 9px}
+#join-error.hidden{display:none!important}
+#join-room.is-connecting{opacity:.85;cursor:wait}
+@media(max-width:650px){
+ #intro:not(.master-entry) .intro-card{padding-bottom:0}
+ #intro:not(.master-entry) .cta-row{position:sticky;bottom:-2px;z-index:6;margin-top:10px!important;padding:9px 0 max(9px,env(safe-area-inset-bottom));background:linear-gradient(#21142de6,#21142dfb 18%);border-top:1px solid #cba97570;box-shadow:0 -8px 16px #140b2366}
+ #intro:not(.master-entry) .cta-row #join-room{min-height:54px}
+}
 </style></head><body>
 <div id="scene"></div><div id="cinema-dim-overlay" aria-hidden="true"></div><div id="avatar-names" aria-hidden="true"></div><div id="world-screen" class="hidden"><img id="world-screen-image" alt="תמונה סטטית של הממלכה" draggable="false"><button id="screen-play" class="screen-play hidden" aria-label="Play">▶</button><button id="screen-enter" class="screen-enter hidden" aria-label="כניסה לממלכה"></button></div><div id="fade"></div><div id="screen-vortex" class="hidden"><div class="vortex-stars">✦　✧　✦　✧　✦</div><div class="vortex-title">נכנסים לממלכה…</div></div>
 <div id="intro" class="overlay"><div class="intro-card">
@@ -279,7 +288,7 @@
 <strong>גרסה V70:</strong> לניהול שיעור בחדר מנחה יש לעדכן גם את כללי Firebase שלמטה (תוך שמירה על יתר הכללים הקיימים). הגדרות Web אינן סיסמה; אין להדביק private key או serviceAccount.
 </div></details>
 <div class="small foot">v65 · עולם קבוע · דמות המשתתף נראית מאחור · דלתות דו-כיווניות</div>
-<div class="cta-row"><button id="join-room" class="gold-button hidden">כניסה למפגש</button><button id="create-room" class="gold-button">👑 פתיחת העולם שלי כמנחה</button><button id="demo" class="soft-button">טיול ניסיון · שני אולמות</button></div>
+<div class="cta-row"><div id="join-error" class="hidden" role="alert" aria-live="assertive"></div><button id="join-room" class="gold-button hidden">כניסה למפגש</button><button id="create-room" class="gold-button">👑 פתיחת העולם שלי כמנחה</button><button id="demo" class="soft-button">טיול ניסיון · שני אולמות</button></div>
 </div></div>
 <div id="load" class="overlay hidden"><div class="intro-card center"><div class="load-crown">♛</div><h2>פותחים את שערי הממלכה...</h2><p id="load-info">טוענים עולם ודמויות תלת־ממדיות</p><div class="progress"><div id="progress-bar"></div></div></div></div>
 <div id="hud" class="hidden"><div id="topright"><div class="bsd">בס״ד</div><div class="brand">ממלכת התבונה</div><div id="zone-name">כיכר ההתכנסות</div><div id="connection-pill">ניסיון מקומי</div><div id="my-identity"><strong id="my-identity-name">אורח הממלכה</strong><span id="my-identity-avatar" style="font-size:11px;color:#e9cdbb"></span></div></div>
@@ -434,12 +443,36 @@ const portalSlots=[8.5,-8.5];
 const PRESENTER_STAGE={x:0,y:2.65,z:37};
 const plazaSeats=Array.from({length:32},(_,i)=>{const row=Math.floor(i/16),j=i%16;return {x:+((j-7.5)*3.36).toFixed(2),z:row?66:55,angle:0};});
 const seatPriority=[11,12,19,20,3,4,27,28,10,13,18,21,2,5,26,29,...Array.from({length:32},(_,i)=>i)].filter((x,i,a)=>a.indexOf(x)===i);
+function seatCandidatesFor(uid,oldSeat){
+ // Stable, UID-based shuffle avoids 30 phones starting a transaction on seat 11.
+ // 11 is coprime with 32, so the resulting sequence visits all seats once.
+ let hash=2166136261;
+ for(let i=0;i<uid.length;i++)hash=Math.imul(hash^uid.charCodeAt(i),16777619)>>>0;
+ const offset=hash%seatPriority.length;
+ const order=Array.from({length:seatPriority.length},(_,i)=>seatPriority[(offset+i*11)%seatPriority.length]);
+ return Number.isInteger(oldSeat)&&oldSeat>=0&&oldSeat<32
+   ?[oldSeat,...order.filter(s=>s!==oldSeat)] :order;
+}
+
 let seatIndex=0,seated=true,viewMode='cinematic',projectorTexture=null,projectorCanvas=null,projectorCtx=null,stageScreen=null;
 let hasLeftOwnSeat=false,returnSeatIdleAt=0; // approach-and-pause re-seating; no seat button
 let nextToPortal=-1, timeoutNote=0, latestUserMove=0, clock=0, syncAt=0, nextAt=0;
 function note(s){const t=$('#announcement'); if(!t) return; t.textContent=s||'';}
 function setProgress(p,s){$('#progress-bar').style.width=p+'%';if(s)$('#load-info').textContent=s}
 function helpIntro(t){const e=$('#connection-summary');e.textContent=t;e.classList.toggle('hidden',!t)}
+function showJoinError(message){
+ const e=$('#join-error');
+ if(e){e.textContent='⚠ '+message;e.classList.remove('hidden');e.scrollIntoView({block:'nearest',behavior:'smooth'});}
+ helpIntro(message);
+}
+function clearJoinError(){const e=$('#join-error');if(e){e.classList.add('hidden');e.textContent='';}helpIntro('');}
+function userFacingJoinError(e){
+ const msg=String(e?.message||e||'שגיאה לא ידועה');
+ if(/(?:seats|players)\/(?:read|write|transaction|onDisconnect|permission_denied)/i.test(msg))return msg;
+ if(/permission_denied|PERMISSION_DENIED/i.test(msg))return 'החיבור נדחה על ידי הרשאות Firebase (permission_denied). צלמו את הודעת השגיאה ושלחו למנחה.';
+ if(/timeout|network|failed to fetch|offline/i.test(msg))return 'החיבור איטי או הרשת חוסמת את Firebase. נסו גלישה סלולרית ולחצו שוב.';
+ return msg;
+}
 function validateFirebase(c){if(!c||!c.apiKey||!c.authDomain||!c.databaseURL||!c.projectId||!c.appId)throw Error('חסרים apiKey, authDomain, databaseURL, projectId או appId');let q=new URL(c.databaseURL);if(q.protocol!=='https:')throw Error('כתובת מסד הנתונים חייבת להיות HTTPS');return c}
 $('#firebase-json').value=firebaseConfig?JSON.stringify(firebaseConfig,null,2):'';
 $('#save-fb').onclick=()=>{try{let v=$('#firebase-json').value.trim();let start=v.indexOf('{'),end=v.lastIndexOf('}');if(start<0||end<0)throw Error('נא להדביק JSON');v=v.slice(start,end+1).replace(/([{,]\s*)([A-Za-z_$][\w$]*)\s*:/g,'$1"$2":').replace(/,\s*}/g,'}');firebaseConfig=validateFirebase(JSON.parse(v));localStorage.setItem('kingdom_firebase_v39',JSON.stringify(firebaseConfig));helpIntro('✓ הגדרות Firebase נשמרו בדפדפן. כדי לקבל קישורים קצרים מכל מכשיר, הורידו והעלו פעם אחת את הקובץ המוגדר ל-GitHub.');if(!incomingRoom)$('#configured-export').style.display='block'}catch(e){helpIntro('✕ '+e.message)}};
@@ -1739,11 +1772,69 @@ function syncWorldScreen(){
  el.classList.remove('hidden'); toggleStageButtons();
 }
 
+// V71: Android/iOS navigation stays in the SAME tab. A regular browser Back
+// can therefore return to the cinema URL instead of getting stranded in a new tab.
+// The return marker deliberately contains NO master/teacher keys or full URLs.
+const CINEMA_MOBILE_RETURN_KEY='cinema_mobile_auditorium_return_v71';
+function cinemaIsPhone(){
+ return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)||
+   (window.matchMedia?.('(pointer: coarse)').matches&&innerWidth<=900);
+}
+function rememberCinemaOnMobile(){
+ try{
+  sessionStorage.setItem(CINEMA_MOBILE_RETURN_KEY,JSON.stringify({
+   when:Date.now(),path:location.pathname,role:ENTRY_ROLE,
+   room, hall, name:personName(), avatar:selected
+  }));
+ }catch(e){console.warn('Unable to save return-to-cinema position',e)}
+}
+function pendingCinemaMobileReturn(){
+ try{
+  const raw=sessionStorage.getItem(CINEMA_MOBILE_RETURN_KEY);
+  if(!raw)return null;
+  const saved=JSON.parse(raw);
+  if(!saved||saved.path!==location.pathname||saved.role!==ENTRY_ROLE||
+     !Number.isFinite(saved.when)||Date.now()-saved.when>90*60*1000||
+     !['function','tech'].includes(saved.hall))return null;
+  return saved;
+ }catch(e){return null}
+}
+async function resumeCinemaOnMobileBack(){
+ const saved=pendingCinemaMobileReturn();
+ if(!saved)return;
+ // Consume exactly once. If authentication fails, keep the normal login screen.
+ try{sessionStorage.removeItem(CINEMA_MOBILE_RETURN_KEY)}catch(e){}
+ if($('#player-name'))$('#player-name').value=String(saved.name||'').slice(0,22);
+ if(Number.isInteger(saved.avatar)&&saved.avatar>=0&&saved.avatar<8){
+  selected=saved.avatar;
+  $$('.avatar-choice').forEach((b,i)=>b.classList.toggle('sel',i===selected));
+ }
+ await start(isHostInvitation,false);
+ if(!connected||$('#hud').classList.contains('hidden'))return;
+ // Restore directly into the *same* auditorium, not the plaza or intro page.
+ placeInZone('theater',true,saved.hall);
+ openProjection();
+ note('✓ חזרתם לאולם הקולנוע');
+}
+// If the cinema was held in the browser's back/forward cache, its 3D position
+// is already intact; only discard the stale return marker.
+window.addEventListener('pageshow',e=>{
+ if(e.persisted){try{sessionStorage.removeItem(CINEMA_MOBILE_RETURN_KEY)}catch(_){} }
+});
+
 function enterScreen(){
  if(zone!=='theater'||!screenLive)return;
  let destination=linkMap[hall]||DEFAULT_LINKS[hall];
  try{const u=new URL(destination);if(u.protocol!=='https:')throw Error();destination=u.href;}
  catch(e){note('קישור הממלכה אינו תקין');return;}
+ // On phones, do NOT open another tab: native Back must return to this cinema.
+ // Before leaving, remember the current player and hall, so that a reloaded
+ // cinema restores the auditorium instead of showing the opening form.
+ if(cinemaIsPhone()){
+  rememberCinemaOnMobile();
+  location.assign(destination);
+  return;
+ }
  // Open NOW in the click event (required by mobile popup blockers).
  // The original cinema stays open, seated, and connected to Firebase.
  const gate=window.open('about:blank','_blank');
@@ -2182,8 +2273,23 @@ async function loadFirebase(masterAuth){
  const name=masterAuth?'[DEFAULT]':'cinema-guest-v67';
  const fapp=app.getApps().find(a=>a.name===name)||(masterAuth?app.initializeApp(firebaseConfig):app.initializeApp(firebaseConfig,name));
  const au=auth.getAuth(fapp);
- if(!masterAuth)await auth.setPersistence(au,auth.inMemoryPersistence);
- const signed=await auth.signInAnonymously(au);
+ if(!masterAuth){
+  // Local persistence prevents creating a new account on every reload, reducing
+  // Firebase anonymous-signup throttling when a whole class joins together.
+  try{await auth.setPersistence(au,auth.browserLocalPersistence)}
+  catch(e){
+   try{await auth.setPersistence(au,auth.browserSessionPersistence)}
+   catch(e2){await auth.setPersistence(au,auth.inMemoryPersistence)}
+  }
+ }
+ let signed;
+ try{signed=await auth.signInAnonymously(au)}
+ catch(e){
+  if(e?.code==='auth/too-many-requests')throw new Error('יותר מדי כניסות מרשת אחת כרגע. נסו לעבור לגלישה סלולרית וללחוץ שוב על כניסה.');
+  if(e?.code==='auth/network-request-failed')throw new Error('לא הצלחנו להגיע לשרת ההתחברות. בדקו אינטרנט או נסו רשת סלולרית.');
+  if(e?.code==='auth/operation-not-allowed')throw new Error('התחברות אורחים אינה פעילה ב־Firebase. יש לפנות למנהל הממלכה.');
+  throw e;
+ }
  uid=signed.user.uid;db=data.getDatabase(fapp);rtdb=data;session={app,auth,data};return session;
 }
 // A general teacher invitation proves eligibility but NEVER claims the master's stage.
@@ -2288,22 +2394,49 @@ async function connectLive(asHost){
  }
  phase=roomMeta.phase||'plaza';
  const people=await rtdb.get(playersRef),roster=people.val()||{};
- // V67: students can join a previously created world even if every presenter is offline.
- const count=Object.entries(roster).filter(([id,p])=>id!==(roomMeta.activeHostUid||roomMeta.hostUid)&&!isRetiredPresenter(id,p)).length;
- if(count>=32&&!people.child(uid).exists())throw Error('הכיכר מלאה כרגע (32 מקומות ישיבה).');
- // Atomic seat reservation: two participants joining simultaneously cannot claim the same chair.
+ // Do not reject a student based on an out-of-date roster: trust the atomic seat claims.
+ // Teachers can leave and reconnect; stale presence and seats are handled separately.
  if(!asHost){
- const candidates=Number.isInteger(roster[uid]?.seatIndex)&&roster[uid].seatIndex>=0
-   ?[roster[uid].seatIndex,...seatPriority.filter(j=>j!==roster[uid].seatIndex)] :seatPriority;
- let claimed=-1;
- for(const index of candidates){
-   const claim=rtdb.ref(db,base+'/seats/'+index);
-   const result=await rtdb.runTransaction(claim,current=>(current===null||current===uid)?uid:undefined,{applyLocally:false});
-   if(result.committed&&result.snapshot.val()===uid){claimed=index;seatClaimRef=claim;break;}
- }
- if(claimed<0)throw Error('כל 32 הכיסאות תפוסים כעת.');
- await rtdb.onDisconnect(seatClaimRef).remove();
- assignSeat(claimed);
+  setProgress(72,'מוצאים לכם מקום בכיכר המלכותית...');
+  const candidates=seatCandidatesFor(uid,roster[uid]?.seatIndex);
+  let claimed=-1,seatDenials=0,checkedSeats=0,lastSeatError=null;
+  // First read the roster of occupied seats. This avoids trying to overwrite
+  // somebody else's seat and triggering Firebase's deny-on-conflict rule.
+  // Another guest can still take the seat after this read: catch that race and
+  // continue to the next candidate, never abort the entire login.
+  for(let round=0;round<2&&claimed<0;round++){
+   let occupied={};
+   try {occupied=(await rtdb.get(rtdb.ref(db,base+'/seats'))).val()||{};}
+   catch(e){throw Error('Firebase חסם קריאת מקומות ישיבה (seats/read): '+e.message);}
+   for(const index of candidates){
+    if(occupied[index]&&occupied[index]!==uid)continue;
+    checkedSeats++;
+    const claim=rtdb.ref(db,base+'/seats/'+index);
+    try{
+     const result=await rtdb.runTransaction(claim,current=>(current===null||current===uid)?uid:undefined,{applyLocally:false});
+     if(result.committed&&result.snapshot.val()===uid){claimed=index;seatClaimRef=claim;break;}
+     // Another guest won the race; carry on with a different chair.
+    }catch(e){
+     lastSeatError=e;
+     if(/permission.?denied|PERMISSION_DENIED/i.test(String(e.code||'')+' '+e.message)){
+      seatDenials++;console.warn('Seat already occupied or denied:',index,e.code||e.message);
+      continue;
+     }
+     throw Error('שמירת מקום ישיבה נכשלה (seats/transaction): '+e.message);
+    }
+   }
+   if(claimed<0&&round===0&&checkedSeats>0){
+    await new Promise(resolve=>setTimeout(resolve,70+Math.floor(Math.random()*90)));
+   }
+  }
+  if(claimed<0){
+   if(checkedSeats===0)throw Error('אין כיסאות פנויים. ייתכן שמקומות נשארו רשומים ממפגש קודם. בדקו את seats בחדר.');
+   if(seatDenials>0)throw Error('Firebase דחה '+seatDenials+' ניסיונות לשמירת מקום (seats/permission_denied). בדקו אם הכיסאות תפוסים או אם כללי ההרשאות פורסמו.');
+   throw Error('לא הצלחנו להקצות מקום לאחר שני ניסיונות. נסו שוב בעוד כמה שניות.');
+  }
+  try{await rtdb.onDisconnect(seatClaimRef).remove();}
+  catch(e){throw Error('לא ניתן לרשום שחרור מקום ביציאה (seats/onDisconnect): '+e.message);}
+  assignSeat(claimed);
  }else standAsHost();
  // V63: guests always JOIN at their plaza chair, regardless of gate phase.
  // They may stand and walk toward whichever doors the presenter has unlocked.
@@ -2311,7 +2444,11 @@ async function connectLive(asHost){
  const infoRef=rtdb.ref(db,'.info/connected');presenceRef=rtdb.ref(db,base+'/players/'+uid);
  // Re-register onDisconnect after each reconnect BEFORE publishing presence.
  if(offInfo)offInfo();offInfo=rtdb.onValue(infoRef,async snap=>{if(!snap.val()||!connected||retiredHost)return;try{await rtdb.onDisconnect(presenceRef).remove();if(seatClaimRef)await rtdb.onDisconnect(seatClaimRef).remove();await rtdb.set(presenceRef,ownData())}catch(e){console.error('Presence registration:',e)}});
- await rtdb.onDisconnect(presenceRef).remove();if(seatClaimRef)await rtdb.onDisconnect(seatClaimRef).remove();await rtdb.set(presenceRef,ownData());connected=true;
+ try{await rtdb.onDisconnect(presenceRef).remove();if(seatClaimRef)await rtdb.onDisconnect(seatClaimRef).remove();}
+ catch(e){throw Error('Firebase חסם רישום נוכחות ביציאה (players/onDisconnect): '+e.message);}
+ try{await rtdb.set(presenceRef,ownData());}
+ catch(e){throw Error('Firebase חסם שמירת הדמות בחדר (players/write): '+e.message);}
+ connected=true;
  if(offPlayers)offPlayers();if(offMeta)offMeta();
  // No late-join teleport: guests start seated in the square in every room phase.
  if(isHost)standAsHost();else assignSeat(seatIndex)
@@ -2365,19 +2502,40 @@ async function setPhase(p,whichHall='function'){
 function safeHttp(s){s=s.trim();if(!s)return '';let u=new URL(s);if(u.protocol!=='https:')throw Error('יש להשתמש בקישורי https בלבד');return u.href}
 async function saveLinks(){if(!isMaster||!isHost)return;try{const obj={function:safeHttp($('#url-function').value),tech:safeHttp($('#url-tech').value)};linkMap=obj;
  if(connected)await rtdb.update(rtdb.ref(db,`kingdom_v39/rooms/${room}/meta`),{links:obj});note('✓ הקישורים נשמרו למפגש')}catch(e){note('לא ניתן לשמור קישורים: '+e.message)}}
+let joinInProgress=false;
 async function start(asHost=false,tryDemo=false){
- if(isTeacherPortal&&!$('#player-name').value.trim()){helpIntro('כתבו את שם המנחה כדי לפתוח חדר אישי קבוע.');$('#player-name').focus();return;}
- if(!tryDemo){
-   try {validateFirebase(firebaseConfig); await loadFirebase(isMasterInvitation);}
-   catch(e){helpIntro('לא ניתן לפתוח חדר אמיתי: '+e.message+' · יש להגדיר Firebase ולהפעיל כניסה אנונימית.');if(isMasterInvitation)$('#fb-panel').open=true;return;}
+ if(joinInProgress)return;
+ if(isTeacherPortal&&!$('#player-name').value.trim()){showJoinError('כתבו את שם המנחה כדי לפתוח חדר אישי קבוע.');$('#player-name').focus();return;}
+ joinInProgress=true;
+ clearJoinError();
+ const button=$('#join-room'),textBefore=button.textContent;
+ button.disabled=true;button.classList.add('is-connecting');button.textContent='מתחברים לממלכה...';
+ try{
+  if(!tryDemo){
+   validateFirebase(firebaseConfig);
+   await loadFirebase(isMasterInvitation);
+  }
+  $('#intro').classList.add('hidden');$('#load').classList.remove('hidden');
+  setProgress(5,'מחברים אתכם למפגש...');
+  if(!loadersDone)await buildScene();
+  if(tryDemo){setDoughnutRemaining(26);demo=true;phase='plaza';isHost=true;standAsHost();connected=false;room='DEMO';uid='demo';$('#host-controls').classList.remove('hidden');$('#room-label').textContent='מצב ניסיון בלבד';clearRemotes();}
+  else{demo=false;await connectLive(asHost);}
+  $('#load').classList.add('hidden');$('#hud').classList.remove('hidden');syncMyIdentity();renderStatus();refreshIntroSharing();
+  if(asHost)note(isMasterInvitation?'👑 כניסת מאסטר פעילה':'👑 החדר האישי שלך מוכן · הקישורים בחלונית הכתר');
+  else if(tryDemo)note('הדמויות שמסביב הן אורחים ממוחשבים; חיבור אמיתי דורש Firebase');
+  else note('ברוכים הבאים למפגש המשותף!');
+ }catch(e){
+  console.error('Cinema join failed:',e);
+  $('#load').classList.add('hidden');$('#intro').classList.remove('hidden');
+  showJoinError(userFacingJoinError(e));
+  if(seatClaimRef&&rtdb){
+   try{await rtdb.remove(seatClaimRef)}catch(_e){}
+   seatClaimRef=null;
+  }
+ }finally{
+  joinInProgress=false;button.disabled=false;button.classList.remove('is-connecting');button.textContent=textBefore;
  }
- $('#intro').classList.add('hidden');$('#load').classList.remove('hidden');try{
- if(!loadersDone)await buildScene();if(tryDemo){setDoughnutRemaining(26);demo=true;phase='plaza';isHost=true;standAsHost();connected=false;room='DEMO';uid='demo';$('#host-controls').classList.remove('hidden');$('#room-label').textContent='מצב ניסיון בלבד';clearRemotes();}
- else{demo=false;await connectLive(asHost);}
- $('#load').classList.add('hidden');$('#hud').classList.remove('hidden');syncMyIdentity();renderStatus();refreshIntroSharing();if(asHost){note(isMasterInvitation?'👑 כניסת מאסטר פעילה':'👑 החדר האישי שלך מוכן · הקישורים בחלונית הכתר')}
- else if(tryDemo){note('הדמויות שמסביב הן אורחים ממוחשבים; חיבור אמיתי דורש Firebase');}
- else note('ברוכים הבאים למפגש המשותף!')
- }catch(e){console.error(e);$('#load').classList.add('hidden');$('#intro').classList.remove('hidden');helpIntro('שגיאה: '+e.message+'. בדקו אינטרנט, Firebase והרשאות.');}}
+}
 $('#copy-rules').onclick=async()=>{
  const v=$('#rules-json').value;
  const copied=await copyInvite(v,'',$('#copy-rules'));
@@ -2385,6 +2543,8 @@ $('#copy-rules').onclick=async()=>{
  else $('#rules-json').select();
 };
 $('#demo').onclick=()=>start(false,true);$('#create-room').onclick=()=>start(true,false);$('#join-room').onclick=()=>start(isHostInvitation,false);
+// V71: automatically reconnect on a phone's browser-Back return from a kingdom.
+if(cinemaIsPhone())void resumeCinemaOnMobileBack();
 window.addEventListener('beforeunload',()=>{if(connected&&rtdb&&presenceRef){rtdb.remove(presenceRef).catch(()=>{});if(seatClaimRef)rtdb.remove(seatClaimRef).catch(()=>{})}});
 window.KINGDOM_TEST_CONTROLS=()=>{
  const yaw=Math.PI,turnRight=steeringStep(yaw,1,.1),turnLeft=steeringStep(yaw,-1,.1);
@@ -2393,6 +2553,6 @@ window.KINGDOM_TEST_CONTROLS=()=>{
  steeringRightIsNegativeYaw:true,deadzone:axisCurve(.04)===0,
  cameraRigidToHeading:true};
 };
-window.KINGDOM_DIAGNOSTICS=()=>({version:'v70-teacher-session-controls-copy-confirmation',zone,phase,seated,seatIndex,loaded:loadersDone,characters:npcs.length,connected,realParticipants:online.size,room,auditoriums:[{side:'right',key:'function'},{side:'left',key:'tech'}],hall,donutAt,donutRemaining,camera:'V66 seated rear three-quarter with visible self name; free-roam chase',linksConfigured:!!(linkMap.function&&linkMap.tech),screenLive,doorProgress:doorOpenAmount,mainDoorSensor:anyVisitorNearDoor('main'),pixelRatio:renderer?.getPixelRatio(),portalDepth:PORTAL_Z,donutPosition:DONUT_POS,professionalFacilitator:false,joystickRightLeft:'right is negative yaw; heading persists after straightening stick',joystickActive:joyActive,cameraClear:lastCameraClear,cameraAvoidanceHits:cameraSafetyHits,cameraSafetyShift:cameraSafetyShift,ponyActors:festivalPonyRigs.length,fireworkBursts:festivalParticles.length,sceneryColliders:solidScenery.length,escortActive:!!autoSeat,lobbyAligned:Math.abs(lobby?.position.z-LOBBY_OFFSET)<.01});
+window.KINGDOM_DIAGNOSTICS=()=>({version:'v72-class-admission-and-mobile-return',zone,phase,seated,seatIndex,loaded:loadersDone,characters:npcs.length,connected,realParticipants:online.size,room,auditoriums:[{side:'right',key:'function'},{side:'left',key:'tech'}],hall,donutAt,donutRemaining,camera:'V66 seated rear three-quarter with visible self name; free-roam chase',linksConfigured:!!(linkMap.function&&linkMap.tech),screenLive,doorProgress:doorOpenAmount,mainDoorSensor:anyVisitorNearDoor('main'),pixelRatio:renderer?.getPixelRatio(),portalDepth:PORTAL_Z,donutPosition:DONUT_POS,professionalFacilitator:false,joystickRightLeft:'right is negative yaw; heading persists after straightening stick',joystickActive:joyActive,cameraClear:lastCameraClear,cameraAvoidanceHits:cameraSafetyHits,cameraSafetyShift:cameraSafetyShift,ponyActors:festivalPonyRigs.length,fireworkBursts:festivalParticles.length,sceneryColliders:solidScenery.length,escortActive:!!autoSeat,lobbyAligned:Math.abs(lobby?.position.z-LOBBY_OFFSET)<.01});
 </script>
 </body></html>
