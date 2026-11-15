@@ -2,7 +2,7 @@
 <html lang="he" dir="rtl"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="theme-color" content="#211333"><meta name="description" content="ממלכת התבונה - מפגש תלת ממדי משותף בממלכה קסומה">
-<title>ממלכת התבונה V85.12 — מסך מלא ועלייה חכמה לכלי</title>
+<title>ממלכת התבונה V85.13 — תנועה חופשית ומצלמה בטוחה</title>
 <style>
 /* V56: readable, correctly ordered participant names, free of mirrored textures. */
 #avatar-names{position:fixed;inset:0;z-index:7;pointer-events:none;overflow:hidden;direction:rtl}
@@ -622,7 +622,7 @@ const cameraRightVector=new THREE.Vector3();
 function unobstructedCamera(ideal){
  // V82.2: No instantaneous shoulder swapping. Foliage is soft and cannot
  // push the camera from one side of the avatar to the other.
- if(zone==='theater'||selfieMode)return ideal;
+ if(selfieMode&&zone==='exterior')return ideal;
  const head=player.position.clone().add(new THREE.Vector3(0,2.40,0));
  const delta=ideal.clone().sub(head),length=delta.length();
  if(length<.5)return ideal;
@@ -648,6 +648,64 @@ function unobstructedCamera(ideal){
  const shortened=head.addScaledVector(delta,fraction);
  cameraSafetyShift=ideal.distanceTo(shortened);
  return shortened;
+}
+// V85.13: protect the camera from walls and ceilings in enclosed spaces.
+// Walking through decorative chairs is allowed; seeing *through* a real wall isn't.
+function v8513CameraPointInside(p){
+ if(zone==='theater'){
+  const cx=hall==='function'?8.5:-8.5,lx=p.x-cx,lz=p.z-THEATER_OFFSET;
+  return Math.abs(lx)<20.42&&lz> -32.2&&lz<25.7&&p.y>1.15&&p.y<16.75
+    &&!(lz>24.15&&Math.abs(lx)>2.72);
+ }
+ if(zone==='lobby'){
+  if(Math.abs(p.x)>14.48||p.z>7.40||p.z<PORTAL_Z-1.47||p.y<1.15||p.y>12.6)return false;
+  if(p.z>3.25&&Math.abs(p.x)>3.75)return false;
+  if(p.z<PORTAL_Z+3.7&&Math.min(Math.abs(p.x-8.5),Math.abs(p.x+8.5))>2.87)return false;
+  // The roofed entrance vestibule has a lower ceiling than the grand hall.
+  if(p.z> -7.15&&p.z<4.2&&Math.abs(p.x)<5.15&&p.y>6.6)return false;
+  return true;
+ }
+ return true;
+}
+function v8513KeepCameraInRoom(ideal){
+ if(zone==='exterior'||!player||!ideal)return ideal;
+ // The fixed seated projection camera is already fully inside its auditorium.
+ if(zone==='theater'&&seated&&!autoSeat)return ideal;
+ let anchor=player.position.clone();anchor.y=2.48;
+ if(!v8513CameraPointInside(anchor)){
+  if(zone==='theater'){
+   const cx=hall==='function'?8.5:-8.5;
+   anchor.x=clamp(anchor.x,cx-19.5,cx+19.5);
+   anchor.z=clamp(anchor.z,THEATER_OFFSET-31.4,THEATER_OFFSET+23.7);
+  }else{
+   anchor.x=clamp(anchor.x,-13.5,13.5);
+   anchor.z=clamp(anchor.z,PORTAL_Z+4.4,2.8);
+  }
+ }
+ const dest=ideal.clone(),ray=dest.clone().sub(anchor);
+ const length=ray.length();if(length<.001)return anchor;
+ // Check the complete sight line, not just its end: prevents cutting across
+ // corners at the two portal entrances when the follow camera is smoothed.
+ const steps=Math.max(12,Math.min(70,Math.ceil(length/.35)));
+ // Reuse one probe vector to avoid garbage-collector spikes on weaker tablets.
+ const probe=anchor.clone();
+ function insideAt(t){probe.x=anchor.x+ray.x*t;probe.y=anchor.y+ray.y*t;probe.z=anchor.z+ray.z*t;return v8513CameraPointInside(probe);}
+ let prev=0;
+ for(let j=1;j<=steps;j++){
+  const t=j/steps;
+  if(!insideAt(t)){
+   let lo=prev,hi=t;
+   for(let k=0;k<12;k++){
+    const mid=(lo+hi)*.5;
+    if(insideAt(mid))lo=mid;
+    else hi=mid;
+   }
+   // Leave a small gap to the wall so perspective near-plane cannot poke through.
+   return anchor.addScaledVector(ray,Math.max(0,lo-.075/length));
+  }
+  prev=t;
+ }
+ return dest;
 }
 let phase='plaza', isHost=false, demo=false, connected=false, room='', uid='', session=null, db=null, rtdb=null, presenceRef=null, seatClaimRef=null, online=new Map(), remote=new Map(), linkMap={...DEFAULT_LINKS}, syncing=false, entering=false;
 let smoothSteer=0, screenLive=false, projectorHall='', doorLeaves=[], doorOpenAmount=0;
@@ -2203,44 +2261,37 @@ function hitRect(x,z,cx,cz,w,d,pad=BODY_RADIUS){
  const dx=Math.max(Math.abs(x-cx)-w/2,0), dz=Math.max(Math.abs(z-cz)-d/2,0);
  return dx*dx+dz*dz<pad*pad && Math.abs(x-cx)<w/2+pad && Math.abs(z-cz)<d/2+pad;
 }
-function solidAt(x,z){
- if(zone==='exterior'){
-
-  if(solidSceneryAt(x,z,'exterior'))return true;
-  // Doughnut table, plus the host podium. The podium itself remains walkable.
-  if(hitRect(x,z,DONUT_POS.x,DONUT_POS.z,9.4,4.9))return true;
-  // Leave the participant's own chair passable briefly after standing up.
-  for(let i=0;i<plazaSeats.length;i++){
-    const q=plazaSeats[i];
-    if(i===seatIndex&&Math.hypot(player.position.x-q.x,player.position.z-q.z)<2.7)continue;
-    if(hitRect(x,z,q.x,q.z+.56,2.6,2.05,.42))return true;
-  }
-  if(z<7&&Math.abs(x)>4.0)return true;
- }else if(zone==='lobby'){
-  if(solidSceneryAt(x,z,'lobby'))return true;
-  // Keep pedestrians inside the lobby and only permit passage through the opened portals.
-  if(z<PORTAL_Z+4.0 && Math.min(Math.abs(x-8.5),Math.abs(x+8.5))>3.7)return true;
- }else if(zone==='theater'){
-  if(solidSceneryAt(x,z,'theater'))return true;
-  // Concession stalls and rows of seats have physical footprints.
-  const cx=hall==='function'?8.5:-8.5,localX=x-cx,localZ=z-THEATER_OFFSET;
-  for(const stallX of [-16.5,16.5])if(hitRect(localX,localZ,stallX,22,5.8,2.8))return true;
-  for(let r=0;r<6;r++)for(let c=0;c<8;c++){
-   const chairX=(c-3.5)*4.7,chairZ=14-r*5;
-   if(Math.abs(chairX)<2.1)continue;
-   if(hitRect(localX,localZ,chairX,chairZ,3.1,2.6,.3))return true;
-  }
+// V85.13: Characters pass through decorative objects and furniture instead of
+// detouring around them. Only real architectural envelopes remain solid.
+// Lobby and auditorium walls are in the SAME world coordinates as the avatars.
+function v8513RoomShellBlocked(x,z,where=zone,whichHall=hall){
+ if(where==='exterior'){
+  // Keep the cinema's facade solid. The center gap is the actual entrance.
+  return z<7.0&&Math.abs(x)>4.0;
+ }
+ if(where==='lobby'){
+  // Lobby outside walls, frontal doors and the two real auditorium portals.
+  if(Math.abs(x)>15.0||z>7.35||z<PORTAL_Z-1.7)return true;
+  if(z>3.55&&Math.abs(x)>4.12)return true;
+  if(z<PORTAL_Z+4.05&&Math.min(Math.abs(x-8.5),Math.abs(x+8.5))>3.22)return true;
+  return false;
+ }
+ if(where==='theater'){
+  const cx=whichHall==='function'?8.5:-8.5;
+  const lx=x-cx,lz=z-THEATER_OFFSET;
+  // Each hall is ~44 x 62 meters. The front wall has just one central exit.
+  if(Math.abs(lx)>20.95||lz< -32.65||lz>26.05)return true;
+  if(lz>24.55&&Math.abs(lx)>3.20)return true;
+  return false;
  }
  return false;
 }
+function solidAt(x,z){return v8513RoomShellBlocked(x,z);}
+
 function v835ClearFootPosition(x,z,excludeRide=''){
  if(!Number.isFinite(x)||!Number.isFinite(z)||x < -1400||x >1400||z < -2.5||z >2140)return false;
  if(solidAt(x,z))return false;
- if(zone==='exterior')for(const id of V832_TYPES){
-  if(id===excludeRide)continue;
-  const m=v832Mounts[id];if(!m?.group)continue;
-  if(Math.hypot(m.group.position.x-x,m.group.position.z-z)<1.55)return false;
- }
+ // Other vehicles also have no hard pedestrian collision: walk straight to them.
  return true;
 }
 function v835FindSafeFootSpot(x,z,excludeRide='',preferredAngle=0){
@@ -2367,7 +2418,7 @@ function updateMovement(dt){
   // Auditorium portals remain walk-through on approach.
  }else if(zone==='theater'){
   action.classList.add('hidden'); toggleStageButtons();
-  if(player.position.z>THEATER_OFFSET+25.5){
+  if(player.position.z>THEATER_OFFSET+25.5&&Math.abs(player.position.x-(hall==='function'?8.5:-8.5))<3.25){
     const outgoingHall=hall;
     enterZone('lobby',true);
     // Arrive immediately INSIDE the matching lobby doorway, not in a sealed wall.
@@ -2518,12 +2569,15 @@ function updateCam(dt){
  }
  // V82.2: smooth obstruction corrections, especially at trees and door thresholds.
  // No side-to-side teleporting; the chase camera glides to its safe mount.
- const finalEye=(v836Boarding||v837Exiting||v837WalkReveal||zone==='exterior'&&seated&&!isHost)?eye:unobstructedCamera(eye);
+ const desiredEye=(v836Boarding||v837Exiting||v837WalkReveal||zone==='exterior'&&seated&&!isHost)?eye:unobstructedCamera(eye);
+ const finalEye=v8513KeepCameraInRoom(desiredEye);
  const fixedProjection=zone==='theater'&&seated&&!autoSeat;
  const kEye=1-Math.exp(-dt*(portalBlend>.08?5.6:v832MountedId?11.0:10.5));
  const kLook=1-Math.exp(-dt*(portalBlend>.08?7.0:12.5));
  if(!camReady||fixedProjection||cinemaArrival){camera.position.copy(finalEye);camTarget.copy(target)}
  else{camera.position.lerp(finalEye,kEye);camTarget.lerp(target,kLook)}
+ // Even an eased frame must remain inside the current room, not cross a wall.
+ if(zone!=='exterior'&&!fixedProjection)camera.position.copy(v8513KeepCameraInRoom(camera.position));
  camReady=true;camera.lookAt(camTarget);
  // Sky follows the camera, so distant mountains remain inside the sky dome while roaming.
  if(sky&&sky.name==='V80_cinematic_panoramic_sky')sky.position.copy(camera.position);
@@ -4202,7 +4256,8 @@ async function v861ApplyGather(seq){
   }else if(area==='lobby'){
    pos.x=clamp(pos.x,-13.1,13.1);pos.z=clamp(pos.z,PORTAL_Z+7.0,7);
   }else{
-   pos.x=clamp(pos.x,-28,28);pos.z=clamp(pos.z,THEATER_OFFSET-22,THEATER_OFFSET+21);
+   const hallCenter=chosenHall==='function'?8.5:-8.5;
+   pos.x=clamp(pos.x,hallCenter-19.3,hallCenter+19.3);pos.z=clamp(pos.z,THEATER_OFFSET-22,THEATER_OFFSET+21);
   }
   seated=false;introComplete=true;hasLeftOwnSeat=true;autoSeat=null;
   player.position.set(pos.x,0,pos.z);
@@ -5568,9 +5623,9 @@ $('#join-room').onclick=()=>start(ENTRY_ROLE!=='player',false);
 // V71: automatically reconnect on a phone's browser-Back return from a kingdom.
 // Standalone preview: mobile return must not attempt a live Firebase connection.
 window.addEventListener('beforeunload',()=>{if(connected&&rtdb&&presenceRef){rtdb.remove(presenceRef).catch(()=>{});if(seatClaimRef)rtdb.remove(seatClaimRef).catch(()=>{})}});
-window.V862_DIAGNOSTICS=()=>({version:'V85.12',fullscreen:!!(document.fullscreenElement||document.webkitFullscreenElement),viewport:{width:innerWidth,height:innerHeight},drawingBuffer:{width:renderer?.domElement?.width||0,height:renderer?.domElement?.height||0},sceneBox:document.getElementById('scene')?.getBoundingClientRect()?.toJSON?.()||null,boarding:v836Boarding?{id:v836Boarding.id,directSummon:v836Boarding.directSummon,progress:v836Boarding.elapsed/v836Boarding.duration}:null});
-window.KINGDOM_JOIN_DIAGNOSTICS=()=>({version:'V85.11',liteScenery:V861_LITE_SCENERY,stage:v857JoinStage,lastError:v857LastJoinError,room,connected,onlineCount:online.size,seats:V857_GUEST_CAPACITY,seatIndex,seatReconciliations:v857SeatMoves,liveIncrementalUpdates:true,usingSeatTransactions:false});
-window.KINGDOM_TABLET_DIAGNOSTICS=()=>({version:'V85.8',mobileGPU:V854_MOBILE_GPU,lowMemory:V854_LOW_MEMORY,pixelRatio:renderer?.getPixelRatio()||null,qualityReduced:v854QualityReduced,estimatedFPS:v854MeasuredFPS,seatProvisional:v854TemporarySeat,disconnectWarning:v854DisconnectWarning,connected,players:online.size,role:ENTRY_ROLE,room,sceneReady:!!loadersDone});
+window.V862_DIAGNOSTICS=()=>({version:'V85.13',fullscreen:!!(document.fullscreenElement||document.webkitFullscreenElement),viewport:{width:innerWidth,height:innerHeight},drawingBuffer:{width:renderer?.domElement?.width||0,height:renderer?.domElement?.height||0},sceneBox:document.getElementById('scene')?.getBoundingClientRect()?.toJSON?.()||null,boarding:v836Boarding?{id:v836Boarding.id,directSummon:v836Boarding.directSummon,progress:v836Boarding.elapsed/v836Boarding.duration}:null});
+window.KINGDOM_JOIN_DIAGNOSTICS=()=>({version:'V85.13',liteScenery:V861_LITE_SCENERY,stage:v857JoinStage,lastError:v857LastJoinError,room,connected,onlineCount:online.size,seats:V857_GUEST_CAPACITY,seatIndex,seatReconciliations:v857SeatMoves,liveIncrementalUpdates:true,usingSeatTransactions:false});
+window.KINGDOM_TABLET_DIAGNOSTICS=()=>({version:'V85.13',mobileGPU:V854_MOBILE_GPU,lowMemory:V854_LOW_MEMORY,pixelRatio:renderer?.getPixelRatio()||null,qualityReduced:v854QualityReduced,estimatedFPS:v854MeasuredFPS,seatProvisional:v854TemporarySeat,disconnectWarning:v854DisconnectWarning,connected,players:online.size,role:ENTRY_ROLE,room,sceneReady:!!loadersDone});
 window.V856_WALK_DIAGNOSTICS=()=>({zone,footSpeed:V856_FOOT_PACE,walkVelocity:Math.hypot(movement.x,movement.z),atPortal:zone!=='theater'&&Math.abs(player?.position?.x||0)<5&&Math.abs(player?.position?.z||0)<18,mounted:v832MountedId,renderDPR:renderer?.getPixelRatio()||null});
 window.V860_DIAGNOSTICS=()=>({version:'V85.11',gatherButton:!!document.getElementById('v861-gather-here'),gatherType:v861RecallLockType(),rallySeat:v861CurrentTarget,isHost,hostMenu:!!document.getElementById('v860-host-top')&&!document.getElementById('v860-host-top').classList.contains('hidden'),seatLockAction:v855RecallAction(roomMeta?.recallSeq),onScreenArrowButtons:document.querySelectorAll('#royal-car-pad button,#v855-arrow-mode').length,joystickOnly:true,keyboardArrowsSupported:true});
 window.V859_DIAGNOSTICS=()=>({version:'V85.10',cinemaParking:!!v859CinemaParking,visibleExit:!!v837Exiting,cinemaAutoUsesAnimation:true,birdDescendsBeforeExit:true});
@@ -5623,6 +5678,6 @@ window.KINGDOM_TEST_CONTROLS=()=>{
  steeringRightIsNegativeYaw:true,deadzone:axisCurve(.04)===0,
  cameraRigidToHeading:true};
 };
-window.KINGDOM_DIAGNOSTICS=()=>({version:'V85.12-fullscreen-quick-summon-boarding',zone,phase,seated,seatIndex,loaded:loadersDone,characters:npcs.length,connected,realParticipants:online.size,room,auditoriums:[{side:'right',key:'function'},{side:'left',key:'tech'}],hall,donutAt,donutRemaining,camera:'V66 seated rear three-quarter with visible self name; free-roam chase',linksConfigured:!!(linkMap.function&&linkMap.tech),screenLive,doorProgress:doorOpenAmount,mainDoorSensor:anyVisitorNearDoor('main'),pixelRatio:renderer?.getPixelRatio(),portalDepth:PORTAL_Z,donutPosition:DONUT_POS,professionalFacilitator:false,joystickRightLeft:'right is negative yaw; heading persists after straightening stick',joystickActive:joyActive,cameraClear:lastCameraClear,cameraAvoidanceHits:cameraSafetyHits,cameraSafetyShift:cameraSafetyShift,ponyActors:festivalPonyRigs.length,fireworkBursts:festivalParticles.length,sceneryColliders:solidScenery.length,escortActive:!!autoSeat,lobbyAligned:Math.abs(lobby?.position.z-LOBBY_OFFSET)<.01});
+window.KINGDOM_DIAGNOSTICS=()=>({version:'V85.13-free-walk-real-indoor-walls-safe-camera',zone,phase,seated,seatIndex,loaded:loadersDone,characters:npcs.length,connected,realParticipants:online.size,room,auditoriums:[{side:'right',key:'function'},{side:'left',key:'tech'}],hall,donutAt,donutRemaining,camera:'V66 seated rear three-quarter with visible self name; free-roam chase',linksConfigured:!!(linkMap.function&&linkMap.tech),screenLive,doorProgress:doorOpenAmount,mainDoorSensor:anyVisitorNearDoor('main'),pixelRatio:renderer?.getPixelRatio(),portalDepth:PORTAL_Z,donutPosition:DONUT_POS,professionalFacilitator:false,joystickRightLeft:'right is negative yaw; heading persists after straightening stick',joystickActive:joyActive,cameraClear:lastCameraClear,cameraAvoidanceHits:cameraSafetyHits,cameraSafetyShift:cameraSafetyShift,ponyActors:festivalPonyRigs.length,fireworkBursts:festivalParticles.length,sceneryColliders:solidScenery.length,escortActive:!!autoSeat,lobbyAligned:Math.abs(lobby?.position.z-LOBBY_OFFSET)<.01});
 </script>
 </body></html>
