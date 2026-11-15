@@ -368,7 +368,7 @@ body.v832-mounted #v832-drive-stick{box-shadow:0 7px 27px #0007,inset 0 0 20px #
 <div class="cta-row"><div id="join-error" class="hidden" role="alert" aria-live="assertive"></div><button id="join-room" class="gold-button hidden">כניסה למפגש</button><button id="create-room" class="gold-button">👑 פתיחת העולם שלי כמנחה</button><button id="demo" class="soft-button">טיול ניסיון · גנים ורכב מלכותי</button></div>
 </div></div>
 <div id="load" class="overlay hidden"><div class="intro-card center"><div class="load-crown">♛</div><h2>פותחים את שערי הממלכה...</h2><p id="load-info">טוענים עולם ודמויות תלת־ממדיות</p><div class="progress"><div id="progress-bar"></div></div></div></div>
-<div id="hud" class="hidden"><div id="topright"><div class="bsd">בס״ד</div><div class="brand">ממלכת התבונה</div><div id="zone-name">כיכר ההתכנסות</div><div id="connection-pill">ניסיון מקומי</div><div id="my-identity"><strong id="my-identity-name">אורח הממלכה</strong><span id="my-identity-avatar" style="font-size:11px;color:#e9cdbb"></span></div></div>
+<div id="hud" class="hidden"><div id="topright"><div class="bsd">בס״ד</div><div class="brand">ממלכת התבונה</div><div id="zone-name">כיכר ההתכנסות</div><div id="connection-pill">ממתינים לחיבור</div><div id="my-identity"><strong id="my-identity-name">אורח הממלכה</strong><span id="my-identity-avatar" style="font-size:11px;color:#e9cdbb"></span></div></div>
 <div id="topbuttons"><button type="button" id="v832-trip-fab" class="circle" title="בחירת כלי תחבורה למסע" aria-label="תכנון מסע">🚀</button><button type="button" id="v839-garage-fab" class="circle" title="כתר הממלכה — הזמנת כלי וניהול" aria-label="כתר הממלכה">♛</button><button type="button" id="v83-team-fab" class="circle" title="בחירת צוות או מסע עצמאי" aria-label="בחירת צוות">👥</button><button id="share" class="circle" title="העתקת קישור למשתתפים">🔗</button><button id="host-controls" class="circle hidden" title="לוח מאסטר">♛</button><button id="teacher-controls" class="circle hidden" title="ניהול השיעור והקישורים של החדר שלי">♛</button><button id="camera-mode" class="circle" title="מרחק מצלמת המרדף" aria-label="החלפת מצב מצלמה">◉</button><button id="full" class="circle" title="מסך מלא">⛶</button><button id="exit" class="circle" title="חזרה לבחירת דמות">⌂</button></div>
 <div id="v843-speedometer" aria-live="off"><div class="v843-speed-name">ROYAL SPEED</div><div class="v843-speed-row"><span id="v843-speed-value">0</span><small>km/h</small></div><div id="v843-speed-kind">&#x1F697; &#x05E8;&#x05DB;&#x05D1;</div></div><div id="v832-drive-stick" aria-label="ג׳ויסטיק תחבורה: למעלה קדימה, ימינה לימין, שמאלה לשמאל" role="application"><span class="v832-axis up">↑</span><span class="v832-axis down">↓</span><span class="v832-axis left">←</span><span class="v832-axis right">→</span><div id="v832-drive-knob"></div></div><div id="royal-car-pad" class="hidden" aria-label="חצים לנהיגה ברכב או לרכיבה על הסוס"><button type="button" data-car-key="forward" aria-label="נסיעה קדימה">▲</button><button type="button" data-car-key="left" aria-label="סיבוב שמאלה">◀</button><button type="button" data-car-key="right" aria-label="סיבוב ימינה">▶</button><button type="button" data-car-key="reverse" aria-label="נסיעה לאחור">▼</button></div><div id="joystick" aria-label="ג׳ויסטיק לתנועה"><div id="knob"></div></div><div id="v832-journey-status"></div><div id="bottomcontrols"><div id="v832-ride-actions"><button type="button" id="v832-reset">↺ איפוס</button><button type="button" id="v832-unmount">↩ ירידה</button></div><button type="button" id="royal-car-reset" class="soft-button hidden" title="איפוס הרכב או הסוס">↺ איפוס כלי</button><button id="leave-theater" class="hidden" title="חזרה ללובי" aria-label="חזרה ללובי">🚪 יציאה</button><button id="wave" class="circle" title="נופפו לשלום">👋</button><button id="action" class="action-button hidden">כניסה לקולנוע</button></div>
 <div id="v83-team-hud" class="hidden" aria-live="polite"></div><div id="announcement" aria-live="polite"></div><div id="hint"></div><div class="signature">עידן אחוון</div></div>
@@ -630,12 +630,18 @@ function userFacingJoinError(e){
 function validateFirebase(c){if(!c||!c.apiKey||!c.authDomain||!c.databaseURL||!c.projectId||!c.appId)throw Error('חסרים apiKey, authDomain, databaseURL, projectId או appId');let q=new URL(c.databaseURL);if(q.protocol!=='https:')throw Error('כתובת מסד הנתונים חייבת להיות HTTPS');return c}
 $('#firebase-json').value=firebaseConfig?JSON.stringify(firebaseConfig,null,2):'';
 $('#save-fb').onclick=()=>{try{let v=$('#firebase-json').value.trim();let start=v.indexOf('{'),end=v.lastIndexOf('}');if(start<0||end<0)throw Error('נא להדביק JSON');v=v.slice(start,end+1).replace(/([{,]\s*)([A-Za-z_$][\w$]*)\s*:/g,'$1"$2":').replace(/,\s*}/g,'}');firebaseConfig=validateFirebase(JSON.parse(v));localStorage.setItem('kingdom_firebase_v39',JSON.stringify(firebaseConfig));helpIntro('✓ הגדרות Firebase נשמרו בדפדפן. כדי לקבל קישורים קצרים מכל מכשיר, הורידו והעלו פעם אחת את הקובץ המוגדר ל-GitHub.');if(!incomingRoom)$('#configured-export').style.display='block'}catch(e){helpIntro('✕ '+e.message)}};
-// No teacher/player debugging, setup screens or version notes. Enter is the last button.
-$('#join-room').classList.remove('hidden');$('#create-room').classList.add('hidden');$('#demo').classList.add('hidden');
+// V85.3: Links with ?r= are REAL player invites by default, not a local preview.
+// The master/teacher links retain their existing capability-based security.
+$('#join-room').classList.remove('hidden');$('#create-room').classList.add('hidden');
+$('#demo').classList.toggle('hidden', ENTRY_ROLE!=='master');
 $('#intro').classList.toggle('master-entry',isMasterInvitation);
-$('#intro-title').textContent='ממלכת הקולנוע — טיול ניסיון';
-$('#intro-help').textContent='בחרו שם ודמות והיכנסו לממלכה — ללא Firebase';
-$('#join-room').textContent='✨ כניסה לממלכה';
+const v853RoleTitle=ENTRY_ROLE==='master'?'מאסטר':ENTRY_ROLE==='teacher'?'מנחה':'שחקן';
+$('#intro-title').textContent='ממלכת הקולנוע — כניסת '+v853RoleTitle;
+$('#intro-help').textContent=ENTRY_ROLE==='player'
+ ? 'בחרו שם ודמות והיכנסו למפגש המשותף. מקומכם ממתין לכם בכיסאות הכיכר.'
+ : 'בחרו שם ודמות והתחברו למפגש החי בתפקיד '+v853RoleTitle+'.';
+$('#join-room').textContent=ENTRY_ROLE==='player'?'🎟 כניסת שחקן למפגש':'👑 כניסת '+v853RoleTitle+' למפגש';
+$('#demo').textContent='טיול ניסיון מקומי (ללא משתתפים)';
 refreshIntroSharing();
 $('#fb-panel').classList.toggle('hidden',!isMasterInvitation);
 $('#configured-export').style.display='none';
@@ -4877,8 +4883,11 @@ function v832InitUI(){
  v832RenderTrip();
 }
 
-const V83_LIVE_TEST=url.searchParams.get('v83live')==='1';
-$('#demo').onclick=()=>start(false,true);$('#create-room').onclick=()=>start(V83_LIVE_TEST&&ENTRY_ROLE!=='player',!V83_LIVE_TEST);$('#join-room').onclick=()=>start(V83_LIVE_TEST&&ENTRY_ROLE!=='player',!V83_LIVE_TEST);
+// V85.3: Make the real Firebase session the DEFAULT for all three stable links.
+// Local demo can only be entered by deliberately pressing the separate button.
+$('#demo').onclick=()=>start(false,true);
+$('#create-room').onclick=()=>start(ENTRY_ROLE!=='player',false);
+$('#join-room').onclick=()=>start(ENTRY_ROLE!=='player',false);
 // V71: automatically reconnect on a phone's browser-Back return from a kingdom.
 // Standalone preview: mobile return must not attempt a live Firebase connection.
 window.addEventListener('beforeunload',()=>{if(connected&&rtdb&&presenceRef){rtdb.remove(presenceRef).catch(()=>{});if(seatClaimRef)rtdb.remove(seatClaimRef).catch(()=>{})}});
@@ -4929,6 +4938,6 @@ window.KINGDOM_TEST_CONTROLS=()=>{
  steeringRightIsNegativeYaw:true,deadzone:axisCurve(.04)===0,
  cameraRigidToHeading:true};
 };
-window.KINGDOM_DIAGNOSTICS=()=>({version:'V85.2-stable-floors-depth-and-no-zfighting',zone,phase,seated,seatIndex,loaded:loadersDone,characters:npcs.length,connected,realParticipants:online.size,room,auditoriums:[{side:'right',key:'function'},{side:'left',key:'tech'}],hall,donutAt,donutRemaining,camera:'V66 seated rear three-quarter with visible self name; free-roam chase',linksConfigured:!!(linkMap.function&&linkMap.tech),screenLive,doorProgress:doorOpenAmount,mainDoorSensor:anyVisitorNearDoor('main'),pixelRatio:renderer?.getPixelRatio(),portalDepth:PORTAL_Z,donutPosition:DONUT_POS,professionalFacilitator:false,joystickRightLeft:'right is negative yaw; heading persists after straightening stick',joystickActive:joyActive,cameraClear:lastCameraClear,cameraAvoidanceHits:cameraSafetyHits,cameraSafetyShift:cameraSafetyShift,ponyActors:festivalPonyRigs.length,fireworkBursts:festivalParticles.length,sceneryColliders:solidScenery.length,escortActive:!!autoSeat,lobbyAligned:Math.abs(lobby?.position.z-LOBBY_OFFSET)<.01});
+window.KINGDOM_DIAGNOSTICS=()=>({version:'V85.3-live-role-and-seating-fixed',zone,phase,seated,seatIndex,loaded:loadersDone,characters:npcs.length,connected,realParticipants:online.size,room,auditoriums:[{side:'right',key:'function'},{side:'left',key:'tech'}],hall,donutAt,donutRemaining,camera:'V66 seated rear three-quarter with visible self name; free-roam chase',linksConfigured:!!(linkMap.function&&linkMap.tech),screenLive,doorProgress:doorOpenAmount,mainDoorSensor:anyVisitorNearDoor('main'),pixelRatio:renderer?.getPixelRatio(),portalDepth:PORTAL_Z,donutPosition:DONUT_POS,professionalFacilitator:false,joystickRightLeft:'right is negative yaw; heading persists after straightening stick',joystickActive:joyActive,cameraClear:lastCameraClear,cameraAvoidanceHits:cameraSafetyHits,cameraSafetyShift:cameraSafetyShift,ponyActors:festivalPonyRigs.length,fireworkBursts:festivalParticles.length,sceneryColliders:solidScenery.length,escortActive:!!autoSeat,lobbyAligned:Math.abs(lobby?.position.z-LOBBY_OFFSET)<.01});
 </script>
 </body></html>
