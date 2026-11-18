@@ -195,6 +195,9 @@
 #intro #intro-help{margin:7px 0 14px}
 #intro .intro-signature{position:fixed;left:max(13px,env(safe-area-inset-left));bottom:max(10px,env(safe-area-inset-bottom));z-index:32;color:#fff0cf;font-size:12px;font-weight:600;text-shadow:0 2px 8px #11071ddd;pointer-events:none;direction:rtl}
 @media(max-width:650px){#intro #intro-role-title{font-size:18px}#intro .intro-signature{font-size:10px;bottom:max(6px,env(safe-area-inset-bottom));left:max(9px,env(safe-area-inset-left));opacity:.90}}
+#v866-release-fab{position:absolute;top:max(65px,calc(env(safe-area-inset-top) + 62px));left:12px;z-index:23;pointer-events:auto;min-height:48px;padding:8px 16px;border:2px solid #e8ce8f;border-radius:14px;background:linear-gradient(145deg,#356e62,#1b473f);box-shadow:0 6px 20px #0c1020bb;color:#fff6d6;font-weight:800;max-width:min(55vw,260px)}
+#v866-release-fab:disabled{opacity:.65}
+@media(max-width:650px){#v866-release-fab{top:calc(max(9px,env(safe-area-inset-top)) + 47px);left:8px;min-height:42px;font-size:12px;padding:6px 11px}}
 </style><style>
 #standalone-preview-ribbon{display:none!important;position:fixed;z-index:100;left:50%;top:6px;transform:translateX(-50%);color:#ffedc3;background:#27173ae8;border:1px solid #dabb7d;border-radius:18px;padding:4px 12px;font:700 11px Arial,sans-serif;pointer-events:none;max-width:75vw;text-align:center}
 #standalone-preview-ribbon.in-world{opacity:0}
@@ -430,7 +433,7 @@ html,body{width:100%;height:100%;height:100dvh;margin:0;overflow:hidden}
 <div id="hud" class="hidden"><div id="topright"><div class="bsd">בס״ד</div><div class="brand">ממלכת התבונה</div><div id="zone-name">כיכר ההתכנסות</div><div id="connection-pill">ממתינים לחיבור</div><div id="my-identity"><strong id="my-identity-name">אורח הממלכה</strong><span id="my-identity-avatar" style="font-size:11px;color:#e9cdbb"></span></div></div>
 <div id="topbuttons"><button type="button" id="v832-trip-fab" class="circle" title="בחירת כלי תחבורה למסע" aria-label="תכנון מסע">🚀</button><button type="button" id="v839-garage-fab" class="circle" title="כתר הממלכה — הזמנת כלי וניהול" aria-label="כתר הממלכה">♛</button><button type="button" id="v83-team-fab" class="circle" title="בחירת צוות או מסע עצמאי" aria-label="בחירת צוות">👥</button><button id="share" class="circle" title="העתקת קישור למשתתפים">🔗</button><button id="host-controls" class="circle hidden" title="לוח מאסטר">♛</button><button id="teacher-controls" class="circle hidden" title="ניהול השיעור והקישורים של החדר שלי">♛</button><button id="camera-mode" class="circle" title="מרחק מצלמת המרדף" aria-label="החלפת מצב מצלמה">◉</button><button id="full" class="circle" title="מסך מלא">⛶</button><button id="exit" class="circle" title="חזרה לבחירת דמות">⌂</button></div>
 <div id="v843-speedometer" aria-live="off"><div class="v843-speed-name">ROYAL SPEED</div><div class="v843-speed-row"><span id="v843-speed-value">0</span><small>km/h</small></div><div id="v843-speed-kind">&#x1F697; &#x05E8;&#x05DB;&#x05D1;</div></div><div id="v832-drive-stick" aria-label="ג׳ויסטיק תחבורה: למעלה קדימה, ימינה לימין, שמאלה לשמאל" role="application"><div id="v832-drive-knob"></div></div><div id="royal-car-pad" class="hidden" aria-hidden="true"></div><div id="joystick" aria-label="ג׳ויסטיק לתנועה"><div id="knob"></div></div><div id="v832-journey-status"></div><div id="bottomcontrols"><div id="v832-ride-actions"><button type="button" id="v832-reset">↺ איפוס</button><button type="button" id="v832-unmount">↩ ירידה</button></div><button type="button" id="royal-car-reset" class="soft-button hidden" title="איפוס הרכב או הסוס">↺ איפוס כלי</button><button id="leave-theater" class="hidden" title="חזרה ללובי" aria-label="חזרה ללובי">🚪 יציאה</button><button id="wave" class="circle" title="נופפו לשלום">👋</button><button id="action" class="action-button hidden">כניסה לקולנוע</button></div>
-<div id="v855-seat-lock-notice" role="status" aria-live="polite">👑 המנחה ביקש לשבת — ממתינים לאישור לקום</div><div id="v83-team-hud" class="hidden" aria-live="polite"></div><div id="announcement" aria-live="polite"></div><div id="hint"></div><div class="signature">עידן אחוון</div></div>
+<button id="v866-release-fab" type="button" class="hidden"></button><div id="v855-seat-lock-notice" role="status" aria-live="polite">👑 המנחה ביקש לשבת — ממתינים לאישור לקום</div><div id="v83-team-hud" class="hidden" aria-live="polite"></div><div id="announcement" aria-live="polite"></div><div id="hint"></div><div class="signature">עידן אחוון</div></div>
 <div id="host-panel" class="modal hidden"><div class="modal-card"><button class="close" data-close="host-panel">✕</button><h2>♛ ממלכת הקולנוע- מאסטר</h2><div id="room-label"></div><div id="host-count"></div><div class="actions"><button id="host-lobby" class="gold-button">פתח את דלת הקולנוע</button><button id="host-function" class="gold-button">פתח את אולם הפונקציה</button><button id="host-tech" class="gold-button">פתח את אולם הטכניקה</button><button id="host-garden" class="soft-button">↩ החזר את כולם לכיסאות ונעל</button><button id="host-release-seats" class="gold-button" type="button">✓ אשר לתלמידים לקום</button></div>
 <label>כתובות שני האולמות — מימין פונקציה, משמאל טכניקה</label><input id="url-function" dir="ltr" placeholder="https://... ממלכת הפונקציה"><input id="url-tech" dir="ltr" placeholder="https://... ממלכת הטכניקה"><button id="save-links" class="soft-button">שמור קישורים למפגש</button><p class="small">המשתתפים יושבים בשתי שורות מול המנחה. אפשר לקום לסופגניות עוד לפני פתיחת דלת הקולנוע. בהזמנת המנחה נכנסים ללובי עם שתי כניסות מרשימות בלבד: מימין אולם הפונקציה, משמאל אולם הטכניקה. אין אולם שלישי. קישורים נפתחים רק לאחר הגדרה.</p><div class="v823-crown-vehicle" role="group" aria-label="שליטה ברכב המלכותי"><div class="v823-crown-caption">🚗 הרכב המלכותי</div><button type="button" id="master-go-car" class="gold-button">🚘 אל הרכב ולהיכנס</button><button type="button" id="master-reset-car" class="soft-button">↺ איפוס הרכב לתחילת הדרך</button></div><div class="v823-crown-vehicle" role="group" aria-label="שליטה בסוס המלכותי"><div class="v823-crown-caption">🐎 הסוס המלכותי</div><button type="button" id="master-go-horse" class="gold-button">🐎 אל הסוס ולרכוב</button><button type="button" id="master-reset-horse" class="soft-button">↺ איפוס הסוס לתחילת הדרך</button><button type="button" id="master-go-camel" class="gold-button">🛴 אל הקורקינט</button><button type="button" id="master-go-bird" class="gold-button">🦅 אל הציפור ולעוף</button></div><div class="v64-invite"><button id="copy-host" class="soft-button">🛡️ העתק קישור מאסטר</button><button id="copy-teacher" class="soft-button">👑 העתק קישור מנחה למורים</button><button id="copy-room" class="gold-button">👥 העתק קישור שחקן</button></div><p class="small">שני הקישורים נשארים קבועים גם כשנכנסים ממכשיר אחר. שמרו את קישור המנחה במקום פרטי — מי שמחזיק בו יכול לנהל את המפגש. תלמידים מקבלים רק את קישור המשתתפים.</p></div></div>
 
@@ -1156,7 +1159,7 @@ function v80AddEnvironment(){
  }
  // Light balance: more intentional contrast without changing Firebase/game logic.
  scene.background=new THREE.Color(0x9cb4d6);
- if(renderer){renderer.toneMappingExposure=1.18;renderer.shadowMap.enabled=innerWidth>900;}
+ if(renderer){renderer.toneMappingExposure=1.18;renderer.shadowMap.enabled=innerWidth>900&&!V866_STREAMLINED_SCENE;}
  scene.traverse(o=>{if(o.isDirectionalLight){o.intensity=Math.min(o.intensity*1.1,4);o.color.set(0xffe7ca)}if(o.isAmbientLight){o.intensity=Math.min(o.intensity*.9,1.5)}});
 }
 function v80PolishExterior(){
@@ -1195,13 +1198,13 @@ function groundLandscape(){
  const v852Approach=B(world,0,-.028,48,13,.08,72,mat(0xbdaab9,.02,.64));v852Approach.name='V852_CEREMONIAL_APPROACH';B(world,0,.02,48,.15,.13,72,gold);
  for(const s of [-1,1]){B(world,s*6.8,.05,50,.16,.12,70,gold);B(world,s*9.0,.08,50,.65,.16,70,mat(0xe0bed8,.08,.5))}
  // Distinct deep horizon: mountain silhouettes and actual royal towers.
- for(let i=0;i<45;i++){const a=i*2*Math.PI/45,r=2600+(i%6)*26,x=Math.cos(a)*r,z=Math.sin(a)*r;const m=i%3===0?mat(0x8496bb):i%3===1?mat(0x92a2ae):mat(0x9eabc3);const p=K(world,x,5+(i%7),z,12+(i%5)*2,22+(i%7)*4,m);p.rotation.y=i*.3;S(world,x,19+(i%7)*2,z,2.4,mat(0xe8e5f0),8)}
+ for(let i=0;i<(V866_STREAMLINED_SCENE?14:45);i++){const a=i*2*Math.PI/45,r=2600+(i%6)*26,x=Math.cos(a)*r,z=Math.sin(a)*r;const m=i%3===0?mat(0x8496bb):i%3===1?mat(0x92a2ae):mat(0x9eabc3);const p=K(world,x,5+(i%7),z,12+(i%5)*2,22+(i%7)*4,m);p.rotation.y=i*.3;S(world,x,19+(i%7)*2,z,2.4,mat(0xe8e5f0),8)}
  const greens=[0x3f8a5c,0x519b64,0x699f69,0x337951,0x7bad68];
- for(let i=0;i<56;i++){const x=((i*41+17)%180)-90,z=((i*67+3)%200)-96; if((Math.abs(x)<23 && z>-16 && z<42)||v834OpenTravelZone(x,z))continue;const h=.75+((i*7)%13)/15;makeTree(world,x,z,h,greens[i%5],i%4===0)}
+ for(let i=0;i<56;i++){if(V866_STREAMLINED_SCENE&&i%3!==0)continue;const x=((i*41+17)%180)-90,z=((i*67+3)%200)-96; if((Math.abs(x)<23 && z>-16 && z<42)||v834OpenTravelZone(x,z))continue;const h=.75+((i*7)%13)/15;makeTree(world,x,z,h,greens[i%5],i%4===0)}
  for(let i=0;i<12;i++){let x=i%2?-(22+(i%3)*3):(22+(i%3)*3),z=27-Math.floor(i/2)*6;makeLamp(world,x,z)}
  for(let i=0;i<8;i++){let x=i%2?-(26+(i%3)*4):(26+(i%3)*4),z=24-Math.floor(i/2)*7;makeFlowerBed(world,x,z,1.8)}
  makeWaterfall(world,-39,-23);makeWaterfall(world,39,-23);makeCastle(world,34,-43);makeFerris(world,-46,-31);
- for(let i=0;i<8;i++)makeBalloon(world,-48+(i%4)*28,-80+Math.floor(i/4)*18,i);
+ for(let i=0;i<(V866_STREAMLINED_SCENE?2:8);i++)makeBalloon(world,-48+(i%4)*28,-80+Math.floor(i/4)*18,i);
  // Dense flower fields built as GPU instanced meshes, rather than thousands of draw calls.
  const geo=geom('sphere',.13,7,5),palette=[0xe3a0e3,0xffc0d9,0xb7a3ef,0xffe5ac,0xf6e5f7];const d=new THREE.Object3D();for(let t=0;t<5;t++){let ins=new THREE.InstancedMesh(geo,mat(palette[t]),240);ins.instanceMatrix.setUsage(THREE.StaticDrawUsage);let n=0;for(let j=0;j<3500&&n<240;j++){let rr=((j*17+t*7)%49),aa=j*2.399+t,xx=Math.cos(aa)*rr+ (j%2?18:-18),zz=((j*31)%119)-42;if((Math.abs(xx)<12&&zz>0&&zz<65)||Math.abs(xx)>81||v834OpenTravelZone(xx,zz))continue;if(j%5!==t)continue;d.position.set(xx,.18+((j%7)*.025),zz);d.scale.setScalar(.6+(j%4)*.22);d.updateMatrix();ins.setMatrixAt(n++,d.matrix)}ins.count=n;world.add(ins)}
 }
@@ -1766,9 +1769,9 @@ function buildAtmosphereV42(){
    clouds.push({g,base:g.position.x,velocity:0,phase:i*.8});
  }
 }
-function buildDecor(){world=group(scene);makeSky();groundLandscape();buildRoyalSquare();buildFestival();v83BuildCircle();buildAtmosphereV42();for(let i=0;i<26;i++)makeButterfly(world,((i*23)%56)-28,((i*37)%78)-20,i);for(let i=0;i<19;i++)makeBird(world,i);
+function buildDecor(){world=group(scene);makeSky();groundLandscape();buildRoyalSquare();buildFestival();v83BuildCircle();buildAtmosphereV42();for(let i=0;i<(V866_STREAMLINED_SCENE?5:26);i++)makeButterfly(world,((i*23)%56)-28,((i*37)%78)-20,i);for(let i=0;i<(V866_STREAMLINED_SCENE?5:19);i++)makeBird(world,i);
  const light1=new THREE.HemisphereLight(0xf7e6ff,0x3d5068,2.0);daytimeHemi=light1;scene.add(light1);sun=new THREE.DirectionalLight(0xffe9c6,3.1);sun.position.set(-25,44,18);sun.castShadow=innerWidth>900;sun.shadow.mapSize.set(1024,1024);sun.shadow.camera.left=-46;sun.shadow.camera.right=46;sun.shadow.camera.top=50;sun.shadow.camera.bottom=-44;scene.add(sun);
- for(let i=0;i<40;i++){let x=((i*37)%79)-40,z=((i*19)%72)-28,y=1.4+(i%7)*1.05;const g=group(world,x,y,z);S(g,0,0,0,.12,mat(i%3===0?0xffe29b:0xd7acff,0,.6,.45),8);fireflies.push({g,baseY:y,i})}
+ for(let i=0;i<(V866_STREAMLINED_SCENE?10:40);i++){let x=((i*37)%79)-40,z=((i*19)%72)-28,y=1.4+(i%7)*1.05;const g=group(world,x,y,z);S(g,0,0,0,.12,mat(i%3===0?0xffe29b:0xd7acff,0,.6,.45),8);fireflies.push({g,baseY:y,i})}
 }
 
 // Shared character geometries, animated joint rigs and eight independent royal wardrobes.
@@ -1914,13 +1917,13 @@ function assignSeat(index){
 
 function makeNPCs(){
  const plazaEdges=[[-34,32],[-37,43],[-40,65],[44,37],[46,46],[48,62],[-28,82],[29,82],[-42,72],[48,72],[-27,29],[27,29]];
- plazaEdges.forEach(([x,z],i)=>{const g=makeCharacter(i%8,'',false);g.position.set(x,0,z);world.add(g);npcs.push({g,zone:'exterior',x,z,seed:i,phase:i*.47,dir:i%2?1:-1})});
+ plazaEdges.filter((_,i)=>!V866_STREAMLINED_SCENE||i%3===0).forEach(([x,z],i)=>{const g=makeCharacter(i%8,'',false);g.position.set(x,0,z);world.add(g);npcs.push({g,zone:'exterior',x,z,seed:i,phase:i*.47,dir:i%2?1:-1})});
  const audience=[1,3,5,7,9,11,13,15,16,18,20,22,24,26,28,30];
- audience.forEach((j,i)=>{const spot=plazaSeats[j],g=makeCharacter((i+2)%8,'',false);g.position.set(spot.x,0,spot.z-.09);g.rotation.y=Math.PI;world.add(g);npcs.push({g,zone:'exterior',x:spot.x,z:spot.z,seed:i+75,phase:i*.5,demoAudience:true});g.visible=false});
+ audience.filter((_,i)=>!V866_STREAMLINED_SCENE).forEach((j,i)=>{const spot=plazaSeats[j],g=makeCharacter((i+2)%8,'',false);g.position.set(spot.x,0,spot.z-.09);g.rotation.y=Math.PI;world.add(g);npcs.push({g,zone:'exterior',x:spot.x,z:spot.z,seed:i+75,phase:i*.5,demoAudience:true});g.visible=false});
  const lobbySpots=[[-11.2,10],[-9.1,10.3],[9.4,10],[11.6,10.4],[-11.6,-3],[-9.3,-3],[9.4,-3],[11.8,-3],[-11.8,-10],[-9.6,-10.2],[9.5,-10],[11.7,-10.3]];
- lobbySpots.forEach(([x,z],i)=>{let g=makeCharacter((i+3)%8,'',false);lobby.add(g);g.position.set(x,0,z);npcs.push({g,zone:'lobby',x,z,seed:i+19,phase:i*.5,chatPair:Math.floor(i/2),chatSide:i%2,bowStart:-100,bowAgainAt:0})});
+ lobbySpots.filter((_,i)=>!V866_STREAMLINED_SCENE||i%3===0).forEach(([x,z],i)=>{let g=makeCharacter((i+3)%8,'',false);lobby.add(g);g.position.set(x,0,z);npcs.push({g,zone:'lobby',x,z,seed:i+19,phase:i*.5,chatPair:Math.floor(i/2),chatSide:i%2,bowStart:-100,bowAgainAt:0})});
  const seats=[[-16.45,14],[-11.75,14],[-7.05,14],[7.05,14],[11.75,14],[16.45,14],[-16.45,4],[-11.75,4],[7.05,4],[16.45,4]];
- for(const roomKey of ['function','tech'])seats.forEach(([x,z],i)=>{let g=makeCharacter((i+1)%8,'',false);theaters[roomKey].add(g);g.position.set(x,0,z);npcs.push({g,zone:'theater',x,z,seed:i+36,phase:i*.8,theaterAudience:true})});
+ for(const roomKey of ['function','tech'])seats.filter((_,i)=>!V866_STREAMLINED_SCENE||i<3).forEach(([x,z],i)=>{let g=makeCharacter((i+1)%8,'',false);theaters[roomKey].add(g);g.position.set(x,0,z);npcs.push({g,zone:'theater',x,z,seed:i+36,phase:i*.8,theaterAudience:true})});
 }
 
 // Professional facilitator prototype: Michelle is a skinned, textured human model
@@ -2848,14 +2851,14 @@ function v834ProtectAvatars(dt){
 function draw(now){
  requestAnimationFrame(draw);if(!loadersDone)return;
  // Cap draw calls at ~30 FPS on touch GPUs; interactions retain their full time step.
- if(V854_MOBILE_GPU&&now-last<28)return;
- const dt=Math.min(Math.max(0,(now-last)/1000),.16);last=now;clock+=dt;
+ if(V854_MOBILE_GPU&&now-last<(V866_STREAMLINED_SCENE?40:28))return;
+ const dt=Math.min(Math.max(0,(now-last)/1000),.24);last=now;clock+=dt;
  if(!selfieMode)updateMovement(dt);else{movement.x=0;movement.z=0;}
  v832UpdateJourney(dt);updateCam(dt);
  v854FoliageDt+=dt;
- if(!V854_MOBILE_GPU||now-v854LastFoliage>65){updateFoliageTransparency(v854FoliageDt);v854FoliageDt=0;v854LastFoliage=now;}
+ if(!V854_MOBILE_GPU||now-v854LastFoliage>(V866_STREAMLINED_SCENE?200:65)){updateFoliageTransparency(v854FoliageDt);v854FoliageDt=0;v854LastFoliage=now;}
  electricLighting(dt);
- if(!V854_MOBILE_GPU||now-v854LastNpc>60){updateNPCs(clock);v854LastNpc=now;}
+ if(!V854_MOBILE_GPU||now-v854LastNpc>(V866_STREAMLINED_SCENE?145:60)){updateNPCs(clock);v854LastNpc=now;}
  for(const [id,r] of remote){
   const d=r.data;if(!d||!r.g)continue;
   const p=r.g.position,k=1-Math.exp(-dt*8);
@@ -2881,7 +2884,7 @@ function draw(now){
  }
  if(sky?.material?.uniforms)sky.material.uniforms.time.value=clock;
  
- if(connected&&now-syncAt>210){syncAt=now;syncSelf()}
+ if(connected&&now-syncAt>210){syncAt=now;syncSelf();if(!isHost&&v866MissingHostSince)v855RefreshSeatingUI();}
  // V66: proximity-controlled doors are accessible to all live participants.
  // Both the entrance and auditorium panels slide aside on approach from either direction.
  // The facilitator phase still controls shared lesson announcements, not physical passage.
@@ -3415,6 +3418,7 @@ let V861_LITE_SCENERY=V854_MOBILE_GPU&&(V854_CRITICAL_MEMORY||Number(navigator.h
 try{const manualLite=localStorage.getItem('kingdom_v861_lite');if(manualLite==='1')V861_LITE_SCENERY=true;else if(manualLite==='0')V861_LITE_SCENERY=false;}catch(_e){}
 // The full model is kept for normal phones and tablets. A user can still opt
 // into the existing 'Lite tablet' button to make entry more reliable on old devices.
+const V866_STREAMLINED_SCENE=V861_LITE_SCENERY||(V854_MOBILE_GPU&&(V854_LOW_MEMORY||Number(navigator.hardwareConcurrency||8)<=4));
 const v854DPRLimit=V861_LITE_SCENERY?1.20:V854_MOBILE_GPU?(V854_LOW_MEMORY?1.48:1.85):2.0;
 let v854RenderDPR=Math.min(Math.max(1,Number(devicePixelRatio)||1),v854DPRLimit);
 let v854QualityReduced=false,v854StatsStarted=0,v854Frames=0,v854MeasuredFPS=0;
@@ -3438,16 +3442,16 @@ function v854MonitorPerformance(now){
  v854StatsStarted=now;v854Frames=0;
 }
 async function buildScene(){setProgress(8,'מכינים תאורה, גנים, שמיים ודמויות...');scene=new THREE.Scene();scene.background=new THREE.Color(0x8e94c1);camera=new THREE.PerspectiveCamera(64,innerWidth/innerHeight,.24,3800);
- renderer=new THREE.WebGLRenderer({antialias:!V861_LITE_SCENERY,alpha:false,powerPreference:'high-performance',logarithmicDepthBuffer:true});renderer.setPixelRatio(v854RenderDPR);renderer.setSize(innerWidth,innerHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.38;renderer.shadowMap.enabled=!V861_LITE_SCENERY&&innerWidth>900&&(!V854_MOBILE_GPU||!V854_LOW_MEMORY);renderer.shadowMap.type=THREE.PCFSoftShadowMap;$('#scene').append(renderer.domElement);
+ renderer=new THREE.WebGLRenderer({antialias:!V861_LITE_SCENERY,alpha:false,powerPreference:'high-performance',logarithmicDepthBuffer:true});renderer.setPixelRatio(v854RenderDPR);renderer.setSize(innerWidth,innerHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.38;renderer.shadowMap.enabled=!V866_STREAMLINED_SCENE&&innerWidth>900&&(!V854_MOBILE_GPU||!V854_LOW_MEMORY);renderer.shadowMap.type=THREE.PCFSoftShadowMap;$('#scene').append(renderer.domElement);
  renderer.domElement.addEventListener('webglcontextlost',()=>{console.warn('Royal kingdom: graphics context lost');note('הטאבלט מאתחל את הגרפיקה. מומלץ לסגור אפליקציות אחרות.');});
  renderer.domElement.addEventListener('webglcontextrestored',()=>{console.info('Royal kingdom: graphics restored');});
- try{const pmrem=new THREE.PMREMGenerator(renderer);const env=pmrem.fromScene(new RoomEnvironment(renderer),.05);scene.environment=env.texture;pmrem.dispose()}catch(e){console.warn('No reflection probes',e)}
+ if(!V866_STREAMLINED_SCENE)try{const pmrem=new THREE.PMREMGenerator(renderer);const env=pmrem.fromScene(new RoomEnvironment(renderer),.05);scene.environment=env.texture;pmrem.dispose()}catch(e){console.warn('No reflection probes',e)}
  buildDecor();v80AddEnvironment();buildTheater('function');buildTheater('tech');theater=theaters.function;const loader=new GLTFLoader();setProgress(38,'טוענים את מבנה הקולנוע המפוסל...');
  async function fetchModel(k,p){if(window.KINGDOM_EMBED_MODELS?.[k]){const raw=atob(window.KINGDOM_EMBED_MODELS[k]),arr=new Uint8Array(raw.length);for(let i=0;i<raw.length;i++)arr[i]=raw.charCodeAt(i);return (await new Promise((resolve,reject)=>loader.parse(arr.buffer,'',resolve,reject))).scene}return (await loader.loadAsync(p)).scene}
  ext=await fetchModel('exterior','assets/cinema_exterior.glb');improveModelTextureClarity(ext);v80PolishExterior();ext.visible=false;scene.add(ext);replaceModelSigns(ext,{cinema_title:'cinema_main.png'});v81FinishRoyalPalace();
  // V82.1: independently authored fully 3D GLB garden asset, not a photo backdrop.
  setProgress(46,'מטעינים עצים מפוסלים וגנים מלכותיים תלת־ממדיים...');
- if(!V861_LITE_SCENERY){try{await v82LoadRoyalGardens(loader);}catch(err){console.error('V82 garden load failed',err);window.V82_ART={gardensLoaded:false,error:String(err?.message||err)};}}else{window.V82_ART={gardensLoaded:false,lowMemoryFallback:true};console.info('Royal Kingdom: low-memory scenery profile, garden GLB deferred');}
+ if(!V866_STREAMLINED_SCENE){try{await v82LoadRoyalGardens(loader);}catch(err){console.error('V82 garden load failed',err);window.V82_ART={gardensLoaded:false,error:String(err?.message||err)};}}else{window.V82_ART={gardensLoaded:false,lowMemoryFallback:true};console.info('Royal Kingdom: low-memory scenery profile, garden GLB deferred');}
  // V82.2 all visible scenery and drive route are loaded BEFORE the world can be entered.
  setProgress(53,'פותחים את דרך המסע ומטעינים רכב תלת־ממדי מלכותי...');
  try{await royalCarLoad(loader);}catch(err){console.error('Royal car load failed',err);window.V82_CAR={loaded:false,error:String(err?.message||err)};}
@@ -3511,7 +3515,7 @@ async function buildScene(){setProgress(8,'מכינים תאורה, גנים, ש
   for(const e of [ext,lobby])e.traverse(obj=>{if(obj.isMesh){obj.receiveShadow=innerWidth>1000;obj.castShadow=false}});
  setProgress(77,'יוצרים דמויות, נבחרות ומבקרים...');makeNPCs();makeMe(selected);placeInZone('exterior');setProgress(94,'מכינים מראש את הרצפות והמודלים...');
  v852StabilizeGround();
- try{renderer.compile(scene,camera)}catch(e){console.warn('Shaders could not be precompiled',e)}
+ if(!V866_STREAMLINED_SCENE)try{renderer.compile(scene,camera)}catch(e){console.warn('Shaders could not be precompiled',e)}
  initInput();setupWallExitPicking();loadersDone=true;last=performance.now();requestAnimationFrame(draw);setProgress(100,'ברוכים הבאים');}
 // --- Input: one joystick, mouse/touch look with both axes inverted from v36. ---
 function initInput(){
@@ -3602,7 +3606,7 @@ function initInput(){
    if(exit){try{const p=exit.call(document);p?.then?.(v862ScheduleViewportFit).catch?.(()=>v862ScheduleViewportFit());}catch(e){v862ScheduleViewportFit();}}
   }
  };
- $('#screen-play').onclick=()=>openProjection();$('#screen-enter').onclick=()=>enterScreen();$('#exit').onclick=()=>{selfieMode=false;v83LeaveTeam();$('#v83-team-panel').classList.add('hidden');document.body.classList.remove('royal-driving','royal-riding');for(const id of [...avatarLabelNodes.keys()])cleanAvatarLabel(id);if(connected&&presenceRef&&rtdb){rtdb.remove(presenceRef).catch(console.warn);if(seatClaimRef)rtdb.remove(seatClaimRef).catch(console.warn);seatClaimRef=null;connected=false}if(offDonuts){offDonuts();offDonuts=null}if(offPlayers){offPlayers();offPlayers=null}if(offMeta){offMeta();offMeta=null}if(offInfo){offInfo();offInfo=null}clearRemotes();screenLive=false;$('#world-screen').classList.remove('playing');$('#world-screen').classList.add('hidden');$('#screen-vortex').classList.add('hidden');$('#screen-vortex').classList.remove('active');$('#intro').classList.remove('hidden');refreshIntroSharing();$('#hud').classList.add('hidden');$('#leave-theater').classList.add('hidden');$('#host-panel').classList.add('hidden');$('#screen-overlay').classList.add('hidden')};
+ $('#screen-play').onclick=()=>openProjection();$('#screen-enter').onclick=()=>enterScreen();$('#exit').onclick=async()=>{let released=true;if(isHost&&connected&&[1,3].includes(v861RecallLockType()))released=await v855ApproveStand();if(isHost&&released&&v866HostDisconnectRef){await rtdb.onDisconnect(v866HostDisconnectRef).cancel().catch(console.warn);v866HostDisconnectRegistered=false;}selfieMode=false;v83LeaveTeam();$('#v83-team-panel').classList.add('hidden');document.body.classList.remove('royal-driving','royal-riding');for(const id of [...avatarLabelNodes.keys()])cleanAvatarLabel(id);if(connected&&presenceRef&&rtdb){rtdb.remove(presenceRef).catch(console.warn);if(seatClaimRef)rtdb.remove(seatClaimRef).catch(console.warn);seatClaimRef=null;connected=false}if(offDonuts){offDonuts();offDonuts=null}if(offPlayers){offPlayers();offPlayers=null}if(offMeta){offMeta();offMeta=null}if(offInfo){offInfo();offInfo=null}clearRemotes();screenLive=false;$('#world-screen').classList.remove('playing');$('#world-screen').classList.add('hidden');$('#screen-vortex').classList.add('hidden');$('#screen-vortex').classList.remove('active');$('#intro').classList.remove('hidden');refreshIntroSharing();$('#hud').classList.add('hidden');$('#leave-theater').classList.add('hidden');$('#host-panel').classList.add('hidden');$('#screen-overlay').classList.add('hidden')};
  $('#share').onclick=()=>copyShare();$('#intro-share-player').onclick=()=>copyIntroPlayers();$('#host-controls').onclick=()=>openHost();
  $('#master-go-car').onclick=()=>v832MasterTransport('car');
  $('#teacher-go-car').onclick=()=>v832MasterTransport('car');
@@ -3786,7 +3790,7 @@ function cleanAvatarLabel(id){const e=avatarLabelNodes.get(id);if(e){e.remove();
 let v854LastNameLabels=0;
 function renderAvatarNames(){
  const labelTime=performance.now();
- if(V854_MOBILE_GPU&&labelTime-v854LastNameLabels<90)return;
+ if(V854_MOBILE_GPU&&labelTime-v854LastNameLabels<(V866_STREAMLINED_SCENE?220:90))return;
  v854LastNameLabels=labelTime;
  const hud=$('#hud');
  if(!player||!camera||hud?.classList.contains('hidden')||(zone==='theater'&&seated)){
@@ -3825,6 +3829,25 @@ function renderAvatarNames(){
 // also makes simultaneous joins eventually converge across all clients.
 let v83TeamId='',v83TeamJoinedAt=0,v83TeamReady=false,v83GatheredKey='',v83GatherMotion=null;
 let v83TeamCircle=null,v83DemoCount=0,v83LastFullKey='',v83UiSignature='';
+let v866MyTeamAnchor=null,v866TeamRoom={zone:'exterior',hall:'function'},v866ServerTimeOffset=0;
+const V866_CIRCLE_ORIGIN={x:0,z:45.4};
+function v866TeamCenter(){
+ const first=v83ActiveMembers()[0];
+ if(!first)return {x:V866_CIRCLE_ORIGIN.x,z:V866_CIRCLE_ORIGIN.z,zone:'exterior',hall:'function'};
+ const area=['exterior','lobby','theater'].includes(first.teamAnchorZone)?first.teamAnchorZone:'exterior';
+ let x=Number.isFinite(first.teamAnchorX)?first.teamAnchorX:Number(first.x)||0;
+ let z=Number.isFinite(first.teamAnchorZ)?first.teamAnchorZ:Number(first.z)||45.4;
+ if(area==='lobby'){x=clamp(x,-10.0,10.0);z=clamp(z,PORTAL_Z+12,-4);}
+ if(area==='theater'){const h=first.teamAnchorHall==='tech'?'tech':'function';x=clamp(x,(h==='function'?8.5:-8.5)-14,(h==='function'?8.5:-8.5)+14);z=clamp(z,THEATER_OFFSET-17,THEATER_OFFSET+16);}
+ return {x,z,zone:area,hall:first.teamAnchorHall==='tech'?'tech':'function'};
+}
+function v866UpdateTeamCenter(){
+ if(!v83TeamId)return;
+ const a=v866TeamCenter();V83_CIRCLE.x=a.x;V83_CIRCLE.z=a.z;
+ v866TeamRoom={zone:a.zone,hall:a.hall};
+ if(v83TeamCircle){v83TeamCircle.position.set(a.x-V866_CIRCLE_ORIGIN.x,0,a.z-V866_CIRCLE_ORIGIN.z);v83TeamCircle.visible=!!v83TeamCircle.visible&&a.zone==='exterior';}
+}
+
 const V83_CIRCLE={x:0,z:45.4,r:3.45};
 const V83_DEMO_NAMES=['חבר מדומה 1','חברה מדומה 2','חבר מדומה 3'];
 const V83_DEMO_IDS=['v83_demo_a','v83_demo_b','v83_demo_c'];
@@ -3833,7 +3856,7 @@ function v83TeamEntries(number=v83TeamId){
  if(!number)return [];
  const all=new Map();
  for(const [id,d] of online){if(d&&String(d.teamId||'')===String(number))all.set(id,{id,...d});}
- if(v83TeamId===number&&player){all.set(uid||'demo',{id:uid||'demo',name:personName(),teamId:number,teamJoinedAt:v83TeamJoinedAt,teamReady:v83TeamReady,teamReadyAt:v832ReadyAt,rideChoice:v832Choice,rideChosenAt:v832ChosenAt,avatar:selected});}
+ if(v83TeamId===number&&player){all.set(uid||'demo',{id:uid||'demo',name:personName(),teamId:number,teamJoinedAt:v83TeamJoinedAt,teamAnchorX:v866MyTeamAnchor?.x??null,teamAnchorZ:v866MyTeamAnchor?.z??null,teamAnchorZone:v866MyTeamAnchor?.zone||'exterior',teamAnchorHall:v866MyTeamAnchor?.hall||'function',teamReady:v83TeamReady,teamReadyAt:v832ReadyAt,rideChoice:v832Choice,rideChosenAt:v832ChosenAt,avatar:selected});}
  return [...all.values()].sort((a,b)=>(Number(a.teamJoinedAt)||0)-(Number(b.teamJoinedAt)||0)||String(a.id).localeCompare(String(b.id))).slice(0,32);
 }
 function v83ActiveMembers(){return v83TeamEntries().slice(0,4);}
@@ -3869,7 +3892,7 @@ function v83RefreshDemoAvatars(){
   r.data.x=pos.x;r.data.z=pos.z;r.data.yaw=Math.atan2(V83_CIRCLE.x-pos.x,V83_CIRCLE.z-pos.z);
  }
 }
-function v83GatherNow(force=false){if(v855RoomSeatingLocked())return;if(v832MountedId)v832Unmount();
+function v83GatherNow(force=false){if(v855RoomSeatingLocked())return;if(v832MountedId)v832Unmount();v866UpdateTeamCenter();
  if(!player||!v83TeamComplete()||retiredHost)return;
  const members=v83ActiveMembers();
  const meIndex=v83MySlot();if(meIndex<0)return;
@@ -3878,9 +3901,9 @@ function v83GatherNow(force=false){if(v855RoomSeatingLocked())return;if(v832Moun
  v83GatheredKey=key;
  // Locally move only this visitor. Other devices receive the same four-person
  // team snapshot and move their own avatars; nobody is teleported remotely.
- if(zone!=='exterior'){
+ if(zone!==v866TeamRoom.zone||(zone==='theater'&&hall!==v866TeamRoom.hall)){
    entering=false;autoSeat=null;cinemaArrival=null;
-   placeInZone('exterior',true);
+   placeInZone(v866TeamRoom.zone,true,v866TeamRoom.hall);
  }
  if(royalCar.driving){royalCar.speed=0;royalCar.driving=false;royalCarKeysReset();document.body.classList.remove('royal-driving');$('#royal-car-pad').classList.add('hidden');$('#royal-car-reset').classList.add('hidden');}
  if(royalHorse.riding){royalHorse.speed=0;royalHorse.riding=false;royalHorseKeysReset();document.body.classList.remove('royal-riding');$('#royal-car-pad').classList.add('hidden');$('#royal-car-reset').classList.add('hidden');}
@@ -3888,15 +3911,15 @@ function v83GatherNow(force=false){if(v855RoomSeatingLocked())return;if(v832Moun
  seated=false;autoSeat=null;applySeatPose(player,false);
  const slot=v83TeamSlot(meIndex);
  // Short in-world approach from near the center, never a long glide through walls or trees.
- const from={x:slot.x*.62,z:V83_CIRCLE.z+(slot.z-V83_CIRCLE.z)*.55};
+ const from={x:lerp(V83_CIRCLE.x,slot.x,.62),z:lerp(V83_CIRCLE.z,slot.z,.55)};
  player.position.set(from.x,0,from.z);
  userYaw=Math.atan2(V83_CIRCLE.x-slot.x,V83_CIRCLE.z-slot.z);player.rotation.y=userYaw;
  movement.x=movement.z=0;camReady=false;
  v83GatherMotion={start:performance.now(),elapsed:0,duration:1.35,from,to:slot};
- if(v83TeamCircle)v83TeamCircle.visible=true;
+ if(v83TeamCircle)v83TeamCircle.visible=v866TeamRoom.zone==='exterior';
  $('#v83-team-magic').classList.add('on');setTimeout(()=>$('#v83-team-magic').classList.remove('on'),950);
  v83RefreshDemoAvatars();syncSelf(true);
- note('✨ צוות '+v83TeamId+' הושלם! מתכנסים במעגל ליד הבמה');
+ note('✨ צוות '+v83TeamId+' הושלם! מתכנסים ליד המשתתף הראשון');
 }
 function v83UpdateGather(dt){
  const m=v83GatherMotion;if(!m||!player)return false;
@@ -3916,11 +3939,12 @@ function v83UpdateGroup(){
   v83RenderTeamPanel();return;
  }
  if(!v83TeamId){if(v83TeamCircle)v83TeamCircle.visible=false;v83RenderTeamPanel();return;}
+ v866UpdateTeamCenter();v866ReconcileRideChoice();
  const m=v83ActiveMembers(),full=v83TeamComplete();
  const key=full?v83TeamId+':'+m.map(x=>x.id).join('|'):'';
  if(full&&key!==v83LastFullKey){v83LastFullKey=key;v83GatherNow();}
  if(!full){v83LastFullKey='';v83GatheredKey='';v83GatherMotion=null;if(v83TeamCircle)v83TeamCircle.visible=false;}
- if(v83TeamCircle)v83TeamCircle.visible=full;
+ if(v83TeamCircle)v83TeamCircle.visible=full&&v866TeamRoom.zone==='exterior';
  v83RefreshDemoAvatars();v83RenderTeamPanel();
  // Only redraw controls when team reservations change; a constant 30-person
  // presence stream must not cause flashing icons or repeated DOM replacement.
@@ -3953,8 +3977,8 @@ function v83RenderTeamPanel(){
  if(v855RoomSeatingLocked())message.textContent='🔒 המנחה החזיר את כולם לכיסאות. ממתינים לאישור לקום.';
  else if(!v83TeamId)message.textContent='בחרו מספר צוות להצטרפות, או המשיכו לטייל באופן עצמאי.';
  else if(!member)message.textContent='הצוות מלא. בחרו מספר צוות אחר או חכו שמקום יתפנה.';
- else if(full){const ready=members.filter(m=>m.teamReady).length;message.textContent='✨ ארבעה במעגל! '+ready+'/4 מוכנים. '+(v832TeamDepartureAt()?'השיירה מוכנה לצאת!':'כל חבר בוחר כלי נפרד ומאשר מוכנות.');}
- else message.textContent='ממתינים לעוד '+(4-members.length)+' חברים. אפשר להמשיך לטייל בינתיים; ההתכנסות תתרחש כשהצוות יתמלא.';
+ else if(full){const ready=members.filter(m=>m.teamReady).length;message.textContent='✨ ארבעה בצוות! '+ready+'/4 מוכנים. '+(v832TeamDepartureAt()?'השיירה מוכנה לצאת!':'כל חבר בוחר כלי נפרד ומאשר מוכנות.');}
+ else message.textContent='ממתינים לעוד '+(4-members.length)+' חברים. ההתכנסות תהיה במקום שבו הראשון בצוות הצטרף.';
  $('#v83-team-ready').classList.toggle('hidden',!full||!member||v855RoomSeatingLocked());
  $('#v83-team-ready').textContent=v83TeamReady?'✓ אני מוכן — ביטול':'✓ אני מוכן למסע';
  $('#v832-from-team').classList.toggle('hidden',!v83TeamId);
@@ -3973,7 +3997,7 @@ function v83JoinTeam(){
  // Local capacity pre-check; presence-list sorting ensures exactly four active
  // members even when two phones join in the same millisecond.
  if(!demo&&[...online.values()].filter(d=>d?.teamId===id).length>=4){note('צוות '+id+' מלא. בחרו מספר אחר.');return;}
- v83ClearDemoPeers();v83TeamId=id;v83TeamJoinedAt=Date.now();v83TeamReady=false;v832ReadyAt=0;v832Choice='';v832ChosenAt=0;v83GatheredKey='';v83LastFullKey='';
+ v83ClearDemoPeers();v83TeamId=id;v83TeamJoinedAt=Date.now()+v866ServerTimeOffset;v866MyTeamAnchor={x:+player.position.x.toFixed(2),z:+player.position.z.toFixed(2),zone,hall};v83TeamReady=false;v832ReadyAt=0;v832Choice='';v832ChosenAt=0;v83GatheredKey='';v83LastFullKey='';
  syncSelf(true);v83UpdateGroup();$('#v83-team-panel').classList.add('hidden');note('הצטרפת לצוות '+id+' — ממתינים לחברים');
 }
 function v83ClearDemoPeers(){
@@ -3981,7 +4005,7 @@ function v83ClearDemoPeers(){
  v83DemoCount=0;
 }
 function v83LeaveTeam(){if(v832MountedId)v832Unmount();v832Choice='';v832ReadyAt=0;v832ChosenAt=0;v832Progress=0;
- v83TeamId='';v83TeamJoinedAt=0;v83TeamReady=false;v83GatheredKey='';v83LastFullKey='';v83GatherMotion=null;
+ v83TeamId='';v83TeamJoinedAt=0;v866MyTeamAnchor=null;v83TeamReady=false;v83GatheredKey='';v83LastFullKey='';v83GatherMotion=null;
  v83ClearDemoPeers();if(v83TeamCircle)v83TeamCircle.visible=false;
  syncSelf(true);v83RenderTeamPanel();note('חזרת למסע עצמאי — אפשר להצטרף לצוות אחר בכל רגע');
 }
@@ -4010,7 +4034,7 @@ function v83InitUI(){
  $('#v83-team-leave').onclick=v83LeaveTeam;
  v83RenderTeamPanel();
 }
-function ownData(waveAt=localWaveAt){return {name:personName(),hostRole:isHost?'host':'guest',avatar:selected,zone,hall,seatIndex,seated:seated&&(zone==='exterior'||zone==='theater'), x:+player.position.x.toFixed(2),z:+player.position.z.toFixed(2),yaw:+player.rotation.y.toFixed(3),waveAt,donutAt,teamId:v83TeamId||'',teamJoinedAt:v83TeamJoinedAt||0,teamReady:!!v83TeamReady,teamReadyAt:v832ReadyAt||0,rideChoice:v832Choice||'',rideChosenAt:v832ChosenAt||0,rideProgress:v832Progress||0,isMounted:!!v832MountedId,rideAvatarY:+player.position.y.toFixed(2),rideBoarding:!!v836Boarding,mountSpeed:v832MountedId?+Number(v832Mounts[v832MountedId]?.speed||0).toFixed(2):0,mountX:v832MountedId?+v832Mounts[v832MountedId].group.position.x.toFixed(2):null,mountZ:v832MountedId?+v832Mounts[v832MountedId].group.position.z.toFixed(2):null,personalMountId:v832MountedId||v840PersonalMountId||'',personalMountX:((v832MountedId||v840PersonalMountId)&&v832Mounts[v832MountedId||v840PersonalMountId]?.group)?+v832Mounts[v832MountedId||v840PersonalMountId].group.position.x.toFixed(2):null,personalMountZ:((v832MountedId||v840PersonalMountId)&&v832Mounts[v832MountedId||v840PersonalMountId]?.group)?+v832Mounts[v832MountedId||v840PersonalMountId].group.position.z.toFixed(2):null,personalMountYaw:((v832MountedId||v840PersonalMountId)&&v832Mounts[v832MountedId||v840PersonalMountId]?.group)?+v832Mounts[v832MountedId||v840PersonalMountId].group.rotation.y.toFixed(3):null,updatedAt:Date.now()}}
+function ownData(waveAt=localWaveAt){return {name:personName(),hostRole:isHost?'host':'guest',avatar:selected,zone,hall,seatIndex,seated:seated&&(zone==='exterior'||zone==='theater'), x:+player.position.x.toFixed(2),z:+player.position.z.toFixed(2),yaw:+player.rotation.y.toFixed(3),waveAt,donutAt,teamId:v83TeamId||'',teamJoinedAt:v83TeamJoinedAt||0,teamAnchorX:v866MyTeamAnchor?.x??null,teamAnchorZ:v866MyTeamAnchor?.z??null,teamAnchorZone:v866MyTeamAnchor?.zone||'exterior',teamAnchorHall:v866MyTeamAnchor?.hall||'function',teamReady:!!v83TeamReady,teamReadyAt:v832ReadyAt||0,rideChoice:v832Choice||'',rideChosenAt:v832ChosenAt||0,rideProgress:v832Progress||0,isMounted:!!v832MountedId,rideAvatarY:+player.position.y.toFixed(2),rideBoarding:!!v836Boarding,mountSpeed:v832MountedId?+Number(v832Mounts[v832MountedId]?.speed||0).toFixed(2):0,mountX:v832MountedId?+v832Mounts[v832MountedId].group.position.x.toFixed(2):null,mountZ:v832MountedId?+v832Mounts[v832MountedId].group.position.z.toFixed(2):null,personalMountId:v832MountedId||v840PersonalMountId||'',personalMountX:((v832MountedId||v840PersonalMountId)&&v832Mounts[v832MountedId||v840PersonalMountId]?.group)?+v832Mounts[v832MountedId||v840PersonalMountId].group.position.x.toFixed(2):null,personalMountZ:((v832MountedId||v840PersonalMountId)&&v832Mounts[v832MountedId||v840PersonalMountId]?.group)?+v832Mounts[v832MountedId||v840PersonalMountId].group.position.z.toFixed(2):null,personalMountYaw:((v832MountedId||v840PersonalMountId)&&v832Mounts[v832MountedId||v840PersonalMountId]?.group)?+v832Mounts[v832MountedId||v840PersonalMountId].group.rotation.y.toFixed(3):null,updatedAt:Date.now()}}
 function syncSelf(force=false,wave=false){if(retiredHost||!player||!connected||!rtdb||!presenceRef)return;if(!force&&Date.now()-latestUserMove<(V854_MOBILE_GPU?550:420))return;latestUserMove=Date.now();const p=ownData(localWaveAt);rtdb.update(presenceRef,p).catch(e=>console.warn('Player update:',e.message))}
 
 // V83.9.2 — Independent personal mounts for online guests.
@@ -4111,7 +4135,7 @@ async function loadFirebase(masterAuth){
   if(e?.code==='auth/operation-not-allowed')throw new Error('התחברות אורחים אינה פעילה ב־Firebase. יש לפנות למנהל הממלכה.');
   throw e;
  }
- uid=signed.user.uid;db=data.getDatabase(fapp);rtdb=data;session={app,auth,data};return session;
+ uid=signed.user.uid;db=data.getDatabase(fapp);rtdb=data;session={app,auth,data};void data.get(data.ref(db,'.info/serverTimeOffset')).then(s=>{v866ServerTimeOffset=Number(s.val())||0}).catch(()=>{});return session;
 }
 // A general teacher invitation proves eligibility but NEVER claims the master's stage.
 // Different named teachers get different remembered rooms even on a shared computer.
@@ -4166,6 +4190,26 @@ async function prepareTeacherRoom(){
  throw Error('לא ניתן ליצור חדר אישי.');
 }
 let roomMeta=null,offPlayers=null,offMeta=null,offInfo=null,offDonuts=null;
+let v866MissingHostSince=0,v866HostDisconnectRef=null,v866HostDisconnectRegistered=false;
+function v866HostAbsentLong(){
+ if(!connected||isHost||!roomMeta)return false;
+ const id=roomMeta.activeHostUid||roomMeta.hostUid;
+ if(!id)return false;
+ const p=online.get(id),fresh=!!p&&(!p.updatedAt||Number(p.updatedAt)>Date.now()-30000);
+ if(fresh){v866MissingHostSince=0;return false;}
+ if(!v866MissingHostSince)v866MissingHostSince=Date.now();
+ return Date.now()-v866MissingHostSince>35000;
+}
+async function v866RegisterHostDisconnectUnlock(base){
+ if(!isHost||retiredHost||!connected||!rtdb||!db)return;
+ const ref=rtdb.ref(db,base+'/meta/recallSeq');
+ const previous=Number(roomMeta?.recallSeq)||0;
+ const stamp=Math.max(Date.now()*10+2,previous+12);
+ const seq=stamp-stamp%10+2;
+ try{await rtdb.onDisconnect(ref).set(seq);v866HostDisconnectRef=ref;v866HostDisconnectRegistered=true;}
+ catch(e){v866HostDisconnectRegistered=false;console.warn('Host disconnect unlock registration:',e.message);}
+}
+
 // V85.5: Use existing recallSeq metadata field (which current Firebase rules
 // already permit hosts to update). No new database rules or link changes.
 let v855DemoSeatLock=false,v855SeatReclaimPending=false;
@@ -4179,10 +4223,17 @@ async function v855ReserveRecalledSeat(){
  if(!connected||isHost||retiredHost)return;
  v857ReconcileOwnSeat();
 }
-function v855RoomSeatingLocked(){return !isHost && (demo?v855DemoSeatLock:(connected&&[1,3].includes(v855RecallAction(roomMeta?.recallSeq))));}
+function v855RoomSeatingLocked(){return !isHost&&!v866HostAbsentLong()&&(demo?v855DemoSeatLock:(connected&&[1,3].includes(v855RecallAction(roomMeta?.recallSeq))));}
 function v855RefreshSeatingUI(){
  const lock=v855RoomSeatingLocked();
  const mode=v861RecallLockType();
+ const quick=document.getElementById('v866-release-fab');
+ if(quick){
+  const hostLocked=isHost&&!retiredHost&&([1,3].includes(mode)||(demo&&v855DemoSeatLock));
+  quick.classList.toggle('hidden',!hostLocked);
+  quick.disabled=v860ControlPending;
+  quick.textContent=document.getElementById('v860-release')?.textContent||'Release all';
+ }
  const notice=document.getElementById('v855-seat-lock-notice');
  if(notice)notice.textContent=mode===3?'👑 כולם התאספו סביב המנחה — ממתינים לאישור לצאת':'👑 המנחה ביקש לשבת — ממתינים לאישור לקום';
  document.body.classList.toggle('v855-seat-locked',lock);
@@ -4312,8 +4363,8 @@ async function v855ApproveStand(){
   else throw Error('אין חיבור לחדר');
   v861ResetRally();note('✓ אישרת למשתתפים לקום ולהסתובב');
   $('#host-panel').classList.add('hidden');$('#teacher-panel').classList.add('hidden');
-  v855RefreshSeatingUI();
- }catch(e){note('לא ניתן לאשר קימה: '+e.message);}
+  v855RefreshSeatingUI();return true;
+ }catch(e){note('לא ניתן לאשר קימה: '+e.message);return false;}
 }
 
 let v854TemporarySeat=false,v854DisconnectWarning=false;
@@ -4387,7 +4438,7 @@ async function connectLive(asHost){
  
  const infoRef=rtdb.ref(db,'.info/connected');presenceRef=rtdb.ref(db,base+'/players/'+uid);
  // Re-register onDisconnect after each reconnect BEFORE publishing presence.
- if(offInfo)offInfo();offInfo=rtdb.onValue(infoRef,async snap=>{if(!snap.val()||!connected||retiredHost)return;try{await rtdb.onDisconnect(presenceRef).remove();if(seatClaimRef)await rtdb.onDisconnect(seatClaimRef).remove();await rtdb.set(presenceRef,ownData())}catch(e){console.error('Presence registration:',e)}});
+ if(offInfo)offInfo();offInfo=rtdb.onValue(infoRef,async snap=>{if(!snap.val()||!connected||retiredHost)return;try{await rtdb.onDisconnect(presenceRef).remove();if(seatClaimRef)await rtdb.onDisconnect(seatClaimRef).remove();await rtdb.set(presenceRef,ownData());if(isHost)await v866RegisterHostDisconnectUnlock(base)}catch(e){console.error('Presence registration:',e)}});
  try{await rtdb.onDisconnect(presenceRef).remove();if(seatClaimRef)await rtdb.onDisconnect(seatClaimRef).remove();}
  catch(e){v854DisconnectWarning=true;console.warn('Presence onDisconnect will retry on reconnect:',e.message);} 
  v857JoinStage='רישום הדמות בשרת';
@@ -4401,7 +4452,7 @@ async function connectLive(asHost){
    await new Promise(done=>setTimeout(done,350+attempt*650));
   }
  }
- connected=true;v857JoinStage='מחובר למפגש';
+ connected=true;v857JoinStage='מחובר למפגש';if(isHost)void v866RegisterHostDisconnectUnlock(base);
  if(offPlayers)offPlayers();if(offMeta)offMeta();
  // No late-join teleport: guests start seated in the square in every room phase.
  if(isHost)standAsHost();else if(seatIndex>=0)assignSeat(seatIndex);else v858PlaceOverflowGuest();
@@ -4426,7 +4477,7 @@ async function connectLive(asHost){
  // A single private host link may be opened on multiple devices, but only the
  // last active session owns the presenter. Retire its previous live avatar.
  if(isHost&&!retiredHost&&fresh.activeHostUid&&fresh.activeHostUid!==uid){
-  retiredHost=true;isHost=false;isMaster=false;
+  retiredHost=true;isHost=false;isMaster=false;if(v866HostDisconnectRef)void rtdb.onDisconnect(v866HostDisconnectRef).cancel().catch(console.warn);
   $('#host-controls').classList.add('hidden');$('#host-panel').classList.add('hidden');
   $('#share').classList.add('hidden');$('#teacher-controls').classList.add('hidden');
   if(presenceRef)rtdb.remove(presenceRef).catch(e=>console.warn('Old facilitator presence:',e.message));
@@ -4437,8 +4488,8 @@ async function connectLive(asHost){
  if(old&&(old!==phase||oldHall!==fresh.hall||recallChanged)){
    if(old!==phase&&phase==='lobby'){$('#zone-name').textContent='כיכר המלכותית · הקולנוע פתוח';note('דלת הקולנוע נפתחה · מתקדמים דרך הכניסה')}
    else if(old!==phase&&phase==='theater'){note('האולמות פתוחים · היכנסו דרך הדלתות בלובי')}
-   else if(phase==='plaza'&&((old!==phase)||(recallChanged&&v855RecallAction(fresh.recallSeq)!==2))){
-    if(!lockNow){introComplete=false;entering=false;placeInZone('exterior',true);
+   else if(phase==='plaza'&&((old!==phase)||(recallChanged&&seatAction===1))){
+    if(!lockNow&&!isHost&&seatAction!==3){introComplete=false;entering=false;placeInZone('exterior',true);
       if(!isHost)assignSeat(Math.max(0,seatIndex));
       note('חוזרים להתכנסות בכיכר מול הקולנוע');}
     cinemaArrival=null;camReady=false;world.visible=true;ext.visible=true;lobby.visible=true;sky.visible=true;
@@ -4489,7 +4540,7 @@ async function start(asHost=false,tryDemo=false){
   setProgress(5,'מחברים אתכם למפגש...');
   v857JoinStage='טעינת העולם התלת־ממדי';
   if(!loadersDone)await buildScene();
-  if(tryDemo){setDoughnutRemaining(26);demo=true;phase='plaza';isHost=true;standAsHost();connected=false;room='DEMO';uid='demo';$('#host-controls').classList.remove('hidden');$('#teacher-controls').classList.add('hidden');$('#room-label').textContent='מצב ניסיון בלבד';clearRemotes();v83TeamId='';v83TeamJoinedAt=0;v83TeamReady=false;v83GatheredKey='';v83LastFullKey='';v83DemoCount=0;v83RenderTeamPanel();}
+  if(tryDemo){setDoughnutRemaining(26);demo=true;phase='plaza';isHost=true;standAsHost();connected=false;room='DEMO';uid='demo';$('#host-controls').classList.remove('hidden');$('#teacher-controls').classList.add('hidden');$('#room-label').textContent='מצב ניסיון בלבד';clearRemotes();v83TeamId='';v83TeamJoinedAt=0;v866MyTeamAnchor=null;v83TeamReady=false;v83GatheredKey='';v83LastFullKey='';v83DemoCount=0;v83RenderTeamPanel();}
   else{demo=false;v857JoinStage='הצטרפות לחדר';await connectLive(asHost);}
   $('#load').classList.add('hidden');$('#hud').classList.remove('hidden');syncMyIdentity();renderStatus();refreshIntroSharing();
   if(asHost)note(isMasterInvitation?'👑 כניסת מאסטר פעילה':'👑 החדר האישי שלך מוכן · הקישורים בחלונית הכתר');
@@ -4665,17 +4716,38 @@ function v834NearestMount(){
  }return best;
 }
 function v832DockNearby(){return zone==='exterior'&&player&&!seated&&player.position.x>18&&player.position.x<64&&player.position.z>8&&player.position.z<194;}
+function v866RideOwner(id){
+ if(!v83TeamId)return null;
+ return v83ActiveMembers().filter(m=>m.rideChoice===id).sort((a,b)=>(Number(a.rideChosenAt)||Infinity)-(Number(b.rideChosenAt)||Infinity)||String(a.id).localeCompare(String(b.id)))[0]||null;
+}
 function v832ChoiceTaken(id){
  if(!v83TeamId)return false;
- return v83ActiveMembers().some(m=>m.id!==(uid||'demo')&&m.rideChoice===id);
+ const owner=v866RideOwner(id);
+ return !!owner&&owner.id!==(uid||'demo');
 }
+let v866ResolvingConflict=false;
+function v866ReconcileRideChoice(){
+ if(v866ResolvingConflict||!v83TeamId||!v832Choice||!v832ChoiceTaken(v832Choice))return;
+ v866ResolvingConflict=true;
+ try{
+  const old=v832Choice;
+  if(v832MountedId===old)v832Unmount(true);
+  if(v836Boarding){v836Boarding=null;v836RestoreAvatar(player);}
+  v832Choice='';v832ChosenAt=0;v83TeamReady=false;v832ReadyAt=0;
+  if(typeof v839GarageDeliveryToken==='number')v839GarageDeliveryToken++;
+  v839SummonCamera=null;
+  v83UiSignature='';syncSelf(true);
+  note(V832_MOUNT_NAMES[old]+' כבר נבחר על ידי חבר צוות אחר. בחרו כלי פנוי.');
+ }finally{v866ResolvingConflict=false;}
+}
+
 function v832Choose(id){
  if(v855RoomSeatingLocked()){note('המנחה עוד לא אישר לקום');return;}
  v834PauseAutoBoard=false;
  if(!V832_TYPES.includes(id)||!v832Mounts[id].group){note('כלי התחבורה עדיין נטען');return;}
  if(v832ChoiceTaken(id)){note('חבר צוות כבר בחר בכלי הזה. בחרו כלי אחר');return;}
  if(v832MountedId&&v832MountedId!==id){note('כדי להחליף כלי, רדו קודם מהכלי הנוכחי.');return;}
- v832Choice=id;v832ChosenAt=Date.now();v83TeamReady=false;v832ReadyAt=0;
+ v832Choice=id;v832ChosenAt=Date.now()+v866ServerTimeOffset;v83TeamReady=false;v832ReadyAt=0;
  v832AssignDemo();syncSelf(true);v83RenderTeamPanel();v832Board(id);v832RenderTrip();
  if(!v83TeamComplete())$('#v832-trip-panel').classList.add('hidden');
  if(v83TeamId)note(V832_MOUNT_NAMES[id]+' נבחר. כעת צריך שכל ארבעת חברי הצוות יאשרו מוכנות.');
@@ -4931,7 +5003,7 @@ function v832ToggleMount(id){
   if(v832MountedId){note('כדי להחליף כלי, רדו קודם מהכלי הנוכחי.');return;}
   v834PauseAutoBoard=false;
   if(v832ChoiceTaken(id)){note('הכלי תפוס בצוות. בחרו כלי אחר');return;}
-  v832Choice=id;v832ChosenAt=Date.now();v832AssignDemo();v832Board(id);syncSelf(true);
+  v832Choice=id;v832ChosenAt=Date.now()+v866ServerTimeOffset;v832AssignDemo();v832Board(id);syncSelf(true);
  }
 }
 function v832MasterTransport(id){
@@ -5093,13 +5165,23 @@ function v837UpdateExiting(dt){
 // Chase camera looks along forward=(sin(yaw),cos(yaw)). Its screen-right is
 // (-cos(yaw),sin(yaw)). Therefore RIGHT on the stick MUST DECREASE yaw,
 // regardless of the GLB's mesh orientation or the current location/heading.
-// Profiles differ only in steering radius, responsiveness and visual banking.
+// V85.17: precise small corrections with responsive deliberate turns at speed.
+// Keep the player's right/left convention and each mount's distinct feel.
 const V842_DRIVE_PROFILES=Object.freeze({
- car:   Object.freeze({lowRate:1.21,highRate:.67,steerResponse:17,returnResponse:28,lean:0}),
- horse: Object.freeze({lowRate:1.29,highRate:.79,steerResponse:13,returnResponse:23,lean:.045}),
- camel: Object.freeze({lowRate:1.53,highRate:.94,steerResponse:18,returnResponse:28,lean:.058}),
- bird:  Object.freeze({lowRate:1.03,highRate:.64,steerResponse:11,returnResponse:20,lean:.11})
+ car:   Object.freeze({lowRate:1.32,highRate:.79,steerResponse:16,returnResponse:28,lean:0}),
+ horse: Object.freeze({lowRate:1.41,highRate:.90,steerResponse:14,returnResponse:24,lean:.045}),
+ camel: Object.freeze({lowRate:1.64,highRate:1.07,steerResponse:17,returnResponse:28,lean:.058}),
+ bird:  Object.freeze({lowRate:1.13,highRate:.76,steerResponse:12,returnResponse:21,lean:.11})
 });
+// Maintain at least 85% of each mount's normal speed near the cinema.
+// Smoothly recover 100% after leaving the plaza, with no sudden threshold.
+const V8517_PLAZA_SPEED_RATIO=.85;
+function v8517LocalSpeedCap(id,inConvoy,z){
+ const base=v844TargetTopSpeed(id,inConvoy);
+ const t=clamp((z-100)/165,0,1);
+ const ease=t*t*(3-2*t);
+ return base*(V8517_PLAZA_SPEED_RATIO+(1-V8517_PLAZA_SPEED_RATIO)*ease);
+}
 function v842HeadingStep(id,yaw,steer,speed,dt){
  const profile=V842_DRIVE_PROFILES[id]||V842_DRIVE_PROFILES.car;
  if(Math.abs(speed)<.06||Math.abs(steer)<.001||dt<=0)return yaw;
@@ -5127,11 +5209,15 @@ function v832RideUpdate(dt){
  const steeringOnly=Math.abs(input.turn)>.11&&Math.abs(input.forward)<.23&&Math.abs(m.speed||0)>.9;
  // A diagonal thumb gesture must not feel like driving into mud. Recover its
  // radial throttle magnitude while keeping proportional steering authority.
- const forwardPower=Math.pow(Math.abs(input.forward),.68);
- const enhancedForward=Math.sign(input.forward)*Math.min(1,forwardPower*(1+.34*Math.abs(input.turn)));
+ // V85.17: throttle is more proportional at partial stick deflections.
+ // Full-forward still reaches the correct 85%-100% speed cap; diagonals
+ // retain adequate throttle but do not unexpectedly accelerate to full speed.
+ const forwardPower=Math.pow(Math.abs(input.forward),.87);
+ const enhancedForward=Math.sign(input.forward)*Math.min(1,forwardPower*(1+.24*Math.abs(input.turn)));
  // Uniform speed and acceleration regardless of asphalt or grass. Only actual
  // building/chair collision constraints below can influence motion.
- const topSpeed=v844TargetTopSpeed(id,inActiveConvoy);
+ const roadZ=m.group.position.z;
+ const topSpeed=v8517LocalSpeedCap(id,inActiveConvoy,roadZ);
  let desired=enhancedForward>0?topSpeed*enhancedForward:enhancedForward<0?8.2*enhancedForward:0;
  // No auto-cruise: in a team the cap and acceleration are shared, but
  // individual throttle, steering, braking and position remain player-controlled.
@@ -5146,7 +5232,10 @@ function v832RideUpdate(dt){
  // own professional turn radius. Releasing the stick quickly recentres steering
  // so the vehicle continues straight without a hidden residual turn.
  const profile=V842_DRIVE_PROFILES[id];
- const requestedTurn=Math.abs(input.turn)<.10?0:input.turn;
+ // Progressive steering lets a small thumb movement fine-tune direction,
+ // while a confident joystick sweep or keyboard arrow still turns decisively.
+ const rawTurn=Math.abs(input.turn)<.075?0:clamp(input.turn,-1,1);
+ const requestedTurn=Math.sign(rawTurn)*Math.pow(Math.abs(rawTurn),1.15);
  const response=requestedTurn===0?profile.returnResponse:profile.steerResponse;
  m.v841Steer=lerp(m.v841Steer||0,requestedTurn,1-Math.exp(-dt*response));
  if(requestedTurn===0&&Math.abs(m.v841Steer)<.008)m.v841Steer=0;
@@ -5364,6 +5453,7 @@ function v860UpdateCrownDashboard(){
  if(release)release.disabled=!host||!lock||v860ControlPending;
  const recall=document.getElementById('v860-recall');if(recall)recall.disabled=!host||v860ControlPending;
  const gather=document.getElementById('v861-gather-here');if(gather)gather.disabled=!host||v860ControlPending;
+ v855RefreshSeatingUI();
  const indicator=document.getElementById('v860-lock-indicator');
  if(indicator){
   indicator.classList.toggle('locked',!!lock);indicator.classList.toggle('free',!lock);
@@ -5372,6 +5462,7 @@ function v860UpdateCrownDashboard(){
  }
 }
 function v860BindCrownDashboard(){
+ const quick=document.getElementById('v866-release-fab');if(quick)quick.onclick=()=>{if(isHost&&!retiredHost&&!v860ControlPending)void v855ApproveStand();};
  const gather=document.getElementById('v861-gather-here');
  if(gather)gather.onclick=async()=>{if(!isHost||retiredHost||v860ControlPending)return;v860ControlPending=true;v860UpdateCrownDashboard();try{await v861GatherHere()}finally{v860ControlPending=false;v860UpdateCrownDashboard()}};
  const recall=document.getElementById('v860-recall');
@@ -5511,7 +5602,7 @@ function v839SummonMount(id){
  mount.speed=0;mount.v835Parked=true;mount.v835Hold=true;mount.yaw=Number.isFinite(userYaw)?userYaw:0;
  mesh.rotation.y=mount.yaw;
  v834PauseAutoBoard=true;
- v832Choice=id;v832ChosenAt=Date.now();v83TeamReady=false;v832ReadyAt=0;
+ v832Choice=id;v832ChosenAt=Date.now()+v866ServerTimeOffset;v83TeamReady=false;v832ReadyAt=0;
  v832AssignDemo();syncSelf(true);v83RenderTeamPanel();
  $('#v839-garage-panel').classList.add('hidden');
  $('#v839-garage-note').textContent='';
@@ -5594,7 +5685,7 @@ function v832InitUI(){
  const stopBtn=$('#v832-stop');if(stopBtn)stopBtn.onclick=v832StopMount;$('#v832-reset').onclick=v832ResetCurrent;$('#v832-unmount').onclick=()=>v832Unmount();
  for(const prefix of ['master','teacher']){
   for(const id of V832_TYPES){
-   const target=$('#'+prefix+'-go-'+id);if(target)target.onclick=()=>{if(!isHost){note('ניהול המנחה מוגן');return;}$('#host-panel').classList.add('hidden');$('#teacher-panel').classList.add('hidden');v832Choice=id;v832ChosenAt=Date.now();v832Board(id)};
+   const target=$('#'+prefix+'-go-'+id);if(target)target.onclick=()=>{if(!isHost){note('ניהול המנחה מוגן');return;}$('#host-panel').classList.add('hidden');$('#teacher-panel').classList.add('hidden');v832Choice=id;v832ChosenAt=Date.now()+v866ServerTimeOffset;v832Board(id)};
   }
   for(const id of ['car','horse']){const b=$('#'+prefix+'-reset-'+id);if(b)b.onclick=()=>v832ResetMount(id)}
  }
@@ -5608,9 +5699,11 @@ function v832InitUI(){
   // HORIZONTAL DRAG since contact, not the arbitrary first-touch position.
   // A straight upward swipe therefore cannot secretly steer left or right.
   const deltaX=e.clientX-touchOriginX;
-  const lateralDeadzone=Math.max(11,controlR*.31);
+  // Smaller dead zone catches intentional micro-corrections. The curve
+  // leaves more room between a gentle adjustment and a full steering lock.
+  const lateralDeadzone=Math.max(7,controlR*.20);
   const horizontal=Math.abs(deltaX)<=lateralDeadzone?0:
-    Math.sign(deltaX)*Math.min(1,(Math.abs(deltaX)-lateralDeadzone)/(controlR-lateralDeadzone));
+    Math.sign(deltaX)*Math.pow(Math.min(1,(Math.abs(deltaX)-lateralDeadzone)/(controlR-lateralDeadzone)),1.17);
   const forward=clamp((cy-e.clientY)/controlR,-1,1);
   v832Joystick.turn=horizontal;
   v832Joystick.forward=Math.abs(forward)<.065?0:forward;
@@ -5640,11 +5733,22 @@ $('#join-room').onclick=()=>start(ENTRY_ROLE!=='player',false);
 // Standalone preview: mobile return must not attempt a live Firebase connection.
 window.addEventListener('beforeunload',()=>{if(connected&&rtdb&&presenceRef){rtdb.remove(presenceRef).catch(()=>{});if(seatClaimRef)rtdb.remove(seatClaimRef).catch(()=>{})}});
 window.V862_DIAGNOSTICS=()=>({version:'V85.14',fullscreen:!!(document.fullscreenElement||document.webkitFullscreenElement),viewport:{width:innerWidth,height:innerHeight},drawingBuffer:{width:renderer?.domElement?.width||0,height:renderer?.domElement?.height||0},sceneBox:document.getElementById('scene')?.getBoundingClientRect()?.toJSON?.()||null,boarding:v836Boarding?{id:v836Boarding.id,directSummon:v836Boarding.directSummon,progress:v836Boarding.elapsed/v836Boarding.duration}:null});
-window.KINGDOM_JOIN_DIAGNOSTICS=()=>({version:'V85.14',liteScenery:V861_LITE_SCENERY,stage:v857JoinStage,lastError:v857LastJoinError,room,connected,onlineCount:online.size,seats:V857_GUEST_CAPACITY,seatIndex,seatReconciliations:v857SeatMoves,liveIncrementalUpdates:true,usingSeatTransactions:false});
-window.KINGDOM_VISUAL_DIAGNOSTICS=()=>({version:'V85.14',deviceDPR:devicePixelRatio,renderDPR:renderer?.getPixelRatio()||null,antialias:renderer?.getContext()?.getContextAttributes()?.antialias??null,liteScenery:V861_LITE_SCENERY,gardensLoaded:!!window.V82_ART?.gardensLoaded,shadows:!!renderer?.shadowMap?.enabled,estimatedFPS:v854MeasuredFPS,qualityReduced:v854QualityReduced});
-window.KINGDOM_TABLET_DIAGNOSTICS=()=>({version:'V85.14',mobileGPU:V854_MOBILE_GPU,lowMemory:V854_LOW_MEMORY,liteScenery:V861_LITE_SCENERY,pixelRatio:renderer?.getPixelRatio()||null,antialiasing:renderer?.getContext()?.getContextAttributes()?.antialias??null,shadows:renderer?.shadowMap?.enabled??null,qualityReduced:v854QualityReduced,estimatedFPS:v854MeasuredFPS,seatProvisional:v854TemporarySeat,disconnectWarning:v854DisconnectWarning,connected,players:online.size,role:ENTRY_ROLE,room,sceneReady:!!loadersDone});
+window.V866_CLASS_DIAGNOSTICS=()=>({version:'V85.16',teamCenter:v83TeamId?v866TeamCenter():null,team:v83TeamId,choice:v832Choice,choiceOwner:v832Choice?v866RideOwner(v832Choice)?.id||'':null,hostAt:{x:player?.position.x,z:player?.position.z},gatherSeq:v861GatheredSeq,quickReleaseVisible:!document.getElementById('v866-release-fab')?.classList.contains('hidden'),hostDisconnectReleaseRegistered:v866HostDisconnectRegistered,hostMissingLong:v866HostAbsentLong(),mobileStreamlined:V866_STREAMLINED_SCENE});
+window.KINGDOM_JOIN_DIAGNOSTICS=()=>({version:'V85.16',liteScenery:V861_LITE_SCENERY,stage:v857JoinStage,lastError:v857LastJoinError,room,connected,onlineCount:online.size,seats:V857_GUEST_CAPACITY,seatIndex,seatReconciliations:v857SeatMoves,liveIncrementalUpdates:true,usingSeatTransactions:false});
+window.KINGDOM_VISUAL_DIAGNOSTICS=()=>({version:'V85.16',deviceDPR:devicePixelRatio,renderDPR:renderer?.getPixelRatio()||null,antialias:renderer?.getContext()?.getContextAttributes()?.antialias??null,liteScenery:V861_LITE_SCENERY,gardensLoaded:!!window.V82_ART?.gardensLoaded,shadows:!!renderer?.shadowMap?.enabled,estimatedFPS:v854MeasuredFPS,qualityReduced:v854QualityReduced});
+window.KINGDOM_TABLET_DIAGNOSTICS=()=>({version:'V85.16',streamlinedScene:V866_STREAMLINED_SCENE,mobileGPU:V854_MOBILE_GPU,lowMemory:V854_LOW_MEMORY,liteScenery:V861_LITE_SCENERY,pixelRatio:renderer?.getPixelRatio()||null,antialiasing:renderer?.getContext()?.getContextAttributes()?.antialias??null,shadows:renderer?.shadowMap?.enabled??null,qualityReduced:v854QualityReduced,estimatedFPS:v854MeasuredFPS,seatProvisional:v854TemporarySeat,disconnectWarning:v854DisconnectWarning,connected,players:online.size,role:ENTRY_ROLE,room,sceneReady:!!loadersDone});
 window.V856_WALK_DIAGNOSTICS=()=>({zone,footSpeed:V856_FOOT_PACE,walkVelocity:Math.hypot(movement.x,movement.z),atPortal:zone!=='theater'&&Math.abs(player?.position?.x||0)<5&&Math.abs(player?.position?.z||0)<18,mounted:v832MountedId,renderDPR:renderer?.getPixelRatio()||null});
-window.V860_DIAGNOSTICS=()=>({version:'V85.11',gatherButton:!!document.getElementById('v861-gather-here'),gatherType:v861RecallLockType(),rallySeat:v861CurrentTarget,isHost,hostMenu:!!document.getElementById('v860-host-top')&&!document.getElementById('v860-host-top').classList.contains('hidden'),seatLockAction:v855RecallAction(roomMeta?.recallSeq),onScreenArrowButtons:document.querySelectorAll('#royal-car-pad button,#v855-arrow-mode').length,joystickOnly:true,keyboardArrowsSupported:true});
+window.V8517_HANDLING_DIAGNOSTICS=()=>({
+ version:'V85.17',plazaSpeedRatio:V8517_PLAZA_SPEED_RATIO,
+ speedLimitsKmH:Object.fromEntries(V832_TYPES.map(id=>[id,{
+  plaza:Math.round(v8517LocalSpeedCap(id,false,55)*3.6),
+  road:Math.round(v8517LocalSpeedCap(id,false,300)*3.6),
+  teamPlaza:Math.round(v8517LocalSpeedCap(id,true,55)*3.6)
+ }])),
+ steeringProfiles:V842_DRIVE_PROFILES,
+ arrowKeysSupported:true,joystickOnly:true
+});
+window.V860_DIAGNOSTICS=()=>({version:'V85.17',quickRelease:!!document.getElementById('v866-release-fab')&&!document.getElementById('v866-release-fab').classList.contains('hidden'),disconnectReleaseRegistered:v866HostDisconnectRegistered,gatherButton:!!document.getElementById('v861-gather-here'),gatherType:v861RecallLockType(),rallySeat:v861CurrentTarget,isHost,hostMenu:!!document.getElementById('v860-host-top')&&!document.getElementById('v860-host-top').classList.contains('hidden'),seatLockAction:v855RecallAction(roomMeta?.recallSeq),onScreenArrowButtons:document.querySelectorAll('#royal-car-pad button,#v855-arrow-mode').length,joystickOnly:true,keyboardArrowsSupported:true});
 window.V859_DIAGNOSTICS=()=>({version:'V85.10',cinemaParking:!!v859CinemaParking,visibleExit:!!v837Exiting,cinemaAutoUsesAnimation:true,birdDescendsBeforeExit:true});
 window.V858_DIAGNOSTICS=()=>({version:'V85.9',mounted:v832MountedId,mountKeyboard:{...v858Keyboard},seatLock:v855RoomSeatingLocked(),seatIndex,team:v83TeamId,taken:Object.fromEntries(V832_TYPES.map(id=>[id,v832ChoiceTaken(id)])),ridePassThrough:true,chairNotJoinGate:true,autoBoardBlockedWhileLocked:true});
 window.V855_SEATING_DIAGNOSTICS=()=>({version:'V85.9',locked:v855RoomSeatingLocked(),recallSeq:roomMeta?.recallSeq||null,action:v855RecallAction(roomMeta?.recallSeq),arrows:document.body.classList.contains('v855-arrows'),mounted:v832MountedId,seatIndex,seated,connected,host:isHost});
@@ -5695,6 +5799,6 @@ window.KINGDOM_TEST_CONTROLS=()=>{
  steeringRightIsNegativeYaw:true,deadzone:axisCurve(.04)===0,
  cameraRigidToHeading:true};
 };
-window.KINGDOM_DIAGNOSTICS=()=>({version:'V85.14-sharp-graphics-preserving-safe-camera',zone,phase,seated,seatIndex,loaded:loadersDone,characters:npcs.length,connected,realParticipants:online.size,room,auditoriums:[{side:'right',key:'function'},{side:'left',key:'tech'}],hall,donutAt,donutRemaining,camera:'V66 seated rear three-quarter with visible self name; free-roam chase',linksConfigured:!!(linkMap.function&&linkMap.tech),screenLive,doorProgress:doorOpenAmount,mainDoorSensor:anyVisitorNearDoor('main'),pixelRatio:renderer?.getPixelRatio(),portalDepth:PORTAL_Z,donutPosition:DONUT_POS,professionalFacilitator:false,joystickRightLeft:'right is negative yaw; heading persists after straightening stick',joystickActive:joyActive,cameraClear:lastCameraClear,cameraAvoidanceHits:cameraSafetyHits,cameraSafetyShift:cameraSafetyShift,ponyActors:festivalPonyRigs.length,fireworkBursts:festivalParticles.length,sceneryColliders:solidScenery.length,escortActive:!!autoSeat,lobbyAligned:Math.abs(lobby?.position.z-LOBBY_OFFSET)<.01});
+window.KINGDOM_DIAGNOSTICS=()=>({version:'V85.17-precision-steering-85-percent-plaza',zone,phase,seated,seatIndex,loaded:loadersDone,characters:npcs.length,connected,realParticipants:online.size,room,auditoriums:[{side:'right',key:'function'},{side:'left',key:'tech'}],hall,donutAt,donutRemaining,camera:'V66 seated rear three-quarter with visible self name; free-roam chase',linksConfigured:!!(linkMap.function&&linkMap.tech),screenLive,doorProgress:doorOpenAmount,mainDoorSensor:anyVisitorNearDoor('main'),pixelRatio:renderer?.getPixelRatio(),portalDepth:PORTAL_Z,donutPosition:DONUT_POS,professionalFacilitator:false,joystickRightLeft:'right is negative yaw; heading persists after straightening stick',joystickActive:joyActive,cameraClear:lastCameraClear,cameraAvoidanceHits:cameraSafetyHits,cameraSafetyShift:cameraSafetyShift,ponyActors:festivalPonyRigs.length,fireworkBursts:festivalParticles.length,sceneryColliders:solidScenery.length,escortActive:!!autoSeat,lobbyAligned:Math.abs(lobby?.position.z-LOBBY_OFFSET)<.01});
 </script>
 </body></html>
