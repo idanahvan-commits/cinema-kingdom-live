@@ -2,7 +2,7 @@
 <html lang="he" dir="rtl"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="theme-color" content="#211333"><meta name="description" content="ממלכת התבונה - מפגש תלת ממדי משותף בממלכה קסומה">
-<title>ממלכת הקולנוע — כניסה לממלכה V85.15</title>
+<title>ממלכת הקולנוע — כניסה לממלכה V85.18</title>
 <style>
 /* V56: readable, correctly ordered participant names, free of mirrored textures. */
 #avatar-names{position:fixed;inset:0;z-index:7;pointer-events:none;overflow:hidden;direction:rtl}
@@ -269,6 +269,12 @@ body.v832-mounted #v843-speedometer{display:none!important}
 #action:not(.hidden){min-width:50px!important;min-height:50px!important;max-width:58px!important;padding:8px!important;font-size:27px!important;border-radius:18px!important;line-height:1!important}
 body.v832-mounted #v832-drive-stick{box-shadow:0 7px 27px #0007,inset 0 0 20px #d6e4ff2c}
 </style>
+<style id="v8518-class-resume-controls">
+#v8518-restore-fab{position:absolute;top:max(126px,calc(env(safe-area-inset-top) + 121px));left:12px;z-index:23;pointer-events:auto;min-height:46px;padding:8px 13px;border:2px solid #d9c69e;border-radius:14px;background:linear-gradient(145deg,#4e4b78,#2a344f);color:#fff5df;font-weight:800;box-shadow:0 5px 18px #0008}
+#v8518-restore-fab.hidden{display:none!important}
+#v8518-restore-fab:disabled{opacity:.6}
+@media(max-width:650px){#v8518-restore-fab{top:calc(max(9px,env(safe-area-inset-top)) + 98px);left:8px;min-height:40px;font-size:11px;padding:5px 8px}}
+</style>
 <style id="v855-controls-and-seating">
 #v855-seat-lock-notice{display:none;position:absolute;z-index:17;top:max(107px,env(safe-area-inset-top) + 100px);left:50%;transform:translateX(-50%);max-width:min(90vw,470px);padding:11px 14px;background:#2e2148ed;border:1px solid #f0d9ab;border-radius:16px;font:700 13px/1.35 Arial,sans-serif;direction:rtl;text-align:center;color:#fff2d3;box-shadow:0 6px 24px #0007;pointer-events:none}
 body.v855-seat-locked #v855-seat-lock-notice{display:block}
@@ -433,14 +439,14 @@ html,body{width:100%;height:100%;height:100dvh;margin:0;overflow:hidden}
 <div id="hud" class="hidden"><div id="topright"><div class="bsd">בס״ד</div><div class="brand">ממלכת התבונה</div><div id="zone-name">כיכר ההתכנסות</div><div id="connection-pill">ממתינים לחיבור</div><div id="my-identity"><strong id="my-identity-name">אורח הממלכה</strong><span id="my-identity-avatar" style="font-size:11px;color:#e9cdbb"></span></div></div>
 <div id="topbuttons"><button type="button" id="v832-trip-fab" class="circle" title="בחירת כלי תחבורה למסע" aria-label="תכנון מסע">🚀</button><button type="button" id="v839-garage-fab" class="circle" title="כתר הממלכה — הזמנת כלי וניהול" aria-label="כתר הממלכה">♛</button><button type="button" id="v83-team-fab" class="circle" title="בחירת צוות או מסע עצמאי" aria-label="בחירת צוות">👥</button><button id="share" class="circle" title="העתקת קישור למשתתפים">🔗</button><button id="host-controls" class="circle hidden" title="לוח מאסטר">♛</button><button id="teacher-controls" class="circle hidden" title="ניהול השיעור והקישורים של החדר שלי">♛</button><button id="camera-mode" class="circle" title="מרחק מצלמת המרדף" aria-label="החלפת מצב מצלמה">◉</button><button id="full" class="circle" title="מסך מלא">⛶</button><button id="exit" class="circle" title="חזרה לבחירת דמות">⌂</button></div>
 <div id="v843-speedometer" aria-live="off"><div class="v843-speed-name">ROYAL SPEED</div><div class="v843-speed-row"><span id="v843-speed-value">0</span><small>km/h</small></div><div id="v843-speed-kind">&#x1F697; &#x05E8;&#x05DB;&#x05D1;</div></div><div id="v832-drive-stick" aria-label="ג׳ויסטיק תחבורה: למעלה קדימה, ימינה לימין, שמאלה לשמאל" role="application"><div id="v832-drive-knob"></div></div><div id="royal-car-pad" class="hidden" aria-hidden="true"></div><div id="joystick" aria-label="ג׳ויסטיק לתנועה"><div id="knob"></div></div><div id="v832-journey-status"></div><div id="bottomcontrols"><div id="v832-ride-actions"><button type="button" id="v832-reset">↺ איפוס</button><button type="button" id="v832-unmount">↩ ירידה</button></div><button type="button" id="royal-car-reset" class="soft-button hidden" title="איפוס הרכב או הסוס">↺ איפוס כלי</button><button id="leave-theater" class="hidden" title="חזרה ללובי" aria-label="חזרה ללובי">🚪 יציאה</button><button id="wave" class="circle" title="נופפו לשלום">👋</button><button id="action" class="action-button hidden">כניסה לקולנוע</button></div>
-<button id="v866-release-fab" type="button" class="hidden"></button><div id="v855-seat-lock-notice" role="status" aria-live="polite">👑 המנחה ביקש לשבת — ממתינים לאישור לקום</div><div id="v83-team-hud" class="hidden" aria-live="polite"></div><div id="announcement" aria-live="polite"></div><div id="hint"></div><div class="signature">עידן אחוון</div></div>
+<button id="v866-release-fab" type="button" class="hidden"></button><button id="v8518-restore-fab" type="button" class="hidden">↩️ חזרה למסלול הקודם</button><div id="v855-seat-lock-notice" role="status" aria-live="polite">👑 המנחה ביקש לשבת — ממתינים לאישור לקום</div><div id="v83-team-hud" class="hidden" aria-live="polite"></div><div id="announcement" aria-live="polite"></div><div id="hint"></div><div class="signature">עידן אחוון</div></div>
 <div id="host-panel" class="modal hidden"><div class="modal-card"><button class="close" data-close="host-panel">✕</button><h2>♛ ממלכת הקולנוע- מאסטר</h2><div id="room-label"></div><div id="host-count"></div><div class="actions"><button id="host-lobby" class="gold-button">פתח את דלת הקולנוע</button><button id="host-function" class="gold-button">פתח את אולם הפונקציה</button><button id="host-tech" class="gold-button">פתח את אולם הטכניקה</button><button id="host-garden" class="soft-button">↩ החזר את כולם לכיסאות ונעל</button><button id="host-release-seats" class="gold-button" type="button">✓ אשר לתלמידים לקום</button></div>
 <label>כתובות שני האולמות — מימין פונקציה, משמאל טכניקה</label><input id="url-function" dir="ltr" placeholder="https://... ממלכת הפונקציה"><input id="url-tech" dir="ltr" placeholder="https://... ממלכת הטכניקה"><button id="save-links" class="soft-button">שמור קישורים למפגש</button><p class="small">המשתתפים יושבים בשתי שורות מול המנחה. אפשר לקום לסופגניות עוד לפני פתיחת דלת הקולנוע. בהזמנת המנחה נכנסים ללובי עם שתי כניסות מרשימות בלבד: מימין אולם הפונקציה, משמאל אולם הטכניקה. אין אולם שלישי. קישורים נפתחים רק לאחר הגדרה.</p><div class="v823-crown-vehicle" role="group" aria-label="שליטה ברכב המלכותי"><div class="v823-crown-caption">🚗 הרכב המלכותי</div><button type="button" id="master-go-car" class="gold-button">🚘 אל הרכב ולהיכנס</button><button type="button" id="master-reset-car" class="soft-button">↺ איפוס הרכב לתחילת הדרך</button></div><div class="v823-crown-vehicle" role="group" aria-label="שליטה בסוס המלכותי"><div class="v823-crown-caption">🐎 הסוס המלכותי</div><button type="button" id="master-go-horse" class="gold-button">🐎 אל הסוס ולרכוב</button><button type="button" id="master-reset-horse" class="soft-button">↺ איפוס הסוס לתחילת הדרך</button><button type="button" id="master-go-camel" class="gold-button">🛴 אל הקורקינט</button><button type="button" id="master-go-bird" class="gold-button">🦅 אל הציפור ולעוף</button></div><div class="v64-invite"><button id="copy-host" class="soft-button">🛡️ העתק קישור מאסטר</button><button id="copy-teacher" class="soft-button">👑 העתק קישור מנחה למורים</button><button id="copy-room" class="gold-button">👥 העתק קישור שחקן</button></div><p class="small">שני הקישורים נשארים קבועים גם כשנכנסים ממכשיר אחר. שמרו את קישור המנחה במקום פרטי — מי שמחזיק בו יכול לנהל את המפגש. תלמידים מקבלים רק את קישור המשתתפים.</p></div></div>
 
 <div id="teacher-panel" class="modal hidden"><div class="modal-card" dir="rtl"><button class="close" data-close="teacher-panel" aria-label="סגירה">✕</button><h2>♛ החדר האישי שלי</h2><p class="teacher-brief">החדר הזה מיועד רק לכיתה שלך. שמור את קישור המנחה האישי כדי לחזור אליו גם ממכשיר אחר.</p><div class="teacher-actions"><button id="teacher-copy-player" class="gold-button">🔗 העתק קישור לשחקנים</button><button id="teacher-copy-personal" class="soft-button">👑 העתק את קישור המנחה שלי</button></div>
 <div class="v823-crown-vehicle" role="group" aria-label="שליטה ברכב המלכותי"><div class="v823-crown-caption">🚗 הרכב המלכותי</div><button type="button" id="teacher-go-car" class="gold-button">🚘 אל הרכב ולהיכנס</button><button type="button" id="teacher-reset-car" class="soft-button">↺ איפוס הרכב לתחילת הדרך</button></div><div class="v823-crown-vehicle" role="group" aria-label="שליטה בסוס המלכותי"><div class="v823-crown-caption">🐎 הסוס המלכותי</div><button type="button" id="teacher-go-horse" class="gold-button">🐎 אל הסוס ולרכוב</button><button type="button" id="teacher-reset-horse" class="soft-button">↺ איפוס הסוס לתחילת הדרך</button><button type="button" id="teacher-go-camel" class="gold-button">🛴 אל הקורקינט</button><button type="button" id="teacher-go-bird" class="gold-button">🦅 אל הציפור ולעוף</button></div><div class="teacher-lesson-actions" role="group" aria-label="ניהול השיעור בחדר שלי"><div class="teacher-lesson-caption">ניהול השיעור בחדר שלי</div><button id="teacher-lobby" class="gold-button">🚪 פתח את דלת הקולנוע</button><button id="teacher-function" class="soft-button">פתח את אולם הפונקציה</button><button id="teacher-tech" class="soft-button">פתח את אולם הטכניקה</button><button id="teacher-garden" class="soft-button">↩ החזר את כולם לכיסאות ונעל</button><button id="teacher-release-seats" type="button" class="gold-button">✓ אשר לתלמידים לקום</button></div></div></div>
 <div id="v832-depart-count" aria-live="polite"></div>
-<div id="v832-trip-panel" class="modal hidden" role="dialog" aria-modal="true"><div class="modal-card"><button class="close" type="button" data-close="v832-trip-panel" aria-label="סגירה">✕</button><div class="tiny-bsd">בס״ד</div><h2>🚀 בוחרים איך מגיעים לנאס״א</h2><p class="small">ארבעה מסלולים נפרדים ומוגנים. אפשר לצאת לבד; צוות של ארבעה יצא יחד כאשר כולם בחרו כלי ולחצו ״מוכן״.</p><div id="v832-mounts"></div><div id="v832-trip-message" role="status"></div><div class="v83-actions"><button id="v832-trip-ready" class="gold-button" type="button">✓ אני מוכן למסע</button><button id="v832-trip-back" class="soft-button" type="button">חזרה לממלכה</button></div></div></div>
+<div id="v832-trip-panel" class="modal hidden" role="dialog" aria-modal="true"><div class="modal-card"><button class="close" type="button" data-close="v832-trip-panel" aria-label="סגירה">✕</button><div class="tiny-bsd">בס״ד</div><h2>🚀 בוחרים איך מגיעים לנאס״א</h2><p class="small">ארבעה מסלולים נפרדים ומוגנים. אפשר לצאת לבד, או להצטרף לצוות של 2–4 חברים. לצאת יחד כשכל חברי הצוות הנוכחיים מוכנים.</p><div id="v832-mounts"></div><div id="v832-trip-message" role="status"></div><div class="v83-actions"><button id="v832-trip-ready" class="gold-button" type="button">✓ אני מוכן למסע</button><button id="v832-trip-back" class="soft-button" type="button">חזרה לממלכה</button></div></div></div>
 <div id="v839-garage-panel" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="v839-garage-title">
  <div class="modal-card" dir="rtl">
   <button class="close" type="button" data-close="v839-garage-panel" aria-label="סגירה">✕</button>
@@ -452,10 +458,11 @@ html,body{width:100%;height:100%;height:100dvh;margin:0;overflow:hidden}
     <div class="v860-buttons">
      <button type="button" id="v861-gather-here" class="gold-button">✨ אסוף את כולם אליי</button>
      <button type="button" id="v860-recall" class="v860-emergency">🪑 החזר לכיסאות ונעל</button>
-     <button type="button" id="v860-release" class="v860-release">🔓 שחרר תלמידים</button>
+     <button type="button" id="v860-release" class="v860-release">🔓 שחרר כאן</button>
+     <button type="button" id="v8518-restore" class="soft-button">↩️ החזר למקום הקודם</button>
     </div>
     <div id="v860-lock-indicator" role="status" aria-live="polite">טוענים את מצב הישיבה...</div>
-    <p class="v860-caption">איסוף אליך מסדר את המשתתפים בחצי מעגל ופונה אליך. שתי הפעולות עוצרות נסיעה ונועלות תנועה עד לשחרור.</p>
+    <p class="v860-caption">איסוף זמני: אתה נשאר במקום וכל המשתתפים מתכנסים אליך. אפשר לשחרר אותם כאן, או להחזיר כל אחד למיקומו הקודם, כולל כלי התחבורה שלו. בהחזרה לכיסאות גם המנחה חוזר לבמה.</p>
    </section>
    <div class="v860-transport-title" id="v860-transport-title">🚗 2 · כלי תחבורה — הזמנה ועלייה</div>
    <p class="small">בחר כלי, והוא יגיע אליך. בצוות כלי שכבר נבחר מופיע כהה ואינו לחיץ.</p>
@@ -834,7 +841,7 @@ function v857ScheduleRosterFlush(){
   if(!connected)return;
   refreshPlayers(Object.fromEntries(online));
   v857ReconcileOwnSeat();
- },180);
+ },V854_MOBILE_GPU?280:180);
 }
 // Only update a single child per network event. The old onValue(players) fed
 // an entire 30-person roster to every device ~50 times a second.
@@ -2868,7 +2875,11 @@ function draw(now){
   p.y=lerp(p.y,height,k);
   const newRot=d.yaw??0;
   r.g.rotation.y+=Math.atan2(Math.sin(newRot-r.g.rotation.y),Math.cos(newRot-r.g.rotation.y))*k;
-  r.g.visible=v83ShouldShowRemote(id,d)&&(d.zone===zone&&(zone!=='theater'||(d.hall||'function')===hall));
+  const sameArea=d.zone===zone&&(zone!=='theater'||(d.hall||'function')===hall);
+  const remoteDistance=zone==='exterior'&&player?Math.hypot(d.x-player.position.x,d.z-player.position.z):0;
+  const farAway=zone==='exterior'&&remoteDistance>(V854_MOBILE_GPU?235:390);
+  r.g.visible=v83ShouldShowRemote(id,d)&&sameArea&&!farAway;
+  if(!r.g.visible){if(r.vehicle)r.vehicle.visible=false;continue;} // Update only real nearby class activity.
   const nowSeated=!!d.seated&&(d.zone==='exterior'||d.zone==='theater');
   if(r.rideState!==otherRide){
     v836RestoreAvatar(r.g);
@@ -3829,17 +3840,18 @@ function renderAvatarNames(){
 // also makes simultaneous joins eventually converge across all clients.
 let v83TeamId='',v83TeamJoinedAt=0,v83TeamReady=false,v83GatheredKey='',v83GatherMotion=null;
 let v83TeamCircle=null,v83DemoCount=0,v83LastFullKey='',v83UiSignature='';
+let v8518NeedsJoinRally=false; // Only a newly joining teammate travels to the leader; current teammates are not displaced.
 let v866MyTeamAnchor=null,v866TeamRoom={zone:'exterior',hall:'function'},v866ServerTimeOffset=0;
 const V866_CIRCLE_ORIGIN={x:0,z:45.4};
 function v866TeamCenter(){
  const first=v83ActiveMembers()[0];
  if(!first)return {x:V866_CIRCLE_ORIGIN.x,z:V866_CIRCLE_ORIGIN.z,zone:'exterior',hall:'function'};
- const area=['exterior','lobby','theater'].includes(first.teamAnchorZone)?first.teamAnchorZone:'exterior';
- let x=Number.isFinite(first.teamAnchorX)?first.teamAnchorX:Number(first.x)||0;
- let z=Number.isFinite(first.teamAnchorZ)?first.teamAnchorZ:Number(first.z)||45.4;
+ const area=['exterior','lobby','theater'].includes(first.zone)?first.zone:(['exterior','lobby','theater'].includes(first.teamAnchorZone)?first.teamAnchorZone:'exterior');
+ let x=Number.isFinite(first.x)?first.x:(Number.isFinite(first.teamAnchorX)?first.teamAnchorX:0);
+ let z=Number.isFinite(first.z)?first.z:(Number.isFinite(first.teamAnchorZ)?first.teamAnchorZ:45.4);
  if(area==='lobby'){x=clamp(x,-10.0,10.0);z=clamp(z,PORTAL_Z+12,-4);}
  if(area==='theater'){const h=first.teamAnchorHall==='tech'?'tech':'function';x=clamp(x,(h==='function'?8.5:-8.5)-14,(h==='function'?8.5:-8.5)+14);z=clamp(z,THEATER_OFFSET-17,THEATER_OFFSET+16);}
- return {x,z,zone:area,hall:first.teamAnchorHall==='tech'?'tech':'function'};
+ return {x,z,zone:area,hall:(first.hall||first.teamAnchorHall)==='tech'?'tech':'function'};
 }
 function v866UpdateTeamCenter(){
  if(!v83TeamId)return;
@@ -3856,17 +3868,16 @@ function v83TeamEntries(number=v83TeamId){
  if(!number)return [];
  const all=new Map();
  for(const [id,d] of online){if(d&&String(d.teamId||'')===String(number))all.set(id,{id,...d});}
- if(v83TeamId===number&&player){all.set(uid||'demo',{id:uid||'demo',name:personName(),teamId:number,teamJoinedAt:v83TeamJoinedAt,teamAnchorX:v866MyTeamAnchor?.x??null,teamAnchorZ:v866MyTeamAnchor?.z??null,teamAnchorZone:v866MyTeamAnchor?.zone||'exterior',teamAnchorHall:v866MyTeamAnchor?.hall||'function',teamReady:v83TeamReady,teamReadyAt:v832ReadyAt,rideChoice:v832Choice,rideChosenAt:v832ChosenAt,avatar:selected});}
+ if(v83TeamId===number&&player){all.set(uid||'demo',{id:uid||'demo',name:personName(),teamId:number,teamJoinedAt:v83TeamJoinedAt,teamAnchorX:v866MyTeamAnchor?.x??null,teamAnchorZ:v866MyTeamAnchor?.z??null,teamAnchorZone:v866MyTeamAnchor?.zone||'exterior',teamAnchorHall:v866MyTeamAnchor?.hall||'function',x:player.position.x,z:player.position.z,zone,hall,yaw:userYaw,teamReady:v83TeamReady,teamReadyAt:v832ReadyAt,rideChoice:v832Choice,rideChosenAt:v832ChosenAt,avatar:selected});}
  return [...all.values()].sort((a,b)=>(Number(a.teamJoinedAt)||0)-(Number(b.teamJoinedAt)||0)||String(a.id).localeCompare(String(b.id))).slice(0,32);
 }
 function v83ActiveMembers(){return v83TeamEntries().slice(0,4);}
 function v83MemberOfTeam(){return !!v83TeamId&&v83ActiveMembers().some(d=>d.id===(uid||'demo'));}
-function v83TeamComplete(){return v83MemberOfTeam()&&v83ActiveMembers().length===4;}
+function v83TeamComplete(){return v83MemberOfTeam()&&v83ActiveMembers().length>=2;}
+function v8518TeamCapacity(){return 4;}
+function v8518TeamSolo(){return v83MemberOfTeam()&&v83ActiveMembers().length===1;}
 function v83MySlot(){return v83ActiveMembers().findIndex(d=>d.id===(uid||'demo'));}
-function v83ShouldShowRemote(id,data){
- if(!v83TeamComplete()||!v83GatheredKey)return true;
- return data.hostRole==='host'||(data.teamId===v83TeamId&&v83ActiveMembers().some(m=>m.id===id));
-}
+function v83ShouldShowRemote(id,data){return true;} // Teams never hide classmates from each other's worlds.
 function v83BuildCircle(){
  if(v83TeamCircle||!world)return;
  const g=new THREE.Group();g.name='V83_team_gathering_rune';world.add(g);
@@ -3892,10 +3903,11 @@ function v83RefreshDemoAvatars(){
   r.data.x=pos.x;r.data.z=pos.z;r.data.yaw=Math.atan2(V83_CIRCLE.x-pos.x,V83_CIRCLE.z-pos.z);
  }
 }
-function v83GatherNow(force=false){if(v855RoomSeatingLocked())return;if(v832MountedId)v832Unmount();v866UpdateTeamCenter();
+function v83GatherNow(force=false){if(v855RoomSeatingLocked())return;v866UpdateTeamCenter();
  if(!player||!v83TeamComplete()||retiredHost)return;
  const members=v83ActiveMembers();
- const meIndex=v83MySlot();if(meIndex<0)return;
+ const meIndex=v83MySlot();if(meIndex<=0)return; // The first member is the meeting point, never teleport them.
+ if(v832MountedId)v832Unmount(true);
  const key=v83TeamId+':'+members.map(m=>m.id).join('|');
  if(!force&&v83GatheredKey===key)return;
  v83GatheredKey=key;
@@ -3915,18 +3927,18 @@ function v83GatherNow(force=false){if(v855RoomSeatingLocked())return;if(v832Moun
  player.position.set(from.x,0,from.z);
  userYaw=Math.atan2(V83_CIRCLE.x-slot.x,V83_CIRCLE.z-slot.z);player.rotation.y=userYaw;
  movement.x=movement.z=0;camReady=false;
- v83GatherMotion={start:performance.now(),elapsed:0,duration:1.35,from,to:slot};
+ v83GatherMotion={start:performance.now(),elapsed:0,duration:1.35,from,to:slot,center:{x:V83_CIRCLE.x,z:V83_CIRCLE.z}};
  if(v83TeamCircle)v83TeamCircle.visible=v866TeamRoom.zone==='exterior';
  $('#v83-team-magic').classList.add('on');setTimeout(()=>$('#v83-team-magic').classList.remove('on'),950);
  v83RefreshDemoAvatars();syncSelf(true);
- note('✨ צוות '+v83TeamId+' הושלם! מתכנסים ליד המשתתף הראשון');
+ note('✨ הצטרפת לצוות '+v83TeamId+' ליד המשתתף הראשון');
 }
 function v83UpdateGather(dt){
  const m=v83GatherMotion;if(!m||!player)return false;
  m.elapsed=Math.min(m.duration,m.elapsed+dt);
  const t=m.elapsed/m.duration,e=t*t*(3-2*t);
  player.position.x=lerp(m.from.x,m.to.x,e);player.position.z=lerp(m.from.z,m.to.z,e);
- userYaw=Math.atan2(V83_CIRCLE.x-player.position.x,V83_CIRCLE.z-player.position.z);player.rotation.y=userYaw;
+ userYaw=Math.atan2(m.center.x-player.position.x,m.center.z-player.position.z);player.rotation.y=userYaw;
  movement.x=movement.z=0;animatePerson(player,clock,t<1?1.7:0);
  if(t>=1){v83GatherMotion=null;syncSelf(true);v83RenderTeamPanel();}
  return true;
@@ -3942,9 +3954,9 @@ function v83UpdateGroup(){
  v866UpdateTeamCenter();v866ReconcileRideChoice();
  const m=v83ActiveMembers(),full=v83TeamComplete();
  const key=full?v83TeamId+':'+m.map(x=>x.id).join('|'):'';
- if(full&&key!==v83LastFullKey){v83LastFullKey=key;v83GatherNow();}
+ if(full&&key!==v83LastFullKey){v83LastFullKey=key;if(v8518NeedsJoinRally&&v83MySlot()>0){v8518NeedsJoinRally=false;v83GatherNow();}}
  if(!full){v83LastFullKey='';v83GatheredKey='';v83GatherMotion=null;if(v83TeamCircle)v83TeamCircle.visible=false;}
- if(v83TeamCircle)v83TeamCircle.visible=full&&v866TeamRoom.zone==='exterior';
+ if(v83TeamCircle)v83TeamCircle.visible=!!v83GatherMotion&&v866TeamRoom.zone==='exterior';
  v83RefreshDemoAvatars();v83RenderTeamPanel();
  // Only redraw controls when team reservations change; a constant 30-person
  // presence stream must not cause flashing icons or repeated DOM replacement.
@@ -3964,7 +3976,7 @@ function v83RenderTeamPanel(){
  const input=$('#v83-team-input');if(document.activeElement!==input&&v83TeamId)input.value=v83TeamId;
  const count=$('#v83-team-count'),roster=$('#v83-team-roster'),message=$('#v83-team-message');
  const members=v83ActiveMembers(),full=v83TeamComplete(),member=v83MemberOfTeam();
- count.textContent=v83TeamId?'צוות '+v83TeamId+' — '+members.length+'/4':'מסע עצמאי — אין צוות נבחר';
+ count.textContent=v83TeamId?'צוות '+v83TeamId+' — '+members.length+' חברים (עד 4)':'מסע עצמאי — אין צוות נבחר';
  roster.replaceChildren();
  for(let i=0;i<4;i++){
   const cell=document.createElement('div');cell.className='v83-member'+(members[i]?'':' empty');
@@ -3977,15 +3989,15 @@ function v83RenderTeamPanel(){
  if(v855RoomSeatingLocked())message.textContent='🔒 המנחה החזיר את כולם לכיסאות. ממתינים לאישור לקום.';
  else if(!v83TeamId)message.textContent='בחרו מספר צוות להצטרפות, או המשיכו לטייל באופן עצמאי.';
  else if(!member)message.textContent='הצוות מלא. בחרו מספר צוות אחר או חכו שמקום יתפנה.';
- else if(full){const ready=members.filter(m=>m.teamReady).length;message.textContent='✨ ארבעה בצוות! '+ready+'/4 מוכנים. '+(v832TeamDepartureAt()?'השיירה מוכנה לצאת!':'כל חבר בוחר כלי נפרד ומאשר מוכנות.');}
- else message.textContent='ממתינים לעוד '+(4-members.length)+' חברים. ההתכנסות תהיה במקום שבו הראשון בצוות הצטרף.';
+ else if(full){const ready=members.filter(m=>m.teamReady).length;message.textContent='✨ צוות של '+members.length+'! '+ready+'/'+members.length+' מוכנים. '+(v832TeamDepartureAt()?'השיירה יוצאת יחד!':'אפשר לצאת עכשיו; אין צורך להמתין לארבעה.');}
+ else message.textContent='צוות '+v83TeamId+' נוצר! אפשר לטייל לבד, וחברים נוספים שיצטרפו יגיעו אליך.';
  $('#v83-team-ready').classList.toggle('hidden',!full||!member||v855RoomSeatingLocked());
  $('#v83-team-ready').textContent=v83TeamReady?'✓ אני מוכן — ביטול':'✓ אני מוכן למסע';
  $('#v832-from-team').classList.toggle('hidden',!v83TeamId);
  $('#v83-team-gather').classList.toggle('hidden',!full||!member||v855RoomSeatingLocked());
  $('#v83-team-leave').classList.toggle('hidden',!v83TeamId);
  $('#v83-team-demo-add').classList.toggle('hidden',!demo||!v83TeamId||v83DemoCount>=3);
- const hud=$('#v83-team-hud');hud.classList.toggle('hidden',!v83TeamId);hud.textContent=v83TeamId?'👥 צוות '+v83TeamId+' · '+members.length+'/4'+(full?' · במעגל':''):'';
+ const hud=$('#v83-team-hud');hud.classList.toggle('hidden',!v83TeamId);hud.textContent=v83TeamId?'👥 צוות '+v83TeamId+' · '+members.length+' חברים'+(full?' · אפשר לצאת יחד':''):'';
 }
 function v83JoinTeam(){
  if(v855RoomSeatingLocked()){note('נרשמים לצוות לאחר אישור המנחה לקום');return;}
@@ -3996,7 +4008,9 @@ function v83JoinTeam(){
  if(v83TeamId===id){$('#v83-team-panel').classList.add('hidden');note('אתם כבר בצוות '+id);return;}
  // Local capacity pre-check; presence-list sorting ensures exactly four active
  // members even when two phones join in the same millisecond.
- if(!demo&&[...online.values()].filter(d=>d?.teamId===id).length>=4){note('צוות '+id+' מלא. בחרו מספר אחר.');return;}
+ const v8518ExistingCount=[...online.values()].filter(d=>d?.teamId===id).length;
+ if(!demo&&v8518ExistingCount>=4){note('צוות '+id+' מלא. בחרו מספר אחר.');return;}
+ v8518NeedsJoinRally=v8518ExistingCount>0;
  v83ClearDemoPeers();v83TeamId=id;v83TeamJoinedAt=Date.now()+v866ServerTimeOffset;v866MyTeamAnchor={x:+player.position.x.toFixed(2),z:+player.position.z.toFixed(2),zone,hall};v83TeamReady=false;v832ReadyAt=0;v832Choice='';v832ChosenAt=0;v83GatheredKey='';v83LastFullKey='';
  syncSelf(true);v83UpdateGroup();$('#v83-team-panel').classList.add('hidden');note('הצטרפת לצוות '+id+' — ממתינים לחברים');
 }
@@ -4005,7 +4019,7 @@ function v83ClearDemoPeers(){
  v83DemoCount=0;
 }
 function v83LeaveTeam(){if(v832MountedId)v832Unmount();v832Choice='';v832ReadyAt=0;v832ChosenAt=0;v832Progress=0;
- v83TeamId='';v83TeamJoinedAt=0;v866MyTeamAnchor=null;v83TeamReady=false;v83GatheredKey='';v83LastFullKey='';v83GatherMotion=null;
+ v83TeamId='';v83TeamJoinedAt=0;v866MyTeamAnchor=null;v8518NeedsJoinRally=false;v83TeamReady=false;v83GatheredKey='';v83LastFullKey='';v83GatherMotion=null;
  v83ClearDemoPeers();if(v83TeamCircle)v83TeamCircle.visible=false;
  syncSelf(true);v83RenderTeamPanel();note('חזרת למסע עצמאי — אפשר להצטרף לצוות אחר בכל רגע');
 }
@@ -4018,7 +4032,7 @@ function v83AddDemoPeer(){
 }
 function v83ToggleReady(){
  if(v855RoomSeatingLocked()){note('אפשר לאשר מוכנות רק אחרי שהמנחה מאשר לקום');return;}
- if(!v83TeamComplete())return;
+ if(!v83TeamComplete()){note('יצרת צוות. כשהחבר השני יצטרף תוכלו להפעיל יציאה קבוצתית; בינתיים אפשר לטייל לבד.');return;}
  if(!v832Choice){v832OpenTrip();note('בחרו כלי תחבורה לפני היציאה');return;}
  if(v832ChoiceTaken(v832Choice)){v832Choice='';v832OpenTrip();note('הכלי כבר נבחר בצוות. בחרו כלי אחר.');return;}
  v83TeamReady=!v83TeamReady;v832ReadyAt=v83TeamReady?Date.now():0;syncSelf(true);v83RenderTeamPanel();v832RenderTrip();
@@ -4210,6 +4224,79 @@ async function v866RegisterHostDisconnectUnlock(base){
  catch(e){v866HostDisconnectRegistered=false;console.warn('Host disconnect unlock registration:',e.message);}
 }
 
+// V85.18: temporary classroom summons are a PAUSE, not a reset of learning progress.
+// Snapshots are private to each browser tab. Firebase sends only the control signal
+// via the already-authorized meta/recallSeq field, never all player coordinates.
+let v8518ResumeSnapshot=null,v8518LastRestoredSeq=0;
+function v8518SnapshotStorageKey(){return 'cinema_v8518_resume_'+(room||'local')+'_'+(uid||'demo');}
+function v8518RememberSnapshot(){
+ if(v8518ResumeSnapshot||!player)return;
+ const id=v832MountedId,m=v832Mounts[id];
+ v8518ResumeSnapshot={savedAt:Date.now(),zone,hall,x:player.position.x,z:player.position.z,yaw:userYaw,
+  seated,seatIndex,hasLeftOwnSeat,introComplete,teamId:v83TeamId,rideChoice:v832Choice,
+  personalMountId:v840PersonalMountId,progress:v832Progress,vehicle:id&&m?.group?{id,x:m.group.position.x,z:m.group.position.z,y:m.group.position.y,
+   yaw:m.group.rotation.y,speed:m.speed||0}:null};
+ try{sessionStorage.setItem(v8518SnapshotStorageKey(),JSON.stringify(v8518ResumeSnapshot));}catch(_e){}
+}
+function v8518GetSnapshot(){
+ if(v8518ResumeSnapshot)return v8518ResumeSnapshot;
+ try{const v=JSON.parse(sessionStorage.getItem(v8518SnapshotStorageKey())||'null');
+  if(v&&Date.now()-v.savedAt<7200000&&['exterior','lobby','theater'].includes(v.zone))v8518ResumeSnapshot=v;
+ }catch(_e){}
+ return v8518ResumeSnapshot;
+}
+function v8518ForgetSnapshot(){v8518ResumeSnapshot=null;try{sessionStorage.removeItem(v8518SnapshotStorageKey());}catch(_e){}}
+function v8518RestoreLocal(){
+ const last=v8518GetSnapshot();v861ResetRally();
+ if(!last||!player){if(isHost&&v832MountedId&&v832Mounts[v832MountedId])v832Mounts[v832MountedId].v835Hold=false;else if(!isHost)note('✓ הכיתה שוחררה. אין מיקום קודם שמור במכשיר הזה.');return;}
+ if(v832MountedId)v832Unmount(true);
+ v836Boarding=null;v837Exiting=null;v83GatherMotion=null;autoSeat=null;cinemaArrival=null;entering=false;
+ placeInZone(last.zone,true,last.hall);
+ zone=last.zone;hall=last.hall;seated=!!last.seated;seatIndex=last.seatIndex;
+ hasLeftOwnSeat=!!last.hasLeftOwnSeat;introComplete=!!last.introComplete;
+ player.position.set(Number(last.x)||0,0,Number(last.z)||0);
+ userYaw=Number(last.yaw)||0;player.rotation.y=userYaw;camHeading=userYaw;joyAnchorYaw=userYaw;
+ applySeatPose(player,seated);movement.x=movement.z=0;
+ v832Joystick.forward=v832Joystick.turn=0;v858ClearRideKeyboard();keys.clear();
+ v83TeamReady=false;v832ReadyAt=0;v832Choice=last.rideChoice||'';
+ v840PersonalMountId=last.personalMountId||'';v832Progress=Number(last.progress)||0;v834PauseAutoBoard=true;v832WasConvoy=false;
+ const vehicle=last.vehicle;
+ if(vehicle?.id&&v832Mounts[vehicle.id]?.group&&last.zone==='exterior'){
+  const m=v832Mounts[vehicle.id];m.group.position.set(vehicle.x,vehicle.y,vehicle.z);
+  m.group.rotation.y=vehicle.yaw||0;m.yaw=vehicle.yaw||0;m.speed=0;m.v835Parked=false;m.v835Hold=false;
+  v832MountedId=vehicle.id;v832Choice=vehicle.id;seated=false;applySeatPose(player,false);
+  document.body.classList.add('v832-mounted');
+  royalCar.driving=vehicle.id==='car';royalHorse.riding=vehicle.id==='horse';
+  royalCamel.riding=vehicle.id==='camel';royalBird.riding=vehicle.id==='bird';
+  v832PositionRider();
+ }else{
+  v832MountedId='';document.body.classList.remove('v832-mounted');
+  royalCar.driving=royalHorse.riding=royalCamel.riding=royalBird.riding=false;
+ }
+ camReady=false;v8518ForgetSnapshot();v83UiSignature='';v83RenderTeamPanel();v832RenderTrip();syncSelf(true);
+ note('↩️ חזרת בדיוק לאזור ולמיקום שהיית בו לפני האיסוף.');
+}
+function v8518RecallHostToPodium(){
+ if(!isHost||retiredHost||!player)return;
+ v8518RememberSnapshot();
+ if(v832MountedId)v832Unmount(true);
+ v836Boarding=null;v837Exiting=null;v83GatherMotion=null;autoSeat=null;cinemaArrival=null;entering=false;
+ placeInZone('exterior',true);standAsHost();
+ movement.x=movement.z=0;
+ note('👑 החזרת את הכיתה לכיסאות — חזרת לבמה כדי להנחות.');
+}
+async function v8518RestoreEveryone(){
+ if(!isHost||retiredHost){note('רק המאסטר או המנחה יכולים להחזיר למיקום הקודם');return false;}
+ const old=Number(roomMeta?.recallSeq)||0;
+ const stamp=Math.max(Date.now()*10+4,old+10),seq=stamp-stamp%10+4;
+ try{
+  if(connected)await rtdb.update(rtdb.ref(db,`kingdom_v39/rooms/${room}/meta`),{recallSeq:seq});
+  else if(demo){v855DemoSeatLock=false;roomMeta={...(roomMeta||{}),recallSeq:seq};v8518RestoreLocal();}
+  else throw Error('אין חיבור פעיל לחדר');
+  note('↩️ פקודת חזרה נשלחה: כל תלמיד חוזר למיקום האישי שהיה בו לפני האיסוף.');
+  $('#v839-garage-panel').classList.add('hidden');return true;
+ }catch(e){note('לא ניתן להחזיר למיקום הקודם: '+e.message);return false;}
+}
 // V85.5: Use existing recallSeq metadata field (which current Firebase rules
 // already permit hosts to update). No new database rules or link changes.
 let v855DemoSeatLock=false,v855SeatReclaimPending=false;
@@ -4227,23 +4314,30 @@ function v855RoomSeatingLocked(){return !isHost&&!v866HostAbsentLong()&&(demo?v8
 function v855RefreshSeatingUI(){
  const lock=v855RoomSeatingLocked();
  const mode=v861RecallLockType();
+ const primaryText=mode===3?'↩️ חזרה למסלול הקודם':'🔓 שחרר בכיכר';
+ const secondaryText=mode===3?'🔓 שחרר כאן':'↩️ החזר למקום הקודם';
+ const primaryMenu=document.getElementById('v860-release');if(primaryMenu)primaryMenu.textContent=primaryText;
+ const restoreQuick=document.getElementById('v8518-restore-fab');
+ if(restoreQuick){const show=isHost&&!retiredHost&&[1,3].includes(mode);restoreQuick.classList.toggle('hidden',!show);restoreQuick.disabled=v860ControlPending;restoreQuick.textContent=secondaryText;}
+ const restoreMenu=document.getElementById('v8518-restore');if(restoreMenu){restoreMenu.disabled=!isHost||![1,3].includes(mode)||v860ControlPending;restoreMenu.textContent=secondaryText;}
  const quick=document.getElementById('v866-release-fab');
  if(quick){
   const hostLocked=isHost&&!retiredHost&&([1,3].includes(mode)||(demo&&v855DemoSeatLock));
   quick.classList.toggle('hidden',!hostLocked);
   quick.disabled=v860ControlPending;
-  quick.textContent=document.getElementById('v860-release')?.textContent||'Release all';
+  quick.textContent=primaryText;
  }
  const notice=document.getElementById('v855-seat-lock-notice');
- if(notice)notice.textContent=mode===3?'👑 כולם התאספו סביב המנחה — ממתינים לאישור לצאת':'👑 המנחה ביקש לשבת — ממתינים לאישור לקום';
+ if(notice)notice.textContent=mode===3?'👑 נאספנו למנחה — אפשר להשתחרר כאן או לחזור למסלול הקודם':'👑 חזרנו לכיסאות — ממתינים לשחרור או לחזרה למקום הקודם';
  document.body.classList.toggle('v855-seat-locked',lock);
  document.body.classList.toggle('v855-host',!!isHost);
  for(const id of ['host-release-seats','teacher-release-seats']){
   const button=document.getElementById(id);if(button)button.disabled=(!isHost||![1,3].includes(v861RecallLockType()))&&!v855DemoSeatLock;
  }
 }
-function v855ForceEveryoneToChairs(){
+function v855ForceEveryoneToChairs(skipChair=false){
  if(!player||isHost||retiredHost)return;
+ v8518RememberSnapshot(); // Never lose the learner's exact pre-recall position.
  // Cancel every active ride, team gathering, scripted transition and summon.
  if(typeof v839GarageDeliveryToken==='number')v839GarageDeliveryToken++;
  if(v832MountedId)v832Unmount(true);
@@ -4260,6 +4354,7 @@ function v855ForceEveryoneToChairs(){
  royalCar.driving=false;royalHorse.riding=false;royalCamel.riding=false;royalBird.riding=false;
  document.body.classList.remove('v832-mounted','royal-driving','royal-riding','v855-arrows');
  $('#v832-trip-panel').classList.add('hidden');$('#v839-garage-panel').classList.add('hidden');
+ if(skipChair){seated=false;introComplete=true;hasLeftOwnSeat=true;applySeatPose(player,false);camReady=false;return;}
  if(zone!=='exterior')placeInZone('exterior',true);
  if(!Number.isInteger(seatIndex)||seatIndex<0){
   const free=v857SelectSeat(Object.fromEntries(online),uid,-1);
@@ -4313,8 +4408,9 @@ async function v861ApplyGather(seq){
   const chosenHall=leader.hall==='tech'?'tech':'function';
   const center={x:leader.x,z:leader.z};
   const pos=v861SemicircleSpot(idx,guests.length,center,Number(leader.yaw)||0,area);
-  // Cancel any vehicle, team countdown or auto-boarding before repositioning.
-  v855ForceEveryoneToChairs();
+  // Save before stopping/teleporting: the teacher may later restore the entire journey.
+  v8518RememberSnapshot();
+  v855ForceEveryoneToChairs(true);
   if(zone!==area||area==='theater'&&hall!==chosenHall)placeInZone(area,true,chosenHall);
   if(area==='exterior'){
    const safe=v835FindSafeFootSpot(pos.x,pos.z,'',Number(leader.yaw)||0);
@@ -4343,6 +4439,8 @@ async function v861GatherHere(){
  const previous=Number(roomMeta?.recallSeq)||0;
  const seq=Math.floor(Math.max(Date.now()*10,previous+10)/10)*10+3;
  try{
+  // The presenter stays in place; only guests need a gathering checkpoint.
+  if(v832MountedId){const m=v832Mounts[v832MountedId];if(m){m.speed=0;m.v835Hold=true;}v832Joystick.forward=v832Joystick.turn=0;}
   // Publish the presenter position first; all students read it from /players.
   if(connected&&rtdb&&presenceRef){await v861RetryNetwork(()=>rtdb.set(presenceRef,ownData()),'מעדכנים מיקום מנחה',2);}
   if(connected){await rtdb.update(rtdb.ref(db,`kingdom_v39/rooms/${room}/meta`),{recallSeq:seq});}
@@ -4361,7 +4459,7 @@ async function v855ApproveStand(){
   if(connected){await rtdb.update(rtdb.ref(db,`kingdom_v39/rooms/${room}/meta`),{recallSeq:seq});}
   else if(demo){v855DemoSeatLock=false;roomMeta={...(roomMeta||{}),recallSeq:seq};}
   else throw Error('אין חיבור לחדר');
-  v861ResetRally();note('✓ אישרת למשתתפים לקום ולהסתובב');
+  v861ResetRally();v8518ForgetSnapshot();note('✓ שוחררו מהמקום הנוכחי. אפשר להתחיל לטייל.');
   $('#host-panel').classList.add('hidden');$('#teacher-panel').classList.add('hidden');
   v855RefreshSeatingUI();return true;
  }catch(e){note('לא ניתן לאשר קימה: '+e.message);return false;}
@@ -4467,12 +4565,14 @@ async function connectLive(asHost){
  v855RefreshSeatingUI();
  v860UpdateCrownDashboard();
  const seatAction=v861RecallLockType();
+ if(recallChanged&&seatAction===1&&isHost&&!retiredHost)v8518RecallHostToPodium();
+ if(recallChanged&&seatAction===4&&v8518LastRestoredSeq!==fresh.recallSeq){v8518LastRestoredSeq=fresh.recallSeq;v8518RestoreLocal();}
  if(lockNow&&seatAction===1&&(recallChanged||(seatIndex>=0&&!seated)||zone!=='exterior'||!!v832MountedId)){
    v855ForceEveryoneToChairs();
-   if(recallChanged)note('👑 המנחה החזיר את כולם לכיסאות. ממתינים לאישור לקום.');
+   if(recallChanged)note('👑 המנחה החזיר את כולם לכיסאות. אפשר לשחרר כאן או להחזיר למסלול הקודם.');
  }
  if(lockNow&&seatAction===3){void v861ApplyGather(fresh.recallSeq);}
- if(recallChanged&&seatAction===2&&!isHost){v861ResetRally();note('✓ המנחה אישר לקום — אפשר להתחיל לטייל!');}
+ if(recallChanged&&seatAction===2){v861ResetRally();v8518ForgetSnapshot();if(!isHost)note('✓ המנחה אישר לצאת מהמקום הנוכחי!');}
 
  // A single private host link may be opened on multiple devices, but only the
  // last active session owns the presenter. Retire its previous live avatar.
@@ -4488,7 +4588,7 @@ async function connectLive(asHost){
  if(old&&(old!==phase||oldHall!==fresh.hall||recallChanged)){
    if(old!==phase&&phase==='lobby'){$('#zone-name').textContent='כיכר המלכותית · הקולנוע פתוח';note('דלת הקולנוע נפתחה · מתקדמים דרך הכניסה')}
    else if(old!==phase&&phase==='theater'){note('האולמות פתוחים · היכנסו דרך הדלתות בלובי')}
-   else if(phase==='plaza'&&((old!==phase)||(recallChanged&&seatAction===1))){
+   else if(phase==='plaza'&&seatAction!==4&&((old!==phase)||(recallChanged&&seatAction===1))){
     if(!lockNow&&!isHost&&seatAction!==3){introComplete=false;entering=false;placeInZone('exterior',true);
       if(!isHost)assignSeat(Math.max(0,seatIndex));
       note('חוזרים להתכנסות בכיכר מול הקולנוע');}
@@ -4750,7 +4850,7 @@ function v832Choose(id){
  v832Choice=id;v832ChosenAt=Date.now()+v866ServerTimeOffset;v83TeamReady=false;v832ReadyAt=0;
  v832AssignDemo();syncSelf(true);v83RenderTeamPanel();v832Board(id);v832RenderTrip();
  if(!v83TeamComplete())$('#v832-trip-panel').classList.add('hidden');
- if(v83TeamId)note(V832_MOUNT_NAMES[id]+' נבחר. כעת צריך שכל ארבעת חברי הצוות יאשרו מוכנות.');
+ if(v83TeamId)note(V832_MOUNT_NAMES[id]+' נבחר. בצוות עם שני חברים ומעלה תוכלו לצאת יחד לאחר אישור מוכנות.');
  else note('יצאת למסע עצמאי עם '+V832_MOUNT_NAMES[id]);
 }
 function v832AssignDemo(){
@@ -4764,8 +4864,8 @@ function v832AssignDemo(){
 }
 function v832TeamDepartureAt(){
  if(!v83TeamComplete())return 0;
- const m=v83ActiveMembers();if(m.length!==4||m.some(q=>!q.teamReady||!q.rideChoice||!q.teamReadyAt))return 0;
- if(new Set(m.map(q=>q.rideChoice)).size!==4)return 0;
+ const m=v83ActiveMembers();if(m.length<2||m.length>4||m.some(q=>!q.teamReady||!q.rideChoice||!q.teamReadyAt))return 0;
+ if(new Set(m.map(q=>q.rideChoice)).size!==m.length)return 0;
  return Math.max(...m.map(q=>Number(q.teamReadyAt)||0))+5000;
 }
 // V83.7: Animated boarding, separate from locomotion and vehicle control.
@@ -5388,7 +5488,7 @@ function v832UpdateJourney(dt){
   }
  }
  if(v832MountedId&&status){
-  const id=v832MountedId,tip=team&&!tm?'ממתינים ל־4 מוכנים':team&&tm?'שיירה צוותית · עד '+Math.round(V844_CONVOY_SPEED*3.6)+' קמ״ש':'טיול עצמאי';
+  const id=v832MountedId,tip=team&&!tm?'ממתינים למוכנות של '+v83ActiveMembers().length+' חברים':team&&tm?'שיירה צוותית · עד '+Math.round(V844_CONVOY_SPEED*3.6)+' קמ״ש':'טיול עצמאי';
   status.textContent=v836Boarding?'עולים על '+V832_MOUNT_NAMES[id]+'…':V832_MOUNT_NAMES[id]+' · '+tip;
  }
  // Keep simulated companions physically mounted in the local four-person demonstration.
@@ -5416,7 +5516,7 @@ function v832RenderTrip(){
   b.onclick=()=>v832Choose(id);root.appendChild(b);
  }
  const count=v83TeamId?'צוות '+v83TeamId+' · ':'מסע עצמאי · ';
- $('#v832-trip-message').textContent=count+(v832Choice?'נבחר '+V832_MOUNT_NAMES[v832Choice]:'בחרו אחד מארבעת הכלים')+(v83TeamComplete()?' · '+v83ActiveMembers().filter(m=>m.teamReady).length+'/4 מוכנים':'');
+ $('#v832-trip-message').textContent=count+(v832Choice?'נבחר '+V832_MOUNT_NAMES[v832Choice]:'בחרו אחד מארבעת הכלים')+(v83TeamComplete()?' · '+v83ActiveMembers().filter(m=>m.teamReady).length+'/'+v83ActiveMembers().length+' מוכנים':'');
  $('#v832-trip-ready').classList.toggle('hidden',!v83TeamComplete());
  $('#v832-trip-ready').textContent=v83TeamReady?'✓ מוכן — לביטול':'✓ אני מוכן למסע';
 }
@@ -5462,7 +5562,11 @@ function v860UpdateCrownDashboard(){
  }
 }
 function v860BindCrownDashboard(){
- const quick=document.getElementById('v866-release-fab');if(quick)quick.onclick=()=>{if(isHost&&!retiredHost&&!v860ControlPending)void v855ApproveStand();};
+ const primary=()=>v861RecallLockType()===3?v8518RestoreEveryone():v855ApproveStand();
+ const secondary=()=>v861RecallLockType()===3?v855ApproveStand():v8518RestoreEveryone();
+ const restoreQuick=document.getElementById('v8518-restore-fab');if(restoreQuick)restoreQuick.onclick=()=>{if(isHost&&!retiredHost&&!v860ControlPending)void secondary();};
+ const restore=document.getElementById('v8518-restore');if(restore)restore.onclick=()=>{if(isHost&&!retiredHost&&!v860ControlPending)void secondary();};
+ const quick=document.getElementById('v866-release-fab');if(quick)quick.onclick=()=>{if(isHost&&!retiredHost&&!v860ControlPending)void primary();};
  const gather=document.getElementById('v861-gather-here');
  if(gather)gather.onclick=async()=>{if(!isHost||retiredHost||v860ControlPending)return;v860ControlPending=true;v860UpdateCrownDashboard();try{await v861GatherHere()}finally{v860ControlPending=false;v860UpdateCrownDashboard()}};
  const recall=document.getElementById('v860-recall');
@@ -5475,7 +5579,7 @@ function v860BindCrownDashboard(){
  if(release)release.onclick=async()=>{
   if(!isHost||retiredHost||v860ControlPending)return;
   v860ControlPending=true;v860UpdateCrownDashboard();
-  try{await v855ApproveStand();}finally{v860ControlPending=false;v860UpdateCrownDashboard();}
+  try{await primary();}finally{v860ControlPending=false;v860UpdateCrownDashboard();}
  };
  for(const id of V832_TYPES){
   const b=document.getElementById('v860-reset-'+id);
@@ -5733,7 +5837,7 @@ $('#join-room').onclick=()=>start(ENTRY_ROLE!=='player',false);
 // Standalone preview: mobile return must not attempt a live Firebase connection.
 window.addEventListener('beforeunload',()=>{if(connected&&rtdb&&presenceRef){rtdb.remove(presenceRef).catch(()=>{});if(seatClaimRef)rtdb.remove(seatClaimRef).catch(()=>{})}});
 window.V862_DIAGNOSTICS=()=>({version:'V85.14',fullscreen:!!(document.fullscreenElement||document.webkitFullscreenElement),viewport:{width:innerWidth,height:innerHeight},drawingBuffer:{width:renderer?.domElement?.width||0,height:renderer?.domElement?.height||0},sceneBox:document.getElementById('scene')?.getBoundingClientRect()?.toJSON?.()||null,boarding:v836Boarding?{id:v836Boarding.id,directSummon:v836Boarding.directSummon,progress:v836Boarding.elapsed/v836Boarding.duration}:null});
-window.V866_CLASS_DIAGNOSTICS=()=>({version:'V85.16',teamCenter:v83TeamId?v866TeamCenter():null,team:v83TeamId,choice:v832Choice,choiceOwner:v832Choice?v866RideOwner(v832Choice)?.id||'':null,hostAt:{x:player?.position.x,z:player?.position.z},gatherSeq:v861GatheredSeq,quickReleaseVisible:!document.getElementById('v866-release-fab')?.classList.contains('hidden'),hostDisconnectReleaseRegistered:v866HostDisconnectRegistered,hostMissingLong:v866HostAbsentLong(),mobileStreamlined:V866_STREAMLINED_SCENE});
+window.V866_CLASS_DIAGNOSTICS=()=>({version:'V85.18',teamCenter:v83TeamId?v866TeamCenter():null,team:v83TeamId,choice:v832Choice,choiceOwner:v832Choice?v866RideOwner(v832Choice)?.id||'':null,hostAt:{x:player?.position.x,z:player?.position.z},gatherSeq:v861GatheredSeq,quickReleaseVisible:!document.getElementById('v866-release-fab')?.classList.contains('hidden'),hostDisconnectReleaseRegistered:v866HostDisconnectRegistered,hostMissingLong:v866HostAbsentLong(),mobileStreamlined:V866_STREAMLINED_SCENE});
 window.KINGDOM_JOIN_DIAGNOSTICS=()=>({version:'V85.16',liteScenery:V861_LITE_SCENERY,stage:v857JoinStage,lastError:v857LastJoinError,room,connected,onlineCount:online.size,seats:V857_GUEST_CAPACITY,seatIndex,seatReconciliations:v857SeatMoves,liveIncrementalUpdates:true,usingSeatTransactions:false});
 window.KINGDOM_VISUAL_DIAGNOSTICS=()=>({version:'V85.16',deviceDPR:devicePixelRatio,renderDPR:renderer?.getPixelRatio()||null,antialias:renderer?.getContext()?.getContextAttributes()?.antialias??null,liteScenery:V861_LITE_SCENERY,gardensLoaded:!!window.V82_ART?.gardensLoaded,shadows:!!renderer?.shadowMap?.enabled,estimatedFPS:v854MeasuredFPS,qualityReduced:v854QualityReduced});
 window.KINGDOM_TABLET_DIAGNOSTICS=()=>({version:'V85.16',streamlinedScene:V866_STREAMLINED_SCENE,mobileGPU:V854_MOBILE_GPU,lowMemory:V854_LOW_MEMORY,liteScenery:V861_LITE_SCENERY,pixelRatio:renderer?.getPixelRatio()||null,antialiasing:renderer?.getContext()?.getContextAttributes()?.antialias??null,shadows:renderer?.shadowMap?.enabled??null,qualityReduced:v854QualityReduced,estimatedFPS:v854MeasuredFPS,seatProvisional:v854TemporarySeat,disconnectWarning:v854DisconnectWarning,connected,players:online.size,role:ENTRY_ROLE,room,sceneReady:!!loadersDone});
@@ -5748,7 +5852,8 @@ window.V8517_HANDLING_DIAGNOSTICS=()=>({
  steeringProfiles:V842_DRIVE_PROFILES,
  arrowKeysSupported:true,joystickOnly:true
 });
-window.V860_DIAGNOSTICS=()=>({version:'V85.17',quickRelease:!!document.getElementById('v866-release-fab')&&!document.getElementById('v866-release-fab').classList.contains('hidden'),disconnectReleaseRegistered:v866HostDisconnectRegistered,gatherButton:!!document.getElementById('v861-gather-here'),gatherType:v861RecallLockType(),rallySeat:v861CurrentTarget,isHost,hostMenu:!!document.getElementById('v860-host-top')&&!document.getElementById('v860-host-top').classList.contains('hidden'),seatLockAction:v855RecallAction(roomMeta?.recallSeq),onScreenArrowButtons:document.querySelectorAll('#royal-car-pad button,#v855-arrow-mode').length,joystickOnly:true,keyboardArrowsSupported:true});
+window.V8518_DIAGNOSTICS=()=>({version:'V85.18',teamSize:v83ActiveMembers().length,teamCanTravel:v83TeamComplete(),teamLeader:v83ActiveMembers()[0]?.id||null,awaitingNewJoiner:v8518NeedsJoinRally,classAction:v861RecallLockType(),snapshotSaved:!!v8518GetSnapshot(),restoreButtonPresent:!!document.getElementById('v8518-restore-fab'),hostPosition:[player?.position.x,player?.position.z]});
+window.V860_DIAGNOSTICS=()=>({version:'V85.18',quickRelease:!!document.getElementById('v866-release-fab')&&!document.getElementById('v866-release-fab').classList.contains('hidden'),disconnectReleaseRegistered:v866HostDisconnectRegistered,gatherButton:!!document.getElementById('v861-gather-here'),gatherType:v861RecallLockType(),rallySeat:v861CurrentTarget,isHost,hostMenu:!!document.getElementById('v860-host-top')&&!document.getElementById('v860-host-top').classList.contains('hidden'),seatLockAction:v855RecallAction(roomMeta?.recallSeq),onScreenArrowButtons:document.querySelectorAll('#royal-car-pad button,#v855-arrow-mode').length,joystickOnly:true,keyboardArrowsSupported:true});
 window.V859_DIAGNOSTICS=()=>({version:'V85.10',cinemaParking:!!v859CinemaParking,visibleExit:!!v837Exiting,cinemaAutoUsesAnimation:true,birdDescendsBeforeExit:true});
 window.V858_DIAGNOSTICS=()=>({version:'V85.9',mounted:v832MountedId,mountKeyboard:{...v858Keyboard},seatLock:v855RoomSeatingLocked(),seatIndex,team:v83TeamId,taken:Object.fromEntries(V832_TYPES.map(id=>[id,v832ChoiceTaken(id)])),ridePassThrough:true,chairNotJoinGate:true,autoBoardBlockedWhileLocked:true});
 window.V855_SEATING_DIAGNOSTICS=()=>({version:'V85.9',locked:v855RoomSeatingLocked(),recallSeq:roomMeta?.recallSeq||null,action:v855RecallAction(roomMeta?.recallSeq),arrows:document.body.classList.contains('v855-arrows'),mounted:v832MountedId,seatIndex,seated,connected,host:isHost});
