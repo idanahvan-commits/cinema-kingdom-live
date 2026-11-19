@@ -1,4 +1,4 @@
-<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>ממלכת NASA · חזית החללית · V104</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><style>
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>ממלכת NASA · חזית החללית · V104.1</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><style>
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#0a1321;color:#fff;font-family:Arial,sans-serif;touch-action:none}#scene{position:fixed;inset:0}#scene canvas{display:block}#hud{position:fixed;top:12px;right:12px;z-index:4;background:#07182bbb;border:1px solid #a4cce477;border-radius:16px;padding:11px 16px;max-width:min(78vw,340px);backdrop-filter:blur(8px)}#hud b{font-size:16px;color:#f5d98e}#hint{font-size:12px;line-height:1.7;color:#d5e7f8}#actions{position:fixed;bottom:24px;left:20px;right:auto;z-index:5;display:flex;gap:9px;flex-wrap:wrap;max-width:62vw}button{border:1px solid #e6d6a6;background:linear-gradient(#284b68,#122a45);color:#fff;border-radius:14px;padding:12px 18px;font:bold 15px Arial;box-shadow:0 4px 15px #0007;cursor:pointer}button:active{transform:scale(.97)}button[hidden]{display:none!important}#joy{position:fixed;bottom:23px;right:24px;left:auto;width:124px;height:124px;border:2px solid #b5d7f477;background:#183d6188;border-radius:50%;z-index:5;touch-action:none}#knob{position:absolute;left:38px;top:38px;width:44px;height:44px;background:radial-gradient(#e6f8ff,#6fa7d1);border:2px solid #fff;border-radius:50%;box-shadow:0 0 22px #9ce4ff77}#message{position:fixed;top:80px;left:50%;transform:translateX(-50%);z-index:6;background:#071627df;border:1px solid #d5b96c;border-radius:14px;padding:12px 20px;text-align:center;display:none;max-width:90vw}#loading{position:fixed;inset:0;z-index:20;display:grid;place-items:center;background:#091321;color:#fff;font-size:19px;text-align:center;padding:30px}#error{font-size:13px;color:#f7c5ae;margin-top:15px}#look{position:fixed;bottom:155px;right:26px;left:auto;color:#d9eaffaa;font-size:11px;pointer-events:none}#launchscreen{position:fixed;inset:0;z-index:10;pointer-events:none;display:grid;place-items:center;font:bold min(20vw,110px) Arial;color:#fff;text-shadow:0 0 30px #70baff;opacity:0}#small{position:fixed;top:12px;left:14px;z-index:5;font-size:12px;color:#dfebff;background:#0a2036a9;padding:8px 12px;border-radius:10px}@media(max-width:600px){#actions{left:12px;right:auto;bottom:25px;max-width:55vw}button{padding:11px;font-size:13px}#joy{right:14px;left:auto;bottom:19px;width:114px;height:114px}#knob{left:35px;top:35px}}
 #workpanel{position:fixed;z-index:12;top:50%;left:50%;transform:translate(-50%,-50%);width:min(92vw,420px);background:#10273df5;border:2px solid #e2bf72;border-radius:18px;padding:20px;line-height:1.7;box-shadow:0 18px 60px #000a;text-align:right}#workpanel[hidden]{display:none}#workpanel p{margin:9px 0}#workpanel input{width:85px;background:#edf5fa;border:0;border-radius:7px;padding:9px;color:#142333;font-size:18px;margin:0 8px}#workpanel label{display:inline-block;margin:8px 0}#workpanel button{margin:5px}#hud,#look,#message{display:none!important}#small{top:10px;left:12px;background:#102a4077;font-size:10px}#launchscreen{font-size:min(22vw,120px)}
 #workpanel{width:min(94vw,620px);max-height:88dvh;overflow:auto;padding:13px;background:#102335f8}#workpanel .worktop{display:flex;align-items:center;justify-content:space-between}#workpanel .worktop button{padding:5px 12px}.blueprint{border:2px solid #8dc2df;background:repeating-linear-gradient(0deg,#173d56,#173d56 19px,#25516c 20px);border-radius:9px;padding:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:center}.blueprint svg{width:100%}#draftSpecs{font-size:13px;line-height:1.7;color:#cfe8f8}.toolbox{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 0}.toolbox label{font-size:12px}#workpanel input{width:72px;margin:0 4px}.toolbox button{font-size:12px;padding:8px}#measure{min-height:24px;color:#ffe0a0;font-size:13px}#joy{border-color:#fbe0a6b8;background:radial-gradient(circle,#c4b4ea78,#3b2466d6 67%,#100a249c)}#knob{background:radial-gradient(circle at 31% 23%,#f7e4f4,#9c76b7 55%,#5c367e);border-color:#ffe5b1}#benchui{position:fixed;inset:0;z-index:7;pointer-events:none;display:none}#benchui.active{display:block}#benchui button{pointer-events:auto;position:absolute;top:14px;left:16px;border-radius:50%;padding:8px 13px}#notebook{position:absolute;right:12px;bottom:12px;width:min(36vw,280px);height:min(32vh,210px);border:8px solid #ad8553;border-radius:8px;background:#fff8e6;box-shadow:0 8px 28px #0009;pointer-events:auto;touch-action:none}#notebook canvas{width:100%;height:100%;touch-action:none;display:block}#benchui #erase{top:auto;bottom:15px;left:16px}#benchui #cutbench{top:auto;bottom:80px;left:16px}#benchui #measurebench{top:auto;bottom:145px;left:16px}@media(max-width:650px){#notebook{width:42vw;height:24vh;bottom:10px;right:8px}} #benchui #erase,#benchui #cutbench,#benchui #measurebench{display:none!important}#benchui{display:none!important}#benchui #notebook{display:none!important}#benchui #leavebench{background:#122a45aa;border:1px solid #fff8;font-size:16px}#workpanel,#actions #work{display:none!important}
@@ -1939,16 +1939,14 @@ function v86UpdatePeers(dt){for(const p of v86Peers.values()){
  p.g.userData.legs.forEach((l,i)=>l.rotation.x=Math.sin(performance.now()/200+i*Math.PI)*.32*walk);
 }}
 window.__NASA_BRIDGE_DIAGNOSTICS=()=>({version:'V86.0',live:!!nasaStart,avatar:nasaStart?.avatar,teammates:v86Peers.size,x:player.position.x,z:player.position.z});
+// V104.1: stop forcing all touch devices to 30 FPS.
+// Let each display present every available frame; adaptive resolution below
+// handles prolonged GPU overload without touching physics or motion.
 let lastNasaFrame=0,nextNasaFrame=0;
 function tick(now){
  requestAnimationFrame(tick);
  if(document.hidden||nasaPaused){lastNasaFrame=nextNasaFrame=0;resetQualitySample();return;}
- if(liteMode&&now+1<nextNasaFrame)return;
  const elapsed=lastNasaFrame?now-lastNasaFrame:33;
- if(liteMode){
-  const interval=1000/30;
-  nextNasaFrame=nextNasaFrame&&now-nextNasaFrame<interval?nextNasaFrame+interval:now+interval;
- }
  lastNasaFrame=now;
  const dt=Math.min(.10,elapsed/1000);
  clock.elapsedTime+=dt;
@@ -3755,6 +3753,7 @@ scene.traverse(object=>{if(object.isPointLight&&!taskLights.has(object))pointLig
 const qualityButton=$('#nasaQuality');
 if(nasaStart)document.body.classList.add('cinema-visitor');
 let qualityScale=1,qualitySampleStart=0,qualityFrames=0,qualityBench=null,qualityFPS=0;
+let v1041LowWindows=0,v1041FastWindows=0,v1041LastChange=0;
 function resetQualitySample(){
  qualitySampleStart=0;qualityFrames=0;
 }
@@ -3796,12 +3795,21 @@ function renderNasa(now){
  renderer.render(scene,camera);
  if(!qualitySampleStart){qualitySampleStart=now;qualityFrames=0;return;}
  qualityFrames++;
- if(now-qualitySampleStart<4500)return;
+ if(now-qualitySampleStart<6000)return;
  qualityFPS=Math.round(qualityFrames*1000/(now-qualitySampleStart));
- const floor=benchActive?.77:.58;
- if(liteMode&&qualityFPS<23&&qualityScale>floor){
-  qualityScale=Math.max(floor,qualityScale*.83);
-  fitNasaRenderer();
+ // V104.1: adapt on weak HP Windows computers as well as phones.
+ // Reduce only render-pixel work, not models, station logic or animations.
+ v1041LowWindows=qualityFPS<30?v1041LowWindows+1:0;
+ v1041FastWindows=qualityFPS>=54?v1041FastWindows+1:0;
+ const qualityFloor=benchActive?(liteMode?.73:.80):(liteMode?.60:.63);
+ if(now-v1041LastChange>8500){
+  if((v1041LowWindows>=2||qualityFPS<19)&&qualityScale>qualityFloor+.015){
+   qualityScale=Math.max(qualityFloor,+(qualityScale*.88).toFixed(3));
+   fitNasaRenderer();v1041LowWindows=0;v1041FastWindows=0;v1041LastChange=now;
+  }else if(v1041FastWindows>=3&&qualityScale<.995){
+   qualityScale=Math.min(1,+(qualityScale+.045).toFixed(3));
+   fitNasaRenderer();v1041FastWindows=0;v1041LastChange=now;
+  }
  }
  resetQualitySample();
 }
@@ -3812,9 +3820,10 @@ qualityButton.addEventListener('click',()=>{
  applyNasaQuality();
 });
 window.NASA_PERFORMANCE=()=>({
- lite:liteMode,pixelRatio:renderer.getPixelRatio(),fps:qualityFPS,
- drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,
- shadows:renderer.shadowMap.enabled,atWorkbench:benchActive
+ version:'V104.1',lite:liteMode,pixelRatio:renderer.getPixelRatio(),fps:qualityFPS,
+ qualityScale,drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,
+ shadows:renderer.shadowMap.enabled,atWorkbench:benchActive,
+ cinemaBridge:!!nasaStart,participants:v86Peers.size
 });
 renderer.setSize(innerWidth,innerHeight);
 applyNasaQuality();
