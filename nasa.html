@@ -387,7 +387,19 @@ html,body,button,input,textarea{font-family:'Heebo','Noto Sans Hebrew',Arial,san
 <style id="v91Style">
 #v91Undo{display:none;position:fixed;z-index:43;width:44px;height:44px;padding:0;min-height:44px;min-width:44px;white-space:nowrap;border-radius:999px;border:2px solid #b6faff;background:#061b2cf0;box-shadow:0 0 0 2px #28d4dc35,0 10px 26px #000b;color:#fff;font:900 28px 'Heebo',Arial,sans-serif;touch-action:manipulation;line-height:1;text-align:center}
 #v91Undo.active{display:block}#v91Undo:disabled{opacity:.48;cursor:default;pointer-events:none}
-</style></head><body>
+</style><style>
+#nasaQuality {
+ position:fixed;z-index:28;left:max(10px,env(safe-area-inset-left));top:max(10px,env(safe-area-inset-top));
+ min-height:44px;padding:6px 12px;border:1px solid #74b7cf;border-radius:12px;
+ font:700 13px Arial,sans-serif;color:#f1faff;background:#0e2639ed;touch-action:manipulation;
+}
+#nasaQuality.at-workbench{top:calc(max(10px,env(safe-area-inset-top)) + 50px)}
+body.cinema-visitor #nasaQuality{top:calc(max(10px,env(safe-area-inset-top)) + 50px)}
+body.cinema-visitor #nasaQuality.at-workbench{top:calc(max(10px,env(safe-area-inset-top)) + 95px)}
+#nasaQuality[aria-pressed="true"]{border-color:#86e0d6;color:#d3fff6}
+#nasaQuality:focus-visible{outline:2px solid white;outline-offset:3px}
+</style>
+</head><body>
 <div id="scene"></div>
 <aside id="v85Console" aria-label="מסך המדידות" aria-live="off"><h2>מסך המדידות</h2><div class="v85Subtitle">תחנה 1/4 · חזית החללית</div><div id="v85Content"></div></aside><section id="v63Brief" role="dialog" aria-label="תדריך משימה — חזית החללית">
   <div class="v74BriefIcon" aria-hidden="true">🚀</div>
@@ -429,7 +441,7 @@ html,body,button,input,textarea{font-family:'Heebo','Noto Sans Hebrew',Arial,san
 <button id="v49BeginAnimation" type="button">ממשיכים למדידת החזית</button>
 <div id="v49AssemblyScene" aria-label="תצוגת גיבוי של תהליך ההרכבה"><div class="v49AssemblyLabel">מצלמת הרכבה · חזית החללית</div><canvas id="v49AssemblyCanvas" width="1060" height="660"></canvas><div class="v49AssemblyBottom" id="v49AssemblyCaption"></div></div>
 <div id="v48Assembly" aria-live="polite"><span id="v48AssemblyText">הרכבת חזית החללית</span><div class="v48Dots" id="v48AssemblyDots"></div></div>
-<button id="v45Transfer" type="button" aria-label="העברת הנתון ללוח">↗ העבירו ללוח</button><div id="loading">מכינים את האנגר נאס״א...<div id="error"></div></div><div id="hud"><b>בס״ד · משימת החלל</b><div id="hint">התבוננו במתחם נאס״א. התקדמו בג׳ויסטיק לעבר ההאנגר — השערים ייפתחו לבד.</div></div><div id="small">בס״ד</div><div id="message"></div><div id="launchscreen"></div><div id="joy"><div id="knob"></div></div><button id="v25Exit" hidden>✕ יציאה</button><button id="v25Help" hidden>💡 רמז</button><div id="v25HelpText" hidden></div><div id="v25HintWrap" style="display:none"><div id="v25Stage">01 · חזית החללית</div><div id="v25Hint"></div></div><div id="look">גרירה: מבט · שתי אצבעות: זום</div><div id="workpanel" hidden inert><div class="worktop"><strong id="stationTitle">שרטוט הנדסי</strong><button id="closework" aria-label="סגירה">✕</button></div><div class="blueprint" id="blueprint"><svg viewBox="0 0 320 135"><rect x="68" y="12" width="180" height="110" rx="3" fill="none" stroke="#94d8ff" stroke-width="2"/><rect x="109" y="40" width="98" height="54" fill="none" stroke="#f4d48c" stroke-width="2"/><path d="M68 129 H248 M57 12 V122" stroke="#b5e9ff" stroke-width="1"/><text x="157" y="128" fill="#dceeff" font-size="11">L</text><text x="42" y="70" fill="#dceeff" font-size="11">L</text><text x="154" y="69" text-anchor="middle" fill="#ffe3a6" font-size="11">פתח</text></svg><div id="draftSpecs"></div></div><div class="toolbox"><label>מדידה א׳<input id="pa" inputmode="text" value="3" aria-label="מדידה א"></label><label>מדידה ב׳<input id="pb" inputmode="text" value="2" aria-label="מדידה ב"></label><button id="measureTool">📐 מדידה</button><button id="cutTool">⚙️ חיתוך</button><button id="fabricate">🔩 ייצור חלק</button></div><div id="measure" role="status"></div></div><div id="benchui"><button id="leavebench" aria-label="חזרה">✕</button><button id="erase" aria-label="מחיקת מחברת">⌫</button><button id="cutbench" aria-label="הפעלת מכונת חיתוך">⚙️</button><button id="measurebench" aria-label="סרגל">📐</button><div id="notebook"><canvas id="notes"></canvas></div></div><div id="actions"><button id="work" hidden></button><button id="pickup" hidden>✋ הרמת חלק</button><button id="install" hidden>🔧 הרכבה</button><button id="launch" hidden>🚀 שיגור</button><button id="exit" hidden>יציאה מהחללית</button><button id="reset" hidden>התחלה מחדש</button></div>
+<button id="v45Transfer" type="button" aria-label="העברת הנתון ללוח">↗ העבירו ללוח</button><button id="nasaQuality" type="button" dir="rtl" aria-pressed="false" hidden>מצב קל</button><div id="loading">מכינים את האנגר נאס״א...<div id="error"></div></div><div id="hud"><b>בס״ד · משימת החלל</b><div id="hint">התבוננו במתחם נאס״א. התקדמו בג׳ויסטיק לעבר ההאנגר — השערים ייפתחו לבד.</div></div><div id="small">בס״ד</div><div id="message"></div><div id="launchscreen"></div><div id="joy"><div id="knob"></div></div><button id="v25Exit" hidden>✕ יציאה</button><button id="v25Help" hidden>💡 רמז</button><div id="v25HelpText" hidden></div><div id="v25HintWrap" style="display:none"><div id="v25Stage">01 · חזית החללית</div><div id="v25Hint"></div></div><div id="look">גרירה: מבט · שתי אצבעות: זום</div><div id="workpanel" hidden inert><div class="worktop"><strong id="stationTitle">שרטוט הנדסי</strong><button id="closework" aria-label="סגירה">✕</button></div><div class="blueprint" id="blueprint"><svg viewBox="0 0 320 135"><rect x="68" y="12" width="180" height="110" rx="3" fill="none" stroke="#94d8ff" stroke-width="2"/><rect x="109" y="40" width="98" height="54" fill="none" stroke="#f4d48c" stroke-width="2"/><path d="M68 129 H248 M57 12 V122" stroke="#b5e9ff" stroke-width="1"/><text x="157" y="128" fill="#dceeff" font-size="11">L</text><text x="42" y="70" fill="#dceeff" font-size="11">L</text><text x="154" y="69" text-anchor="middle" fill="#ffe3a6" font-size="11">פתח</text></svg><div id="draftSpecs"></div></div><div class="toolbox"><label>מדידה א׳<input id="pa" inputmode="text" value="3" aria-label="מדידה א"></label><label>מדידה ב׳<input id="pb" inputmode="text" value="2" aria-label="מדידה ב"></label><button id="measureTool">📐 מדידה</button><button id="cutTool">⚙️ חיתוך</button><button id="fabricate">🔩 ייצור חלק</button></div><div id="measure" role="status"></div></div><div id="benchui"><button id="leavebench" aria-label="חזרה">✕</button><button id="erase" aria-label="מחיקת מחברת">⌫</button><button id="cutbench" aria-label="הפעלת מכונת חיתוך">⚙️</button><button id="measurebench" aria-label="סרגל">📐</button><div id="notebook"><canvas id="notes"></canvas></div></div><div id="actions"><button id="work" hidden></button><button id="pickup" hidden>✋ הרמת חלק</button><button id="install" hidden>🔧 הרכבה</button><button id="launch" hidden>🚀 שיגור</button><button id="exit" hidden>יציאה מהחללית</button><button id="reset" hidden>התחלה מחדש</button></div>
 <div id="v35Board" aria-live="polite"><div id="v35BoardHead"><span>חזית החללית <small>· תחנה 01</small></span><span id="v35Progress">● ○ ○ ○ ○</span></div><div id="v35BoardRows"></div></div>
 <button id="v35Zoom" aria-label="הגדלת לוח החישובים">🔎</button>
 <div id="v35Guide"></div><div id="v38InspectTip" aria-live="polite">בחרו a² או b² · בחרו את שניהם בזה אחר זה · "ההפרש" מציג את ארבעת הלוחות</div>
@@ -502,6 +514,30 @@ setTimeout(function(){const loading=document.getElementById('loading');const err
 </script>
 <script type="module" onerror="document.getElementById('error').textContent='לא ניתן לטעון את מנוע התלת־ממד. פתחו את הקובץ מתוך תיקיית הורדות באמצעות Chrome וודאו חיבור לאינטרנט.'">
 // Load Three.js with a second provider as a fallback. This is a real WebGL scene.
+const bootMatch=/^#cinema=(\d+)$/.exec(location.hash);
+const bridgeLoadId=window.parent!==window&&bootMatch?Number(bootMatch[1]):null;
+const bridgeOrigin=location.origin==='null'?'*':location.origin;
+function nasaPost(message){
+ if(bridgeLoadId!==null)parent.postMessage({...message,loadId:bridgeLoadId},bridgeOrigin);
+}
+function isCinemaMessage(e){
+ return bridgeLoadId!==null&&e.source===parent&&e.origin===location.origin&&e.data?.loadId===bridgeLoadId;
+}
+const nasaStart=bridgeLoadId===null?null:await new Promise(resolve=>{
+ function receive(e){
+  if(!isCinemaMessage(e)||e.data.type!=='kingdom-nasa-init')return;
+  removeEventListener('message',receive);clearTimeout(timer);resolve(e.data);
+ }
+ const timer=setTimeout(()=>{removeEventListener('message',receive);resolve(null);},10000);
+ addEventListener('message',receive);
+ nasaPost({type:'kingdom-nasa-request'});
+});
+if(bridgeLoadId!==null&&!nasaStart)throw new Error('לא התקבל חיבור משער נאס״א.');
+let nasaPaused=Boolean(nasaStart);
+addEventListener('message',e=>{
+ if(isCinemaMessage(e)&&e.data.type==='kingdom-nasa-pause')nasaPaused=Boolean(e.data.paused);
+});
+
 let THREE;
 const threeSources=[
  'https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js',
@@ -518,8 +554,32 @@ if(!THREE){
   }
   throw new Error('Cannot load the 3D engine from either provider');
 }
-const $=s=>document.querySelector(s),scene=new THREE.Scene();scene.background=new THREE.Color(0x8fb8d5);scene.fog=new THREE.FogExp2(0x8fb8d5,.0025);const camera=new THREE.PerspectiveCamera(64,innerWidth/innerHeight,.1,1500),renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance'});renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,2.65,Math.sqrt(2600000/(innerWidth*innerHeight))));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.4;$('#scene').append(renderer.domElement);
-scene.add(new THREE.HemisphereLight(0xd8f0ff,0x3a4357,2.1));const sun=new THREE.DirectionalLight(0xfff1d2,3.3);sun.position.set(-35,65,40);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);sun.shadow.camera.left=-95;sun.shadow.camera.right=95;sun.shadow.camera.top=95;sun.shadow.camera.bottom=-95;scene.add(sun);
+const $=s=>document.querySelector(s);
+const touchDevice=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)||
+ (navigator.maxTouchPoints>1&&(matchMedia('(pointer: coarse)').matches||/Mac/i.test(navigator.platform)));
+const qualityKey='nasa_v104_quality';
+let liteMode=touchDevice;
+try{
+ const saved=localStorage.getItem(qualityKey);
+ if(saved==='lite'||saved==='full')liteMode=saved==='lite';
+}catch(_){}
+const scene=new THREE.Scene();
+scene.background=new THREE.Color(0x8fb8d5);
+scene.fog=new THREE.FogExp2(0x8fb8d5,.0025);
+const camera=new THREE.PerspectiveCamera(64,innerWidth/innerHeight,.1,1500);
+const renderer=new THREE.WebGLRenderer({antialias:!touchDevice,powerPreference:'high-performance'});
+renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+renderer.outputColorSpace=THREE.SRGBColorSpace;
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure=1.4;
+$('#scene').append(renderer.domElement);
+const skyLight=new THREE.HemisphereLight(0xd8f0ff,0x3a4357,2.1);
+scene.add(skyLight);
+const sun=new THREE.DirectionalLight(0xfff1d2,3.3);
+sun.position.set(-35,65,40);sun.castShadow=true;
+sun.shadow.mapSize.set(2048,2048);
+sun.shadow.camera.left=-95;sun.shadow.camera.right=95;
+sun.shadow.camera.top=95;sun.shadow.camera.bottom=-95;scene.add(sun);
 const mat=(c,metal=0,rough=.6)=>new THREE.MeshStandardMaterial({color:c,metalness:metal,roughness:rough});const steel=mat(0x667d92,.65,.36),dark=mat(0x182c42,.65,.4),white=mat(0xdce9f0,.45,.34),gold=mat(0xd9b76d,.65,.28),glass=new THREE.MeshPhysicalMaterial({color:0x7fc5ed,metalness:.15,roughness:.08,transparent:true,opacity:.52,side:THREE.DoubleSide});const glow=new THREE.MeshBasicMaterial({color:0x8fe7ff});const group=(parent,x=0,y=0,z=0)=>{let o=new THREE.Group();o.position.set(x,y,z);parent.add(o);return o};function box(p,x,y,z,w,h,d,m){let o=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m);o.position.set(x,y,z);o.castShadow=true;o.receiveShadow=true;p.add(o);return o}function cyl(p,x,y,z,rt,rb,h,m,n=24){let o=new THREE.Mesh(new THREE.CylinderGeometry(rt,rb,h,n),m);o.position.set(x,y,z);o.castShadow=true;p.add(o);return o}function sphere(p,x,y,z,r,m){let o=new THREE.Mesh(new THREE.SphereGeometry(r,16,12),m);o.position.set(x,y,z);o.castShadow=true;p.add(o);return o}function textSprite(t,size=2,color='#f4f4fa'){let c=document.createElement('canvas');c.width=1024;c.height=200;let ctx=c.getContext('2d');ctx.clearRect(0,0,1024,200);ctx.font="800 105px 'Heebo','Noto Sans Hebrew',Arial,sans-serif";ctx.fillStyle=color;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(t,512,104);let tex=new THREE.CanvasTexture(c);let o=new THREE.Sprite(new THREE.SpriteMaterial({map:tex,transparent:true,depthWrite:false}));o.scale.set(size*5,size,1);return o}
 const floor=box(scene,0,-.32,0,350,.5,350,mat(0x576c6e));const road=box(scene,0,-.04,35,13,.06,125,mat(0x303c48));for(let z=-22;z<85;z+=10)box(scene,0,.02,z,.17,.025,4,mat(0xf0e7bd));
 // Hangar: large walk-in open-sided volume with sliding entrance doors.
@@ -805,7 +865,119 @@ function makePerson(type=0){
  a.userData={arms,legs,bent,torso,phase:type};return a;
 }
 function seatedPose(person){person.userData.legs.forEach(l=>l.visible=false);person.userData.bent.visible=true;person.userData.arms[0].rotation.x=-.48;person.userData.arms[1].rotation.x=-.48;}
-const player=makePerson(0);scene.add(player);player.position.set(0,0,43);
+// V86: lightweight aliases for the original cinema royal character geometries.
+const v86GeoCache=new Map();
+function geom(kind,...args){const key=kind+args.join(',');let g=v86GeoCache.get(key);if(g)return g;
+ g=kind==='box'?new THREE.BoxGeometry(...args):kind==='sphere'?new THREE.SphereGeometry(args[0],args[1]||14,args[2]||10):kind==='cyl'?new THREE.CylinderGeometry(...args):kind==='cone'?new THREE.ConeGeometry(...args):new THREE.TorusGeometry(...args);v86GeoCache.set(key,g);return g;}
+function mesh(g,m,p,x=0,y=0,z=0){const o=new THREE.Mesh(g,m);o.position.set(x,y,z);p.add(o);return o;}
+const B=(p,x,y,z,w,h,d,m)=>mesh(geom('box',w,h,d),m,p,x,y,z);
+const S=(p,x,y,z,r,m,n=12)=>mesh(geom('sphere',r,n,Math.max(7,n-2)),m,p,x,y,z);
+const C=(p,x,y,z,a,b,h,m,n=12)=>mesh(geom('cyl',a,b,h,n),m,p,x,y,z);
+const K=(p,x,y,z,r,h,m)=>mesh(geom('cone',r,h,12),m,p,x,y,z);
+function ring(p,x,y,z,r,t,m,rot=0){const o=mesh(geom('torus',r,t,6,32),m,p,x,y,z);o.rotation.x=rot;return o;}
+function pathTube(p,pts,r,m){return mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts.map(q=>new THREE.Vector3(...q))),Math.max(12,pts.length*7),r,6,false),m,p);}
+function makeKingdomCharacter(type=0,name='',withLabel=false){
+ const i=((type%8)+8)%8, root=group(new THREE.Group());root.userData.kind=i;root.scale.setScalar(1.17);
+ const palette=[
+ [0xdb84cb,0x9f4dbb,0x42274b,0xf0c4aa,0x4b2939],
+ [0x638ad8,0x344b98,0x1e2a48,0xb98164,0x27252c],
+ [0x60aa8c,0x2d6e61,0x273b3a,0xd5a082,0x4b3024],
+ [0xa6afcd,0x56688c,0x212e4f,0xd19c81,0x45352f],
+ [0xe7ae82,0xb9639a,0x5c2e4c,0xf1c7af,0x594236],
+ [0xc76eab,0x7b395f,0x3e224d,0xad775a,0x31272d],
+ [0x7ac8d4,0x458ba0,0x273b4a,0xe3b79a,0x3b3a41],
+ [0xf0c4e4,0xc284d8,0x6c417f,0xf2d0b6,0x60382d]
+ ][i];
+ let [col,secondary,shoeCol,skinCol,hairCol]=palette;
+ const skin=mat(skinCol),hair=mat(hairCol),cloth=mat(col,.09,.50),cloth2=mat(secondary,.15,.52),shoe=mat(shoeCol,.15,.58),eyeball=mat(0xfff7ed),iris=mat(0x293047),trim=mat(0xf9d895,.78,.27),jewel=mat([0xffe1f1,0x91b5ff,0x8ae6c4,0xfbe3b2,0xbde6ff,0xff819d,0x9eecff,0xffa6db][i],.42,.17,.2);
+ // Face, neck and real 3D eyebrows/eyes/nose, with separate hair shapes.
+ const body=group(root);const headRig=group(body,0,2.25,0);
+ C(body,0,1.92,0,.11,.12,.34,skin);let head=S(headRig,0,0,0,.29,skin,18);head.scale.set(.97,1.17,.87);S(headRig,0,-.15,.08,.18,skin).scale.set(.9,.65,.8);
+ for(const side of [-1,1]){
+  S(headRig,side*.285,-.04,.0,.09,skin,10).scale.set(.45,.72,.6);
+  S(headRig,side*.125,.012,.240,.057,eyeball,12).scale.set(1.18,.64,.36);
+  S(headRig,side*.129,.01,.265,.026,iris,12).scale.set(.8,.95,.35);
+  S(headRig,side*.128,.034,.277,.008,mat(0xffffff),9);
+  let brow=S(headRig,side*.130,.092,.232,.075,hair,9);brow.scale.set(1.1,.14,.35);
+  S(headRig,side*.19,-.107,.19,.092,skin,10).scale.set(.8,.55,.52);
+ }
+ S(headRig,0,-.087,.264,.069,skin).scale.set(.63,1,.9);
+ let mouth=pathTube(headRig,[[-.073,-.191,.218],[0,-.214,.236],[.073,-.191,.218]],.011,mat(0xa66b71));
+ const style=i%4;const scalp=S(headRig,0,.18,-.04,.30,hair,15);scalp.scale.set(1.04,.68,1.0);
+ if(style===0||style===3){for(let side of [-1,1])S(headRig,side*.275,.012,-.065,.15,hair).scale.set(.65,1.65,1.1)}
+ if(style===1){for(let k=0;k<8;k++)S(headRig,-.26+k*.073,.22+(k%3)*.05,.12,.085,hair,10)}
+ if(style===2){for(let k=0;k<11;k++){let a=k*2.39;S(headRig,Math.cos(a)*.18,.30,Math.sin(a)*.17,.103,hair,10)}}
+ // Intricate royal clothing, unique to each role.
+ const coat=S(body,0,1.42,0,.43,cloth);coat.scale.set(.93,1.00,.57);
+ const waist=S(body,0,1.08,.015,.32,cloth2);waist.scale.set(1.07,.56,.68);
+ for(const s of [-1,1]){let ep=S(body,s*.35,1.62,0,.20,trim);ep.scale.set(1.03,.46,.95);S(body,s*.38,1.65,.12,.07,jewel).scale.set(.8,1.1,.6)}
+ B(body,0,1.03,.25,.65,.11,.09,trim);for(let k=0;k<3;k++)S(body,0,1.47-k*.17,.28,.035,jewel,10);
+ let capeRig=group(body,0,1.55,-.28),cape=mesh(geom('cyl',.37,.75,1.6,12,1,true),cloth2,capeRig,0,-.66,-.14);cape.material.side=THREE.DoubleSide;cape.scale.set(1,.90,.55);
+ const royalDress=[0,4,5,7].includes(i);
+ if(royalDress){let skirt=mesh(geom('cyl',.28,.79,1.2,20,1,true),cloth,body,0,.63,0);skirt.material.side=THREE.DoubleSide;body.userData.skirt=skirt;ring(body,0,.04,0,.77,.04,trim,Math.PI/2);for(let s of [-1,1]){let sw=S(body,s*.42,.25,.35,.25,cloth2);sw.scale.set(.9,.60,.6)}}
+ else{for(const s of [-1,1]){B(body,s*.18,1.02,.16,.26,.43,.3,cloth2);B(body,s*.18,.64,.10,.29,.08,.32,trim)}}
+ // Garment seams, pearls, collar and patterned hems give characters dimensional detail.
+ for(const side of [-1,1]){
+  const collar=S(body,side*.18,1.87,.20,.19,trim,12);collar.scale.set(.78,.16,.57);
+  for(let j=0;j<4;j++)S(body,side*(.26+j*.055),1.36-j*.16,.31,.022,jewel,8);
+ }
+ for(let k=0;k<7;k++){
+  let a=k*2*Math.PI/7;
+  S(body,Math.cos(a)*.48,.35,Math.sin(a)*.41,.052,trim,10);
+ }
+ if([0,1,4,7].includes(i)){
+  let crown=group(headRig,0,.37,0);ring(crown,0,0,0,.285,.048,trim,Math.PI/2);for(let k=0;k<7;k++){let a=k*Math.PI*2/7;K(crown,Math.cos(a)*.265,.11+(k%3)*.024,Math.sin(a)*.265,.068,.23,trim);S(crown,Math.cos(a)*.265,.22+(k%3)*.026,Math.sin(a)*.265,.05,jewel,8)}
+ }else if(i===2||i===5){K(headRig,0,.59,-.02,.43,.83,cloth);C(headRig,0,.31,0,.50,.48,.08,trim);S(headRig,-.17,.62,.27,.09,jewel)}
+ else{B(headRig,0,.36,.05,.65,.16,.5,trim);for(let s of [-1,1])B(headRig,s*.24,.45,.03,.20,.18,.48,cloth2);S(headRig,0,.42,.29,.10,jewel)}
+ const arms=[],elbows=[],wrists=[],fingers=[],legs=[];
+ for(const s of [-1,1]){
+  const arm=group(body,s*.48,1.62,0);
+  let sleeve=C(arm,s*.03,-.22,0,.155,.135,.43,cloth2,12);sleeve.rotation.z=s*.06;
+  S(arm,s*.055,-.43,.01,.142,cloth2,12);
+  const elbow=group(arm,s*.075,-.45,.02);
+  C(elbow,0,-.17,.04,.100,.117,.34,skin,12);
+  ring(elbow,0,-.035,.04,.115,.018,trim,Math.PI/2);
+  const wrist=group(elbow,0,-.35,.055);
+  const hand=S(wrist,0,-.075,.018,.105,skin,14);hand.scale.set(.82,1.08,.40);
+  // Distinct knuckles and finger joints, low-poly enough for 32 live avatars.
+  const fingerSet=[];
+  for(let f=0;f<4;f++){
+   const xx=(f-1.5)*.042;
+   const finger=group(wrist,xx,-.145,.025);
+   C(finger,0,-.053,0,.020,.023,.11,skin,7);
+   const knuckle=group(finger,0,-.11,0);C(knuckle,0,-.039,0,.017,.019,.078,skin,7);
+   knuckle.rotation.x=f*.07;finger.rotation.z=(f-1.5)*.10;fingerSet.push(knuckle);
+  }
+  const thumb=group(wrist,s*.092,-.065,.048);thumb.rotation.z=-s*.64;
+  C(thumb,0,-.047,0,.028,.033,.099,skin,8);
+  arms.push(arm);elbows.push(elbow);wrists.push(wrist);fingers.push(fingerSet);
+  const leg=group(body,s*.19,.91,0);if(!royalDress){C(leg,0,-.36,.0,.135,.16,.74,cloth2);C(leg,0,-.73,.04,.15,.15,.34,shoe);B(leg,0,-.87,.16,.34,.17,.50,shoe)}else {C(leg,0,-.43,.0,.115,.15,.80,cloth2);B(leg,0,-.80,.10,.28,.15,.37,shoe)}legs.push(leg);
+ }
+ if([2,5].includes(i)){const staff=group(arms[1],.07,-.60,.17);C(staff,.08,0,0,.055,.055,2.3,trim,9);S(staff,.08,1.18,0,.21,jewel)}
+ if([3,6].includes(i)){let sword=group(arms[0],0,-.55,.20);B(sword,0,-.24,0,.08,.72,.08,mat(0xcbd1e0,.88,.19));B(sword,0,.17,0,.34,.08,.09,gold)}
+ // Separate bent thigh/shin meshes make a seated figure look anatomical.
+ // The original standing legs are hidden ONLY while seated.
+ const seatedLegs=group(body,0,0,0);seatedLegs.visible=false;
+ for(const side of [-1,1]){
+   const sx=side*.195;
+   const thigh=C(seatedLegs,sx,.72,.48,.145,.14,.86,cloth2,12);
+   thigh.rotation.x=Math.PI/2;
+   S(seatedLegs,sx,.70,.87,.148,cloth2,12).scale.set(1,.92,1);
+   const shin=C(seatedLegs,sx,.43,.87,.126,.137,.60,cloth2,12);
+   const shoeMesh=B(seatedLegs,sx,.15,1.075,.32,.17,.59,shoe);
+   S(seatedLegs,sx,.16,.85,.146,shoe,12);
+ }
+ const nameTag=null; // keep participant names in room data, not floating on each avatar
+ if(nameTag){nameTag.traverse(o=>{if(o.isMesh)o.material.transparent=true});nameTag.userData.nameTex=nameTag.userData.labelTex}
+ root.userData={kind:i,rig:body,head:headRig,cape:capeRig,arms,elbows,wrists,fingers,legs,seatedLegs,phase:Math.random()*7,nameTag};
+ return root;
+}
+
+const player=nasaStart?makeKingdomCharacter(Number(nasaStart.avatar)||0):makePerson(0);
+if(nasaStart){player.userData.bent=player.userData.seatedLegs;player.userData.torso=player.userData.rig;}
+scene.add(player);player.position.set(0,0,43);
+if(nasaStart?.position){const p=nasaStart.position;
+ if(Number.isFinite(p.x)&&Number.isFinite(p.z))player.position.set(Math.max(-125,Math.min(125,p.x)),0,Math.max(-105,Math.min(140,p.z)));}
 // Four spatial engineering bays. Each has a 3D blueprint surface and a real fabricated module.
 const stationDefs=[
  {name:'חרטום',topic:'קודקוד פרבולה',x:-31,z:-10.6,target:[3,4],detail:'שרטוט עתידי'},
@@ -1660,7 +1832,7 @@ for(let i=0;i<14;i++){
 }
 let cinematicBirdScatter=0;
 let state='outside',doorAmount=0,hatchAmount=0,roofAmount=0,launchTime=0,verticalSpeed=0;
-let playerHeading=Math.PI,camOrbit=0,camPitch=.20,camDist=11,interiorYaw=0,interiorPitch=.1,moveVel=new THREE.Vector3(),joyX=0,joyY=0;
+let playerHeading=nasaStart?.position?.yaw??Math.PI,camOrbit=0,camPitch=.20,camDist=11,interiorYaw=0,interiorPitch=.1,moveVel=new THREE.Vector3(),joyX=0,joyY=0;
 let lastSmoke=0,smoke=[],lastInfo='';
 const controlView=new THREE.Vector3(64,34,84);
 const controlTarget=new THREE.Vector3(0,18,-39);
@@ -1692,13 +1864,14 @@ function sit(){if(state!=='cabin'||!installedModules.every(Boolean))return;setMo
 launchBtn.onclick=()=>{if(state!=='seated')return;detached=true;detachProgress=0;setMode('countdown');launchTime=0;roofAmount=0;verticalSpeed=0;camera.position.set(12,16,-7);camera.lookAt(0,14,-39);};
 resetBtn.onclick=()=>location.reload();
 // Layered cloud banks along the ascent route, independent of the vehicle.
+const ascentClouds=[];
 const cloudMat=new THREE.MeshBasicMaterial({color:0xf8fbff,transparent:true,opacity:.63,depthWrite:false});
 for(let layer=0;layer<5;layer++){
  const altitude=34+layer*13;
  for(let i=0;i<11;i++){
   const a=i*Math.PI*2/11+layer*.7,r=18+(i%4)*9;
   const puff=sphere(scene,Math.cos(a)*r,altitude+(i%3)*2,-39+Math.sin(a)*r,5+(i%4)*2,cloudMat);
-  puff.scale.set(1.7,.44,1.15);puff.castShadow=false;
+  puff.scale.set(1.7,.44,1.15);puff.castShadow=false;ascentClouds.push(puff);
  }
 }
 
@@ -1727,19 +1900,69 @@ function follow(pos,dt,dist=camDist,height=3){
  camera.position.lerp(goal,Math.min(1,dt*5.2));camera.lookAt(pos.x,pos.y+1.65,pos.z);
 }
 function smokePuff(){const puff=sphere(scene,rocket.position.x+(Math.random()-.5)*3,rocket.position.y+Math.random()*1,rocket.position.z-39+(Math.random()-.5)*3,1.2+Math.random()*1.6,new THREE.MeshBasicMaterial({color:0xc7d2d9,transparent:true,opacity:.6,depthWrite:false}));puff.castShadow=false;smoke.push({obj:puff,age:0,vx:(Math.random()-.5)*5,vz:(Math.random()-.5)*5});}
-const clock=new THREE.Clock(),target=new THREE.Vector3();
+const clock={elapsedTime:0},target=new THREE.Vector3();
 // Intro camera establishes the whole building and blue sky before approaching the avatar.
-let intro=3.5;camera.position.set(0,54,133);camera.fov=77;camera.updateProjectionMatrix();camera.lookAt(0,19,-29);
-function tick(){requestAnimationFrame(tick);const dt=Math.min(.04,clock.getDelta());
+const nasaOpeningDuration=3.5;
+let intro=nasaStart?.showOpening===false?0:nasaOpeningDuration;
+if(intro>0){
+ camera.position.set(0,54,133);
+ camera.fov=77;
+ camera.updateProjectionMatrix();
+ camera.lookAt(0,19,-29);
+}else{
+ camera.position.set(player.position.x-Math.sin(playerHeading)*11,4,player.position.z-Math.cos(playerHeading)*11);
+ camera.lookAt(player.position.x,1.65,player.position.z);
+}
+
+// V86: continuous room bridge, no independent Firebase login or extra room key.
+const v86Peers=new Map();let v86LastPositionSend=0;
+function v86SendPosition(){if(!nasaStart)return;
+ const now=performance.now();if(now-v86LastPositionSend<220)return;v86LastPositionSend=now;
+ nasaPost({type:'kingdom-nasa-position-v86',x:+player.position.x.toFixed(2),z:+player.position.z.toFixed(2),yaw:+player.rotation.y.toFixed(3),state:state,phase:typeof F25==='object'?F25.phase:''});}
+window.addEventListener('message',function(e){if(!nasaStart||!isCinemaMessage(e))return;
+ const m=e.data;if(m?.type!=='kingdom-nasa-peers-v86'||!Array.isArray(m.peers))return;
+ const active=new Set();
+ for(const d of m.peers){if(!d?.id||!Number.isFinite(d.x)||!Number.isFinite(d.z))continue;
+  active.add(d.id);let peer=v86Peers.get(d.id);
+  if(!peer){const g=makeKingdomCharacter(Number(d.avatar)||0);g.userData.bent=g.userData.seatedLegs;
+   g.position.set(d.x,0,d.z);scene.add(g);
+   const tag=textSprite(String(d.name||'משתתף').slice(0,22),.55,'#fff0c1');tag.position.set(0,3.4,0);g.add(tag);
+   peer={g,x:d.x,z:d.z,yaw:d.yaw||0};v86Peers.set(d.id,peer);}
+  peer.x=d.x;peer.z=d.z;peer.yaw=d.yaw||0;
+ }
+ for(const [id,p] of v86Peers)if(!active.has(id)){scene.remove(p.g);v86Peers.delete(id);}
+});
+function v86UpdatePeers(dt){for(const p of v86Peers.values()){
+ const a=Math.min(1,dt*7);p.g.position.x+=(p.x-p.g.position.x)*a;p.g.position.z+=(p.z-p.g.position.z)*a;
+ p.g.rotation.y+=Math.atan2(Math.sin(p.yaw-p.g.rotation.y),Math.cos(p.yaw-p.g.rotation.y))*a;
+ const walk=Math.min(1,Math.hypot(p.x-p.g.position.x,p.z-p.g.position.z));
+ p.g.userData.legs.forEach((l,i)=>l.rotation.x=Math.sin(performance.now()/200+i*Math.PI)*.32*walk);
+}}
+window.__NASA_BRIDGE_DIAGNOSTICS=()=>({version:'V86.0',live:!!nasaStart,avatar:nasaStart?.avatar,teammates:v86Peers.size,x:player.position.x,z:player.position.z});
+let lastNasaFrame=0,nextNasaFrame=0;
+function tick(now){
+ requestAnimationFrame(tick);
+ if(document.hidden||nasaPaused){lastNasaFrame=nextNasaFrame=0;resetQualitySample();return;}
+ if(liteMode&&now+1<nextNasaFrame)return;
+ const elapsed=lastNasaFrame?now-lastNasaFrame:33;
+ if(liteMode){
+  const interval=1000/30;
+  nextNasaFrame=nextNasaFrame&&now-nextNasaFrame<interval?nextNasaFrame+interval:now+interval;
+ }
+ lastNasaFrame=now;
+ const dt=Math.min(.10,elapsed/1000);
+ clock.elapsedTime+=dt;
+ v86UpdatePeers(dt);v86SendPosition();
+ const openingShot=intro>0;
+
  boardingStairs.visible=installedModules.every(Boolean);
  const stationIndex=nearStation();
- workBtn.hidden=true;
- workBtn.hidden=stationIndex!==2||benchActive||F25.phase==='done'||F25.cartMode;workBtn.textContent='▶ תחילת עבודה · חזית החללית';f25Hud();
+ workBtn.hidden=stationIndex!==2||benchActive||F25.phase==='done'||F25.cartMode;f25Hud();
  if(stationIndex!==2)benchExited=false;
  pickupBtn.hidden=true;
  installBtn.hidden=!(F25.phase==='dock'&&!benchActive);
- document.querySelector('#joy').style.display=(F25.phase==='dock'||F25.phase==='installing'||F25.needsReturn||Boolean(window.__NASA_V88_RETURN_ACTIVE)||!document.getElementById('v88MissionBoard').hidden)?'none':(benchActive?'none':'block');
- if(!installBtn.hidden)installBtn.textContent='🔧 התקנה בחללית';
+ document.querySelector('#joy').style.display=(openingShot||F25.phase==='dock'||F25.phase==='installing'||F25.needsReturn||Boolean(window.__NASA_V88_RETURN_ACTIVE)||!document.getElementById('v88MissionBoard').hidden)?'none':(benchActive?'none':'block');
+ 
  if(carriedStation>=0){player.userData.arms.forEach((a,i)=>{a.rotation.x=-1.1;a.rotation.z=i===0?-.42:.42;});}
  const walking=Math.min(1,moveVel.length()/2.2),stride=clock.elapsedTime*9;
  if(['outside','ramp','cabin'].includes(state)){
@@ -1747,11 +1970,18 @@ function tick(){requestAnimationFrame(tick);const dt=Math.min(.04,clock.getDelta
   if(carriedStation<0)player.userData.arms.forEach((a,j)=>a.rotation.x=Math.sin(stride+j*Math.PI+Math.PI)*.32*walking);
  }
 
- if(benchActive){f25Frame(dt);renderer.render(scene,camera);return;}if(F25.phase==='installing'||F25.phase==='loadingAnim'||F25.needsReturn)f25Frame(dt);
- if(window.__NASA_V88_RETURN_FRAME?.(dt)){renderer.render(scene,camera);return;}
- if(window.__NASA_V88_NAV_FRAME?.(dt)){renderer.render(scene,camera);return;}
- if(intro>0){intro-=dt;const t=THREE.MathUtils.smoothstep(3.5-intro,1.0,3.5);camera.position.lerp(new THREE.Vector3(0,7,54),dt*(.12+t*1.5));camera.lookAt(0,19-16*t,-29+72*t);camera.fov=THREE.MathUtils.lerp(77,64,t);camera.updateProjectionMatrix();}
- if(F25.cartMode){f25MoveCart(dt);}else if(['outside','ramp','cabin'].includes(state)){
+ if(benchActive){f25Frame(dt);renderNasa(now);return;}if(F25.phase==='installing'||F25.phase==='loadingAnim'||F25.needsReturn)f25Frame(dt);
+ if(window.__NASA_V88_RETURN_FRAME?.(dt)){renderNasa(now);return;}
+ if(window.__NASA_V88_NAV_FRAME?.(dt)){renderNasa(now);return;}
+ if(openingShot){
+  intro-=dt;
+  const t=THREE.MathUtils.smoothstep(nasaOpeningDuration-intro,1.0,nasaOpeningDuration);
+  camera.position.lerp(new THREE.Vector3(0,7,54),dt*(.12+t*1.5));
+  camera.lookAt(0,19-16*t,-29+72*t);
+  camera.fov=THREE.MathUtils.lerp(77,64,t);
+  camera.updateProjectionMatrix();
+ }
+ if(F25.cartMode){f25MoveCart(dt);}else if(!openingShot&&['outside','ramp','cabin'].includes(state)){
   let x=joyX+(keys.d||keys.arrowright?1:0)-(keys.a||keys.arrowleft?1:0),y=-joyY+(keys.w||keys.arrowup?1:0)-(keys.s||keys.arrowdown?1:0);
   const power=Math.min(1,Math.hypot(x,y));if(power>1){x/=power;y/=power;}
   // V70 vehicle-style steering: horizontal stick turns; vertical stick drives.
@@ -1851,7 +2081,7 @@ function tick(){requestAnimationFrame(tick);const dt=Math.min(.04,clock.getDelta
    const flying=launchTime-5;verticalSpeed=Math.min(9,verticalSpeed+dt*2.2);
    rocket.position.y=Math.min(88,rocket.position.y+verticalSpeed*dt);
    if(window.__NASA_V44_FLIGHT?.bad?.length&&flying>3.2)window.__NASA_V44_FLIGHT.update(dt,flying);
-   if(launchTime-lastSmoke>.075){lastSmoke=launchTime;for(let j=0;j<3;j++)smokePuff();}
+   if(launchTime-lastSmoke>(liteMode?.14:.075)){lastSmoke=launchTime;for(let j=0;j<(liteMode?1:3);j++)smokePuff();}
    missionCamera(dt,flying);
    if(flying>15){setMode('finished');fire.visible=false;hint('החללית נעלמה בעננים. אפשר להתחיל מחדש.');}
   }else{
@@ -1862,9 +2092,10 @@ function tick(){requestAnimationFrame(tick);const dt=Math.min(.04,clock.getDelta
  if(F25.phase==='dock'||F25.phase==='installing'||F25.needsReturn){f25StartDockView(dt);}
  const fly=Math.max(0,launchTime-5);
  cinematicBirdScatter=THREE.MathUtils.lerp(cinematicBirdScatter,fly>2?1:0,Math.min(1,dt*.85));
- birds.forEach((b,i)=>{const t=clock.elapsedTime*.65+b.phase;const scatter=cinematicBirdScatter*65;const r=b.radius+scatter; b.bird.position.set(Math.cos(t)*r, b.height+Math.sin(t*1.5)*2+scatter*.45, -39+Math.sin(t)*r);b.bird.rotation.y=-t; b.bird.children.forEach((w,j)=>w.rotation.z=(j===0?-1:1)*(1.0+.24*Math.sin(clock.elapsedTime*8+i)));});
- serviceVehicles.forEach(({vehicle,side,phase})=>{const t=clock.elapsedTime*.23+phase;vehicle.position.z=22+Math.sin(t)*14;vehicle.position.x=side*(18+Math.cos(t*.6)*2);vehicle.rotation.y=Math.cos(t)>0?0:Math.PI;});
- hangarCrew.forEach(({worker,x,z,phase},i)=>{
+ birds.forEach((b,i)=>{if(!b.bird.visible)return;const t=clock.elapsedTime*.65+b.phase;const scatter=cinematicBirdScatter*65;const r=b.radius+scatter; b.bird.position.set(Math.cos(t)*r, b.height+Math.sin(t*1.5)*2+scatter*.45, -39+Math.sin(t)*r);b.bird.rotation.y=-t; b.bird.children.forEach((w,j)=>w.rotation.z=(j===0?-1:1)*(1.0+.24*Math.sin(clock.elapsedTime*8+i)));});
+ serviceVehicles.forEach(({vehicle,side,phase})=>{if(!vehicle.visible)return;const t=clock.elapsedTime*.23+phase;vehicle.position.z=22+Math.sin(t)*14;vehicle.position.x=side*(18+Math.cos(t*.6)*2);vehicle.rotation.y=Math.cos(t)>0?0:Math.PI;});
+ hangarCrew.forEach(({worker,x,z,phase})=>{
+ if(!worker.visible)return;
  const t=clock.elapsedTime*.43+phase;
  worker.position.set(x+Math.sin(t)*1.9,0,z+Math.cos(t*.7)*1.5);
  worker.rotation.y=Math.atan2(Math.cos(t),-Math.sin(t*.7));
@@ -1873,15 +2104,13 @@ function tick(){requestAnimationFrame(tick);const dt=Math.min(.04,clock.getDelta
  u.arms.forEach((arm,j)=>arm.rotation.x=Math.sin(t*3+j*Math.PI)*.32);
  });
  beaconLights.forEach(({lamp,glow,phase})=>{const pulse=.65+.35*Math.sin(clock.elapsedTime*3.8+phase);lamp.material.opacity=pulse;glow.intensity=.9+pulse*1.2;});
- workerGroups.forEach(({worker,home,phase})=>{const t=clock.elapsedTime*.55+phase;worker.position.set(home.x+Math.sin(t)*3,0,home.z+Math.cos(t*.8)*2);worker.rotation.y=Math.atan2(Math.cos(t),-Math.sin(t*.8));const u=worker.userData;u.legs.forEach((leg,j)=>leg.rotation.x=Math.sin(t*5+j*Math.PI)*.32);u.arms.forEach((arm,j)=>arm.rotation.x=Math.sin(t*5+j*Math.PI)*.22);});
- spectators.forEach((s,i)=>{const cheer=fly>0?Math.min(1,fly/.8):0;const u=s.spectator.userData;
+ workerGroups.forEach(({worker,home,phase})=>{if(!worker.visible)return;const t=clock.elapsedTime*.55+phase;worker.position.set(home.x+Math.sin(t)*3,0,home.z+Math.cos(t*.8)*2);worker.rotation.y=Math.atan2(Math.cos(t),-Math.sin(t*.8));const u=worker.userData;u.legs.forEach((leg,j)=>leg.rotation.x=Math.sin(t*5+j*Math.PI)*.32);u.arms.forEach((arm,j)=>arm.rotation.x=Math.sin(t*5+j*Math.PI)*.22);});
+ spectators.forEach((s,i)=>{if(!s.spectator.visible)return;const cheer=fly>0?Math.min(1,fly/.8):0;const u=s.spectator.userData;
   if(cheer<.1){const t=clock.elapsedTime*.4+s.phase;s.spectator.position.x=s.home.x+Math.sin(t)*1.6;s.spectator.position.z=s.home.z+Math.cos(t*.8)*1.2;s.spectator.rotation.y=Math.atan2(Math.cos(t),-Math.sin(t*.8));u.legs.forEach((l,j)=>l.rotation.x=Math.sin(clock.elapsedTime*3.2+s.phase+j*Math.PI)*.26);u.arms.forEach((a,j)=>{a.rotation.x=Math.sin(t*3+j*Math.PI)*.23;a.rotation.z=(i%2?1:-1)*.15;});}
   else {s.spectator.rotation.y=0;s.spectator.position.y=cheer*.12*Math.abs(Math.sin(clock.elapsedTime*6+s.phase));u.legs.forEach(l=>l.rotation.x=0);}u.arms[0].rotation.z=-cheer*(1.7+.2*Math.sin(clock.elapsedTime*8+i));u.arms[1].rotation.z=cheer*(1.7+.2*Math.sin(clock.elapsedTime*8+i));s.hat.visible=cheer>.05&&s.throwHat;if(s.hat.visible){const age=(fly-1.0+s.phase*.15)%3.6;s.hat.position.set(s.spectator.position.x+Math.sin(age*2+i)*age*.6,2.3+Math.max(0,4.2*age-1.25*age*age),s.spectator.position.z);s.hat.rotation.z=age*3;}});
  rainbow.visible=fly>1.5;
- renderer.render(scene,camera);
+ renderNasa(now);
 }
-addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setPixelRatio(Math.min(devicePixelRatio,2.65,Math.sqrt(2600000/(innerWidth*innerHeight))));renderer.setSize(innerWidth,innerHeight)});
-$('#loading').remove();setMode('outside');tick();
 // V65 CLEAN ENGINE — integrated flight / evidence / build pipeline — one state machine, one physical right display, one blue journal.
 (function(){
   const st={stage:'brief',before:'brief',journal:[],pending:null,values:{diff:null,sum:8,area:null,panel:null,length:null,formula:null,metal:null},
@@ -3520,4 +3749,83 @@ $('#loading').remove();setMode('outside');tick();
   if(document.fonts && document.fonts.ready){document.fonts.ready.then(()=>{drawBoard();drawScreen(true);updateCard();}).catch(()=>{});}
 })();
 
+const taskLights=new Set([cabinLighting,laserAura,sawWorkLight,f25DockLight,f25CartBeacon,feedWarningLamp]);
+const pointLights=[];
+scene.traverse(object=>{if(object.isPointLight&&!taskLights.has(object))pointLights.push({light:object,visible:object.visible});});
+const qualityButton=$('#nasaQuality');
+if(nasaStart)document.body.classList.add('cinema-visitor');
+let qualityScale=1,qualitySampleStart=0,qualityFrames=0,qualityBench=null,qualityFPS=0;
+function resetQualitySample(){
+ qualitySampleStart=0;qualityFrames=0;
+}
+function fitNasaRenderer(){
+ const taskView=benchActive;
+ const scale=taskView?Math.max(.77,qualityScale):qualityScale;
+ const maxPixels=liteMode?(taskView?1250000:950000)*scale:2600000;
+ const pixelRatio=Math.min(devicePixelRatio||1,liteMode?(taskView?1.35:1.15):2.65,
+  Math.sqrt(maxPixels/Math.max(1,innerWidth*innerHeight)));
+ if(Math.abs(renderer.getPixelRatio()-pixelRatio)>.005)renderer.setPixelRatio(pixelRatio);
+ if(qualityBench!==taskView){
+  qualityBench=taskView;qualityButton.classList.toggle('at-workbench',taskView);resetQualitySample();
+ }
+}
+function applyNasaQuality(){
+ renderer.shadowMap.enabled=!liteMode;
+ sun.castShadow=!liteMode;
+ skyLight.intensity=liteMode?2.8:2.1;
+ for(const {light,visible} of pointLights)light.visible=!liteMode&&visible;
+ birds.forEach(({bird},i)=>{bird.visible=!liteMode||i%3===0;});
+ serviceVehicles.forEach(({vehicle},i)=>{vehicle.visible=!liteMode||i===0;});
+ workerGroups.forEach(({worker},i)=>{worker.visible=!liteMode||i%3===0;});
+ hangarCrew.forEach(({worker},i)=>{worker.visible=!liteMode||i%3===0;});
+ spectators.forEach(({spectator,hat},i)=>{
+  spectator.visible=!liteMode||i%3===0;
+  if(!spectator.visible)hat.visible=false;
+ });
+ ascentClouds.forEach((puff,i)=>{puff.visible=!liteMode||i%2===0;});
+ qualityScale=1;
+ qualityFPS=0;
+ resetQualitySample();
+ fitNasaRenderer();
+ qualityButton.setAttribute('aria-pressed',String(liteMode));
+ qualityButton.textContent=liteMode?'⚡ מצב קל פעיל':'⚡ מצב קל';
+ qualityButton.title=liteMode?'מעבר לאיכות מלאה':'הפחתת עומס גרפי בטאבלט';
+}
+function renderNasa(now){
+ if(qualityBench!==benchActive)fitNasaRenderer();
+ renderer.render(scene,camera);
+ if(!qualitySampleStart){qualitySampleStart=now;qualityFrames=0;return;}
+ qualityFrames++;
+ if(now-qualitySampleStart<4500)return;
+ qualityFPS=Math.round(qualityFrames*1000/(now-qualitySampleStart));
+ const floor=benchActive?.77:.58;
+ if(liteMode&&qualityFPS<23&&qualityScale>floor){
+  qualityScale=Math.max(floor,qualityScale*.83);
+  fitNasaRenderer();
+ }
+ resetQualitySample();
+}
+addEventListener('resize',fitNasaRenderer);
+qualityButton.addEventListener('click',()=>{
+ liteMode=!liteMode;
+ try{localStorage.setItem(qualityKey,liteMode?'lite':'full');}catch(_){}
+ applyNasaQuality();
+});
+window.NASA_PERFORMANCE=()=>({
+ lite:liteMode,pixelRatio:renderer.getPixelRatio(),fps:qualityFPS,
+ drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,
+ shadows:renderer.shadowMap.enabled,atWorkbench:benchActive
+});
+renderer.setSize(innerWidth,innerHeight);
+applyNasaQuality();
+workBtn.textContent='▶ תחילת עבודה · חזית החללית';
+installBtn.textContent='🔧 התקנה בחללית';
+qualityButton.hidden=false;
+$('#loading').remove();setMode('outside');
+if(nasaStart){
+ player.rotation.y=playerHeading;
+ renderer.render(scene,camera);
+ nasaPost({type:'kingdom-nasa-ready'});
+}
+requestAnimationFrame(tick);
 </script></body></html>
