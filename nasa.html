@@ -1,4 +1,4 @@
-<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>ממלכת NASA · חזית החללית · V104.1</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><style>
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>ממלכת NASA · חזית החללית · V104.16</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><style>
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#0a1321;color:#fff;font-family:Arial,sans-serif;touch-action:none}#scene{position:fixed;inset:0}#scene canvas{display:block}#hud{position:fixed;top:12px;right:12px;z-index:4;background:#07182bbb;border:1px solid #a4cce477;border-radius:16px;padding:11px 16px;max-width:min(78vw,340px);backdrop-filter:blur(8px)}#hud b{font-size:16px;color:#f5d98e}#hint{font-size:12px;line-height:1.7;color:#d5e7f8}#actions{position:fixed;bottom:24px;left:20px;right:auto;z-index:5;display:flex;gap:9px;flex-wrap:wrap;max-width:62vw}button{border:1px solid #e6d6a6;background:linear-gradient(#284b68,#122a45);color:#fff;border-radius:14px;padding:12px 18px;font:bold 15px Arial;box-shadow:0 4px 15px #0007;cursor:pointer}button:active{transform:scale(.97)}button[hidden]{display:none!important}#joy{position:fixed;bottom:23px;right:24px;left:auto;width:124px;height:124px;border:2px solid #b5d7f477;background:#183d6188;border-radius:50%;z-index:5;touch-action:none}#knob{position:absolute;left:38px;top:38px;width:44px;height:44px;background:radial-gradient(#e6f8ff,#6fa7d1);border:2px solid #fff;border-radius:50%;box-shadow:0 0 22px #9ce4ff77}#message{position:fixed;top:80px;left:50%;transform:translateX(-50%);z-index:6;background:#071627df;border:1px solid #d5b96c;border-radius:14px;padding:12px 20px;text-align:center;display:none;max-width:90vw}#loading{position:fixed;inset:0;z-index:20;display:grid;place-items:center;background:#091321;color:#fff;font-size:19px;text-align:center;padding:30px}#error{font-size:13px;color:#f7c5ae;margin-top:15px}#look{position:fixed;bottom:155px;right:26px;left:auto;color:#d9eaffaa;font-size:11px;pointer-events:none}#launchscreen{position:fixed;inset:0;z-index:10;pointer-events:none;display:grid;place-items:center;font:bold min(20vw,110px) Arial;color:#fff;text-shadow:0 0 30px #70baff;opacity:0}#small{position:fixed;top:12px;left:14px;z-index:5;font-size:12px;color:#dfebff;background:#0a2036a9;padding:8px 12px;border-radius:10px}@media(max-width:600px){#actions{left:12px;right:auto;bottom:25px;max-width:55vw}button{padding:11px;font-size:13px}#joy{right:14px;left:auto;bottom:19px;width:114px;height:114px}#knob{left:35px;top:35px}}
 #workpanel{position:fixed;z-index:12;top:50%;left:50%;transform:translate(-50%,-50%);width:min(92vw,420px);background:#10273df5;border:2px solid #e2bf72;border-radius:18px;padding:20px;line-height:1.7;box-shadow:0 18px 60px #000a;text-align:right}#workpanel[hidden]{display:none}#workpanel p{margin:9px 0}#workpanel input{width:85px;background:#edf5fa;border:0;border-radius:7px;padding:9px;color:#142333;font-size:18px;margin:0 8px}#workpanel label{display:inline-block;margin:8px 0}#workpanel button{margin:5px}#hud,#look,#message{display:none!important}#small{top:10px;left:12px;background:#102a4077;font-size:10px}#launchscreen{font-size:min(22vw,120px)}
 #workpanel{width:min(94vw,620px);max-height:88dvh;overflow:auto;padding:13px;background:#102335f8}#workpanel .worktop{display:flex;align-items:center;justify-content:space-between}#workpanel .worktop button{padding:5px 12px}.blueprint{border:2px solid #8dc2df;background:repeating-linear-gradient(0deg,#173d56,#173d56 19px,#25516c 20px);border-radius:9px;padding:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:center}.blueprint svg{width:100%}#draftSpecs{font-size:13px;line-height:1.7;color:#cfe8f8}.toolbox{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 0}.toolbox label{font-size:12px}#workpanel input{width:72px;margin:0 4px}.toolbox button{font-size:12px;padding:8px}#measure{min-height:24px;color:#ffe0a0;font-size:13px}#joy{border-color:#fbe0a6b8;background:radial-gradient(circle,#c4b4ea78,#3b2466d6 67%,#100a249c)}#knob{background:radial-gradient(circle at 31% 23%,#f7e4f4,#9c76b7 55%,#5c367e);border-color:#ffe5b1}#benchui{position:fixed;inset:0;z-index:7;pointer-events:none;display:none}#benchui.active{display:block}#benchui button{pointer-events:auto;position:absolute;top:14px;left:16px;border-radius:50%;padding:8px 13px}#notebook{position:absolute;right:12px;bottom:12px;width:min(36vw,280px);height:min(32vh,210px);border:8px solid #ad8553;border-radius:8px;background:#fff8e6;box-shadow:0 8px 28px #0009;pointer-events:auto;touch-action:none}#notebook canvas{width:100%;height:100%;touch-action:none;display:block}#benchui #erase{top:auto;bottom:15px;left:16px}#benchui #cutbench{top:auto;bottom:80px;left:16px}#benchui #measurebench{top:auto;bottom:145px;left:16px}@media(max-width:650px){#notebook{width:42vw;height:24vh;bottom:10px;right:8px}} #benchui #erase,#benchui #cutbench,#benchui #measurebench{display:none!important}#benchui{display:none!important}#benchui #notebook{display:none!important}#benchui #leavebench{background:#122a45aa;border:1px solid #fff8;font-size:16px}#workpanel,#actions #work{display:none!important}
@@ -399,17 +399,166 @@ body.cinema-visitor #nasaQuality.at-workbench{top:calc(max(10px,env(safe-area-in
 #nasaQuality[aria-pressed="true"]{border-color:#86e0d6;color:#d3fff6}
 #nasaQuality:focus-visible{outline:2px solid white;outline-offset:3px}
 </style>
+<style id="v1042-team-station-controls">
+/* V104.2: controls belong to the NASA world, not a stretched camera overlay. */
+#v1042-top-actions{position:fixed;z-index:76;left:max(10px,env(safe-area-inset-left));top:max(10px,env(safe-area-inset-top));display:flex;gap:7px;direction:ltr;align-items:center;pointer-events:auto}
+#v1042-top-actions button{min-width:45px;min-height:43px;padding:5px 11px;border:1px solid #b1dfe9;border-radius:13px;background:#0b2a3fe8;color:#f7fcff;font:800 12px Arial,sans-serif;box-shadow:0 5px 15px #00142299;white-space:nowrap;touch-action:manipulation}
+#v1042-top-actions button:focus-visible{outline:3px solid #fff2af;outline-offset:2px}
+#small{top:calc(max(10px,env(safe-area-inset-top)) + 52px);left:max(10px,env(safe-area-inset-left))}
+#nasaQuality,#nasaQuality.at-workbench,body.cinema-visitor #nasaQuality,body.cinema-visitor #nasaQuality.at-workbench{top:calc(max(10px,env(safe-area-inset-top)) + 89px)}
+#v88MissionBoard.v1042-not-success{border-color:#ff817e;background:linear-gradient(165deg,#48202bf2,#301c2cf4);box-shadow:0 15px 38px #1d0308a8,0 0 0 2px #a83f4e55}
+#v88MissionBoard .v88TaskGrid button.v1042-not-success{background:linear-gradient(#893445,#5c2636);border:2px solid #ffb09f;color:#fff3f1;box-shadow:0 0 0 1px #ffb7ac44 inset}
+#v88TaskMessage.v1042-error{background:#692934;border:1px solid #ffa7a0;border-radius:12px;padding:10px 12px;color:#fff0eb;font-weight:800}
+#v88TaskMessage.v1042-verified{background:#173a39;border:1px solid #83d5bf;border-radius:12px;padding:10px 12px;color:#e4fff5;font-weight:800}
+@media(max-width:650px){#v1042-top-actions{gap:5px;left:6px;top:max(6px,env(safe-area-inset-top))}#v1042-top-actions button{min-height:38px;min-width:38px;padding:4px 8px;font-size:11px}#small{top:calc(max(6px,env(safe-area-inset-top)) + 44px)}}
+</style>
+<style id="v1045-menu-style">
+/* A single small options control; no overlapping fullscreen/exit/quality buttons. */
+#v1042-top-actions{display:none!important}
+#nasaQuality{display:none!important}
+#v1045-tools{position:fixed;z-index:86;left:max(10px,env(safe-area-inset-left));top:max(10px,env(safe-area-inset-top));pointer-events:auto;direction:rtl;font-family:Arial,sans-serif}
+#v1045-tools-toggle{width:46px;height:46px;min-width:46px;min-height:46px;border:1px solid #b9dfed;border-radius:13px;background:#12334ae9;color:#f4faff;box-shadow:0 5px 17px #001422a6;font-size:25px;line-height:1;padding:0;touch-action:manipulation}
+#v1045-tools-panel{position:absolute;top:52px;left:0;display:flex;flex-direction:column;gap:8px;width:min(235px,75vw);max-height:60dvh;overflow-y:auto;padding:13px;border:1px solid #a5dce8;border-radius:16px;background:#0a2336f6;box-shadow:0 12px 36px #001526dd;direction:rtl;touch-action:pan-y}
+#v1045-tools-panel[hidden]{display:none!important}
+#v1045-tools-panel button{min-height:43px;text-align:right;font-size:14px;font-weight:700;white-space:normal;padding:9px 13px;border-radius:10px;background:linear-gradient(#204b67,#0d2a43);border-color:#83bdd2}
+#v1045-tools-panel .v1045-menu-title{text-align:center;color:#ffe4a7;font-weight:800;font-size:15px;margin:1px 0 3px}
+#v25Exit,#v25Help{top:calc(max(10px,env(safe-area-inset-top)) + 54px)!important}
+#v25Exit{left:12px!important}#v25Help{left:94px!important}
+body.cinema-visitor #v1045-tools{top:calc(max(10px,env(safe-area-inset-top)) + 50px)}
+body.cinema-visitor #v25Exit,body.cinema-visitor #v25Help{top:calc(max(10px,env(safe-area-inset-top)) + 104px)!important}
+@media(max-width:650px){#v1045-tools{left:8px;top:max(7px,env(safe-area-inset-top))}#v1045-tools-toggle{width:43px;height:43px;min-width:43px;min-height:43px;font-size:23px}#v25Exit,#v25Help{top:calc(max(7px,env(safe-area-inset-top)) + 50px)!important}#v25Exit{left:8px!important}#v25Help{left:75px!important}body.cinema-visitor #v1045-tools{top:calc(max(7px,env(safe-area-inset-top)) + 48px)}}
+</style>
+
+<style id="v1049-final-polish">
+/* BSD is a tiny free-standing annotation, never a blue bar. */
+#small{position:fixed!important;top:max(8px,env(safe-area-inset-top))!important;
+right:max(13px,env(safe-area-inset-right))!important;left:auto!important;
+background:none!important;border:none!important;border-radius:0!important;
+padding:0!important;margin:0!important;box-shadow:none!important;
+font:600 11px Arial,sans-serif!important;color:#f3dfb7!important;
+text-shadow:0 1px 6px #071927!important;z-index:14!important;pointer-events:none!important}
+/* A discreet magnifying-glass affordance, not a large opaque banner. */
+#v83ZoomButton.active{top:max(43px,env(safe-area-inset-top) + 36px)!important;
+right:10px!important;min-height:36px!important;min-width:39px!important;
+padding:5px 7px!important;border-radius:12px!important;font-size:17px!important;
+box-shadow:0 3px 11px #00162780!important;max-width:42px!important}
+#v83ZoomCanvas{max-width:min(80vw,440px)!important;max-height:calc(85dvh - 85px)!important}
+#v83ZoomOverlay{background:rgba(3,16,29,.75)!important}
+@media(max-width:650px){#v83ZoomButton.active{top:max(43px,env(safe-area-inset-top) + 36px)!important;right:8px!important}}
+</style>
+<style id="v10414-polish">
+#v10414-fullscreen-quick{position:absolute;left:54px;top:0;width:46px;height:46px;min-width:46px;min-height:46px;padding:0;
+ border:1px solid #9cd5e7;border-radius:13px;background:#12334ae9;color:#eefdff;font-size:27px;line-height:1;box-shadow:0 5px 17px #001422a6}
+#v83ZoomButton.active{top:var(--v10414-zoom-top,90px)!important;left:var(--v10414-zoom-left,52px)!important;
+ right:auto!important;min-width:38px!important;max-width:42px!important;min-height:38px!important}
+@media(max-width:650px){#v10414-fullscreen-quick{left:49px;top:0;width:43px;height:43px;min-width:43px;min-height:43px;font-size:25px}}
+</style>
+<style id="v10415-layout">
+#v10415-credit{position:fixed;left:max(9px,env(safe-area-inset-left));bottom:max(6px,env(safe-area-inset-bottom));z-index:4;
+ color:rgba(225,239,245,.66);font:500 clamp(10px,1.6vw,12px) 'Heebo',Arial,sans-serif;
+ letter-spacing:.06px;text-shadow:0 1px 3px rgba(2,15,29,.5);pointer-events:none;user-select:none;direction:rtl}
+#v25Exit{display:none!important} /* Exit now lives in the options menu. */
+#v83ZoomButton.active{display:none!important} /* The magnifier is drawn inside the right-hand tablet. */
+#v1045-tools-panel #v10415-menu-exit{line-height:1.5;background:linear-gradient(#285065,#173b4e);border-color:#9ad3db}
+</style>
+<style id="v1047-brief-and-layout">
+/* V104.7: One-frame complete station briefing. Never trap the Start button below a scrollbar. */
+#v63Brief.v74Active{
+  top:50%!important;right:clamp(8px,2vw,24px)!important;left:auto!important;
+  transform:translateY(-50%)!important;
+  display:flex!important;flex-direction:column!important;align-items:stretch!important;
+  gap:clamp(2px,.55dvh,7px)!important;
+  width:min(340px,43vw)!important;max-width:calc(100vw - 16px)!important;
+  max-height:calc(100dvh - 16px)!important;overflow:hidden!important;
+  padding:clamp(9px,1.8dvh,18px)!important;
+  box-sizing:border-box!important;
+}
+#v63Brief.v74Active .v74BriefIcon{
+  flex-shrink:0;width:clamp(26px,5.5dvh,44px)!important;height:clamp(26px,5.5dvh,44px)!important;
+  font-size:clamp(15px,2.9dvh,23px)!important;margin:0 auto 2px!important;
+}
+#v63Brief.v74Active small{font-size:clamp(8px,1.25dvh,10px)!important;line-height:1.1!important;}
+#v63Brief.v74Active h2{
+  font-size:clamp(15px,2.7dvh,22px)!important;line-height:1.18!important;
+  padding:clamp(3px,.8dvh,7px)!important;margin:1px 0!important;
+}
+#v63Brief.v74Active p{
+  font-size:clamp(11px,1.83dvh,14px)!important;line-height:1.36!important;
+  margin:0!important;
+}
+#v63Brief.v74Active p.v74Lead{font-size:clamp(12px,2dvh,16px)!important;line-height:1.3!important;}
+#v63Brief.v74Active p.v74BriefFoot{font-size:clamp(10px,1.7dvh,12px)!important;}
+#v63Brief.v74Active button{
+  flex-shrink:0;min-height:clamp(35px,5.5dvh,45px)!important;
+  font-size:clamp(12px,2dvh,16px)!important;line-height:1.15!important;
+  padding:6px 8px!important;margin:1px 0 0!important;
+}
+@media(orientation:portrait){
+ #v63Brief.v74Active{right:50%!important;transform:translate(50%,-50%)!important;
+   width:min(355px,89vw)!important;max-height:calc(100dvh - 26px)!important;}
+}
+@media(max-height:350px) and (orientation:landscape){
+ #v63Brief.v74Active{padding:6px 9px!important;gap:1px!important;}
+ #v63Brief.v74Active .v74BriefIcon{width:24px!important;height:24px!important;font-size:14px!important;}
+ #v63Brief.v74Active h2{font-size:14px!important;padding:2px!important;}
+ #v63Brief.v74Active p{font-size:10px!important;line-height:1.2!important;}
+ #v63Brief.v74Active button{min-height:32px!important;font-size:11px!important;padding:4px!important;}
+}
+</style>
+<style id="v10410-polish">
+#v35DockDistance.active{position:fixed!important;top:auto!important;right:auto!important;left:50%!important;bottom:max(88px,env(safe-area-inset-bottom) + 79px)!important;transform:translateX(-50%)!important;z-index:40!important;max-width:min(86vw,430px);font-size:clamp(14px,2.8vw,19px);text-align:center;padding:11px 18px;border-radius:16px;box-shadow:0 6px 21px #061d25a8}
+#v35DockDistance.dock-reached{border-color:#f5d48c;background:#48391bdc;color:#fff4d6}
+#v88MissionBoard{top:max(10px,env(safe-area-inset-top) + 9px)!important;right:10px!important;left:auto!important;width:min(340px,42vw)!important;max-width:calc(100vw - 20px)!important;max-height:min(85dvh,570px)!important;padding:12px 14px!important;overflow-y:auto!important;animation:v10410CardAppear .65s ease both}
+#v88MissionBoard h2{font-size:clamp(16px,2.0vw,21px)!important;margin:5px 0!important}
+#v88MissionBoard p{font-size:clamp(12px,1.45vw,14px)!important;margin:5px 0 8px!important}
+#v88MissionBoard .v88Future,#v88MissionBoard .v88TaskGrid button:not(#v88TaskStation1){display:none!important}
+#v88MissionBoard .v88TaskGrid button{min-height:49px!important;font-size:13px!important;padding:9px!important}
+#v88MissionBoard #v10410Retry{display:block;width:100%;margin-top:10px;border-color:#e9c980;background:#315367;padding:10px 8px;font-size:13px}
+#v88MissionBoard #v10410Retry[hidden]{display:none!important}
+@keyframes v10410CardAppear{from{opacity:0;transform:translateY(-12px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:650px){#v88MissionBoard{top:max(7px,env(safe-area-inset-top) + 5px)!important;right:6px!important;width:min(292px,61vw)!important;padding:10px!important}#v88MissionBoard .v88MissionHeader{font-size:10px!important}}
+</style>
+<style id="v10411-detail">
+/* Four single-line status rows, not a second full-screen mission sheet. */
+#v88MissionBoard{width:min(358px,44vw)!important;max-height:min(74dvh,430px)!important;padding:11px 12px 12px!important;overflow:hidden!important;backdrop-filter:blur(6px)}
+#v88MissionBoard .v88MissionHeader{display:flex;align-items:center;justify-content:space-between;gap:6px;color:#f1e2b2;font-size:13px!important;margin:0 0 8px}
+#v88MissionBoard .v88MissionHeader strong{font-weight:900;white-space:nowrap}
+#v88MissionBoard .v10411BoardActions{display:flex;gap:5px;direction:ltr}
+#v88MissionBoard .v10411BoardActions button,#v88MissionBoard #v10410Retry{display:inline-grid!important;place-items:center;width:34px!important;height:32px!important;min-height:0!important;padding:0!important;margin:0!important;border-radius:9px!important;border:1px solid #a6d6df!important;background:#25465a!important;color:#f5fcff!important;font-size:20px!important;font-weight:900;line-height:1!important}
+#v88MissionBoard #v10410Retry[hidden]{display:none!important}
+#v88MissionBoard h2,#v88MissionBoard .v88Future{display:none!important}
+#v88MissionBoard #v88TaskMessage{display:none!important}
+#v88MissionBoard .v88TaskGrid button.v88Complete small{color:#eaffec!important;background:#206345;padding:4px 7px;border:1px solid #9bffb4;border-radius:7px}
+#v88MissionBoard .v88TaskGrid button.v1042-not-success small{color:#fff4f2!important;background:#9d3d4b;padding:4px 7px;border:1px solid #ffb9ae;border-radius:7px}
+#v88MissionBoard .v88TaskGrid{gap:5px!important}
+#v88MissionBoard .v88TaskGrid button,#v88MissionBoard .v88TaskGrid button:not(#v88TaskStation1){display:flex!important;align-items:center;justify-content:space-between;gap:5px;min-height:36px!important;height:36px!important;padding:5px 9px!important;font-size:12px!important;white-space:nowrap;text-align:right;border-radius:9px!important}
+#v88MissionBoard .v88TaskGrid button small{display:inline!important;margin:0!important;font-size:11px!important;white-space:nowrap;color:#bfdae4}
+#v88MissionBoard .v88TaskGrid button:disabled{cursor:default}
+@media(max-width:690px){#v88MissionBoard{width:min(300px,65vw)!important;right:6px!important;top:max(7px,env(safe-area-inset-top))!important;padding:9px!important}#v88MissionBoard .v88MissionHeader{font-size:11px!important}#v88MissionBoard .v88TaskGrid button{font-size:11px!important;padding:4px 6px!important}#v88MissionBoard .v88TaskGrid button small{font-size:10px!important}}
+@media(max-width:370px){#v88MissionBoard{width:min(270px,74vw)!important}}
+</style>
 </head><body>
-<div id="scene"></div>
-<aside id="v85Console" aria-label="מסך המדידות" aria-live="off"><h2>מסך המדידות</h2><div class="v85Subtitle">תחנה 1/4 · חזית החללית</div><div id="v85Content"></div></aside><section id="v63Brief" role="dialog" aria-label="תדריך משימה — חזית החללית">
+<div id="scene"></div><div id="v10415-credit" aria-label="יוצר הממלכה">עידן אחוון</div>
+<div id="v1045-tools" dir="rtl" aria-label="אפשרויות ממלכת נאס״א">
+  <button id="v1045-tools-toggle" type="button" title="אפשרויות והגדרות" aria-label="פתיחת תפריט האפשרויות" aria-expanded="false" aria-controls="v1045-tools-panel">☰</button>
+  <button id="v10414-fullscreen-quick" type="button" aria-label="הצגת הממלכה במסך מלא" title="מסך מלא — ללא שינוי פרופורציות">⛶</button>
+  <div id="v1045-tools-panel" role="group" aria-label="אפשרויות תצוגה ומשימה" hidden>
+    <div class="v1045-menu-title">אפשרויות הממלכה</div>
+    <button id="v1042-fullscreen" type="button" hidden style="display:none!important" aria-hidden="true" tabindex="-1"></button>
+    <button id="v1045-quality" type="button" aria-label="שינוי מצב גרפיקה">⚡ מצב קל</button>
+    <button id="v10415-menu-exit" type="button" hidden>🚪 יציאה מסדנת החזית — חזרה לסיור בהאנגר</button>
+    <button id="v1042-restart" type="button" title="התחלה מחדש בכניסה להאנגר" aria-label="איפוס המשימה וחזרה לתחילת ההאנגר">↺ התחלה מחדש</button>
+  </div>
+</div>
+
+<aside id="v85Console" aria-label="מסך המדידות" aria-live="off"><h2>מסך המדידות</h2><div class="v85Subtitle">חזית החללית</div><div id="v85Content"></div></aside><section id="v63Brief" role="dialog" aria-label="תדריך משימה — חזית החללית">
   <div class="v74BriefIcon" aria-hidden="true">🚀</div>
-  <small>NASA / MISSION 01 · 1/4</small>
+  <small>NASA · חזית החללית</small>
   <h2>תדריך משימה</h2>
   <p class="v74Lead">ברוכים הבאים לתחנת המחקר!</p>
   <p>בחזית החללית חסרים <strong>ארבעה לוחות מתכת</strong> סביב חלון הזכוכית. מדדו, חשבו, ייצרו והרכיבו אותם.</p>
-  <p class="v74BriefFoot">התכנון שלכם ייבדק בשיגור.</p>
   <button id="v63Accept" type="button">מתחילים במשימה <span aria-hidden="true">‹‹</span></button>
-</section><button id="v46Goal" type="button" aria-label="הצגת מטרת המשימה">🎯 <span><b>משימה 01 · חזית החללית</b><small>4 לוחות מתכת · חלון נשאר שקוף</small></span></button>
+</section><button id="v46Goal" type="button" aria-label="הצגת מטרת המשימה">🎯 <span><b>משימה חזית החללית</b><small>4 לוחות מתכת · חלון נשאר שקוף</small></span></button>
 <section id="v46Mission" role="dialog" aria-label="תדריך משימה ממרכז הבקרה" aria-modal="false"><div class="v46Header"><span class="v46Portrait" aria-hidden="true">👨‍🚀</span><span><div class="v46Title">הודעה ממנהל המשימה</div><div class="v46Meta">מרכז הבקרה · צוות הנדסת החללית · משימה 01</div></span></div><p>מהנדסים, החללית כמעט מוכנה לשיגור! <strong>מסביב לחלון התצפית חסרים ארבעה לוחות מתכת.</strong> אתם אחראים למדוד, לתכנן, לייצר ולהרכיב אותם — <strong>בלי לכסות את הזכוכית.</strong><br><br>כל מדידה תיכנס ליומן ההנדסי רק כשתבחרו להעביר אותה. <strong>רק בשיגור נדע אם התכנון עמד במבחן.</strong></p><button id="v46Begin" type="button">קיבלנו את המשימה · מתחילים</button></section>
 
 <button id="v48Back" type="button" aria-label="חזרה לפעולה הקודמת">↶ חזור</button>
@@ -441,7 +590,7 @@ body.cinema-visitor #nasaQuality.at-workbench{top:calc(max(10px,env(safe-area-in
 <button id="v49BeginAnimation" type="button">ממשיכים למדידת החזית</button>
 <div id="v49AssemblyScene" aria-label="תצוגת גיבוי של תהליך ההרכבה"><div class="v49AssemblyLabel">מצלמת הרכבה · חזית החללית</div><canvas id="v49AssemblyCanvas" width="1060" height="660"></canvas><div class="v49AssemblyBottom" id="v49AssemblyCaption"></div></div>
 <div id="v48Assembly" aria-live="polite"><span id="v48AssemblyText">הרכבת חזית החללית</span><div class="v48Dots" id="v48AssemblyDots"></div></div>
-<button id="v45Transfer" type="button" aria-label="העברת הנתון ללוח">↗ העבירו ללוח</button><button id="nasaQuality" type="button" dir="rtl" aria-pressed="false" hidden>מצב קל</button><div id="loading">מכינים את האנגר נאס״א...<div id="error"></div></div><div id="hud"><b>בס״ד · משימת החלל</b><div id="hint">התבוננו במתחם נאס״א. התקדמו בג׳ויסטיק לעבר ההאנגר — השערים ייפתחו לבד.</div></div><div id="small">בס״ד</div><div id="message"></div><div id="launchscreen"></div><div id="joy"><div id="knob"></div></div><button id="v25Exit" hidden>✕ יציאה</button><button id="v25Help" hidden>💡 רמז</button><div id="v25HelpText" hidden></div><div id="v25HintWrap" style="display:none"><div id="v25Stage">01 · חזית החללית</div><div id="v25Hint"></div></div><div id="look">גרירה: מבט · שתי אצבעות: זום</div><div id="workpanel" hidden inert><div class="worktop"><strong id="stationTitle">שרטוט הנדסי</strong><button id="closework" aria-label="סגירה">✕</button></div><div class="blueprint" id="blueprint"><svg viewBox="0 0 320 135"><rect x="68" y="12" width="180" height="110" rx="3" fill="none" stroke="#94d8ff" stroke-width="2"/><rect x="109" y="40" width="98" height="54" fill="none" stroke="#f4d48c" stroke-width="2"/><path d="M68 129 H248 M57 12 V122" stroke="#b5e9ff" stroke-width="1"/><text x="157" y="128" fill="#dceeff" font-size="11">L</text><text x="42" y="70" fill="#dceeff" font-size="11">L</text><text x="154" y="69" text-anchor="middle" fill="#ffe3a6" font-size="11">פתח</text></svg><div id="draftSpecs"></div></div><div class="toolbox"><label>מדידה א׳<input id="pa" inputmode="text" value="3" aria-label="מדידה א"></label><label>מדידה ב׳<input id="pb" inputmode="text" value="2" aria-label="מדידה ב"></label><button id="measureTool">📐 מדידה</button><button id="cutTool">⚙️ חיתוך</button><button id="fabricate">🔩 ייצור חלק</button></div><div id="measure" role="status"></div></div><div id="benchui"><button id="leavebench" aria-label="חזרה">✕</button><button id="erase" aria-label="מחיקת מחברת">⌫</button><button id="cutbench" aria-label="הפעלת מכונת חיתוך">⚙️</button><button id="measurebench" aria-label="סרגל">📐</button><div id="notebook"><canvas id="notes"></canvas></div></div><div id="actions"><button id="work" hidden></button><button id="pickup" hidden>✋ הרמת חלק</button><button id="install" hidden>🔧 הרכבה</button><button id="launch" hidden>🚀 שיגור</button><button id="exit" hidden>יציאה מהחללית</button><button id="reset" hidden>התחלה מחדש</button></div>
+<button id="v45Transfer" type="button" aria-label="העברת הנתון ללוח">↗ העבירו ללוח</button><button id="nasaQuality" type="button" dir="rtl" aria-pressed="false" hidden>מצב קל</button><div id="loading">מכינים את האנגר נאס״א...<div id="error"></div></div><div id="hud"><b>בס״ד · משימת החלל</b><div id="hint">התבוננו במתחם נאס״א. התקדמו בג׳ויסטיק לעבר ההאנגר — השערים ייפתחו לבד.</div></div><div id="small">בס״ד</div><div id="message"></div><div id="launchscreen"></div><div id="joy"><div id="knob"></div></div><button id="v25Exit" hidden>✕ יציאה</button><button id="v25Help" hidden>💡 רמז</button><div id="v25HelpText" hidden></div><div id="v25HintWrap" style="display:none"><div id="v25Stage">חזית החללית</div><div id="v25Hint"></div></div><div id="look">גרירה: מבט · שתי אצבעות: זום</div><div id="workpanel" hidden inert><div class="worktop"><strong id="stationTitle">שרטוט הנדסי</strong><button id="closework" aria-label="סגירה">✕</button></div><div class="blueprint" id="blueprint"><svg viewBox="0 0 320 135"><rect x="68" y="12" width="180" height="110" rx="3" fill="none" stroke="#94d8ff" stroke-width="2"/><rect x="109" y="40" width="98" height="54" fill="none" stroke="#f4d48c" stroke-width="2"/><path d="M68 129 H248 M57 12 V122" stroke="#b5e9ff" stroke-width="1"/><text x="157" y="128" fill="#dceeff" font-size="11">L</text><text x="42" y="70" fill="#dceeff" font-size="11">L</text><text x="154" y="69" text-anchor="middle" fill="#ffe3a6" font-size="11">פתח</text></svg><div id="draftSpecs"></div></div><div class="toolbox"><label>מדידה א׳<input id="pa" inputmode="text" value="3" aria-label="מדידה א"></label><label>מדידה ב׳<input id="pb" inputmode="text" value="2" aria-label="מדידה ב"></label><button id="measureTool">📐 מדידה</button><button id="cutTool">⚙️ חיתוך</button><button id="fabricate">🔩 ייצור חלק</button></div><div id="measure" role="status"></div></div><div id="benchui"><button id="leavebench" aria-label="חזרה">✕</button><button id="erase" aria-label="מחיקת מחברת">⌫</button><button id="cutbench" aria-label="הפעלת מכונת חיתוך">⚙️</button><button id="measurebench" aria-label="סרגל">📐</button><div id="notebook"><canvas id="notes"></canvas></div></div><div id="actions"><button id="work" hidden></button><button id="pickup" hidden>✋ הרמת חלק</button><button id="install" hidden>🔧 הרכבה</button><button id="launch" hidden>🚀 שיגור</button><button id="exit" hidden>יציאה מהחללית</button><button id="reset" hidden>התחלה מחדש</button></div>
 <div id="v35Board" aria-live="polite"><div id="v35BoardHead"><span>חזית החללית <small>· תחנה 01</small></span><span id="v35Progress">● ○ ○ ○ ○</span></div><div id="v35BoardRows"></div></div>
 <button id="v35Zoom" aria-label="הגדלת לוח החישובים">🔎</button>
 <div id="v35Guide"></div><div id="v38InspectTip" aria-live="polite">בחרו a² או b² · בחרו את שניהם בזה אחר זה · "ההפרש" מציג את ארבעת הלוחות</div>
@@ -486,25 +635,23 @@ body.cinema-visitor #nasaQuality.at-workbench{top:calc(max(10px,env(safe-area-in
 </tbody></table>
 <p><strong>אימות נדחה:</strong> טעות בתחנה 1 נשמרת בסתר. בעת שיגור לאחר הרכבת ארבע התחנות, החלקים השגויים של חזית החללית יכולים להתנתק לאחר המראה ראשונית. התחנות 2–4 עדיין אינן ממומשות בסדנת חקר מלאה; אין להציג עליהן אישור מתמטי שלא בוצעה בדיקה שלו.</p>
 </section>
-<div id="v43Checklist" aria-live="polite"><h3>✓ משימה 1 — חזית החללית</h3><p>✓ תכנון ונתונים תועדו בלוח</p><p>✓ ארבעה חלקים יוצרו והורכבו</p><p style="color:#ffe3a1">◷ התאמת המידות תיבדק רק בשיגור</p><button id="v43Next" type="button">חזרה להאנגר</button><p style="font-size:11px;opacity:.85">תחנות 2–4 טרם הושלמו כסדנאות חקר.</p></div><div id="v35DockDistance"></div><div id="v44FlightNotice" aria-live="polite"></div>
+<div id="v43Checklist" aria-live="polite"><h3>משימה 1 — חזית החללית</h3><p>✓ תכנון ונתונים תועדו בלוח</p><p>✓ ארבעה חלקים יוצרו והורכבו</p><p style="color:#ffe3a1">◷ השלמת הביצוע אינה אישור לתקינות המידות</p><button id="v43Next" type="button">חזרה להאנגר</button><p style="font-size:11px;opacity:.85">תחנות 2–4 טרם הושלמו כסדנאות חקר.</p></div><div id="v35DockDistance"></div><div id="v44FlightNotice" aria-live="polite"></div>
 <div id="v35FullBoard"><div id="v35FullInner"><button id="v35CloseBoard">✕</button><h2>חזית החללית · לוח חישוב</h2><div id="v35FullRows"></div></div></div>
 <button id="v91Undo" type="button" aria-label="חזרה לפעולה הקודמת">↶</button>
- <button type="button" id="v83ZoomButton" aria-label="הגדלת מסך המדידות">🔎 הגדלת מסך המדידות</button>
+ <button type="button" id="v83ZoomButton" aria-label="הגדלת מסך המדידות" title="הגדלת מסך המדידות">🔎</button>
 <div id="v83ZoomOverlay" hidden aria-modal="true" role="dialog" aria-label="מסך מדידות מוגדל">
  <div id="v83ZoomHeader"><span>מסך המדידות · תצוגה קריאה</span><button type="button" id="v83ZoomClose">✕ חזרה לשולחן</button></div>
  <canvas id="v83ZoomCanvas" width="1280" height="1540" aria-label="מסך המדידות המוגדל והאינטראקטיבי"></canvas>
 </div>
 <button type="button" id="v83FabButton" aria-label="פעולת ייצור נוכחית"></button>
-<section id="v88MissionBoard" aria-label="המשך העבודה במתחם NASA" hidden>
-  <div class="v88MissionHeader"><span>בס״ד <small>NASA · MISSION CONTROL</small></span><button id="v88FreeWalk" type="button">✕ סיור חופשי</button></div>
-  <h2>לוח משימות ההאנגר</h2>
-  <p id="v88TaskMessage"><strong>בדיקת ההתאמה הסופית תתבצע רק בשיגור.</strong></p>
-  <p class="v88Future">כעת אפשר לבחור את התחנה הבאה. שלוש התחנות הנוספות עדיין בפיתוח.</p>
+<section id="v88MissionBoard" aria-label="צ׳ק־ליסט ההאנגר" hidden>
+  <div class="v88MissionHeader"><strong>צ׳ק־ליסט · חזית החללית</strong><div class="v10411BoardActions"><button id="v10410Retry" type="button" hidden aria-label="התחלה מחדש ממדידת a" title="התחלה מחדש">↻</button><button id="v88FreeWalk" type="button" aria-label="סגירת הצ׳ק־ליסט">✕</button></div></div>
+  <p id="v88TaskMessage" role="status" aria-live="polite"></p>
   <div class="v88TaskGrid">
-    <button type="button" id="v88TaskStation1" disabled>01 · חזית החללית <small id="v88TaskStation1Sub">ממתין לאישור</small></button>
-    <button type="button" data-v88-station="0">02 · חרטום החללית <small>הגעה לעמדה</small></button>
-    <button type="button" data-v88-station="1">03 · מנועים <small>הגעה לעמדה</small></button>
-    <button type="button" data-v88-station="3">04 · מייצבים <small>הגעה לעמדה</small></button>
+    <button type="button" id="v88TaskStation1" disabled>חזית החללית <small id="v88TaskStation1Sub">ממתין לבדיקה</small></button>
+    <button type="button" data-v88-station="0">חרטום החללית <small>ממתין</small></button>
+    <button type="button" data-v88-station="1">מנועים <small>ממתין</small></button>
+    <button type="button" data-v88-station="3">מייצבים <small>ממתין</small></button>
   </div>
 </section>
 <script>
@@ -533,6 +680,26 @@ const nasaStart=bridgeLoadId===null?null:await new Promise(resolve=>{
  nasaPost({type:'kingdom-nasa-request'});
 });
 if(bridgeLoadId!==null&&!nasaStart)throw new Error('לא התקבל חיבור משער נאס״א.');
+// V104.3: the mission board is presented once per browser, never after reset.
+// Scope the remembered briefing to the participant name without saving the name.
+const v1043ParticipantLabel=String(nasaStart?.name||'standalone').trim().toLocaleLowerCase();
+let v1043ParticipantHash=0;
+for(let i=0;i<v1043ParticipantLabel.length;i++)v1043ParticipantHash=((v1043ParticipantHash*31)+v1043ParticipantLabel.charCodeAt(i))|0;
+const V1043_BRIEF_KEY='nasa_mission_entry_brief_v10412_seen_'+(v1043ParticipantHash>>>0).toString(36);
+function v1043BriefWasRead(){
+ try{return localStorage.getItem(V1043_BRIEF_KEY)==='1'||sessionStorage.getItem(V1043_BRIEF_KEY)==='1';}catch(_error){return false;}
+}
+function v1043RememberBrief(){
+ try{localStorage.setItem(V1043_BRIEF_KEY,'1');}catch(_error){}
+ try{sessionStorage.setItem(V1043_BRIEF_KEY,'1');}catch(_error){}
+}
+let v1042ResetRequested=false;
+try{v1042ResetRequested=sessionStorage.getItem('nasa_v1042_restart')==='1';sessionStorage.removeItem('nasa_v1042_restart');}catch(_error){}
+if(v1042ResetRequested){
+ v1043RememberBrief();
+ // Restart starts just INSIDE the hangar, past the first-time glass plaque.
+ if(nasaStart){nasaStart.position={x:0,z:10.8,yaw:Math.PI,state:'outside'};nasaStart.showOpening=false;}
+}
 let nasaPaused=Boolean(nasaStart);
 addEventListener('message',e=>{
  if(isCinemaMessage(e)&&e.data.type==='kingdom-nasa-pause')nasaPaused=Boolean(e.data.paused);
@@ -555,6 +722,37 @@ if(!THREE){
   throw new Error('Cannot load the 3D engine from either provider');
 }
 const $=s=>document.querySelector(s);
+const v1042Fullscreen=$('#v1042-fullscreen'),v1042Restart=$('#v1042-restart');
+const v1045Tools=$('#v1045-tools'),v1045Toggle=$('#v1045-tools-toggle'),v1045Panel=$('#v1045-tools-panel');
+function v1045CloseTools(){v1045Panel.hidden=true;v1045Toggle.setAttribute('aria-expanded','false');}
+v1045Toggle.addEventListener('click',()=>{v1045Panel.hidden=!v1045Panel.hidden;v1045Toggle.setAttribute('aria-expanded',String(!v1045Panel.hidden));});
+document.addEventListener('pointerdown',e=>{if(!v1045Tools.contains(e.target))v1045CloseTools();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')v1045CloseTools();});
+for(const id of ['v1042-fullscreen','v1042-restart','v10415-menu-exit'])document.getElementById(id).addEventListener('click',v1045CloseTools);
+document.getElementById('v10415-menu-exit').addEventListener('click',()=>{if(benchActive)document.getElementById('v25Exit').click();});
+function v1042RefreshFullscreen(){v1042Fullscreen.textContent=document.fullscreenElement?'↙ רגיל':'⛶ מסך מלא';}
+v1042Fullscreen.addEventListener('click',async()=>{
+ try{
+  if(document.fullscreenElement){await document.exitFullscreen();}
+  else if(document.documentElement.requestFullscreen){await document.documentElement.requestFullscreen();}
+  else if(document.documentElement.webkitRequestFullscreen){document.documentElement.webkitRequestFullscreen();}
+ }catch(e){console.warn('Fullscreen unavailable on this device',e);}
+ v1042RefreshFullscreen();
+});
+document.addEventListener('fullscreenchange',v1042RefreshFullscreen);
+$('#v10414-fullscreen-quick').addEventListener('click',()=>v1042Fullscreen.click());
+v1042Restart.addEventListener('click',()=>{
+ // V104.13: restart the actual lesson at the first A-side measurement.
+ // Do not reload an embedded NASA iframe or send the player back to its doorway.
+ if(typeof window.__NASA_RESTART_STATION_A==='function'){
+  window.__NASA_RESTART_STATION_A();
+  return;
+ }
+ // Only if initialization has not yet finished: preserve the earlier fallback.
+ v1043RememberBrief();
+ try{sessionStorage.setItem('nasa_v1042_restart','1');}catch(_error){}
+ location.reload();
+});
 const touchDevice=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)||
  (navigator.maxTouchPoints>1&&(matchMedia('(pointer: coarse)').matches||/Mac/i.test(navigator.platform)));
 const qualityKey='nasa_v104_quality';
@@ -678,6 +876,8 @@ for(let x=-32;x<=32;x+=16){
   for(let z=-40;z<=39;z+=12)box(hangar,x,32.4,z,6,.13,1,steel);
 }
 for(let side of [-1,1])for(let z=-36;z<=36;z+=15){
+ // V104.6: clear side-wall fixtures from the actual four-bay production row.
+ if(z>=20)continue;
  const unit=group(hangar,side*35.7,2.2,z);
  box(unit,0,0,0,3.3,3.5,2.2,navy);
  box(unit,side*1.75,.3,0,.14,2.5,1.8,orange);
@@ -701,9 +901,10 @@ for(let z of [-27,14]){
  cyl(hangar,0,19,z,.12,.12,7,steel);
  box(hangar,0,15.5,z,3,.4,.5,orange);
 }
-// Tools, cargo containers, safety bollards and parked service vehicles.
-for(let side of [-1,1])for(let i=0;i<5;i++){
- const z=-35+i*14,x=side*24;
+// V104.6: service storage is kept at the REAR perimeter, clear of the four workshop bays.
+// The old containers at x=±24, near the station worktops, made the whole hall look cluttered.
+for(let side of [-1,1])for(let i=0;i<2;i++){
+ const z=-38+i*13,x=side*33.0;
  box(hangar,x,1.15,z,4.4,2.3,3.4,i%2?navy:steel);
  for(let k=0;k<4;k++)box(hangar,x+(k-1.5)*.85,1.2,z+1.77,.09,1.8,.12,pale);
  label(hangar,'NASA',x,2.15,z+1.84,2.2,'#f5f7ff');
@@ -714,7 +915,7 @@ for(let side of [-1,1])for(let i=0;i<5;i++){
 }
 const serviceVehicles=[];
 for(let side of [-1,1]){
- const x=side*17,z=24;
+ const x=side*24,z=62;
  const vehicle=group(hangar,x,0,z);
  box(vehicle,0,1.1,0,6,1.2,3.2,pale);
  box(vehicle,-1,2.2,0,2.9,1.2,2.8,navy);
@@ -975,22 +1176,165 @@ function makeKingdomCharacter(type=0,name='',withLabel=false){
 
 const player=nasaStart?makeKingdomCharacter(Number(nasaStart.avatar)||0):makePerson(0);
 if(nasaStart){player.userData.bent=player.userData.seatedLegs;player.userData.torso=player.userData.rig;}
-scene.add(player);player.position.set(0,0,43);
+scene.add(player);player.position.set(0,0,v1042ResetRequested?10.8:43);
 if(nasaStart?.position){const p=nasaStart.position;
  if(Number.isFinite(p.x)&&Number.isFinite(p.z))player.position.set(Math.max(-125,Math.min(125,p.x)),0,Math.max(-105,Math.min(140,p.z)));}
-// Four spatial engineering bays. Each has a 3D blueprint surface and a real fabricated module.
+// V104.4: the grand, physical briefing floats IN THE CENTER of the doorway.
+// There is no duplicate HTML card; the glass is revealed only after both doors open.
+const V1044_GLASS_X=0, V1044_GLASS_Y=8.2, V1044_GLASS_Z=19.05;
+const v1043DoorPlaque=new THREE.Group();
+v1043DoorPlaque.name='V1044_CENTERED_HANGAR_DOOR_GLASS';
+v1043DoorPlaque.position.set(V1044_GLASS_X,V1044_GLASS_Y,V1044_GLASS_Z);
+scene.add(v1043DoorPlaque);
+const v1043GlassMaterials=[];
+const v1043GlassBase=new THREE.MeshBasicMaterial({color:0x2a739d,transparent:true,opacity:.53,depthWrite:false,side:THREE.DoubleSide,toneMapped:false});
+const v1043GlassPane=new THREE.Mesh(new THREE.PlaneGeometry(12.5,6.55),v1043GlassBase);
+v1043GlassPane.renderOrder=8;v1043DoorPlaque.add(v1043GlassPane);
+v1043GlassMaterials.push({mat:v1043GlassBase,opacity:.53});
+const v1043GlassCanvas=document.createElement('canvas');v1043GlassCanvas.width=1536;v1043GlassCanvas.height=768;
+const v1043Ctx=v1043GlassCanvas.getContext('2d');
+v1043Ctx.clearRect(0,0,1536,768);
+v1043Ctx.strokeStyle='rgba(172,245,255,.83)';v1043Ctx.lineWidth=12;v1043Ctx.strokeRect(20,20,1496,728);
+v1043Ctx.textAlign='center';v1043Ctx.textBaseline='middle';v1043Ctx.direction='rtl';
+v1043Ctx.fillStyle='#93effa';v1043Ctx.font='800 47px Arial,sans-serif';v1043Ctx.fillText('NASA  ·  MISSION BRIEFING',768,105);
+v1043Ctx.fillStyle='#fff1c5';v1043Ctx.font='900 101px Arial,sans-serif';v1043Ctx.fillText('משימת החלל שלנו',768,226);
+v1043Ctx.fillStyle='#efffff';v1043Ctx.font='800 67px Arial,sans-serif';v1043Ctx.fillText('בונים חללית ומשגרים אותה!',768,353);
+v1043Ctx.fillStyle='#bcefff';v1043Ctx.font='700 59px Arial,sans-serif';v1043Ctx.fillText('4 תחנות  ·  4 חלקים  ·  שיגור אחד',768,460);
+v1043Ctx.fillStyle='#f3f9ff';v1043Ctx.font='600 43px Arial,sans-serif';v1043Ctx.fillText('חוקרים, מחשבים, מייצרים ומרכיבים',768,564);
+v1043Ctx.fillStyle='#ffe1a4';v1043Ctx.font='650 39px Arial,sans-serif';v1043Ctx.fillText('נגיעה במסך להמשך',768,666);
+const v1043GlassTex=new THREE.CanvasTexture(v1043GlassCanvas);v1043GlassTex.colorSpace=THREE.SRGBColorSpace;
+const v1043GlassLetterMat=new THREE.MeshBasicMaterial({map:v1043GlassTex,transparent:true,opacity:1,depthWrite:false,side:THREE.DoubleSide,toneMapped:false});
+const v1043GlassLetters=new THREE.Mesh(new THREE.PlaneGeometry(12.35,6.35),v1043GlassLetterMat);
+v1043GlassLetters.position.z=.035;v1043GlassLetters.renderOrder=9;v1043DoorPlaque.add(v1043GlassLetters);
+v1043GlassMaterials.push({mat:v1043GlassLetterMat,opacity:1});
+const v1043GlassFrameMat=new THREE.LineBasicMaterial({color:0x91edfd,transparent:true,opacity:.85,depthWrite:false});
+const v1043GlassFrame=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.PlaneGeometry(12.7,6.7)),v1043GlassFrameMat);
+v1043GlassFrame.position.z=.045;v1043GlassFrame.renderOrder=10;v1043DoorPlaque.add(v1043GlassFrame);
+v1043GlassMaterials.push({mat:v1043GlassFrameMat,opacity:.85});
+// Fine golden outer rim and luminous suspended details: lightweight 3D geometry.
+const v1044GoldRimMat=new THREE.LineBasicMaterial({color:0xfce7a8,transparent:true,opacity:.76,depthWrite:false});
+const v1044GoldRim=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.PlaneGeometry(12.92,6.88)),v1044GoldRimMat);
+v1044GoldRim.position.z=.052;v1044GoldRim.renderOrder=11;v1043DoorPlaque.add(v1044GoldRim);
+v1043GlassMaterials.push({mat:v1044GoldRimMat,opacity:.76});
+for(const side of [-1,1]){
+ const crystal=new THREE.Mesh(new THREE.OctahedronGeometry(.23),new THREE.MeshBasicMaterial({color:0xdaf9ff,transparent:true,opacity:.83,depthWrite:false,toneMapped:false}));
+ crystal.position.set(side*6.38,0,.08);crystal.renderOrder=12;v1043DoorPlaque.add(crystal);
+ v1043GlassMaterials.push({mat:crystal.material,opacity:.83});
+}
+let v1043BriefSeen=v1042ResetRequested||v1043BriefWasRead(),v1043BriefShowing=false,v1043GlassFade=0;
+let v1044GlassPhase=v1043BriefSeen?'done':'approaching',v1044Reveal=0,v1044CameraTarget=new THREE.Vector3(0,1.7,18);
+v1043DoorPlaque.visible=false;
+v1043DoorPlaque.scale.setScalar(.91);
+for(const item of v1043GlassMaterials)item.mat.opacity=0;
+function v1043ShowEntryBrief(){
+ if(v1043BriefSeen||v1043BriefShowing||v1042ResetRequested||v1044GlassPhase!=='approaching')return;
+ // Freeze a safe distance before the entrance, leaving the door visible.
+ v1044GlassPhase='waitingForDoors';v1043BriefShowing=true;
+ if(typeof stopStick==='function')stopStick();
+ if(typeof moveVel!=='undefined')moveVel.set(0,0,0);
+ for(const key in keys)keys[key]=false;
+}
+function v1043DismissEntryBrief(){
+ if(!v1043BriefShowing||!['appearing','reading'].includes(v1044GlassPhase))return;
+ v1044GlassPhase='disappearing';v1043BriefSeen=true;v1043RememberBrief();
+ v1043GlassFade=0;
+ if(typeof stopStick==='function')stopStick();
+ if(typeof moveVel!=='undefined')moveVel.set(0,0,0);
+ for(const key in keys)keys[key]=false;
+}
+// Catch input before the joystick, world raycaster, or buttons: tap ANYWHERE.
+window.addEventListener('pointerdown',e=>{
+ if(!v1043BriefShowing)return;
+ e.preventDefault();e.stopImmediatePropagation();
+ if(v1044GlassPhase==='appearing'||v1044GlassPhase==='reading')v1043DismissEntryBrief();
+},true);
+window.addEventListener('click',e=>{
+ if(v1043BriefShowing){e.preventDefault();e.stopImmediatePropagation();}
+},true);
+window.addEventListener('keydown',e=>{
+ if(!v1043BriefShowing)return;
+ e.preventDefault();e.stopImmediatePropagation();
+ if(['Enter',' ','Escape'].includes(e.key))v1043DismissEntryBrief();
+},true);
+function v1043UpdateBrief(dt){
+ if(v1044GlassPhase==='approaching'){
+  // Both sliding doors start opening first; hold the character only once nearby.
+  if(!v1043BriefSeen&&!v1042ResetRequested&&intro<=0&&state==='outside'&&
+     !benchActive&&!F25.cartMode&&player.position.z<=35.5&&player.position.z>14.5&&Math.abs(player.position.x)<16){
+   v1043ShowEntryBrief();
+  }
+ }
+ if(v1044GlassPhase==='waitingForDoors'&&doorAmount>=.985){
+  v1044GlassPhase='appearing';v1044Reveal=0;v1043DoorPlaque.visible=true;
+ }
+ if(v1044GlassPhase==='appearing'){
+  v1044Reveal=Math.min(1,v1044Reveal+dt/1.08);
+  const ease=v1044Reveal*v1044Reveal*(3-2*v1044Reveal);
+  for(const part of v1043GlassMaterials)part.mat.opacity=part.opacity*ease;
+  v1043DoorPlaque.position.y=V1044_GLASS_Y-1.45*(1-ease)+Math.sin(clock.elapsedTime*.75)*.045*ease;
+  v1043DoorPlaque.scale.setScalar(.91+.09*ease);
+  if(v1044Reveal>=1)v1044GlassPhase='reading';
+ }else if(v1044GlassPhase==='reading'){
+  v1043DoorPlaque.position.y=V1044_GLASS_Y+Math.sin(clock.elapsedTime*.85)*.07;
+ }else if(v1044GlassPhase==='disappearing'){
+  v1043GlassFade=Math.min(1,v1043GlassFade+dt/1.03);
+  const ease=v1043GlassFade*v1043GlassFade*(3-2*v1043GlassFade);
+  for(const part of v1043GlassMaterials)part.mat.opacity=part.opacity*(1-ease);
+  v1043DoorPlaque.position.y=V1044_GLASS_Y+ease*1.9;
+  v1043DoorPlaque.scale.setScalar(1+.075*ease);
+  if(v1043GlassFade>=1){
+   v1043DoorPlaque.visible=false;v1043BriefShowing=false;v1044GlassPhase='done';
+   if(player.userData?.head)player.userData.head.rotation.x=0;
+  }
+ }
+ // Subtly raise the avatar's head to acknowledge the hovering briefing.
+ if(player.userData?.head&&v1043BriefShowing){
+  const target=v1044GlassPhase==='disappearing'?0:-.16;
+  player.userData.head.rotation.x=THREE.MathUtils.lerp(player.userData.head.rotation.x,target,Math.min(1,dt*3));
+ }
+}
+// The camera gracefully lifts the gaze toward the REAL glass pane.
+// Scale the distance for portrait tablets/phones so the entire plaque stays visible.
+function v1044UpdateBriefCamera(dt){
+ if(!v1043BriefShowing)return;
+ const waiting=v1044GlassPhase==='waitingForDoors';
+ const retreat=v1044GlassPhase==='disappearing';
+ const normalDist=Math.max(4,camDist);
+ const normalEye=new THREE.Vector3(player.position.x-Math.sin(playerHeading)*normalDist,
+     player.position.y+3+camPitch*normalDist*.42,player.position.z-Math.cos(playerHeading)*normalDist);
+ const fov=58;
+ const aspect=Math.max(.4,camera.aspect||innerWidth/Math.max(1,innerHeight));
+ const halfHFov=Math.atan(Math.tan(THREE.MathUtils.degToRad(fov)/2)*aspect);
+ const cameraDistance=THREE.MathUtils.clamp(7.25/Math.max(.1,Math.tan(halfHFov)),12.8,29.0);
+ const glassEye=new THREE.Vector3(0,4.0,V1044_GLASS_Z+cameraDistance);
+ const waitingEye=new THREE.Vector3(player.position.x*.16,4.1,Math.max(player.position.z+8.5,31));
+ const goal=retreat?normalEye:(waiting?waitingEye:glassEye);
+ camera.position.lerp(goal,1-Math.exp(-dt*(retreat?4.2:waiting?2.1:2.7)));
+ const aim=retreat?new THREE.Vector3(player.position.x,player.position.y+1.65,player.position.z):
+   new THREE.Vector3(0,waiting?8.0:V1044_GLASS_Y,V1044_GLASS_Z);
+ v1044CameraTarget.lerp(aim,1-Math.exp(-dt*(retreat?4.5:2.9)));
+ camera.lookAt(v1044CameraTarget);
+ const targetFov=retreat?64:fov;
+ camera.fov=THREE.MathUtils.lerp(camera.fov,targetFov,Math.min(1,dt*3.8));
+ camera.updateProjectionMatrix();
+}
+// V104.7: generously spaced four-bay layout, readable from the entrance.
+// CRITICAL: Station 01 stays exactly at (-6,-7.2); the real fabrication rig,
+// crane, cart, teaching steps and assembly route are tied to that world position.
+// Three future workstations are relocated away from the rig, not duplicated.
 const stationDefs=[
- {name:'חרטום',topic:'קודקוד פרבולה',x:-31,z:-10.6,target:[3,4],detail:'שרטוט עתידי'},
- {name:'מנועים',topic:'נקודות אפס',x:-19,z:-11.2,target:[2,4],detail:'שרטוט עתידי'},
- {name:'חזית החללית',topic:'הפרש ריבועים',x:-6,z:-7.2,target:[6,1],detail:''},
- {name:'מייצבים',topic:'חוקי חזקות',x:9,z:-11.2,target:[4,2],detail:'שרטוט עתידי'}
+ {num:2,name:'חרטום החללית',topic:'קודקוד פרבולה',x:-28.5,z:-7.2,target:[3,4],detail:'הפעילות בהכנה'},
+ {num:3,name:'מנועים',topic:'נקודות אפס',x:13.9,z:-7.2,target:[2,4],detail:'הפעילות בהכנה'},
+ {num:1,name:'חזית החללית',topic:'הפרש ריבועים',x:-6,z:-7.2,target:[6,1],detail:'',ready:true},
+ {num:4,name:'מייצבים',topic:'חוקי חזקות',x:32.5,z:-7.2,target:[4,2],detail:'הפעילות בהכנה'}
 ];
 const stations=stationDefs.map((d,i)=>{
  const g=group(scene,d.x,0,d.z);
  if(i!==2){box(g,0,.68,0,8,1.36,5,mat(0x31516b,.55));} // No gold canopy/roof on any station: unobstructed top-down workbench view.
  for(const x of [-3.6,3.6])box(g,x,2.4,-2,.24,2.2,.24,steel);
  const board=box(g,0,2.7,-2.35,6.4,2.1,.2,mat(0x123d59,.3));
- const title=textSprite(d.name,i===2?1.65:1.45,'#ffe0a0');title.position.set(0,i===2?5.6:4.65,i===2?3.7:1.1);g.add(title);
+ // V104.6: the full-height header and the floor pad carry one consistent label.
+ // Legacy titles caused duplicate, scattered labels, so leave them out.
  // Physical booth markers removed: signs identify tasks, avoiding misleading booth order.
  const entryLamp=new THREE.PointLight(i===2?0x8effd3:0x79baff,2.8,13);entryLamp.position.set(0,3.3,3);g.add(entryLamp);
  const light=new THREE.PointLight(0x6de2ff,1.5,11);light.position.set(0,3,0);g.add(light);
@@ -998,6 +1342,161 @@ const stations=stationDefs.map((d,i)=>{
  for(let k=0;k<4;k++)box(g,-2.4+k*1.5,1.63,.9,.75,.25,.65,k%2?steel:gold);
  return {g,board,status:'empty',part:null,values:null};
 });
+// V104.6 — a single architectural language for all four engineering workshops.
+// The entry carpet is part of the floor, not a DOM label or floating quiz.
+// Status is honest: only Station 01 has a working educational activity in this build.
+const v1046Workshops=[];
+const v10414MagneticSigns=[];
+const v1046Pale=new THREE.MeshBasicMaterial({color:0xd8ecf4,toneMapped:false});
+const v1046Gold=new THREE.MeshBasicMaterial({color:0xe8c47c,toneMapped:false});
+const v1046Blue=new THREE.MeshBasicMaterial({color:0x69d7ef,toneMapped:false});
+const v1046Outline=new THREE.MeshBasicMaterial({color:0x1b3f53,toneMapped:false});
+const v1046Deck=new THREE.MeshStandardMaterial({color:0x17354a,metalness:.40,roughness:.43});
+const v1046PortalPost=mat(0x7f9eaf,.67,.29);
+// One instanced draw call per material, rather than dozens of individual
+// columns, beams and stripes. This matters on HP tablets and mobile GPUs.
+const v1046BeamBatches={deck:[],post:[],pale:[],gold:[],blue:[]};
+const v1046BeamMaterials={deck:v1046Deck,post:v1046PortalPost,pale:v1046Pale,gold:v1046Gold,blue:v1046Blue};
+function v1046Beam(kind,d,x,y,z,w,h,depth){
+ v1046BeamBatches[kind].push({x:d.x+x,y,z:d.z+z,w,h,depth});
+}
+function v1046CommitBeams(){
+ const unitBox=new THREE.BoxGeometry(1,1,1);
+ const dummy=new THREE.Object3D();
+ for(const [kind,items] of Object.entries(v1046BeamBatches)){
+  if(!items.length)continue;
+  const mesh=new THREE.InstancedMesh(unitBox,v1046BeamMaterials[kind],items.length);
+  mesh.name='V1046_UNIFORM_BAY_FRAME_'+kind;
+  for(let i=0;i<items.length;i++){
+   const v=items[i];dummy.position.set(v.x,v.y,v.z);dummy.scale.set(v.w,v.h,v.depth);
+   dummy.rotation.set(0,0,0);dummy.updateMatrix();mesh.setMatrixAt(i,dummy.matrix);
+  }
+  mesh.instanceMatrix.needsUpdate=true;mesh.frustumCulled=false;mesh.castShadow=false;
+  scene.add(mesh);
+ }
+}
+// A single reusable low-noise workfloor texture; only the FOUR entry pads
+// carry large lettering, avoiding duplicate signs and saving tablet memory.
+const v1046WorkbenchCanvas=document.createElement('canvas');v1046WorkbenchCanvas.width=v1046WorkbenchCanvas.height=512;
+const v1046WC=v1046WorkbenchCanvas.getContext('2d');
+v1046WC.fillStyle='#132b3b';v1046WC.fillRect(0,0,512,512);
+v1046WC.strokeStyle='rgba(159,212,226,.13)';v1046WC.lineWidth=2;
+for(let a=20;a<=492;a+=52){v1046WC.beginPath();v1046WC.moveTo(a,16);v1046WC.lineTo(a,496);v1046WC.moveTo(16,a);v1046WC.lineTo(496,a);v1046WC.stroke();}
+v1046WC.strokeStyle='rgba(215,235,244,.72)';v1046WC.lineWidth=8;v1046WC.strokeRect(14,14,484,484);
+function v1046Tex(canvas){
+ const t=new THREE.CanvasTexture(canvas);t.colorSpace=THREE.SRGBColorSpace;
+ t.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());return t;
+}
+const v1046WorkbenchDeckTex=v1046Tex(v1046WorkbenchCanvas);
+function v1046FloorArt(d){
+ // The runway plaque is a wide 9.2m × 4.5m rectangle: matching texture aspect
+ // ratio keeps Hebrew lettering truly proportional, including on phones.
+ const c=document.createElement('canvas');c.width=1024;c.height=512;
+ const ctx=c.getContext('2d'),w=c.width,h=c.height;
+ const accent=d.ready?'#65e1dc':'#a4cadb';
+ ctx.fillStyle='#102b3e';ctx.fillRect(0,0,w,h);
+ ctx.fillStyle='#1a4056';ctx.fillRect(20,18,w-40,h-36);
+ ctx.lineWidth=12;ctx.strokeStyle='#f4faff';ctx.strokeRect(23,23,w-46,h-46);
+ ctx.lineWidth=4;ctx.strokeStyle=accent;ctx.strokeRect(46,46,w-92,h-92);
+ // Symmetrical white and ivory safety hatch marks at BOTH edges.
+ for(let i=0;i<16;i++){
+  const x=70+i*56;
+  ctx.fillStyle=i%2?'#f3f8ff':'#ead7aa';
+  ctx.beginPath();ctx.moveTo(x,58);ctx.lineTo(x+24,58);ctx.lineTo(x+43,93);ctx.lineTo(x+19,93);ctx.fill();
+  ctx.beginPath();ctx.moveTo(x,454);ctx.lineTo(x+24,454);ctx.lineTo(x+43,419);ctx.lineTo(x+19,419);ctx.fill();
+ }
+ ctx.fillStyle='#071925';ctx.fillRect(68,114,w-136,282);
+ // No ground lettering: the raised magnetic station sign is readable from a distance.
+ return v1046Tex(c);
+}
+for(let i=0;i<stationDefs.length;i++){
+ const d=stationDefs[i],base=group(scene,d.x,0,d.z);
+ base.name='V1046_WORKSHOP_BAY_'+String(d.num).padStart(2,'0');
+ // Flat industrial apron; low enough to retain the existing worktable/collision geometry.
+ v1046Beam('deck',d,0,.125,.16,10.40,.075,11.30);
+ const matFloor=new THREE.Mesh(new THREE.PlaneGeometry(9.95,10.9),new THREE.MeshBasicMaterial({map:v1046WorkbenchDeckTex,side:THREE.DoubleSide}));
+ matFloor.rotation.x=-Math.PI/2;matFloor.position.set(0,.168,.16);matFloor.receiveShadow=false;base.add(matFloor);
+ // White striped floor threshold aligned across ALL four bays (global z = +3.0).
+ const thresholdZ=3.25-d.z;
+ v1046Beam('deck',d,0,.151,thresholdZ,9.25,.08,4.55);
+ const threshold=new THREE.Mesh(new THREE.PlaneGeometry(9.2,4.5),new THREE.MeshBasicMaterial({map:v1046FloorArt(d),side:THREE.DoubleSide}));
+ threshold.rotation.x=-Math.PI/2;threshold.position.set(0,.200,thresholdZ);base.add(threshold);
+ if(d.num===1){
+  const tc=document.createElement('canvas');tc.width=1024;tc.height=220;
+  const gx=tc.getContext('2d');gx.clearRect(0,0,1024,220);gx.direction='rtl';gx.textAlign='center';gx.textBaseline='middle';
+  gx.font="900 118px 'Heebo','Noto Sans Hebrew',Arial,sans-serif";gx.strokeStyle='rgba(6,30,44,.95)';gx.lineWidth=18;gx.strokeText('חזית החללית',512,116);
+  gx.fillStyle='#ecfbff';gx.shadowColor='#74e8ff';gx.shadowBlur=26;gx.fillText('חזית החללית',512,116);
+  const tt=v1046Tex(tc);
+  // Floating luminous lettering held above the dark pad by a quiet magnetic field.
+  const magneticRig=group(base,0,0,thresholdZ+.12);
+  const rise=new THREE.Mesh(new THREE.PlaneGeometry(7.5,.74),
+    new THREE.MeshBasicMaterial({map:tt,transparent:true,side:THREE.DoubleSide,depthWrite:false,toneMapped:false}));
+  rise.position.set(0,.64,0);rise.rotation.x=-.43;rise.renderOrder=12;magneticRig.add(rise);
+  const rings=[];
+  for(const [rx,rz,alpha] of [[3.35,1.05,.28],[2.45,.74,.32]]){
+   const rm=new THREE.MeshBasicMaterial({color:0x5eeaff,transparent:true,opacity:alpha,depthWrite:false,
+     blending:THREE.AdditiveBlending,side:THREE.DoubleSide});
+   const ring=new THREE.Mesh(new THREE.TorusGeometry(1,.025,5,64),rm);
+   ring.rotation.x=-Math.PI/2;ring.scale.set(rx,rz,1);ring.position.y=.235;
+   magneticRig.add(ring);rings.push({ring,alpha});
+  }
+  const beams=[];
+  for(const x of [-2.65,2.65]){
+   const bm=new THREE.MeshBasicMaterial({color:0x8feaff,transparent:true,opacity:.15,
+     depthWrite:false,blending:THREE.AdditiveBlending});
+   const field=new THREE.Mesh(new THREE.CylinderGeometry(.014,.055,.49,6,1,true),bm);
+   field.position.set(x,.44,0);magneticRig.add(field);beams.push(field);
+  }
+  v10414MagneticSigns.push({rise,rings,beams});
+ }
+ // V104.9: the learner wanted OPEN engineering workstations, not four pergolas.
+ // No posts, roof beams, or overhead labels; only the clean striped entry pad.
+ // Station-specific working machinery is left untouched.
+ v1046Workshops.push({base,threshold,d,active:false});
+}
+v1046CommitBeams();
+function v10414AnimateMagneticSigns(t){
+ for(const {rise,rings,beams} of v10414MagneticSigns){
+  const wave=Math.sin(t*1.35);
+  rise.position.y=.64+.052*wave;
+  rise.material.opacity=.91+.08*wave;
+  for(const {ring,alpha} of rings)ring.material.opacity=alpha+wave*.07;
+  for(const beam of beams)beam.material.opacity=.12+.045*Math.sin(t*1.35+.8);
+ }
+}
+function v1046EntryIndex(){
+ if(state!=='outside'||benchActive||intro>0||v1043BriefShowing||
+    F25.cartMode||F25.needsReturn||F25.phase==='dock'||F25.phase==='installing'||
+    Boolean(window.__NASA_V88_RETURN_ACTIVE)||!document.getElementById('v88MissionBoard').hidden)return -1;
+ for(let i=0;i<v1046Workshops.length;i++){
+  const d=v1046Workshops[i].d;
+  if(Math.abs(player.position.x-d.x)<3.95&&player.position.z>=1.3&&player.position.z<=5.5)return i;
+ }
+ return -1;
+}
+let v1046LastEntry=-1,v1046UpcomingMsgAt=0;
+const v1046VisitNotice=document.createElement('div');
+v1046VisitNotice.id='v1046-station-message';v1046VisitNotice.setAttribute('role','status');
+Object.assign(v1046VisitNotice.style,{position:'fixed',bottom:'23%',left:'50%',transform:'translateX(-50%)',zIndex:'16',
+ pointerEvents:'none',maxWidth:'80vw',textAlign:'center',direction:'rtl',padding:'8px 16px',
+ border:'1px solid #b9dde2',borderRadius:'12px',background:'rgba(8,27,42,.9)',
+ color:'#f0f7f5',font:'bold 14px Arial',opacity:'0',transition:'opacity .25s'});
+document.body.appendChild(v1046VisitNotice);
+function v1046UpdateThresholds(now){
+ const entered=v1046EntryIndex();
+ if(entered===v1046LastEntry)return;
+ v1046LastEntry=entered;
+ if(entered<0)return;
+ const d=v1046Workshops[entered].d;
+ if(d.ready){
+  if(F25.phase==='approach'&&typeof f25Enter==='function')f25Enter();
+ }else{
+  v1046VisitNotice.textContent=d.name+' — הסדנה בהכנה';
+  v1046VisitNotice.style.opacity='1';
+  v1046UpcomingMsgAt=now+2600;
+ }
+}
+
 let activeStation=-1,carriedStation=-1;
 // Physical square-frame fabrication station: two sliding jigs, tactile controls and an in-world cutter.
 const frameStation=stations[2],frameRig=group(frameStation.g,0,1.66,.05);
@@ -1314,9 +1813,9 @@ function unitSprite(meters,size,color='#fff5ce'){
   const canvas=document.createElement('canvas');canvas.width=1024;canvas.height=200;
   const g=canvas.getContext('2d');g.clearRect(0,0,1024,200);g.textBaseline='middle';g.textAlign='center';
   g.font="900 110px 'Heebo','Noto Sans Hebrew',Arial,sans-serif";
-  g.direction='ltr';g.fillStyle=color;
-  // Right-to-left measurement convention: number to the RIGHT, unit to its LEFT.
-  g.fillText(String(meters),625,105,280);g.fillText('מ׳',375,105,270);
+  g.fillStyle=color;g.direction='rtl';
+  const label=String(meters).includes('מ')?String(meters):(String(meters)+' מ׳');
+  g.fillText(label,512,105,700);
   const texture=new THREE.CanvasTexture(canvas);texture.colorSpace=THREE.SRGBColorSpace;
   const icon=new THREE.Sprite(new THREE.SpriteMaterial({map:texture,transparent:true,depthWrite:false}));
   icon.scale.set(size*5,size,1);return icon;
@@ -1345,7 +1844,7 @@ const toothGuard=box(f25Saw,0,-.06,.48,1.34,.26,.29,
 toothGuard.castShadow=false;
 const sawWorkLight=new THREE.PointLight(0x83eaff,1.2,2.7);sawWorkLight.position.set(0,-.1,.57);f25Saw.add(sawWorkLight);
 const f25SawHandle=box(f25Saw,0,.40,-.05,.60,.22,.51,f25Mat.amber);f25SawHandle.userData.f25='sawdrag';f25Targets.push(f25SawHandle);
-const f25SawTouchZone=box(f25Saw,0,.02,0,1.78,1.22,1.32,new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:0,depthWrite:false,side:THREE.DoubleSide}));
+const f25SawTouchZone=box(f25Saw,0,.05,0,2.60,1.80,2.00,new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:0,depthWrite:false,side:THREE.DoubleSide}));
 f25SawTouchZone.castShadow=false;f25SawTouchZone.receiveShadow=false;
 const sawActionTag=textSprite('מסור לייזר',.50,'#fff1c6');sawActionTag.position.set(0,1.12,.22);sawActionTag.material.depthTest=false;f25Saw.add(sawActionTag);sawActionTag.visible=false;
 const f25Sparks=[];
@@ -1355,7 +1854,12 @@ f25CutRail.visible=false;
 const f25Cart=group(scene,3.40,0,-2.30);f25Cart.rotation.y=-Math.PI/2;const f25CartBase=group(f25Cart);
 box(f25CartBase,0,1.1,0,4.4,.35,2.6,mat(0x5c788f,.68,.3));
 box(f25CartBase,0,1.34,0,4.1,.10,2.35,mat(0x172e43,.55,.3));
-for(const x of [-1.65,1.65])for(const z of [-1,1]){let w=cyl(f25CartBase,x,.46,z,.43,.43,.27,mat(0x212a30,.4,.6),20);w.rotation.z=Math.PI/2;box(f25CartBase,x,.46,z,.12,.28,.14,f25Mat.titanium);}
+const f25CartWheels=[];for(const x of [-1.65,1.65])for(const z of [-1,1]){
+ const pivot=group(f25CartBase,x,.46,z);const wheel=cyl(pivot,0,0,0,.43,.43,.27,mat(0x212a30,.4,.6),20);
+ wheel.rotation.z=Math.PI/2; // rotate the cylinder just once to align its axle with X
+ f25CartWheels.push(pivot); // spin the PIVOT around local X (rolling), not its cylinder Y (wobbling)
+ box(f25CartBase,x,.46,z,.12,.28,.14,f25Mat.titanium);
+}
 for(const z of [-1.03,1.03])for(const x of [-1.92,1.92])box(f25CartBase,x,1.85,z,.14,1.2,.14,f25Mat.amber);
 for(const z of [-1.08,1.08])box(f25CartBase,0,2.46,z,4.0,.12,.12,f25Mat.titanium);
 box(f25CartBase,0,1.9,1.30,3.1,.17,.12,f25Mat.amber);
@@ -1365,11 +1869,11 @@ box(f25CartArm,0,.4,0,.23,1.12,.25,f25Mat.titanium);const f25ArmTop=box(f25CartA
 const f25Hook=box(f25CartArm,.96,.53,0,.13,.8,.14,f25Mat.titanium);
 // Bench-to-cart bridge crane: moving trolley, suspended hook and visible lifting cable.
 const f25Bridge=group(scene,1.0,0,-8.55);
-for(const x of [-10.5,10.5])for(const z of [-8.7,8.7])box(f25Bridge,x,3,z,.18,6,.18,f25Mat.titanium);
+for(const x of [-9.8,9.8])for(const z of [-7.3,7.3])box(f25Bridge,x,3,z,.18,6,.18,f25Mat.titanium);
 // Open-frame crane: NO giant roof plate blocking the conveyor and cart below.
-for(const z of [-8.7,8.7])box(f25Bridge,0,6.15,z,21.2,.31,.35,f25Mat.amber);
-for(const x of [-10.4,10.4])box(f25Bridge,x,6.15,0,.35,.31,17.5,f25Mat.amber);
-box(f25Bridge,0,6.31,0,21.1,.28,.32,f25Mat.cobalt);
+for(const z of [-7.3,7.3])box(f25Bridge,0,6.15,z,19.8,.31,.35,f25Mat.amber);
+for(const x of [-9.7,9.7])box(f25Bridge,x,6.15,0,.35,.31,14.7,f25Mat.amber);
+box(f25Bridge,0,6.31,0,19.7,.28,.32,f25Mat.cobalt);
 const f25BridgeHoist=group(f25Bridge,0,5.8,-1.7);
 box(f25BridgeHoist,0,0,0,.84,.55,.8,f25Mat.cobalt);
 const f25BridgeCable=cyl(f25BridgeHoist,0,-1.1,0,.05,.05,1.75,f25Mat.titanium);
@@ -1384,7 +1888,16 @@ box(f25DockBridge,0,18.3,0,15.5,.55,1.3,f25Mat.amber);
 const f25DockTrolley=box(f25DockBridge,0,17.9,.2,1.1,.4,1.3,f25Mat.cobalt);
 const f25DockWire=cyl(f25DockBridge,0,16.15,.2,.075,.075,3.1,f25Mat.titanium);
 const f25DockClaw=box(f25DockBridge,0,14.55,.2,1.9,.30,.62,f25Mat.amber);
-for(const x of [-.75,.75])box(f25DockClaw,x,-.35,0,.12,.6,.58,f25Mat.titanium);
+const f25DockJaws=[];
+for(const sign of [-1,1]){
+ const pivot=group(f25DockClaw,sign*.76,-.10,0);
+ const finger=box(pivot,0,-.34,0,.16,.70,.52,f25Mat.titanium);
+ box(pivot,-sign*.12,-.67,0,.35,.16,.38,f25Mat.amber);
+ const pad=box(pivot,-sign*.13,-.53,0,.12,.29,.34,mat(0x1c4b61,.42,.35));
+ finger.castShadow=pad.castShadow=false;
+ f25DockJaws.push({pivot,sign});
+}
+// Two visibly closing jaws grip the same panel throughout each lift.
 const f25DockButton=group(f25Dock,-8.6,1.35,1.5);
 const f25DockButtonCap=box(f25DockButton,0,.20,0,1.15,.34,1.05,f25Mat.amber);const f25DockLight=new THREE.PointLight(0xffd684,2.4,8);f25DockLight.position.y=1.1;f25DockButton.add(f25DockLight);f25DockButtonCap.userData.f25='dock';f25Targets.push(f25DockButtonCap);
 // Four clear numbered interfaces on the prebuilt ship, face 1 is the missing rectangular frame.
@@ -1399,18 +1912,50 @@ for(const [n,x,y,z] of [[2,0,20,4.9],[3,-4.7,5.5,1],[4,4.7,5.5,1]]){
  const b=group(body,x,y,z);const mark=textSprite(String(n),.9,'#ffe0a0');mark.position.z=.42;b.add(mark);
  box(b,0,0,0,2.2,1.35,.1,new THREE.MeshBasicMaterial({color:0x30b6e5,transparent:true,opacity:.28}));
 }
-// Animation crew use the same material/mesh character style as the moving avatar.
-const f25Crew=[];for(let i=0;i<3;i++){
- const c=makePerson((i+2)%6);c.scale.setScalar(.95);scene.add(c);f25Crew.push(c);
-}
-function f25PlaceCrew(onCart=false){
- f25Crew.forEach(person=>{person.visible=onCart;});
- if(onCart){const x=f25Cart.position.x,z=f25Cart.position.z;
-   // V89: crew remains visible between the learner and the rocket, in front of the cart.
-   [[-2.7,-3.9],[0,-5.0],[2.7,-3.9]].slice(0,f25Crew.length).forEach((c,i)=>{f25Crew[i].position.set(x+c[0],0,z+c[1]);f25Crew[i].rotation.y=Math.PI;});
- } else {
-   [[-4.7,4.4],[4.7,4.3],[-4.7,-4.35],[4.7,-4.3]].slice(0,f25Crew.length).forEach((c,i)=>{const p=f25Bay.localToWorld(new THREE.Vector3(c[0],0,c[1]));f25Crew[i].position.copy(p);f25Crew[i].rotation.y=Math.atan2(-c[0],-c[1]);});
+// V104.2: no fabricated crew: the only workers are the actual logged-in visitors.
+// Shared team avatars live in v86Peers and are never cloned for the workshop/cart.
+const v86Peers=new Map();
+let v1042CartPeerIds=[];
+function v1042EnrollActualCartPeers(){
+ v1042CartPeerIds=[];
+ if(!nasaStart?.teamId)return;
+ const at=f25Bay.getWorldPosition(new THREE.Vector3());
+ for(const [id,peer] of v86Peers){
+  if(Math.hypot(peer.g.position.x-at.x,peer.g.position.z-at.z)<11.5)v1042CartPeerIds.push(id);
  }
+ v1042CartPeerIds.sort((a,b)=>String(a).localeCompare(String(b)));
+}
+function v1042WalkAvatar(actor,speed,phase=0){
+ const rig=actor?.userData;if(!rig?.legs)return;
+ const stride=Math.min(1,Math.abs(speed)/1.1);
+ for(let i=0;i<rig.legs.length;i++)rig.legs[i].rotation.x=Math.sin(clock.elapsedTime*9.8+phase+i*Math.PI)*.62*stride;
+ for(let i=0;i<(rig.arms?.length||0);i++){
+  // Both hands face forward toward the cart's rear handle, rather than swinging free.
+  rig.arms[i].rotation.x=-1.13 + Math.sin(clock.elapsedTime*9.8+phase+i*Math.PI)*.025*stride;
+  rig.arms[i].rotation.z=i===0?-.11:.11;
+  if(rig.elbows?.[i])rig.elbows[i].rotation.x=-.22;
+  if(rig.wrists?.[i])rig.wrists[i].rotation.x=-.08;
+ }
+ if(rig.rig)rig.rig.rotation.x=.075*stride;
+}
+function f25PlaceCrew(onCart=false,speed=0,dt=1/60){
+ if(!onCart){v1042CartPeerIds=[];return;}
+ for(const wheel of f25CartWheels)wheel.rotation.x+=speed*dt/0.43;
+ const participants=[{id:'self',g:player}];
+ for(const id of v1042CartPeerIds){const peer=v86Peers.get(id);if(peer)participants.push({id,g:peer.g});}
+ const angle=f25Cart.rotation.y;
+ const back=new THREE.Vector3(-Math.sin(angle),0,-Math.cos(angle));
+ const right=new THREE.Vector3(Math.cos(angle),0,-Math.sin(angle));
+ const n=participants.length;
+ participants.forEach(({id,g},i)=>{
+  // Line up behind the rear handlebar: arms can touch it without stretching.
+  const across=(i-(n-1)/2)*1.00;
+  const target=f25Cart.position.clone().addScaledVector(back,1.80).addScaledVector(right,across);
+  if(id==='self'){g.position.copy(target);playerHeading=angle;}
+  else g.position.lerp(target,Math.min(1,dt*13));
+  g.rotation.y=angle;
+  v1042WalkAvatar(g,speed,i*.5);
+ });
 }
 f25PlaceCrew();
 // V30: physically remove any legacy canopy/roof panel above station 1.
@@ -1500,7 +2045,7 @@ const f25Instructions={
 function f25Hud(){
  const hud=document.querySelector('#v25Hint');if(!hud)return;
  hud.textContent=({'ready':'▶','film':'▶  ◼  ◼  ◼  ◼','retract':'↓','labels':'a   b','measure':'📏','measuring':'📏  →  1m','sumMeasure':'📏 a+b','sumMeasuring':'📏  →  8m','diff':'a − b = □','outer':'a²','inner':'b²','area':'a²  □  b²','factor':'(a−b) × (a+b)','areaResult':'2 × 8 = 16  ✓','sum':'a+b = □','length':'▭ = □','cut':'✂  ▭','loading':'⬆','loaded':'🛒','cart':'🛒','dock':'⬆','installing':'⚙','done':'✓'})[F25.phase]||'';
- document.querySelector('#v25Stage').textContent='חזית החללית · 01';
+ document.querySelector('#v25Stage').textContent='חזית החללית';
  document.querySelector('#v25HintWrap').style.display=F25.phase==='approach'?'none':'block';
  document.querySelector('#v25Exit').hidden=!benchActive;
  document.querySelector('#v25Help').hidden= !benchActive || ['film','retract','installing'].includes(F25.phase);
@@ -1663,7 +2208,7 @@ function f25CutPlate(){
  f25DrawBoard();
  if(F25.cutIndex===4){f25SetPhase('loading');f25CutRail.visible=false;f25Outline.visible=true;}
 }
-const f25CartHandle=box(f25Cart,0,2.22,1.42,2.6,.15,.22,f25Mat.amber);const f25CartBeacon=new THREE.PointLight(0xffd684,2.2,7);f25CartBeacon.position.set(0,2.6,1.45);f25Cart.add(f25CartBeacon);f25CartHandle.userData.f25='cartHandle';f25Targets.push(f25CartHandle);
+const f25CartHandle=box(f25Cart,0,1.97,-1.42,2.6,.15,.22,f25Mat.amber);const f25CartBeacon=new THREE.PointLight(0xffd684,2.2,7);f25CartBeacon.position.set(0,2.6,1.45);f25Cart.add(f25CartBeacon);f25CartHandle.userData.f25='cartHandle';f25Targets.push(f25CartHandle);
 function f25MoveCart(dt){
  const v=-joyY+(keys.w||keys.arrowup?1:0)-(keys.s||keys.arrowdown?1:0);
  if(v>.13)F25.cartProgress=Math.min(f25RouteLength,F25.cartProgress+dt*(1.2+v*1.55));
@@ -1741,10 +2286,18 @@ function f25DoInstall(dt){
   const localHook=f25Dock.worldToLocal(hook.clone());
   f25DockBridge.position.z=THREE.MathUtils.clamp(localHook.z,-6.4,6.4);
   f25DockTrolley.position.x=THREE.MathUtils.clamp(localHook.x,-6.9,6.9);
-  const cableEnd=Math.min(17.5,Math.max(2.1,localHook.y+.42));
-  f25DockClaw.position.set(f25DockTrolley.position.x,cableEnd,.2);
-  f25DockWire.position.set(f25DockTrolley.position.x,(17.65+cableEnd)/2,.2);
+  const cableZ=localHook.z-f25DockBridge.position.z;
+  const cableEnd=Math.min(17.5,Math.max(2.1,localHook.y+.62));
+  f25DockTrolley.position.z=cableZ;
+  f25DockClaw.position.set(f25DockTrolley.position.x,cableEnd,cableZ);
+  f25DockWire.position.set(f25DockTrolley.position.x,(17.65+cableEnd)/2,cableZ);
   f25DockWire.scale.y=Math.max(.12,(17.65-cableEnd)/3.1);
+  // Jaws close on the panel before lifting, stay closed in transit and open after placement.
+  const grip=u<.16?0:u<.27?ease((u-.16)/.11):u<.92?1:1-ease((u-.92)/.08);
+  for(const {pivot,sign} of f25DockJaws){
+    pivot.position.x=sign*(.90-.21*grip);
+    pivot.rotation.z=sign*(.12*(1-grip));
+  }
   if(u>=.999){
     if(part.parent!==f25Mount)f25Mount.attach(part);
     part.position.set(f25Layout[index].x,f25Layout[index].z,.37);
@@ -1760,7 +2313,7 @@ function f25DoInstall(dt){
         .multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1,0,0),Math.PI/2));
       p.scale.set(1,1,1);
     }
-    F25.success=true;F25.v44Verification='pending';F25.flowActive=false;
+    F25.success=true;F25.v44Verification='pending';F25.flowActive=false; // F25.success means installed, NOT verified measurements.
     installedModules[2]=true;frameStation.status='installed';f25Number.visible=false;
     f25SetPhase('done');
   }
@@ -1808,21 +2361,10 @@ document.querySelector('#v25Help').onclick=f25Hint;
 f25DrawBoard();f25DrawFilm(0);f25SetPhase('approach');
 // --- End V28 station code ---
 
+// No NPC technicians in or around Station 1. Only real teammates appear there.
+// Spectators remain at the outdoor launch audience, not in the fabrication bay.
 const workerGroups=[];
-for(let i=0;i<9;i++){
- const worker=makePerson((i+2)%6);worker.scale.setScalar(.68);
- const x=(i%3-1)*13,z=32+Math.floor(i/3)*8;
- worker.position.set(x,0,z);scene.add(worker);
- workerGroups.push({worker,home:new THREE.Vector3(x,0,z),phase:i*1.7});
-}
-// Additional hangar maintenance crews and live warning lights.
 const hangarCrew=[];
-for(let i=0;i<12;i++){
- const worker=makePerson((i+1)%6);worker.scale.setScalar(.72);
- const x=(i%2?1:-1)*(11+(i%3)*7), z=-9-Math.floor(i/2)*9;
- worker.position.set(x,0,z);scene.add(worker);
- hangarCrew.push({worker,x,z,phase:i*1.31});
-}
 const beaconLights=[];
 for(let i=0;i<14;i++){
  const x=(i%2?1:-1)*32,z=8-Math.floor(i/2)*11;
@@ -1862,7 +2404,7 @@ function setMode(mode){state=mode;launchBtn.hidden=mode!=='seated'||!installedMo
 function board(){if(state!=='ramp'||!installedModules.every(Boolean))return;setMode('cabin');rocket.add(player);player.position.set(0,5.2,3.1);player.rotation.y=Math.PI;flash('נכנסתם לחללית — התקדמו אל המושבים');}
 function sit(){if(state!=='cabin'||!installedModules.every(Boolean))return;setMode('seated');player.position.set(-2.25,5.28,-1.8);player.scale.setScalar(.78);player.rotation.y=Math.PI;seatedPose(player);flash('כולם חגורים! אפשר להתחיל בשיגור');interiorYaw=0;interiorPitch=.04;hint('ארבעה מושבים, ארבעה נוסעים. אפשר לסובב את המבט בתוך התא וללחוץ על שיגור.');}
 launchBtn.onclick=()=>{if(state!=='seated')return;detached=true;detachProgress=0;setMode('countdown');launchTime=0;roofAmount=0;verticalSpeed=0;camera.position.set(12,16,-7);camera.lookAt(0,14,-39);};
-resetBtn.onclick=()=>location.reload();
+resetBtn.onclick=()=>v1042Restart.click();
 // Layered cloud banks along the ascent route, independent of the vehicle.
 const ascentClouds=[];
 const cloudMat=new THREE.MeshBasicMaterial({color:0xf8fbff,transparent:true,opacity:.63,depthWrite:false});
@@ -1915,7 +2457,7 @@ if(intro>0){
 }
 
 // V86: continuous room bridge, no independent Firebase login or extra room key.
-const v86Peers=new Map();let v86LastPositionSend=0;
+let v86LastPositionSend=0;
 function v86SendPosition(){if(!nasaStart)return;
  const now=performance.now();if(now-v86LastPositionSend<220)return;v86LastPositionSend=now;
  nasaPost({type:'kingdom-nasa-position-v86',x:+player.position.x.toFixed(2),z:+player.position.z.toFixed(2),yaw:+player.rotation.y.toFixed(3),state:state,phase:typeof F25==='object'?F25.phase:''});}
@@ -1938,6 +2480,8 @@ function v86UpdatePeers(dt){for(const p of v86Peers.values()){
  const walk=Math.min(1,Math.hypot(p.x-p.g.position.x,p.z-p.g.position.z));
  p.g.userData.legs.forEach((l,i)=>l.rotation.x=Math.sin(performance.now()/200+i*Math.PI)*.32*walk);
 }}
+window.__NASA_ENTRY_GLASS_DIAGNOSTICS=()=>({phase:v1044GlassPhase,visible:v1043DoorPlaque.visible,doorOpen:doorAmount,center:[v1043DoorPlaque.position.x,v1043DoorPlaque.position.y,v1043DoorPlaque.position.z],briefSeen:v1043BriefSeen});
+window.__NASA_V1046_BAYS=()=>v1046Workshops.map(v=>({station:v.d.num,name:v.d.name,x:v.d.x,z:v.d.z,entryZ:3.25,ready:!!v.d.ready,footprint:10.4}));
 window.__NASA_BRIDGE_DIAGNOSTICS=()=>({version:'V86.0',live:!!nasaStart,avatar:nasaStart?.avatar,teammates:v86Peers.size,x:player.position.x,z:player.position.z});
 // V104.1: stop forcing all touch devices to 30 FPS.
 // Let each display present every available frame; adaptive resolution below
@@ -1950,6 +2494,7 @@ function tick(now){
  lastNasaFrame=now;
  const dt=Math.min(.10,elapsed/1000);
  clock.elapsedTime+=dt;
+ v1043UpdateBrief(dt);
  v86UpdatePeers(dt);v86SendPosition();
  const openingShot=intro>0;
 
@@ -1959,7 +2504,7 @@ function tick(now){
  if(stationIndex!==2)benchExited=false;
  pickupBtn.hidden=true;
  installBtn.hidden=!(F25.phase==='dock'&&!benchActive);
- document.querySelector('#joy').style.display=(openingShot||F25.phase==='dock'||F25.phase==='installing'||F25.needsReturn||Boolean(window.__NASA_V88_RETURN_ACTIVE)||!document.getElementById('v88MissionBoard').hidden)?'none':(benchActive?'none':'block');
+ document.querySelector('#joy').style.display=(v1043BriefShowing||openingShot||F25.phase==='dock'||F25.phase==='installing'||F25.needsReturn||Boolean(window.__NASA_V88_RETURN_ACTIVE)||!document.getElementById('v88MissionBoard').hidden)?'none':(benchActive?'none':'block');
  
  if(carriedStation>=0){player.userData.arms.forEach((a,i)=>{a.rotation.x=-1.1;a.rotation.z=i===0?-.42:.42;});}
  const walking=Math.min(1,moveVel.length()/2.2),stride=clock.elapsedTime*9;
@@ -1970,6 +2515,7 @@ function tick(now){
 
  if(benchActive){f25Frame(dt);renderNasa(now);return;}if(F25.phase==='installing'||F25.phase==='loadingAnim'||F25.needsReturn)f25Frame(dt);
  if(window.__NASA_V88_RETURN_FRAME?.(dt)){renderNasa(now);return;}
+ if(!document.getElementById('v88MissionBoard').hidden){renderNasa(now);return;}
  if(window.__NASA_V88_NAV_FRAME?.(dt)){renderNasa(now);return;}
  if(openingShot){
   intro-=dt;
@@ -1979,7 +2525,7 @@ function tick(now){
   camera.fov=THREE.MathUtils.lerp(77,64,t);
   camera.updateProjectionMatrix();
  }
- if(F25.cartMode){f25MoveCart(dt);}else if(!openingShot&&['outside','ramp','cabin'].includes(state)){
+ if(F25.cartMode){f25MoveCart(dt);}else if(!openingShot&&!v1043BriefShowing&&['outside','ramp','cabin'].includes(state)){
   let x=joyX+(keys.d||keys.arrowright?1:0)-(keys.a||keys.arrowleft?1:0),y=-joyY+(keys.w||keys.arrowup?1:0)-(keys.s||keys.arrowdown?1:0);
   const power=Math.min(1,Math.hypot(x,y));if(power>1){x/=power;y/=power;}
   // V70 vehicle-style steering: horizontal stick turns; vertical stick drives.
@@ -2031,8 +2577,12 @@ function tick(now){
    }
   }
  }
+ // V104.6: stepping on a striped threshold activates the real Station 01.
+ // Future bays are clearly marked as in development, never presented as completed tasks.
+ v1046UpdateThresholds(now);v10414AnimateMagneticSigns(clock.elapsedTime);
+ if(v1046UpcomingMsgAt&&now>=v1046UpcomingMsgAt){v1046UpcomingMsgAt=0;v1046VisitNotice.style.opacity='0';}
  // Proximity sensors open the entrance and the rocket hatch automatically.
- const nearMain=Math.abs(player.position.x)<24&&player.position.z<42&&player.position.z>0;
+ const nearMain=(Math.abs(player.position.x)<24&&player.position.z<42&&player.position.z>0)||v1043BriefShowing;
  if(nearMain||state!=='outside')doorAmount=Math.min(1,doorAmount+dt*.8);else doorAmount=Math.max(0,doorAmount-dt*.35);
  doorL.position.x=-19-20*doorAmount;doorR.position.x=19+20*doorAmount;
  const nearHatch=installedModules.every(Boolean)&&(state==='ramp'||(state==='outside'&&Math.abs(player.position.x)<7&&player.position.z<-19&&player.position.z>-43));
@@ -2091,7 +2641,9 @@ function tick(now){
  const fly=Math.max(0,launchTime-5);
  cinematicBirdScatter=THREE.MathUtils.lerp(cinematicBirdScatter,fly>2?1:0,Math.min(1,dt*.85));
  birds.forEach((b,i)=>{if(!b.bird.visible)return;const t=clock.elapsedTime*.65+b.phase;const scatter=cinematicBirdScatter*65;const r=b.radius+scatter; b.bird.position.set(Math.cos(t)*r, b.height+Math.sin(t*1.5)*2+scatter*.45, -39+Math.sin(t)*r);b.bird.rotation.y=-t; b.bird.children.forEach((w,j)=>w.rotation.z=(j===0?-1:1)*(1.0+.24*Math.sin(clock.elapsedTime*8+i)));});
- serviceVehicles.forEach(({vehicle,side,phase})=>{if(!vehicle.visible)return;const t=clock.elapsedTime*.23+phase;vehicle.position.z=22+Math.sin(t)*14;vehicle.position.x=side*(18+Math.cos(t*.6)*2);vehicle.rotation.y=Math.cos(t)>0?0:Math.PI;});
+ // V104.6: service vehicles patrol the OUTDOOR apron (beyond the hangar door).
+ // Neither vehicles nor cargo cross any workshop entrance or the main aisle.
+ serviceVehicles.forEach(({vehicle,side,phase})=>{if(!vehicle.visible)return;const t=clock.elapsedTime*.23+phase;vehicle.position.z=62+Math.sin(t)*7;vehicle.position.x=side*(24+Math.cos(t*.6)*1.5);vehicle.rotation.y=Math.cos(t)>0?0:Math.PI;});
  hangarCrew.forEach(({worker,x,z,phase})=>{
  if(!worker.visible)return;
  const t=clock.elapsedTime*.43+phase;
@@ -2107,19 +2659,20 @@ function tick(now){
   if(cheer<.1){const t=clock.elapsedTime*.4+s.phase;s.spectator.position.x=s.home.x+Math.sin(t)*1.6;s.spectator.position.z=s.home.z+Math.cos(t*.8)*1.2;s.spectator.rotation.y=Math.atan2(Math.cos(t),-Math.sin(t*.8));u.legs.forEach((l,j)=>l.rotation.x=Math.sin(clock.elapsedTime*3.2+s.phase+j*Math.PI)*.26);u.arms.forEach((a,j)=>{a.rotation.x=Math.sin(t*3+j*Math.PI)*.23;a.rotation.z=(i%2?1:-1)*.15;});}
   else {s.spectator.rotation.y=0;s.spectator.position.y=cheer*.12*Math.abs(Math.sin(clock.elapsedTime*6+s.phase));u.legs.forEach(l=>l.rotation.x=0);}u.arms[0].rotation.z=-cheer*(1.7+.2*Math.sin(clock.elapsedTime*8+i));u.arms[1].rotation.z=cheer*(1.7+.2*Math.sin(clock.elapsedTime*8+i));s.hat.visible=cheer>.05&&s.throwHat;if(s.hat.visible){const age=(fly-1.0+s.phase*.15)%3.6;s.hat.position.set(s.spectator.position.x+Math.sin(age*2+i)*age*.6,2.3+Math.max(0,4.2*age-1.25*age*age),s.spectator.position.z);s.hat.rotation.z=age*3;}});
  rainbow.visible=fly>1.5;
+ v1044UpdateBriefCamera(dt);
  renderNasa(now);
 }
 // V65 CLEAN ENGINE — integrated flight / evidence / build pipeline — one state machine, one physical right display, one blue journal.
 (function(){
   const st={stage:'brief',before:'brief',journal:[],pending:null,values:{diff:null,sum:8,area:null,panel:null,length:null,formula:null,metal:null},
     selected:null,sub:[],history:[],elapsed:0,measureKind:'',demoClock:0,miniSlide:0,active:false,cutClock:0,cutTarget:0,cutStart:0,cutMoving:false,feedActive:false,feedClock:0,cutPieces:[],conveyor:[],delivery:0,install:0,returned:false,loadHookWorld:null,installHookWorld:null,
-    highlight:'',highlightUntil:0,page:0,mode:'',introAccepted:false,diffDemoClock:0,diffVisualDone:false,diffOperation:'',rulerReturn:null,squareMeasure:null,loadRequested:false,loadOrigins:[]};
+    highlight:'',highlightUntil:0,page:0,mode:'',introAccepted:false,diffDemoClock:0,diffVisualDone:false,diffOperation:'',rulerReturn:null,meterReturning:null,squareMeasure:null,loadRequested:false,loadOrigins:[]};
   // V94: previously undefined; a ReferenceError here stopped the journal and stage setup.
-  const stationProgress=(typeof window.__NASA_STATION_PROGRESS==='string' && /^([1-4])\/4$/.test(window.__NASA_STATION_PROGRESS))?window.__NASA_STATION_PROGRESS:'1/4';
+  const stationProgress='';
   const briefProgress=document.querySelector('#v63Brief small');
-  if(briefProgress)briefProgress.textContent='NASA / MISSION 01 · '+stationProgress;
+  if(briefProgress)briefProgress.textContent='NASA · חזית החללית';
   const stationSubtitle=document.querySelector('.v85Subtitle');
-  if(stationSubtitle)stationSubtitle.textContent='תחנה '+stationProgress+' · חזית החללית';
+  if(stationSubtitle)stationSubtitle.textContent='חזית החללית';
   const now=()=>clock.elapsedTime;
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
   const colors={a:'#86eaff',a2:'#7ee8ff',b:'#ffdaa0',b2:'#ffbb72',metal:'#8de6b3',plain:'#f2f9fd'};
@@ -2195,9 +2748,25 @@ function tick(now){
     m.rotation.x=-Math.PI/2;m.renderOrder=90;m.visible=false;v65Jig.add(m);return m;
   }
   const discoveredA2=surfaceFormula('S = a²',2.52,'#d9fbff');
-  discoveredA2.rotation.x=-.30;discoveredA2.position.set(0,.62,-.45);
+  discoveredA2.rotation.x=-.30;discoveredA2.position.set(0,.275,0);
   const discoveredB2=surfaceFormula('S = b²',2.28,'#fff0c9');
-  discoveredB2.rotation.x=-.30;discoveredB2.position.set(0,.56,.20);
+  discoveredB2.rotation.x=-.30;discoveredB2.position.set(0,.275,0);
+  // Chosen operation moves to the center of the four strips, hovering until touched.
+  const differenceMinus=surfaceFormula('a² − b²',3.72,'#c9faff');
+  const differencePlus=surfaceFormula('a² + b²',3.72,'#ffd9a1');
+  for(const eq of [differenceMinus,differencePlus]){eq.rotation.x=-.27;eq.position.set(0,.82,0);eq.renderOrder=94;}
+  const differenceTouch=new THREE.Mesh(new THREE.PlaneGeometry(4.8,1.75),
+    new THREE.MeshBasicMaterial({transparent:true,opacity:0,depthWrite:false,side:THREE.DoubleSide}));
+  differenceTouch.rotation.x=-.27;differenceTouch.position.set(0,.83,0);v65Jig.add(differenceTouch);
+
+  // Generous invisible touch plates track each floating equation on tablets/phones.
+  function v1048FormulaTouch(parent){
+    const hit=new THREE.Mesh(new THREE.PlaneGeometry(3.55,1.22),
+      new THREE.MeshBasicMaterial({transparent:true,opacity:0,depthWrite:false,side:THREE.DoubleSide}));
+    hit.position.z=.016;parent.add(hit);return hit;
+  }
+  const v1048ATouch=v1048FormulaTouch(discoveredA2);
+  const v1048BTouch=v1048FormulaTouch(discoveredB2);
   const outerCaption=textSprite('מסגרת חיצונית',.56,'#bfefff');outerCaption.position.set(0,.22,-3.10);outerCaption.material.depthTest=false;v65Jig.add(outerCaption);outerCaption.visible=false;
   const innerCaption=textSprite('חלון פנימי',.50,'#ffd8a6');innerCaption.position.set(0,.22,1.98);innerCaption.material.depthTest=false;v65Jig.add(innerCaption);innerCaption.visible=false;
   // Only invisible point lights emphasize the original steel edge; no raised glow bars.
@@ -2219,8 +2788,8 @@ function tick(now){
   // V84: exactly two real 1m rulers. They flank the upper b edge from both sides.
   const splitRulers=[];
   const splitSpecs=[
-    {x:-1.97,z:-1.92,rotation:0}, // left ruler sits slightly BELOW the b edge
-    {x:1.97,z:-1.92,rotation:0}   // right ruler sits slightly BELOW the b edge
+    {x:-1.97,z:-1.22,rotation:0}, // closer to the learner: BELOW the 1m line
+    {x:1.97,z:-1.22,rotation:0}   // both rulers align with the same marked endpoints
   ];
   function buildUnitRuler(spec,i){
     const r=group(v65Jig,0,.155,0);r.rotation.y=spec.rotation;
@@ -2265,13 +2834,24 @@ function tick(now){
     guide.rotation.x=-Math.PI/2;guide.position.set(x,.111,-.10);topMeasure.add(guide);dropGuides.push(guide);
   }
   topMeasure.visible=false;
-  // A separate duplicated measuring run for a+b: lengths 5 and 3, aligned end-to-end.
-  const sumRail=group(v65Jig,0,.0,3.94);
+  // A+B is measured on the FRONT checked grid of the worktop, NOT over the square.
+  // The two consecutive bars have total length 5 (3.12+1.88) and actual endpoints -2.5,+2.5.
+  // On its own checked-grid pad, below the square-work zone and outside the main drawing.
+  const sumRail=group(f25Desk,0,1.765,4.76);
+  const sumPad=box(sumRail,0,-.105,0,5.56,.13,1.25,mat(0x173448,.56,.39));sumPad.castShadow=false;
+  for(let k=-10;k<=10;k++){
+    const strip=box(sumRail,k*.25,-.03,0,.014,.009,1.17,new THREE.MeshBasicMaterial({color:0x497080,transparent:true,opacity:.5}));strip.castShadow=false;
+  }
+  for(let k=-2;k<=2;k++){
+    const strip=box(sumRail,0,-.025,k*.25,5.48,.009,.014,new THREE.MeshBasicMaterial({color:0x497080,transparent:true,opacity:.5}));strip.castShadow=false;
+  }
   const sumBarA=box(sumRail,-.94,.11,0,3.12,.045,.25,new THREE.MeshBasicMaterial({color:0x5be4f4,transparent:true,opacity:.82,depthWrite:false}));
   const sumBarB=box(sumRail,1.56,.11,0,1.88,.045,.25,new THREE.MeshBasicMaterial({color:0xffcf81,transparent:true,opacity:.82,depthWrite:false}));
   const sumTagA=textSprite('a',.42,'#bdf6ff');sumTagA.position.set(-.96,.31,.22);sumRail.add(sumTagA);
   const sumTagB=textSprite('b',.42,'#ffe2a6');sumTagB.position.set(1.53,.31,.22);sumRail.add(sumTagB);
   const sumEquals=textSprite('a + b = 8',.48,'#eaffff');sumEquals.position.set(0,.38,.38);sumRail.add(sumEquals);
+  const sumEnds=[];
+  for(const xx of [-2.5,2.5])sumEnds.push(box(sumRail,xx,.14,0,.035,.095,.46,f25Mat.titanium));
   sumRail.visible=false;
   const coords=[[-.5,-2,0],[2,-.5,Math.PI/2],[.5,2,0],[-2,.5,Math.PI/2]];
   const slotGuides=[],metalPanels=[];
@@ -2286,10 +2866,31 @@ function tick(now){
     const material=new THREE.MeshStandardMaterial({color:0x89aebc,metalness:.82,roughness:.26,transparent:true,opacity:.26,
       emissive:0x18445a,emissiveIntensity:.14});
     const piece=box(v65Jig,x,.164,z,4,.026,1,material);piece.rotation.y=rot;piece.userData.basePos=new THREE.Vector3(x,.164,z);piece.userData.baseRot=rot;piece.visible=false;
-    const areaTag=textSprite('S = 4 מ״ר',.34,'#fff7d1');areaTag.position.set(0,.18,.08);areaTag.material.depthTest=false;areaTag.visible=false;piece.add(areaTag);
-    const lengthTag=unitSprite('4',.46,'#dff7ff');lengthTag.position.set(0,.34,.08);lengthTag.visible=false;piece.add(lengthTag);
-    const widthTag=unitSprite('1',.40,'#ffe7b8');widthTag.position.set(0,-.18,.08);widthTag.visible=false;piece.add(widthTag);
+    const areaTag=textSprite('',.42,'#fff7d1');areaTag.position.set(0,.20,0);areaTag.material.depthTest=false;areaTag.visible=false;piece.add(areaTag);
+    const lengthTag=unitSprite('4 מ׳',.39,'#dff7ff');lengthTag.position.set(0,.20,-.60);lengthTag.visible=false;piece.add(lengthTag);
+    // Width is on the SHORT edge of the rectangle, not in its center.
+    const widthTag=unitSprite('1',.34,'#ffe7b8');widthTag.position.set(-1.86,.18,.38);widthTag.visible=false;piece.add(widthTag);
     piece.userData.areaTag=areaTag;piece.userData.lengthTag=lengthTag;piece.userData.widthTag=widthTag;
+    // A separate illuminated perimeter on EACH congruent rectangle, not one continuous glowing sheet.
+    const edgeTint=i%2===0?0x6cf3ff:0xffd58d;
+    const rimMaterial=new THREE.MeshBasicMaterial({color:edgeTint,transparent:true,opacity:.95,depthTest:false,depthWrite:false});
+    const darkSeam=new THREE.MeshBasicMaterial({color:0x102b39,depthWrite:false});
+    for(const zz of [-.505,.505]){const rail=box(piece,0,.045,zz,4.06,.044,.046,rimMaterial);rail.castShadow=false;}
+    for(const xx of [-2.025,2.025]){const rail=box(piece,xx,.045,0,.046,.044,1.07,rimMaterial);rail.castShadow=false;}
+    const centralDivider=box(piece,0,.043,0,3.81,.008,.010,darkSeam);centralDivider.castShadow=false;
+    piece.userData.outlineMaterial=rimMaterial;
+    // A dimension bracket spanning the SHORT edge: 1m with arrowheads at both ends.
+    const widthBracket=group(piece,-1.76,.14,0);widthBracket.visible=false;
+    const bracketMat=new THREE.MeshBasicMaterial({color:0xffe7a4,depthTest:false,depthWrite:false});
+    box(widthBracket,0,0,0,.038,.027,.78,bracketMat).castShadow=false;
+    for(const sign of [-1,1]){
+      const arrow=new THREE.Mesh(new THREE.ConeGeometry(.075,.19,8),bracketMat);
+      arrow.rotation.x=sign*Math.PI/2;arrow.position.z=sign*.39;arrow.castShadow=false;widthBracket.add(arrow);
+    }
+    const widthOne=unitSprite('1 מ׳',.24,'#fff0b3');widthOne.material.depthTest=false;
+    widthOne.position.set(-.32,.10,0);widthBracket.add(widthOne);
+    piece.userData.widthBracket=widthBracket;
+    piece.userData.widthTag.visible=false;
     piece.castShadow=false;metalPanels.push(piece);
   }
   const panelOneHit=new THREE.Mesh(new THREE.PlaneGeometry(4.12,1.16),
@@ -2316,14 +2917,14 @@ function tick(now){
   const glowBase=box(rulerCradle,0,.045,0,1.50,.007,.43,cradleGlowMat);glowBase.castShadow=false;
   const rulerMarker=new THREE.PointLight(0x77eaff,.45,2.8);rulerMarker.position.set(0,.20,0);rulerCradle.add(rulerMarker);
   f25Ruler.visible=true;f25Ruler.position.copy(park);f25Ruler.scale.set(1,1,1);
-  const rulerTapZone=box(f25Desk,park.x,1.90,park.z,1.92,.36,.75,
+  const rulerTapZone=box(f25Desk,park.x,1.94,park.z,3.12,.82,1.64,
     new THREE.MeshBasicMaterial({transparent:true,opacity:0,depthWrite:false,side:THREE.DoubleSide}));
-  const sunTag=textSprite('NASA 01',.42,'#9cdbe7');sunTag.position.set(-2.15,2.20,3.75);f25Desk.add(sunTag);
+  const sunTag=textSprite('NASA',.42,'#9cdbe7');sunTag.position.set(-2.15,2.20,3.75);f25Desk.add(sunTag);
   let cutDimensions=null;
   function setCutDimensions(){
     if(cutDimensions){f25CutRail.remove(cutDimensions);cutDimensions.material.map?.dispose?.();cutDimensions.material.dispose();}
     const chosen=Number(st.values.length);
-    const cutAt=clamp(-3.65+Math.abs(chosen),-3.35,3.45);
+    const cutAt=0.35; // consistent, visible 4m machine position; feed length carries the actual answer
     f25CutMark.position.x=cutAt;
     f25Saw.position.x=cutAt;
     f25Saw.position.z=-1.17;f25CutMark.visible=false;
@@ -2388,7 +2989,9 @@ function tick(now){
   function v83UpdateControls(){
     const prod=benchActive&&['cut','load-ready','loadingAnim','loaded'].includes(st.stage);
     v83FabButton.classList.toggle('active',prod);
-    v83ZoomButton.classList.toggle('active',benchActive&&!prod&&st.stage!=='demo'&&st.stage!=='brief');
+    const zoomAvailable=benchActive&&!prod&&st.stage!=='demo'&&st.stage!=='brief';
+    v83ZoomButton.classList.toggle('active',zoomAvailable);
+    document.getElementById('v10415-menu-exit').hidden=!benchActive;
     if(prod){
       let caption='';
       if(st.stage==='cut')caption=st.cutMoving?'✂ חותכים את הלוח…':st.conveyor.length?'↗ מעבירים את הלוח לאורך המסוע…':st.feedActive?'↘ מזינים פס מתכת חדש…':'✂ חיתוך לוח '+(F25.cutIndex+1)+' מתוך 4  ·  '+st.values.length+' מ׳';
@@ -2405,10 +3008,77 @@ function tick(now){
   const evidenceCard=new THREE.Mesh(new THREE.PlaneGeometry(2.28,1.82),new THREE.MeshBasicMaterial({map:cardTex,toneMapped:false,side:THREE.DoubleSide,transparent:true,depthWrite:false}));
   evidenceCard.rotation.x=-Math.PI/2;evidenceCard.position.set(0,.31,0);evidenceCard.renderOrder=510;
   screenRoot.add(evidenceCard);evidenceCard.visible=false;
+  // V104.6: the 1m measurement goes to a small floating physical glass plaque,
+  // never automatically to the large journal. Tap the plaque to transfer left.
+  const widthGlass=document.createElement('canvas');widthGlass.width=1024;widthGlass.height=512;
+  const wgc=widthGlass.getContext('2d');wgc.clearRect(0,0,1024,512);
+  wgc.fillStyle='rgba(9,36,58,.90)';wgc.fillRect(23,23,978,468);
+  wgc.strokeStyle='#a9eeff';wgc.lineWidth=13;wgc.strokeRect(23,23,978,468);
+  wgc.strokeStyle='#edcf87';wgc.lineWidth=4;wgc.strokeRect(40,40,944,434);
+  wgc.direction='rtl';wgc.textAlign='center';wgc.textBaseline='middle';
+  wgc.font='800 106px Arial,sans-serif';wgc.fillStyle='#fff3cb';wgc.fillText('רוחב 1 מ׳',512,213);
+  wgc.font='600 48px Arial,sans-serif';wgc.fillStyle='#bceef5';wgc.fillText('נגיעה להעברה ליומן',512,363);
+  const widthGlassTex=new THREE.CanvasTexture(widthGlass);widthGlassTex.colorSpace=THREE.SRGBColorSpace;
+  const widthPlaque=new THREE.Mesh(new THREE.PlaneGeometry(2.95,1.40),new THREE.MeshBasicMaterial({map:widthGlassTex,transparent:true,depthWrite:false,depthTest:false,side:THREE.DoubleSide,toneMapped:false}));
+  widthPlaque.name='V1045_WIDTH_1M_FLOATING_GLASS';widthPlaque.position.set(-1.95,2.97,1.65);widthPlaque.rotation.x=-.30;widthPlaque.renderOrder=710;widthPlaque.visible=false;f25Desk.add(widthPlaque);
+
   const flightLabel=textSprite('a',.57,'#ffe1a5');flightLabel.material.depthTest=false;
   flightLabel.material.transparent=true;scene.add(flightLabel);flightLabel.visible=false;
   const flightFrom=new THREE.Vector3(),flightTo=new THREE.Vector3();
+  let physicalFormulaFlight=null;
+  const physicalFormulaMap={a2:discoveredA2,b2:discoveredB2};
+  function v10410RestoreFormulas(){
+    for(const [key,mesh] of Object.entries(physicalFormulaMap)){
+      if(mesh.parent!==v65Jig)v65Jig.attach(mesh);
+      mesh.userData.onJournal=false;mesh.userData.inTransfer=false;
+      mesh.position.set(0,.33,0);mesh.rotation.set(-.30,0,0);mesh.scale.setScalar(1);mesh.visible=false;
+    }
+    physicalFormulaFlight=null;
+  }
   let flightOverrideFrom=null;
+  let v1048PanelAreaFlight=null,v1048AreaNumber=null;
+  let v10410LengthFlight=null,v10410LengthNumber=null;
+  function v10414NumberUnitSprite(value,unit,size,color){
+    const cnv=document.createElement('canvas');cnv.width=1024;cnv.height=240;
+    const c=cnv.getContext('2d');c.clearRect(0,0,1024,240);
+    c.font="900 130px 'Heebo','Noto Sans Hebrew',Arial,sans-serif";
+    c.textBaseline='middle';c.textAlign='center';c.fillStyle=color;c.direction='ltr';
+    c.strokeStyle='#152c3c';c.lineWidth=9;
+    // Explicit visual order on a right-to-left Hebrew label: number on the right, unit on the left.
+    c.strokeText(String(value),635,125,275);c.fillText(String(value),635,125,275);
+    c.direction='rtl';c.strokeText(unit,395,125,370);c.fillText(unit,395,125,370);
+    const tex=new THREE.CanvasTexture(cnv);tex.colorSpace=THREE.SRGBColorSpace;
+    const sprite=new THREE.Sprite(new THREE.SpriteMaterial({map:tex,transparent:true,depthWrite:false}));
+    sprite.scale.set(size*5,size,1);return sprite;
+  }
+  function v1048SetPanelAreaLabel(value){
+    const panel=metalPanels[st.selected];if(!panel)return;
+    const old=panel.userData.areaTag;
+    if(old){panel.remove(old);old.material.map?.dispose?.();old.material.dispose?.();}
+    const tag=v10414NumberUnitSprite(value,'מ״ר',.43,'#fff4b8');
+    tag.position.set(0,.20,0);tag.material.depthTest=false;tag.visible=false;
+    panel.add(tag);panel.userData.areaTag=tag;
+  }
+  function v10410StartLengthFlight(value){
+    const panel=metalPanels[st.selected];if(!panel)return;
+    if(v10410LengthNumber){scene.remove(v10410LengthNumber);v10410LengthNumber.material.map?.dispose?.();v10410LengthNumber.material.dispose?.();}
+    st.lengthFlightDone=true;
+    v10410LengthFlight=null;
+    if(panel.userData.lengthTag)panel.userData.lengthTag.visible=false;
+  }
+  function v1048StartPanelAreaFlight(value){
+    const panel=metalPanels[st.selected];if(!panel)return;
+    if(v1048AreaNumber){scene.remove(v1048AreaNumber);v1048AreaNumber.material.map?.dispose?.();v1048AreaNumber.material.dispose?.();}
+    v1048AreaNumber=v10414NumberUnitSprite(value,'מ״ר',.48,'#fff4b8');
+    v1048AreaNumber.material.depthTest=false;scene.add(v1048AreaNumber);
+    const from=physicalScreen.getWorldPosition(new THREE.Vector3());
+    panel.updateWorldMatrix(true,false);
+    const to=panel.localToWorld(new THREE.Vector3(0,.20,0));
+    v1048AreaNumber.position.copy(from);
+    v1048PanelAreaFlight={from,to,t:0,duration:.94};
+    v1048SetPanelAreaLabel(value);
+  }
+
   const flightEase=t=>{const x=clamp(t,0,1);return x*x*(3-2*x)};
   function updateCard(){
     const c=cardCtx,w=1024,h=640,p=st.pending;
@@ -2428,8 +3098,9 @@ function tick(now){
   function flightPoint(key){
     if(key==='a'||key==='a2')return v65Jig.localToWorld(new THREE.Vector3(0,.35,key==='a'?-2.5:0));
     if(key==='b'||key==='b2')return v65Jig.localToWorld(new THREE.Vector3(0,.35,key==='b'?-1.5:0));
-    if(key==='metal'||key==='panelArea'||key==='length')return v65Jig.localToWorld(new THREE.Vector3(-.5,.30,-2));
-    if(key==='width')return v65Jig.localToWorld(new THREE.Vector3(0,.34,1.86));
+    if(key==='panelArea'||key==='length')return metalPanels[st.selected]?.getWorldPosition(new THREE.Vector3())||v65Jig.localToWorld(new THREE.Vector3(-.5,.30,-2));
+    if(key==='metal')return v65Jig.localToWorld(new THREE.Vector3(0,.83,0));
+    if(key==='width')return v65Jig.localToWorld(new THREE.Vector3(2,.30,-1.22));
     return screenRoot.localToWorld(new THREE.Vector3(0,.22,0));
   }
   function beginFlight(dir,kind){
@@ -2441,6 +3112,16 @@ function tick(now){
       flightFrom.copy(outFrom);
       flightTo.copy(f25BoardSurface.localToWorld(boardSlotLocal(st.pending.key,true).clone().setZ(.16)));
       flightOverrideFrom=null;
+    }
+    if(dir==='out'&&physicalFormulaMap[kind]){
+      const mesh=physicalFormulaMap[kind],start=mesh.getWorldPosition(new THREE.Vector3());
+      const rotation=mesh.getWorldQuaternion(new THREE.Quaternion());
+      scene.attach(mesh);mesh.position.copy(start);mesh.quaternion.copy(rotation);mesh.visible=true;
+      mesh.userData.inTransfer=true;mesh.userData.onJournal=false;
+      physicalFormulaFlight={mesh,key:kind,start:start.clone(),end:flightTo.clone(),
+        fromQuat:rotation,toQuat:f25Board.getWorldQuaternion(new THREE.Quaternion()),
+        startScale:mesh.scale.clone()};
+      flightLabel.visible=false;return;
     }
     flightLabel.visible=true;
     flightLabel.material.map?.dispose?.();flightLabel.material.dispose();
@@ -2469,7 +3150,7 @@ function tick(now){
     else phrase(c,label,SCW/2,y+height/2,label.length>32?38:label.length>22?44:56,'#f2fbff');
     if(fn)zones.push({x,y,w,h:height,fn});
   }
-  const reveal={a:'אורך צלע הריבוע = A',a2:'שטח הריבוע החיצוני = a²',b:'אורך צלע החלון = B',b2:'שטח החלון = b²',metal:'שטח לוחות המתכת',width:'השלמת הצלע: B + 2 = A',sum:'סכום הצלעות',diff:'הפרש הצלעות',formula:'זהות אלגברית',total:'שטח ארבעת הלוחות',panelArea:'שטח מלבן יחיד',length:'אורך מלבן יחיד'};
+  const reveal={a:'אורך צלע הריבוע = A',a2:'שטח הריבוע החיצוני = a²',b:'אורך צלע החלון = B',b2:'שטח החלון = b²',metal:'שטח לוחות המתכת',width:'רוחב רצועת המתכת = 1 מ׳',sum:'סכום הצלעות',diff:'הפרש הצלעות',formula:'זהות אלגברית',total:'שטח ארבעת הלוחות',panelArea:'שטח מלבן יחיד',length:'אורך מלבן יחיד'};
   function startDifference(op){
     if(st.stage!=='metal-choice')return;
     remember();st.diffOperation=op;st.diffDemoClock=0;st.diffVisualDone=false;
@@ -2487,6 +3168,7 @@ function tick(now){
   }
   function commitData(){
     if(st.stage!=='send'||!st.pending)return;
+    // The 1m discovery is now presented on the RIGHT physical tablet; no floating extra window.
     st.stage='flightOut';st.elapsed=0;beginFlight('out',st.pending.key);drawScreen(true);
   }
   function acceptPending(){
@@ -2494,15 +3176,19 @@ function tick(now){
     st.journal=st.journal.filter(x=>x.key!==p.key);
     st.journal.push({key:p.key,value:p.value,label:p.label});st.pending=null;
     st.stage=p.next;st.flight=null;flightLabel.visible=false;
+    st.elapsed=0;
     st.page=['diff','sum-ready','sum-measuring','identity','substitute','evaluate','total','panels-four','panel-pick'].includes(st.stage)?1:
       ['panelArea','length','cut','load-ready','loaded','cart','dock','installing','done'].includes(st.stage)?2:0;
-    if(p.key==='a'||p.key==='b')st.rulerReturn={time:0,origin:f25Ruler.position.clone(),length:f25Ruler.scale.x};
-    if(p.key==='diff')st.values.diff=Number(p.value);
-    if(p.key==='sum')st.values.sum=Number(p.value);
+    if((p.key==='a'||p.key==='b')&&!st.rulerReturn)st.rulerReturn={time:0,origin:f25Ruler.position.clone(),length:f25Ruler.scale.x};
+    if(p.key==='diff'){st.values.diff=Number(p.value);st.meterReturning={progress:0};}
+    if(p.key==='sum'){st.values.sum=Number(p.value);
+      st.rulerReturn={time:0,origin:f25Ruler.position.clone(),length:f25Ruler.scale.x};
+      st.sumReturning={progress:0};
+    }
     if(p.key==='total')st.values.area=Number(p.value);
     if(p.key==='width')st.values.width=Number(p.value);
     if(p.key==='panelArea')st.values.panel=Number(p.value);
-    if(p.key==='length'){st.values.length=Number(p.value);F25.selectedLength=clamp(Math.abs(Number(p.value)),.3,8);F25.phase='cut';F25.cutIndex=0;setCutDimensions();}
+    if(p.key==='length'){st.values.length=Number(p.value);F25.selectedLength=clamp(Math.abs(Number(p.value)),.3,8);F25.cutIndex=0;}
     if(p.key==='formula')st.values.formula=p.value;
     st.highlight='';if(p.key==='metal'){st.values.metal=p.value;st.diffVisualDone=true;}
     drawBoard();drawScreen(true);
@@ -2548,6 +3234,8 @@ function tick(now){
       const next={diff:'sum-ready',total:'panels-four',panelArea:'length',length:'cut'}[key];
       keysTyped='';
       if(key==='diff'||key==='sum'||key==='total')directCommit(key,String(n),next);
+      else if(key==='panelArea'){flyToBoard('panelArea',String(n),'length');v1048StartPanelAreaFlight(n);}
+      else if(key==='length'){flyToBoard('length',String(n),'length-confirmed');v10410StartLengthFlight(n);}
       else setPending(key,String(n),next);
     },true,142);
   }
@@ -2562,6 +3250,8 @@ function tick(now){
     sctx.fillStyle='#5bdae0';sctx.fillRect(66,65,10,104);
     phrase(sctx,'עמדת חקר',SCW/2,126,77,'#ffffff');
     sctx.fillStyle='#426b7f';sctx.fillRect(86,188,SCW-172,2);
+    // V104.16: magnifier is drawn LAST near the lower-left inner edge of the
+    // physical right tablet, never floating above or masking the keypad.
 
     // The right display is deliberately silent until a value is discovered.
     // The active geometry, not a tutorial panel, indicates the next physical action.
@@ -2586,6 +3276,8 @@ function tick(now){
     } else if(st.stage==='flightOut'){
       phrase(sctx,'הנתון בדרך ליומן',SCW/2,358,59,'#edfaff');
       phrase(sctx,'מיד תמשיכו לחקור',SCW/2,465,42,'#95d9e7');
+    } else if(st.stage==='send'&&st.pending?.key==='width'){
+      pendingCard('רוחב המלבן','1 מ׳','#91e9e5','רוחב המלבן = 1 מטר');
     } else if(st.stage==='send'){
       const warm=st.pending && ['b','b2'].includes(st.pending.key);
       const p=st.pending;
@@ -2599,35 +3291,40 @@ function tick(now){
     } else if(st.stage==='metal-choice'){
       phrase(sctx,'מה נשאר לאחר שמסירים את החלון?',SCW/2,270,58);
       phrase(sctx,'שטח המתכת לייצור המלבנים יבוצע ע״י הנוסחה',SCW/2,340,44,'#b5eaff');
-      textChoice('a² − b²',398,()=>startDifference('a² − b²'),false,248,164);
-      textChoice('a² + b²',640,()=>startDifference('a² + b²'),false,248,164);
+      textChoice('a² − b²',418,()=>startDifference('a² − b²'),false,184);
+      textChoice('a² + b²',688,()=>startDifference('a² + b²'),false,184);
     } else if(st.stage==='difference-demo'){
-      phrase(sctx,'חזית שלמה: a²',SCW/2,320,70,'#88e9f5');
-      phrase(sctx,'מרימים את שטח החלון: b²',SCW/2,455,58,'#ffe0a1');
-      phrase(sctx,'מה נשאר? ארבעה לוחות מתכת',SCW/2,620,52,'#f8ffff');
+      phrase(sctx,'מרימים את שטח החלון',SCW/2,365,65,'#f3fcff');
+      phrase(sctx,'מתבוננים במה שנותר',SCW/2,492,52,'#a7e6f3');
+    } else if(st.stage==='difference-glow'){
+      phrase(sctx,'ארבעה מלבנים נפרדים',SCW/2,410,55,'#f2fcff');
+      phrase(sctx,'התבוננו במסגרת שנותרה',SCW/2,520,48,'#a7e8f0');
     } else if(['a-ready','a-measuring','a-area','b-ready','b-measuring','b-area',
-                'width-ready','width-measuring','sum-ready','sum-measuring'].includes(st.stage)){
+                'a-formula-ready','b-formula-ready','width-ready','width-measuring','sum-ready','sum-measuring'].includes(st.stage)){
       const questions={
         'a-ready':['איך מודדים את החזית?','געו בסרגל'],
         'a-measuring':['מודדים את צלע החזית','עקבו אחרי הסרגל'],
-        'a-area':['מהו שטח כל החזית?','געו בשטח החיצוני'],
+        'a-area':['כל הריבוע החיצוני זוהר','געו בריבוע לגילוי השטח'],
+        'a-formula-ready':['S = a²','געו בביטוי המרחף להעברה ליומן'],
         'b-ready':['מה מודדים בחלון?','השתמשו שוב בסרגל'],
         'b-measuring':['מודדים את צלע החלון','עקבו אחרי הסרגל'],
-        'b-area':['מהו שטח הזכוכית?','געו בשטח החלון'],
+        'b-area':['כל הריבוע הפנימי זוהר','געו בריבוע לגילוי השטח'],
+        'b-formula-ready':['S = b²','געו בביטוי המרחף להעברה ליומן'],
         'width-ready':['מהו רוחב המסגרת?','מדדו את שתי הרצועות הזהות'],
         'width-measuring':['מודדים את רוחב המסגרת','התבוננו במדידה שעל החזית'],
         'sum-ready':['איזו מדידה נוספת נדרשת?','לחצו על מסילת a + b למדידה נפרדת'],
         'sum-measuring':['מודדים a + b','התבוננו במדידה שעל החזית']
       };
-      const q=st.rulerReturn?['הסרגל חוזר למתקן','']:questions[st.stage];
+      const q=questions[st.stage];
       if(q){phrase(sctx,q[0],SCW/2,380,67,'#f3fcff');phrase(sctx,q[1],SCW/2,510,51,'#98dce5');}
     } else if(['diff','total','panelArea','length','evaluate'].includes(st.stage))keypad();
     else if(st.stage==='identity'){
-      phrase(sctx,'a² − b² = ?',SCW/2,270,75,'#ffffff');
-      phrase(sctx,'בחרו את הפירוק המתאים',SCW/2,354,50,'#bdeff5');
-      const formulaOptions=[['(a+b)(a−b)','a² − b² = (a+b)(a−b)'],['(a+b)(a+b)','a²−b²=(a+b)(a+b)'],['(a−b)(a−b)','a²−b²=(a−b)(a−b)']];
+      // The formula is ONE continuous mathematical line, while responses are distinct separated tiles.
+      math(sctx,'a² − b² = ?',SCW/2,264,78,'#fff9e4');
+      phrase(sctx,'בחרו את הפירוק המתאים',SCW/2,372,46,'#bdeff5');
+      const formulaOptions=[['(a+b)(a+b)','a² − b² = (a+b)(a+b)'],['(a+b)(a−b)','a² − b² = (a+b)(a−b)'],['(a−b)(a−b)','a²−b²=(a−b)(a−b)']];
       formulaOptions.forEach(([label,f],i)=>
-        action(sctx,label,428+i*184,()=>directCommit('formula',f,'substitute'),false,182,true));
+        action(sctx,label,444+i*207,()=>directCommit('formula',f,'substitute'),false,156,true));
     } else if(st.stage==='substitute'){
       phrase(sctx,'הציבו כל מדידה בגורם המתאים',SCW/2,270,46);
       math(sctx,String(st.values.formula||'a²−b²=(a+b)(a−b)'),SCW/2,338,47,'#d3f4fa');
@@ -2647,8 +3344,8 @@ function tick(now){
       // The student chooses the final number; do not provide it in advance.
       keypad();
     } else if(st.stage==='panels-four'){
-      phrase(sctx,'בחרו מלבן זוהר אחד',SCW/2,314,58,'#effaff');
-      phrase(sctx,'געו במלבן העליון שעל השולחן',SCW/2,404,44,'#9fe6f2');
+      phrase(sctx,'בחרו אחד מארבעת המלבנים',SCW/2,314,58,'#effaff');
+      phrase(sctx,'געו במלבן שתרצו לבדוק',SCW/2,404,44,'#9fe6f2');
     } else if(['cut','load-ready','loadingAnim','loaded'].includes(st.stage)){
       // V83: the physical screen remains a DATA screen, not a production control.
       phrase(sctx,'נתוני התכנון נשמרו',SCW/2,470,58,'#b6e6f0');
@@ -2657,8 +3354,23 @@ function tick(now){
       phrase(sctx,'העגלה הגיעה לחזית החללית',SCW/2,286,58,'#edfaff');
       action(sctx,'התקנה בחללית',438,()=>f25UseAction('dock'),true,254);
     } else if(st.stage==='done') {
-      phrase(sctx,'חזית החללית הושלמה בהצלחה',SCW/2,314,62,'#e8fff0');
+      phrase(sctx,'הרכבת החזית הסתיימה · בדיקת המידות ממתינה',SCW/2,314,51,'#e8fff0');
       phrase(sctx,'המלבנים הותקנו במקומם סביב החלון הפנימי',SCW/2,404,46,'#9fe9b6');
+    }
+    // A small permanent result, visible after the measurement is recorded.
+    if(false&&st.values.width!==null&&st.values.width!==undefined&&st.values.diff===null&&st.stage!=='send'){
+      rect(sctx,78,1250,SCW-156,93,16,'#123b4a','#5fa9b4',2);
+      phrase(sctx,'רוחב המלבן: '+st.values.width+' מטר',SCW/2,1296,42,'#d6f9ed');
+    }
+    // V104.16: large, connected zoom control at the LEFT-BOTTOM of the right tablet.
+    // The layout ends above y=1200, leaving this area clear on phones and tablets.
+    if(benchActive&&!['cut','load-ready','loadingAnim','loaded','demo','brief'].includes(st.stage)){
+      const zx=88,zy=1214,zw=222,zh=164;
+      sctx.save();sctx.shadowColor='rgba(96,234,249,.30)';sctx.shadowBlur=22;
+      rect(sctx,zx,zy,zw,zh,25,'#174960','#a8e9f5',5);sctx.restore();
+      sctx.save();sctx.textAlign='center';sctx.textBaseline='middle';sctx.font='900 89px Arial,sans-serif';
+      sctx.fillStyle='#f3feff';sctx.fillText('🔎',zx+zw/2,zy+zh/2+3);sctx.restore();
+      zones.push({x:zx-9,y:zy-9,w:zw+18,h:zh+18,fn:()=>v83ZoomButton.click()});
     }
     screenTex.needsUpdate=true;v83RefreshZoom();
   }
@@ -2685,8 +3397,8 @@ function tick(now){
     c.fillText('יומן הנדסי  /  חזית החללית',1123,63,975);
     c.font=`600 24px ${uiHeb}`;c.fillStyle='#dae6eb';
     c.fillText('שלושה טורי חשיבה · מילוי מימין לשמאל',1123,100,980);
-    c.textAlign='left';c.direction='ltr';c.font=`800 22px ${uiHeb}`;c.fillStyle='#8cf7ed';c.fillText('NASA 01',33,60);
-    c.font=`900 24px ${uiHeb}`;c.fillStyle='#ffd98a';c.fillText(stationProgress,34,96);
+    c.textAlign='left';c.direction='ltr';c.font=`800 22px ${uiHeb}`;c.fillStyle='#8cf7ed';c.fillText('NASA',33,60);
+    c.font=`900 24px ${uiHeb}`;c.fillStyle='#ffd98a';c.fillText('ENGINEERING',34,96);
     c.strokeStyle='#2b4652';c.lineWidth=2;c.beginPath();c.moveTo(30,124);c.lineTo(1165,124);c.stroke();
     const items=[];
     let hasFactors=false;
@@ -2708,8 +3420,8 @@ function tick(now){
     }
     const columns=[
       {title:'מדידות וצורות', accent:'#8ce9f4', x:814, w:355, keys:['a','a2','b','b2']},
-      {title:'חישוב ובחירה', accent:'#ffd89a', x:422, w:355, keys:['metal','width','diff','sum','formula','substitution','total']},
-      {title:'ייצור והרכבה', accent:'#98f3c2', x:30, w:355, keys:['panelArea','length','cut','installed']}
+      {title:'חישוב ובחירה', accent:'#ffd89a', x:422, w:355, keys:['metal','diff','sum','formula','substitution','total']},
+      {title:'ייצור והרכבה', accent:'#98f3c2', x:30, w:355, keys:['width','panelArea','length','cut','installed']}
     ];
     const itemMap=new Map(items.map(r=>[String(r.key),r]));
     const top=146,bottom=652;
@@ -2745,12 +3457,19 @@ function tick(now){
         if(key==='panelArea')raw=raw+' מ״ר';
         if(key==='length')raw=raw+' מ׳';
         if(key==='cut')raw='4 לוחות מוכנים';
+        if((key==='a2'||key==='b2')&&physicalFormulaMap[key]?.userData.onJournal)raw='';
         if(key==='a')raw='a';
         if(key==='b')raw='b';
         let px=Math.min(31,rowH*.42);
         if(raw.length>26)px=Math.max(18,px-7);else if(raw.length>18)px=Math.max(20,px-4);
         c.textAlign='left';c.direction='ltr';c.fillStyle=accent;c.font=`900 ${px}px ${uiHeb}`;
-        c.fillText(raw,col.x+28,cy+11,col.w-58);
+        if(['panelArea','length','width'].includes(key)){
+          const unit=key==='panelArea'?'מ״ר':'מ׳';
+          const number=String(r.value);
+          const xr=col.x+col.w-25;
+          c.textAlign='right';c.direction='ltr';c.fillText(number,xr,cy+11,120);
+          c.direction='rtl';c.fillText(unit,xr-c.measureText(number).width-15,cy+11,170);
+        }else c.fillText(raw,col.x+28,cy+11,col.w-58);
         journalZones.push({x:col.x+10,y,w:col.w-20,h:rowH,key});
       });
       if(!present.length){
@@ -2781,8 +3500,8 @@ function tick(now){
     }
     const columns=[
       {x:814,w:355,keys:['a','a2','b','b2']},
-      {x:422,w:355,keys:['metal','width','diff','sum','formula','substitution','total']},
-      {x:30,w:355,keys:['panelArea','length','cut','installed']}
+      {x:422,w:355,keys:['metal','diff','sum','formula','substitution','total']},
+      {x:30,w:355,keys:['width','panelArea','length','cut','installed']}
     ];
     const itemMap=new Map(items.map(r=>[String(r.key),r]));
     const top=146,bottom=652;
@@ -2801,30 +3520,92 @@ function tick(now){
     }
     return new THREE.Vector3(0,0,.11);
   }
+  // V104.16: an Undo checkpoint is the start of a learner action, NEVER an
+  // intermediate send/flight/measurement animation. Automatic callbacks must
+  // not add a second, identical stop to the history stack.
+  function v10416CheckpointStage(stage,pending){
+    const fromTransfer={a:'a-ready',a2:'a-area',b:'b-ready',b2:'b-area',
+      metal:'metal-choice',width:'width-ready',diff:'diff',sum:'sum-ready',
+      formula:'identity',total:'total',panelArea:'panelArea',length:'length'};
+    if(['send','flightIn','flightOut'].includes(stage))return fromTransfer[pending?.key]||'a-ready';
+    return ({'a-measuring':'a-ready','a-formula-ready':'a-area',
+      'b-measuring':'b-ready','b-formula-ready':'b-area',
+      'width-measuring':'width-ready','sum-measuring':'sum-ready',
+      'difference-demo':'metal-choice','difference-glow':'metal-choice',
+      'difference-fade':'metal-choice','metal-reveal':'metal-choice',
+      'length-confirmed':'length'})[stage]||stage;
+  }
+  function v10416CheckpointSignature(snapshot){
+    // Do not include transient animations, hover highlights, or timers.
+    return JSON.stringify([snapshot.stage,snapshot.journal,snapshot.values,
+      snapshot.selected,snapshot.sub,snapshot.cutIndex]);
+  }
   function remember(){
-    if(st.history.length>60)st.history.shift();
-    st.history.push({stage:st.stage,journal:st.journal.map(x=>({...x})),values:{...st.values},selected:st.selected,
-      sub:[...st.sub],page:st.page,cutIndex:F25.cutIndex,pending:st.pending?{...st.pending}:null});
+    const stage=v10416CheckpointStage(st.stage,st.pending);
+    const h={stage,journal:st.journal.map(x=>({...x})),values:{...st.values},
+      selected:st.selected,sub:[...st.sub],page:st.page,cutIndex:F25.cutIndex,
+      pending:null,diffOperation:st.diffOperation,
+      diffVisualDone:stage==='metal-choice'?false:st.journal.some(x=>x.key==='metal')};
+    const latest=st.history[st.history.length-1];
+    if(latest&&v10416CheckpointSignature(latest)===v10416CheckpointSignature(h))return;
+    if(st.history.length>=60)st.history.shift();
+    st.history.push(h);
   }
   function undo(){
     if(['cut','loadingAnim','loaded','cart','dock','installing','done'].includes(st.stage)||!st.history.length)return;
-    const h=st.history.pop();st.stage=h.stage;st.journal=h.journal;st.values=h.values;st.selected=h.selected;st.sub=h.sub;st.page=h.page;st.pending=h.pending;
-    st.elapsed=0;st.rulerReturn=null;st.squareMeasure=null;st.flight=null;flightLabel.visible=false;
-    f25Ruler.position.copy(park);f25Ruler.scale.x=1;
-    if(h.pending?.key==='a'||h.pending?.key==='b'){
-      const key=h.pending.key;
-      f25Ruler.position.copy(squareRulerTarget(key));
-      f25Ruler.scale.x=squareRulerLength(key);
+    const h=st.history.pop();
+    st.stage=h.stage;st.journal=h.journal.map(x=>({...x}));st.values={...h.values};
+    st.selected=h.selected;st.sub=[...h.sub];st.page=h.page;st.pending=null;
+    st.elapsed=0;st.flight=null;st.rulerReturn=null;st.sumReturning=null;
+    st.meterReturning=null;st.squareMeasure=null;st.diffDemoClock=0;
+    st.diffOperation=h.diffOperation||'';st.diffVisualDone=Boolean(h.diffVisualDone);
+    st.highlight='';st.highlightUntil=0;st.lengthFlightDone=false;
+    st.measureKind='';st.cutMoving=false;st.feedActive=false;
+    choice='';keysTyped='';flightLabel.visible=false;flightOverrideFrom=null;
+    if(v1048AreaNumber)v1048AreaNumber.visible=false;
+    if(v10410LengthNumber)v10410LengthNumber.visible=false;
+    v1048PanelAreaFlight=null;v10410LengthFlight=null;
+    // Undoing during a flight returns the SAME physical equation to its square.
+    physicalFormulaFlight=null;
+    for(const [key,mesh] of Object.entries(physicalFormulaMap)){
+      const recorded=st.journal.some(x=>x.key===key);
+      if(recorded){
+        if(mesh.parent!==f25Board)f25Board.attach(mesh);
+        mesh.userData.onJournal=true;mesh.userData.inTransfer=false;
+      }else{
+        if(mesh.parent!==v65Jig)v65Jig.attach(mesh);
+        mesh.userData.onJournal=false;mesh.userData.inTransfer=false;
+        mesh.position.set(0,.275,0);mesh.rotation.set(-.30,0,0);
+        mesh.scale.setScalar(1);mesh.visible=false;
+      }
     }
-    choice='';keysTyped='';st.diffVisualDone=st.journal.some(x=>x.key==='metal');drawBoard();drawScreen(true);
+    f25Ruler.position.copy(park);f25Ruler.scale.set(1,1,1);
+    if(st.stage==='a-area'||st.stage==='b-area'){
+      const square=st.stage==='a-area'?'a':'b';
+      f25Ruler.position.copy(squareRulerTarget(square));
+      f25Ruler.scale.x=squareRulerLength(square);
+    }
+    sumRail.visible=false;sumRail.scale.setScalar(1);
+    splitRulers.forEach(r=>{r.visible=false;r.position.copy(splitOrigin);r.scale.setScalar(1);});
+    drawBoard();drawScreen(true);appearance();positionUndo();
   }
   const undoRig=group(f25Desk,3.55,1.765,3.25);undoRig.rotation.y=.02;
   const undoMat=new THREE.MeshStandardMaterial({color:0x2c5672,emissive:0x1a698f,emissiveIntensity:.78,metalness:.54,roughness:.24});
-  const undoBase=box(undoRig,0,-.025,0,1.08,.08,.82,mat(0x11293d,.58,.34));undoBase.castShadow=false;
-  const undoMesh=box(undoRig,0,.025,0,1.00,.10,.74,undoMat);undoMesh.castShadow=false;
-  const undoSp=textSprite('↶',.46,'#fff0bf');undoSp.position.set(0,.18,.03);undoRig.add(undoSp);
+  const undoBase=box(undoRig,0,-.025,0,1.55,.08,.82,mat(0x11293d,.58,.34));undoBase.castShadow=false;
+  const undoMesh=box(undoRig,0,.025,0,1.47,.10,.74,undoMat);undoMesh.castShadow=false;
+  // V104.16: real flat label centered on the physical rectangular button.
+  const undoCanvas=document.createElement('canvas');undoCanvas.width=512;undoCanvas.height=192;
+  const undoCtx=undoCanvas.getContext('2d');undoCtx.clearRect(0,0,512,192);
+  undoCtx.font="900 105px 'Heebo','Noto Sans Hebrew',Arial,sans-serif";
+  undoCtx.fillStyle='#fff0bf';undoCtx.textAlign='center';undoCtx.textBaseline='middle';undoCtx.direction='rtl';
+  undoCtx.fillText('↶  חזור',256,99,462);
+  const undoTexture=new THREE.CanvasTexture(undoCanvas);undoTexture.colorSpace=THREE.SRGBColorSpace;
+  const undoLabel=new THREE.Mesh(new THREE.PlaneGeometry(1.33,.50),
+    new THREE.MeshBasicMaterial({map:undoTexture,transparent:true,depthWrite:false,depthTest:false,side:THREE.DoubleSide}));
+  undoLabel.rotation.x=-Math.PI/2;undoLabel.position.set(0,.092,0);undoLabel.renderOrder=551;
+  undoRig.add(undoLabel);
   // Invisible touch allowance around the actual desk button (not a screen overlay).
-  const undoTouchZone=box(undoRig,0,.12,0,1.16,.32,1.03,new THREE.MeshBasicMaterial({transparent:true,opacity:0,depthWrite:false}));
+  const undoTouchZone=box(undoRig,0,.12,0,1.69,.35,1.10,new THREE.MeshBasicMaterial({transparent:true,opacity:0,depthWrite:false}));
   undoTouchZone.castShadow=false;undoTouchZone.receiveShadow=false;
   const undoButton=document.getElementById('v91Undo');
   // The fixed HTML overlay was the reason the Undo symbol kept covering the right tablet.
@@ -2843,11 +3624,10 @@ function tick(now){
   // Full 3D rocket miniature restored. Four IDENTICAL 4×1 parts move to its face during Play.
   const mini=group(f25Desk,-.45,1.98,-.15);mini.scale.setScalar(.82);
   const miniHome=new THREE.Vector3(-3.18,1.88,2.62);
-  const miniCenter=new THREE.Vector3(v65Jig.position.x,1.83,v65Jig.position.z); // exact center of the inner glass; tracks jig position
+  const miniCenter=new THREE.Vector3(v65Jig.position.x+.25,1.90,v65Jig.position.z+.17); // body centered above the inner glass
   const miniHomeScale=.40,miniCenterScale=.78;
   const miniOffset=new THREE.Vector3(-0.43370860120205346,0.027572373198433642,0.310322987078621);
-  miniHome.add(miniOffset);
-  miniCenter.add(miniOffset);
+  miniHome.add(miniOffset); // preserve the original home position, but NOT the central model position
   const miniScaleFactor=1.0020010000000001;
   function positionMini(){
     const movingHome=st.stage==='demo-exit';
@@ -2901,7 +3681,9 @@ function tick(now){
     const phase=st.stage,t=now(),pulse=(1+Math.sin(t*3.7))*.5;
     const formulaPhase=['identity','substitute','evaluate','total'].includes(phase);
     const sumMeasureOnly=['sum-ready','sum-measuring'].includes(phase)||st.pending?.key==='sum';
-    const comboGlow=!sumMeasureOnly&&(formulaPhase||['metal','total','formula','subdiff','subsum'].includes(st.highlight));
+    const widthOnJournal=st.journal.some(r=>r.key==='width');
+    // No preview glow while answering a-b, measuring a+b, or choosing identity.
+    const comboGlow=false;
     const aOn=(st.pending?.key==='a')||st.highlight==='a'||comboGlow;
     const bOn=(st.pending?.key==='b')||st.highlight==='b'||comboGlow;
     const subtractionDemo=(st.pending?.key==='metal')||st.highlight==='metal'||phase==='width-ready'||phase==='width-measuring'||phase==='diff'||phase==='sum-ready'||phase==='sum-measuring'||formulaPhase;
@@ -2912,26 +3694,41 @@ function tick(now){
     nonTopInnerEdges.forEach(e=>{ if(e.material&&e.material.emissiveIntensity!=null) e.material.emissiveIntensity=.05; });
     edgeLightA.intensity=aOn?3.0+2.4*pulse:0;
     edgeLightB.intensity=bOn?1.8+1.4*pulse:0;
-    const measuringA=phase==='a-measuring'||phase==='a-area'||st.pending?.key==='a'||st.pending?.key==='a2';
-    const measuringB=phase==='b-measuring'||phase==='b-area'||st.pending?.key==='b'||st.pending?.key==='b2';
+    const aArrived=phase==='a-measuring'&&st.elapsed>=1.50;
+    const bArrived=phase==='b-measuring'&&st.elapsed>=1.52;
+    const measuringA=aArrived||phase==='a-area'||phase==='a-formula-ready'||st.pending?.key==='a'||st.pending?.key==='a2';
+    const measuringB=bArrived||phase==='b-area'||phase==='b-formula-ready'||st.pending?.key==='b'||st.pending?.key==='b2';
     const recordedA=st.journal.some(x=>x.key==='a');
     const recordedB=st.journal.some(x=>x.key==='b');
+    // Never reveal the side labels just because the ruler was tapped: wait for ARRIVAL.
     aGlyphs.forEach((glyph,i)=>{glyph.visible=benchActive&&(measuringA||(recordedA&&i===0));});
     bGlyphs.forEach((glyph,i)=>{glyph.visible=benchActive&&(measuringB||(recordedB&&i===0));});
     cradleLight.intensity=['a-ready','b-ready','width-ready','sum-ready'].includes(phase)?2.1+1.6*pulse:.28;
     cradleGlowMat.opacity=clamp(cradleLight.intensity/4,.08,.87);
     // The two unit rulers remain in position for entering a-b; one ruler returns for a+b.
-    const splitHold=['diff'].includes(phase)||((phase==='send'||phase==='flightOut')&&st.pending?.key==='diff');
-    widthRulerLine.visible=benchActive&&(phase==='width-measuring'||splitHold);
+    const splitHold=['diff'].includes(phase)||((phase==='send'||phase==='flightOut')&&['width','diff'].includes(st.pending?.key));
+    const returning=st.meterReturning!==null;
+    widthRulerLine.visible=benchActive&&(phase==='width-measuring'||splitHold||returning);
     sideGapL.visible=sideGapR.visible=widthRulerLine.visible;
+    if(returning){
+      sideGapL.material.transparent=sideGapR.material.transparent=true;
+      widthRulerLine.material.opacity=Math.max(.01,1-st.meterReturning.progress);
+      sideGapL.material.opacity=sideGapR.material.opacity=Math.max(.01,1-st.meterReturning.progress);
+    }else{widthRulerLine.material.opacity=.87;sideGapL.material.opacity=sideGapR.material.opacity=1;}
     splitRulers.forEach((r,i)=>{
-      const on=phase==='width-measuring'||splitHold;
+      const on=phase==='width-measuring'||splitHold||returning;
       r.visible=benchActive&&on;
-      if(on&&phase!=='width-measuring'){
-        r.position.copy(r.userData.end);
+      if(returning){
+        const u=st.meterReturning.progress,k=u*u*(3-2*u);
+        r.position.lerpVectors(r.userData.end,splitOrigin,k);
+        r.position.y+=Math.sin(Math.PI*k)*.18;
+        r.scale.setScalar(1-.60*k);
+      }else if(on&&phase!=='width-measuring'){
+        r.position.copy(r.userData.end);r.scale.setScalar(1);
         r.userData.metal.emissiveIntensity=.70+.25*pulse;
       }
-      r.userData.unitLight.intensity=on?.65+.45*pulse:0;
+      if(!returning)r.scale.setScalar(1);
+      r.userData.unitLight.intensity=returning?.5*(1-st.meterReturning.progress):on?.65+.45*pulse:0;
     });
     const construction=['cut','load-ready','loadingAnim','loaded','cart','dock','installing','done'].includes(phase);
     v65Jig.visible=benchActive&&!construction;
@@ -2942,54 +3739,76 @@ function tick(now){
     // V91: the small golden glass area lifts UP and OUT of the full cyan square.
     // At the end, exactly the four metal rectangles are illuminated.
     const diffAnimating=phase==='difference-demo';
+    const showChosenOperation=phase==='metal-reveal'||((phase==='flightOut')&&st.pending?.key==='metal');
+    differenceMinus.visible=false; // chosen formula goes to the journal after the glow
+    differencePlus.visible=false;
+    differenceTouch.visible=false;
+    if(showChosenOperation){differenceMinus.position.y=differencePlus.position.y=.82+.06*Math.sin(t*1.85);differenceTouch.position.y=.83+.06*Math.sin(t*1.85);}
     const tDiff=diffAnimating?clamp(st.diffDemoClock/3.15,0,1):st.diffVisualDone?1:0;
     const removed=diffAnimating?clamp((tDiff-.20)/.57,0,1):st.diffVisualDone?1:0;
     const smoothRemove=removed*removed*(3-2*removed);
     const differenceShown=(diffAnimating||st.diffVisualDone)&&!sumMeasureOnly;
     const rulerParked=!st.rulerReturn;
-    const largeArea=phase==='a-area'||pKey==='a2'||st.highlight==='a2';
-    const smallArea=phase==='b-area'||pKey==='b2'||st.highlight==='b2';
-    areaA.visible=(diffAnimating&&removed<.98)||(!differenceShown&&rulerParked&&(largeArea||comboGlow||formulaPhase||phase==='metal-choice'));
+    function neutralAlgebraStage(stage,pending){
+      return ['metal-choice','width-ready','width-measuring','diff','sum-ready',
+        'sum-measuring','identity','substitute','evaluate','total'].includes(stage)||
+        (['send','flightOut'].includes(stage)&&['metal','width','diff','sum','formula'].includes(pending));
+    }
+    const largeArea=['a-area','a-formula-ready'].includes(phase)||pKey==='a2'||st.highlight==='a2';
+    const smallArea=['b-area','b-formula-ready'].includes(phase)||pKey==='b2'||st.highlight==='b2';
+    const widthPending=(phase==='send'||phase==='flightOut')&&pKey==='width';
+    areaA.visible=(diffAnimating&&removed<.98)||(!differenceShown&&!neutralAlgebraStage(phase,pKey)&&rulerParked&&largeArea);
     areaA.material.opacity=diffAnimating?.72*(1-smoothRemove):largeArea?.68:.52;
-    areaB.visible=diffAnimating||(!differenceShown&&rulerParked&&(smallArea||phase==='metal-choice'));
+    areaB.visible=diffAnimating||(!differenceShown&&!neutralAlgebraStage(phase,pKey)&&rulerParked&&smallArea);
     areaB.position.y=.092-.72*smoothRemove;
     areaB.material.opacity=diffAnimating?.93*(1-smoothRemove*.92):.72;
     areaB.scale.setScalar(1-.08*smoothRemove);
-    liftedWindowFrame.visible=diffAnimating;
+    liftedWindowFrame.visible=diffAnimating&&removed<.98;
     liftedWindowFrame.position.set(0,.151-.72*smoothRemove,0);
     liftedFrameMat.opacity=diffAnimating?.92*(1-smoothRemove*.90):0;
     // The glass is visually ONE pane until the b edge is actively studied.
-    innerEdges.forEach(edge=>edge.visible=v65Jig.visible && (['b-ready','b-measuring','b-area','width-ready','width-measuring','diff'].includes(phase)||st.highlight==='b'||comboGlow));
+    innerEdges.forEach(edge=>edge.visible=v65Jig.visible && (['b-ready','b-measuring','b-area','b-formula-ready','width-ready','width-measuring','diff'].includes(phase)||st.highlight==='b'||comboGlow));
     outerCaption.visible=false;
     innerCaption.visible=false;
     outerCaption.material.opacity=1;
     innerCaption.material.opacity=phase==='b-ready'||phase==='b-area'?1:.75;
-    const meterPhase=phase==='width-ready'||phase==='width-measuring';
-    const revealMetal=!meterPhase && (['metal-choice','difference-demo','diff','identity','substitute','evaluate','panels-four','panel-pick','panelArea','length'].includes(phase)||(!sumMeasureOnly&&st.highlight==='metal')||pKey==='metal'||st.diffVisualDone);
+    const meterPhase=phase==='width-ready'||phase==='width-measuring'||widthPending;
+    // Between the difference-of-squares animation and the chosen total (16),
+    // keep FOUR thin contours but NO translucent sheets over the model.
+    const neutralMetal=['metal-choice','width-ready','width-measuring','diff',
+      'sum-ready','sum-measuring','identity','substitute','evaluate','total'].includes(phase)||
+      (['send','flightOut'].includes(phase)&&['metal','width','diff','sum','formula'].includes(pKey));
+    const revealMetal=(['difference-demo','difference-glow','difference-fade',
+      'panels-four','panel-pick','panelArea','length','length-confirmed'].includes(phase)||
+      (['send','flightOut'].includes(phase)&&['panelArea','length','total'].includes(pKey)));
     slotGuides.forEach((guide,i)=>{
-      guide.visible=v65Jig.visible&&!meterPhase;
+      guide.visible=v65Jig.visible&&(neutralMetal||['panels-four','panel-pick','panelArea','length'].includes(phase));
       const fill=guide.userData.slotFill;
-      if(fill)fill.material.opacity=phase==='panels-four'||phase==='panel-pick'||phase==='panelArea'?.14:.05;
-      guide.traverse(obj=>{if(obj.material&&obj!==fill)obj.material.opacity=phase==='panels-four'||phase==='panel-pick'||phase==='panelArea'?.78:.58;});
+      if(fill){fill.visible=false;fill.material.opacity=0;}
+      guide.traverse(obj=>{if(obj.material&&obj!==fill)obj.material.opacity=neutralMetal?.32:
+        ['panels-four','panel-pick','panelArea'].includes(phase)?.79:.52;});
     });
-    panelOneHit.visible=v65Jig.visible && ['panels-four','panel-pick'].includes(phase);
-    panelOneLight.intensity=panelOneHit.visible?2.0+1.1*pulse:0;
+    panelOneHit.visible=false; // four real pieces handle their own raycast
+    panelOneLight.intensity=0;
     metalPanels.forEach((panel,i)=>{
-      panel.visible=v65Jig.visible&&!meterPhase&&(revealMetal||comboGlow||st.highlight==='metal');
+      // The metal panel FILL is not drawn in the algebra steps: it was the
+      // unwanted opaque cover. Thin independent slot outlines remain visible.
+      panel.visible=v65Jig.visible&&!neutralMetal&&revealMetal;
       const isSelected=st.selected===i;
-      const inspect=isSelected&&(['panelArea','length'].includes(phase)||
+      const inspect=isSelected&&(['panelArea','length','length-confirmed'].includes(phase)||
         ((phase==='send'||phase==='flightOut')&&['panelArea','length'].includes(pKey)));
       const basePos=panel.userData.basePos;
       if(basePos){
         if(inspect){
           const u=(phase==='panelArea'?clamp(st.elapsed/1.22,0,1):1);
           const t=u*u*(3-2*u);
-          const eyeLevel=new THREE.Vector3(-.02,1.62,4.48);
+          const portrait=camera.aspect<.85;
+          const eyeLevel=portrait?new THREE.Vector3(.85,1.92,1.55):new THREE.Vector3(-.60,2.16,3.15);
           panel.position.lerpVectors(basePos,eyeLevel,t);
           panel.position.y+=Math.sin(Math.PI*t)*.30;
           // Center the chosen rectangle, bring it face-on, and keep the rocket visible behind it.
-          panel.rotation.set(-1.54*t,basePos?THREE.MathUtils.lerp(panel.userData.baseRot,0,t):0,0);
-          panel.scale.setScalar(1+.20*t);
+          panel.rotation.set(1.54*t,THREE.MathUtils.lerp(panel.userData.baseRot,0,t),0); // top/front faces viewer (+Z), never the back
+          panel.scale.setScalar(1+(camera.aspect<.85?.10:.18)*t);
         }else{
           panel.position.copy(basePos);
           panel.rotation.set(0,panel.userData.baseRot,0);
@@ -2997,22 +3816,35 @@ function tick(now){
         }
       }
       const showAreaTag=inspect&&(phase==='panelArea'||((phase==='send'||phase==='flightOut')&&pKey==='panelArea'));
-      const showLengthTag=inspect&&(phase==='length'||((phase==='send'||phase==='flightOut')&&pKey==='length'));
-      if(panel.userData.areaTag)panel.userData.areaTag.visible=showAreaTag;
-      if(panel.userData.lengthTag)panel.userData.lengthTag.visible=showLengthTag;
-      if(panel.userData.widthTag)panel.userData.widthTag.visible=inspect;
+      const showLengthTag=inspect&&(phase==='length-confirmed'||phase==='length');
+      // Wait for the animated number to LAND before it becomes a fixed label.
+      if(panel.userData.areaTag)panel.userData.areaTag.visible=inspect &&
+        st.values.panel!==null&&st.values.panel!==undefined &&
+        ['flightOut','length','length-confirmed'].includes(phase);
+      if(panel.userData.lengthTag)panel.userData.lengthTag.visible=false;
+      if(panel.userData.widthTag)panel.userData.widthTag.visible=false;
+      if(panel.userData.widthBracket)panel.userData.widthBracket.visible=inspect;
       const panelReveal=diffAnimating?clamp((tDiff-.46-i*.11)/.15,0,1):st.diffVisualDone?1:0;
-      panel.material.opacity=diffAnimating?(.18+.86*panelReveal):isSelected?.98:(comboGlow||formulaPhase)?.90:st.diffVisualDone?.88:['panels-four','panel-pick','panelArea'].includes(phase)?.78:.30;
-      panel.material.emissiveIntensity=diffAnimating?(.22+2.45*panelReveal):isSelected?1.95:(comboGlow||formulaPhase)?1.42:st.diffVisualDone?1.35:['panels-four','panel-pick','panelArea'].includes(phase)?.95:.20;
-      panel.material.color.setHex(isSelected?0xd4eaf5:(comboGlow||formulaPhase)?0xd9eef7:0x93b7c7);
+      const chooseGlow=['panels-four','panel-pick'].includes(phase);
+      const finaleGlow=phase==='difference-glow';
+      const diffFade=phase==='difference-fade'?Math.max(0,1-st.elapsed/.95):0;
+      panel.material.opacity=diffAnimating?(.18+.86*panelReveal):(chooseGlow||finaleGlow||diffFade>0)?1:neutralMetal?.94:isSelected?.98:st.diffVisualDone?.90:phase==='panelArea'?.78:.44;
+      panel.material.emissiveIntensity=diffAnimating?(.22+2.45*panelReveal):finaleGlow?2.15:diffFade>0?2.15*diffFade:chooseGlow?(2.2+.65*pulse):neutralMetal?.05:isSelected?1.0:st.diffVisualDone?.07:phase==='panelArea'?.65:.10;
+      panel.material.color.setHex((chooseGlow||finaleGlow||diffFade>0)?(i%2?0xffdca6:0xb9f5ff):isSelected?0xd4eaf5:0x93b7c7);
+      if(panel.userData.outlineMaterial)panel.userData.outlineMaterial.opacity=(chooseGlow||finaleGlow)?1:diffFade>0?(.28+.72*diffFade):inspect?.85:neutralMetal?.23:.38;
     });
-    panelLengthEdge.visible=phase==='length'||st.highlight==='length';
-    discoveredA2.visible=v65Jig.visible&&rulerParked&&largeArea;
-    discoveredB2.visible=v65Jig.visible&&rulerParked&&smallArea;
-    topFormula.visible=!sumMeasureOnly&&(comboGlow||formulaPhase);
+    panelLengthEdge.visible=phase==='length'||phase==='length-confirmed'||st.highlight==='length';
+    // Reveal S=a² / S=b² only AFTER the learner actually touches the bright square.
+    if(!discoveredA2.userData.onJournal&&!discoveredA2.userData.inTransfer)discoveredA2.visible=v65Jig.visible&&rulerParked&&(phase==='a-formula-ready'||pKey==='a2'||st.highlight==='a2');
+    if(!discoveredB2.userData.onJournal&&!discoveredB2.userData.inTransfer)discoveredB2.visible=v65Jig.visible&&rulerParked&&(phase==='b-formula-ready'||pKey==='b2'||st.highlight==='b2');
+    if(discoveredA2.visible&&!discoveredA2.userData.inTransfer&&!discoveredA2.userData.onJournal)discoveredA2.position.y=.275+.025*Math.sin(t*2.2);
+    if(discoveredB2.visible&&!discoveredB2.userData.inTransfer&&!discoveredB2.userData.onJournal)discoveredB2.position.y=.275+.025*Math.sin(t*2.2);
+    topFormula.visible=false; // algebra remains on the right display; never cover the rectangles
     topMeasure.visible=false; // V84: measurements are shown by the two real 1m rulers, not duplicated bars
-    sumRail.visible=v65Jig.visible && (['sum-ready','sum-measuring'].includes(phase)||pKey==='sum'||st.highlight==='sum'||comboGlow||formulaPhase);
-    sumEquals.visible=st.journal.some(x=>x.key==='sum')||pKey==='sum'||st.highlight==='sum'||formulaPhase;
+    const sumHolding=['sum-ready','sum-measuring'].includes(phase)||['send','flightOut'].includes(phase)&&pKey==='sum';
+    sumRail.visible=benchActive&&v65Jig.visible&&(sumHolding||!!st.sumReturning);
+    sumRail.scale.setScalar(st.sumReturning?Math.max(.02,1-st.sumReturning.progress):1);
+    sumEquals.visible=(phase==='sum-measuring'&&st.elapsed>=1.55)||(['send','flightOut'].includes(phase)&&pKey==='sum');
     screenGlow.intensity=(formulaPhase||st.stage==='send'||st.stage==='flightOut')?(1.45+.95*pulse):.28;
     f25CutRail.visible=phase==='cut';
     rollerLine.visible=['cut','load-ready','loadingAnim','loaded'].includes(phase);
@@ -3044,41 +3876,183 @@ function tick(now){
     f25Dock.visible=['cart','dock','installing','done'].includes(phase);
     f25Bridge.visible=['loadingAnim','load-ready','loaded'].includes(phase);
     const successPulse=.28+.32*Math.abs(Math.sin(t*3.6));
-    F25.parts.forEach(part=>{if(!part)return;part.traverse(obj=>{if(!obj.material||Array.isArray(obj.material)||!('emissiveIntensity' in obj.material))return; if(obj.userData.baseEmissiveIntensity===undefined){obj.userData.baseEmissiveIntensity=obj.material.emissiveIntensity||0; obj.userData.baseEmissive=(obj.material.emissive&&obj.material.emissive.clone)?obj.material.emissive.clone():new THREE.Color(0x000000);} if(phase==='done'){obj.material.emissive=new THREE.Color(0x5fe1a0); obj.material.emissiveIntensity=Math.max(obj.userData.baseEmissiveIntensity,successPulse);}else{obj.material.emissive=obj.userData.baseEmissive.clone(); obj.material.emissiveIntensity=obj.userData.baseEmissiveIntensity;}});});
+    F25.parts.forEach(part=>{if(!part)return;part.traverse(obj=>{if(!obj.material||Array.isArray(obj.material)||!('emissiveIntensity' in obj.material))return; if(obj.userData.baseEmissiveIntensity===undefined){obj.userData.baseEmissiveIntensity=obj.material.emissiveIntensity||0; obj.userData.baseEmissive=(obj.material.emissive&&obj.material.emissive.clone)?obj.material.emissive.clone():new THREE.Color(0x000000);} if(phase==='done'){obj.material.emissive=new THREE.Color(v1042StationVerification()?0x5fe1a0:0xd84d5b); obj.material.emissiveIntensity=Math.max(obj.userData.baseEmissiveIntensity,successPulse);}else{obj.material.emissive=obj.userData.baseEmissive.clone(); obj.material.emissiveIntensity=obj.userData.baseEmissiveIntensity;}});});
     evidenceCard.visible=false;
+    // V104.9: no overlay glass. The right physical screen holds the 1m width throughout the phase.
+    widthPlaque.visible=false;
     screenRoot.visible=benchActive && !['cart','dock','installing','done'].includes(phase) && !v88Return.active; // Keep the desk screen from becoming a blue block during installation / return.
   }
   // After installation, the same empty cart and the crew return physically toward the bay.
   // Only then do we offer the next three locations, without pretending their tasks are complete.
   const v88MissionBoard=document.getElementById('v88MissionBoard');
   const v88TaskStation1=document.getElementById('v88TaskStation1');
-  function v88ResetStation1Task(){if(!v88TaskStation1)return;v88TaskStation1.classList.remove('v88Complete','v88Animate');v88TaskStation1.innerHTML='01 · חזית החללית <small id="v88TaskStation1Sub">ממתין לאישור</small>'; }
-  function v88AnimateStation1Task(){if(!v88TaskStation1)return;v88ResetStation1Task();setTimeout(()=>{v88TaskStation1.classList.add('v88Complete','v88Animate');v88TaskStation1.innerHTML='✅ 01 · חזית החללית <small id="v88TaskStation1Sub">אושר בהצלחה</small>';},850);}
+  const v1042TaskMessage=document.getElementById('v88TaskMessage');
+  function v1042StationVerification(){
+    const eq=(v,n)=>Number.isFinite(Number(v))&&Math.abs(Number(v)-n)<.001;
+    const allPieces=F25.parts.length===4&&F25.parts.every(p=>eq(p.userData?.learnerChosenLength,4));
+    const correctFormula=String(st.values.formula||'').includes('(a+b)(a−b)');
+    return allPieces&&eq(st.values.length,4)&&eq(st.values.panel,4)&&
+      eq(st.values.diff,2)&&eq(st.values.area,16)&&eq(st.values.sum,8)&&correctFormula&&
+      st.diffOperation==='a² − b²';
+  }
+  function v88ResetStation1Task(){
+    if(!v88TaskStation1)return;
+    v88TaskStation1.classList.remove('v88Complete','v88Animate','v1042-not-success');
+    v88MissionBoard.classList.remove('v1042-not-success');
+    v1042TaskMessage.classList.remove('v1042-error','v1042-verified');
+    v88TaskStation1.innerHTML='חזית החללית <small id="v88TaskStation1Sub">נבדק</small>';
+  }
+  function v88AnimateStation1Task(){
+    if(!v88TaskStation1)return;
+    v88ResetStation1Task();
+    const correct=v1042StationVerification();
+    window.__NASA_V1042_STATION_RESULT={completed:true,dimensionsAndMathCorrect:correct,checkedAt:'installation',finalFlightPending:true};
+    document.getElementById('v10410Retry').hidden=false;
+    if(correct){
+      v88TaskStation1.classList.add('v88Complete','v88Animate');
+      v88TaskStation1.innerHTML='✓ חזית החללית <small id="v88TaskStation1Sub">בוצע בהצלחה</small>';
+      v1042TaskMessage.classList.add('v1042-verified');
+      v1042TaskMessage.textContent='✓ בוצע בהצלחה';
+    }else{
+      v88MissionBoard.classList.add('v1042-not-success');
+      v88TaskStation1.classList.add('v1042-not-success');
+      v88TaskStation1.innerHTML='✕ חזית החללית <small id="v88TaskStation1Sub">בוצע חלקית</small>';
+      v1042TaskMessage.classList.add('v1042-error');
+      v1042TaskMessage.textContent='✕ בוצע חלקית';
+    }
+  }
+  function v10410RetryStation(){
+    v88MissionBoard.hidden=true;
+    document.getElementById('v10410Retry').hidden=true;
+    v88Return.active=false;window.__NASA_V88_RETURN_ACTIVE=false;
+    v88Navigation.active=false;
+    F25.cartMode=false;F25.needsReturn=false;F25.flowActive=true;
+    F25.phase='measure';F25.parts.forEach(part=>{if(part?.parent)part.parent.remove(part);});
+    F25.parts=[];F25.cutIndex=0;F25.installClock=0;F25.installIndex=0;
+    F25.loadClock=0;F25.cartProgress=0;F25.v35CartSpeed=0;
+    F25.cutDrag=false;F25.cutProgress=0;F25.guideIndex=0;
+    F25.loadHookWorld=null;F25.installHookWorld=null;
+    F25.success=false;F25.selectedLength=4;
+    installedModules[2]=false;frameStation.status='ready';
+    st.stage='a-ready';st.elapsed=0;st.active=true;st.introAccepted=true;
+    st.history=[];st.journal=[];st.pending=null;st.sub=[];st.selected=null;
+    st.values={diff:null,sum:8,area:null,panel:null,length:null,formula:null,metal:null,width:null};
+    st.rulerReturn=null;st.sumReturning=null;st.meterReturning=null;st.squareMeasure=null;
+    st.diffVisualDone=false;st.diffOperation='';st.diffDemoClock=0;st.highlight='';
+    st.feedActive=false;st.feedClock=0;st.cutMoving=false;st.cutClock=0;
+    st.conveyor=[];st.lengthFlightDone=false;st.loadRequested=false;st.loadOrigins=[];
+    st.returned=false;st.page=0;st.flight=null;st.highlightUntil=0;
+    player.visible=true;
+    st.demoClock=0;st.miniSlide=0;keysTyped='';choice='';
+    delete window.__NASA_V1042_STATION_RESULT;
+    if(v10410LengthNumber)v10410LengthNumber.visible=false;v10410LengthFlight=null;
+    if(v1048AreaNumber)v1048AreaNumber.visible=false;v1048PanelAreaFlight=null;
+    flightLabel.visible=false;st.flight=null;physicalFormulaFlight=null;
+    v10410RestoreFormulas();
+    f25Ruler.position.copy(park);f25Ruler.scale.set(1,1,1);
+    sumRail.scale.setScalar(1);sumRail.visible=false;
+    splitRulers.forEach(r=>{r.visible=false;r.scale.setScalar(1);r.position.copy(splitOrigin);});
+    for(const p of metalPanels){p.visible=false;p.position.copy(p.userData.basePos);p.rotation.set(0,p.userData.baseRot,0);p.scale.setScalar(1);}
+    // Put all equipment back at its ORIGINAL fabrication positions, not at the
+    // cart's homecoming point after a completed install.
+    f25Cart.position.set(3.40,0,-2.30);f25Cart.rotation.y=-Math.PI/2;
+    f25PlaceCrew(false);
+    f25Saw.position.set(-3.20,.65,-1.17);f25SawHandle.scale.setScalar(1);
+    f25CutMark.visible=false;
+    f25BridgeHoist.position.set(0,5.8,-1.7);
+    f25BridgeCable.scale.y=1;f25BridgeCable.position.y=-.875;f25BridgeGrab.position.y=-1.75;
+    if(cutDimensions)cutDimensions.visible=false;
+    if(v83ZoomOpen)v83CloseZoom();
+    player.position.set(f25Bay.position.x,0,f25Bay.position.z+6.4);
+    player.rotation.y=Math.PI;playerHeading=Math.PI;
+    moveVel.set(0,0,0);stopStick();
+    v88ResetStation1Task();
+    setBench(true);
+    // Use the station's normal state transition, rebuilding the right screen,
+    // journal, camera and interaction areas for the first measurement of a.
+    setStage('a-ready',false);
+    drawBoard();drawScreen(true);v83UpdateControls();
+    window.__NASA_V10410_RETRY={stage:st.stage,miniSkipped:true,source:'user-reset'};
+  }
+  document.getElementById('v10410Retry').onclick=v10410RetryStation;
+  // Both the checklist ↻ and the main menu's "התחלה מחדש" use this same reset.
+  window.__NASA_RESTART_STATION_A=v10410RetryStation;
+  window.__NASA_V10411_CHECKLIST=()=>({visible:!v88MissionBoard.hidden,correct:window.__NASA_V1042_STATION_RESULT?.dimensionsAndMathCorrect,rows:v88MissionBoard.querySelectorAll('.v88TaskGrid button').length,returning:!!window.__NASA_V88_RETURN_ACTIVE});
   window.__NASA_V88_RETURN_ACTIVE=false;
-  const v88Return={active:false,t:0,origin:new THREE.Vector3(),destination:new THREE.Vector3(-11,0,-1.5)};
+  const v88Return={active:false,t:0,origin:new THREE.Vector3(),originYaw:0,destination:new THREE.Vector3()};
   const v88Navigation={active:false,waypoints:[],index:0,target:-1};
   function v88BeginHomecoming(){
     if(v88Return.active||st.returned)return;
-    v88Return.active=true;window.__NASA_V88_RETURN_ACTIVE=true;v88Return.t=0;v88Return.origin.copy(f25Cart.position);F25.needsReturn=false;
+    v88Return.active=true;window.__NASA_V88_RETURN_ACTIVE=true;v88Return.t=0;
+    v88Return.origin.copy(f25Cart.position);v88Return.originYaw=f25Cart.rotation.y;v88Return.walkOrigin=null;
+    // End with the cart centered on the forecourt directly in FRONT of station 1.
+    const home=f25Bay.getWorldPosition(new THREE.Vector3());
+    v88Return.destination.set(3.40,0,-2.30); // original parking location before departure
+    // Travel back by the open central service aisle, then turn gently toward the bench.
+    const origin=v88Return.origin;
+    v88Return.path=new THREE.CatmullRomCurve3([
+      origin.clone(),
+      new THREE.Vector3(1.0,0,Math.min(-16,origin.z+7)),
+      new THREE.Vector3(1.0,0,-2.4),
+      v88Return.destination.clone()
+    ],false,'centripetal',.3);
+    F25.needsReturn=false;
     v88MissionBoard.hidden=true;
     if(benchActive)setBench(false);
     v88ResetStation1Task();
   }
   window.__NASA_V88_RETURN_FRAME=(dt)=>{
     if(!v88Return.active)return false;
+    player.visible=true;
     v88Return.t+=dt;
-    const u=clamp(v88Return.t/7.2,0,1),smooth=u*u*(3-2*u);
-    f25Cart.position.lerpVectors(v88Return.origin,v88Return.destination,smooth);
-    f25Cart.rotation.y=THREE.MathUtils.lerp(-Math.PI/2,Math.PI/2,smooth);
-    f25PlaceCrew(true);
-    const eye=f25Cart.position.clone().add(new THREE.Vector3(6.4,3.4,13.6));
-    camera.position.lerp(eye,Math.min(1,dt*2));
-    camera.lookAt(f25Cart.position.clone().add(new THREE.Vector3(0,2.5,-3)));
-    camera.fov=THREE.MathUtils.lerp(camera.fov,55,Math.min(1,dt*2));camera.updateProjectionMatrix();
-    if(u>=1){
+    const cartDuration=7.2,walkDuration=1.8;
+    const u=clamp(v88Return.t/cartDuration,0,1),smooth=u*u*(3-2*u);
+    const pathPoint=v88Return.path.getPoint(smooth);
+    f25Cart.position.copy(pathPoint);
+    if(u<1){
+      const tangent=v88Return.path.getTangent(Math.min(.999,Math.max(.001,smooth)));
+      const heading=Math.atan2(tangent.x,tangent.z);
+      const turn=Math.atan2(Math.sin(heading-v88Return.originYaw),Math.cos(heading-v88Return.originYaw));
+      f25Cart.rotation.y=v88Return.originYaw+turn*Math.min(1,7*u);
+      const returnSpeed=v88Return.path.getLength()*6*u*(1-u)/cartDuration;
+      f25PlaceCrew(true,returnSpeed,dt);
+    }else{
+      f25Cart.position.copy(v88Return.destination);
+      f25Cart.rotation.y=-Math.PI/2;
+      if(!v88Return.walkOrigin){
+        v88Return.walkOrigin=player.position.clone();
+        f25PlaceCrew(false);
+      }
+      const q=clamp((v88Return.t-cartDuration)/walkDuration,0,1),e=q*q*(3-2*q);
+      const goal=f25Bay.localToWorld(new THREE.Vector3(0,0,6.55));goal.y=0;
+      player.position.lerpVectors(v88Return.walkOrigin,goal,e);
+      player.visible=true;player.rotation.y=Math.PI;playerHeading=Math.PI;
+      v1042WalkAvatar(player,q<.985?1.7:0);
+    }
+    // The cart parks first. During the walk, the camera gently retreats to
+    // a TRUE behind-the-avatar shot on the center line, never off to the right.
+    const portrait=camera.aspect<.75;
+    const center=f25Bay.localToWorld(new THREE.Vector3(0,0,6.55));center.y=0;
+    const cartFocus=f25Cart.position.clone().add(new THREE.Vector3(0,1.6,0));
+    const startingEye=cartFocus.clone().add(new THREE.Vector3(0,6.0,portrait?16.7:15.6));
+    const finalEye=new THREE.Vector3(center.x,4.7,center.z+(portrait?20.5:18.2));
+    const blend=clamp((v88Return.t-cartDuration+.30)/(walkDuration+.30),0,1);
+    const eased=blend*blend*(3-2*blend);
+    const eye=startingEye.lerp(finalEye,eased);
+    const startAim=cartFocus.clone().lerp(f25Desk.localToWorld(new THREE.Vector3(0,2.2,3.7)),.55);
+    const endAim=new THREE.Vector3(center.x,2.0,center.z-6.0);
+    const aim=startAim.lerp(endAim,eased);
+    camera.position.lerp(eye,1-Math.exp(-dt*2.7));
+    v85SmoothAim(dt,aim);
+    camera.fov=THREE.MathUtils.lerp(camera.fov,portrait?77:60,1-Math.exp(-dt*2.2));camera.updateProjectionMatrix();
+    if(v88Return.t>=cartDuration+walkDuration){
       v88Return.active=false;window.__NASA_V88_RETURN_ACTIVE=false;st.returned=true;
-      player.position.set(f25Bay.position.x,0,f25Bay.position.z+8.3);
-      player.visible=true;playerHeading=Math.PI;player.rotation.y=playerHeading;
+      // The avatar has walked here and now faces the complete station tableau.
+      player.visible=true;
+      const finalStand=f25Bay.localToWorld(new THREE.Vector3(0,0,6.55));finalStand.y=0;
+      player.position.copy(finalStand);playerHeading=Math.PI;player.rotation.y=playerHeading;
+      moveVel.set(0,0,0);stopStick();
+      v1042WalkAvatar(player,0);
       f25PlaceCrew(false);
       v88MissionBoard.hidden=false;
       v88AnimateStation1Task();
@@ -3090,7 +4064,7 @@ function tick(now){
     button.onclick=()=>{
       const i=Number(button.dataset.v88Station),s=stationDefs[i];
       v88Navigation.active=true;v88Navigation.index=0;v88Navigation.target=i;
-      const pathZ=6.0;
+      const pathZ=8.0;
       v88Navigation.waypoints=[new THREE.Vector3(player.position.x,0,pathZ),
         new THREE.Vector3(s.x,0,pathZ),new THREE.Vector3(s.x,0,s.z+5.8)];
       v88MissionBoard.hidden=true;
@@ -3114,8 +4088,8 @@ function tick(now){
   };
   function setStage(stage,save=true){
     if(save)remember();st.stage=stage;st.elapsed=0;st.highlight='';st.highlightUntil=0;
-    st.page=['a-ready','a-measuring','a-area','b-ready','b-measuring','b-area','metal-choice'].includes(stage)?0:
-      ['width-ready','width-measuring','diff','sum-ready','sum-measuring','identity','substitute','total','panels-four','panel-pick'].includes(stage)?1:2;
+    st.page=['a-ready','a-measuring','a-area','a-formula-ready','b-ready','b-measuring','b-area','b-formula-ready','metal-choice','metal-reveal'].includes(stage)?0:
+      ['difference-fade','width-ready','width-measuring','diff','sum-ready','sum-measuring','identity','substitute','total','panels-four','panel-pick'].includes(stage)?1:2;
     F25.phase=stage==='cut'?'cut':F25.phase;
     drawBoard();drawScreen(true);
   }
@@ -3124,13 +4098,13 @@ function tick(now){
     if(st.rulerReturn)return;
     switch(st.stage){
       case 'a-ready':setStage('a-measuring');st.measureKind='a';break;
-      case 'a-area':flyToBoard('a2','S = a²','b-ready');break;
+      case 'a-area':setStage('a-formula-ready');break;
       case 'b-ready':setStage('b-measuring');st.measureKind='b';break;
-      case 'b-area':flyToBoard('b2','S = b²','metal-choice');break;
+      case 'b-area':setStage('b-formula-ready');break;
       case 'width-ready':setStage('width-measuring');st.measureKind='width';break;
       case 'sum-ready':setStage('sum-measuring');st.measureKind='sum';break;
-      case 'panels-four':remember();st.selected=0;setStage('panelArea',false);break;
-      case 'panel-pick':remember();st.selected=0;setStage('panelArea',false);break;
+      case 'panels-four':break; // selection is made on one of four actual metal panels
+      case 'panel-pick':break;
       case 'cut':startCut();break;
     }
   }
@@ -3153,8 +4127,8 @@ function tick(now){
     const part=F25.parts.at(-1);
     const cutCount=F25.cutIndex;
     if(part){
-      const dimension=unitSprite(String(st.values.length),.24,'#f6ebd1');
-      dimension.position.set(0,.26,-.43);dimension.material.depthTest=false;
+      const dimension=unitSprite('',.24,'#f6ebd1');
+      dimension.position.set(0,.26,-.43);dimension.material.depthTest=false;dimension.visible=false;
       const widthLabel=unitSprite('1',.20,'#f6ebd1');
       widthLabel.position.set(-1.9,.25,.25);widthLabel.rotation.y=Math.PI/2;widthLabel.material.depthTest=false;
       part.add(dimension,widthLabel);part.userData.dimensionLabels=[dimension,widthLabel];
@@ -3202,11 +4176,16 @@ function tick(now){
     if(!benchActive){
       if(st.stage==='dock' && (hitUV(e,v64DockHit)||hitUV(e,f25DockButtonCap))){
         st.stage='installing';F25.phase='installing';F25.installClock=0;st.install=0;
+        player.visible=true;const dockPos=f25Mount.getWorldPosition(new THREE.Vector3());player.position.set(dockPos.x+(innerWidth<innerHeight?1.8:3.0),0,dockPos.z+11.1);player.rotation.y=Math.PI;playerHeading=player.rotation.y;
         return;
       }
       return;
     }
     if(['demo','demo-exit','flightIn','flightOut','difference-demo'].includes(st.stage))return;
+    // Full glowing square, not tiny letter glyphs, is the area transfer target.
+    if(st.stage==='a-formula-ready'&&(hitUV(e,leftHit)||hitUV(e,v1048ATouch)||hitUV(e,discoveredA2))){flyToBoard('a2','S = a²','b-ready');return;}
+    if(st.stage==='b-formula-ready'&&(hitUV(e,areaB)||hitUV(e,v1048BTouch)||hitUV(e,discoveredB2))){flyToBoard('b2','S = b²','metal-choice');return;}
+
     if(st.stage==='model-play'){
       if(hitUV(e,playMesh)||hitUV(e,playIcon)||hitUV(e,miniBody)||hitUV(e,miniNose)){
         setStage('demo',false);st.demoClock=0;
@@ -3226,26 +4205,36 @@ function tick(now){
       else f25UseAction('cartHandle');
       return;
     }
-    if(st.stage==='panels-four'||st.stage==='panel-pick'){
-      if(hitUV(e,panelOneHit)){remember();st.selected=0;setStage('panelArea',false);}
+    if(['panels-four','panel-pick','panelArea','length'].includes(st.stage)){
+      // Every one of the four panels is its own touch target, not just the top one.
+      // Another selection sends the previous piece home before bringing the new one forward.
+      for(let i=0;i<metalPanels.length;i++){
+        if(i===st.selected&&['panelArea','length'].includes(st.stage))continue;
+        const panel=metalPanels[i];
+        if(panel.visible&&hitUV(e,panel)){
+          if(['panels-four','panel-pick'].includes(st.stage)){remember();st.selected=i;setStage('panelArea',false);}
+          else {st.selected=i;st.elapsed=0;drawScreen(true);}
+          return;
+        }
+      }
       return;
     }
-    if(['width-ready','sum-ready'].includes(st.stage)){
-      if(hitUV(e,f25RulerBody)||hitUV(e,rulerTapZone)){workpieceAction();}
+    if(['width-ready','sum-ready','a-ready','b-ready'].includes(st.stage)){
+      if(hitUV(e,rulerTapZone)||hitUV(e,f25RulerBody)){workpieceAction();}
       return;
     }
     if(st.stage==='cut'){
       if(hitUV(e,f25SawTouchZone)||hitUV(e,f25SawHandle)){startCut();return;}
     }
-    if(!st.rulerReturn&&['a-ready','a-area','b-ready','b-area'].includes(st.stage)){
-      if(hitUV(e,leftHit)||hitUV(e,f25RulerBody)){workpieceAction();return;}
-    }
+    if(!st.rulerReturn&&st.stage==='a-area'&&(hitUV(e,leftHit)||hitUV(e,areaA))){workpieceAction();return;}
+    if(!st.rulerReturn&&st.stage==='b-area'&&hitUV(e,areaB)){workpieceAction();return;}
   };
   f25Move=function(e){};f25Up=function(e){};
   f25UseAction=function(a){
-    if(a==='dock'&&st.stage==='dock'){st.stage='installing';F25.phase='installing';F25.installClock=0;}
+    if(a==='dock'&&st.stage==='dock'){st.stage='installing';F25.phase='installing';F25.installClock=0;player.visible=true;const dockPos=f25Mount.getWorldPosition(new THREE.Vector3());player.position.set(dockPos.x+(innerWidth<innerHeight?1.8:3.0),0,dockPos.z+11.1);player.rotation.y=Math.PI;playerHeading=player.rotation.y;}
     if(a==='cartHandle'&&st.stage==='loaded'){
       st.stage='cart';F25.phase='cart';F25.cartProgress=0;F25.cartMode=true;setBench(false);
+      v1042EnrollActualCartPeers();
       // V89: initialize the cart heading directly toward the actual ship target.
       f25Cart.rotation.y=Math.atan2(v64DockTarget.x-f25Cart.position.x,v64DockTarget.z-f25Cart.position.z);
       F25.v35CartSpeed=0;
@@ -3260,7 +4249,9 @@ function tick(now){
   f25Enter=function(){
     if(F25.cartMode||F25.phase==='done')return;
     st.returned=false;
-    setBench(true);F25.flowActive=true;player.position.set(f25Bay.position.x+.35,0,f25Bay.position.z+4.9);
+    setBench(true);F25.flowActive=true;
+    const teamOffset=nasaStart?.teamId?THREE.MathUtils.clamp(Number(nasaStart?.position?.x)||0,-3.6,3.6):0;
+    player.position.set(f25Bay.position.x+teamOffset,0,f25Bay.position.z+4.9);
     if(!st.active){st.active=true;f25SetPhase('ready');}
     else {drawBoard();drawScreen(true);}
   };
@@ -3310,10 +4301,18 @@ function tick(now){
       camera.fov=THREE.MathUtils.lerp(camera.fov,portrait?75:56,Math.min(1,dt*2.4));
       camera.updateProjectionMatrix();return;
     }
+    // V104.13: incorrect 1-8m choices are meaningful, not corrected.
+    // At extreme lengths the physical saw reaches the edge of the rail. Follow
+    // the ACTUAL saw while gently widening the shot, especially on portrait HP
+    // tablets/phones whose horizontal field of view is narrow.
+    const sawX=saw?f25Saw.position.x:0;
+    const sawReach=0; // fixed cutter needs no extreme-camera pan on wrong lengths
+    const sawShift=THREE.MathUtils.clamp(sawX*.34,-1.25,1.25)*sawReach;
     const shot=saw?{
-      eye:portrait?[.38,7.15,10.2]:[.25,6.02,9.05],
-      target:[-.40,2.28,-.25],
-      fov:portrait?73:54
+      eye:portrait?[.38+sawShift*.80,7.15+sawReach*.65,10.2+sawReach*5.6]:
+                   [.25+sawShift*.80,6.02+sawReach*.55,9.05+sawReach*3.7],
+      target:[-.40+sawShift,2.28,-.25],
+      fov:portrait?73+8*sawReach:54+9*sawReach
     }:v104WorkShot();
     const eye=f25Bay.localToWorld(new THREE.Vector3(...shot.eye));
     const aim=f25Bay.localToWorld(new THREE.Vector3(...shot.target));
@@ -3326,13 +4325,46 @@ function tick(now){
   }
   f25Frame=function(dt){
     st.elapsed+=dt;
+    if(v10410LengthFlight&&v10410LengthNumber){
+      v10410LengthFlight.t+=dt;
+      const u=clamp(v10410LengthFlight.t/v10410LengthFlight.duration,0,1),q=flightEase(u);
+      v10410LengthNumber.position.lerpVectors(v10410LengthFlight.from,v10410LengthFlight.to,q);
+      v10410LengthNumber.position.y+=Math.sin(Math.PI*q)*.42;
+      if(u>=1){v10410LengthNumber.visible=false;v10410LengthFlight=null;st.lengthFlightDone=true;}
+    }
+    if(st.stage==='length-confirmed'&&st.lengthFlightDone&&st.elapsed>=.95){
+      setStage('cut',false);F25.phase='cut';setCutDimensions();
+    }
+    if(v1048PanelAreaFlight&&v1048AreaNumber){
+      v1048PanelAreaFlight.t+=dt;
+      const u=clamp(v1048PanelAreaFlight.t/v1048PanelAreaFlight.duration,0,1);
+      const q=flightEase(u);
+      v1048AreaNumber.position.lerpVectors(v1048PanelAreaFlight.from,v1048PanelAreaFlight.to,q);
+      v1048AreaNumber.position.y+=Math.sin(Math.PI*q)*.48;
+      if(u>=1){v1048AreaNumber.visible=false;v1048PanelAreaFlight=null;}
+    }
     if(st.flight){
       st.flight.t+=dt;
       const u=clamp(st.flight.t/st.flight.duration,0,1),e=flightEase(u);
-      flightLabel.position.lerpVectors(flightFrom,flightTo,e);
-      flightLabel.position.y+=Math.sin(Math.PI*e)*.65;
+      if(physicalFormulaFlight){
+        const info=physicalFormulaFlight;
+        info.mesh.position.lerpVectors(info.start,info.end,e);
+        info.mesh.position.y+=Math.sin(Math.PI*e)*.55;
+        info.mesh.quaternion.copy(info.fromQuat).slerp(info.toQuat,e);
+        info.mesh.scale.copy(info.startScale).multiplyScalar(1-.20*e);
+      }else{
+        flightLabel.position.lerpVectors(flightFrom,flightTo,e);
+        flightLabel.position.y+=Math.sin(Math.PI*e)*.65;
+      }
       if(u>=1){
-        if(st.flight.dir==='out')acceptPending();
+        if(st.flight.dir==='out'){
+          if(physicalFormulaFlight){
+            const item=physicalFormulaFlight,mesh=item.mesh;
+            f25Board.attach(mesh);mesh.userData.inTransfer=false;mesh.userData.onJournal=true;
+            physicalFormulaFlight=null;
+          }
+          acceptPending();
+        }
       }
     }
 
@@ -3340,8 +4372,14 @@ function tick(now){
       st.diffDemoClock+=dt;
       if(st.diffDemoClock>=3.5){
         st.diffVisualDone=true;
-        setPending('metal',st.diffOperation||'a² − b²','width-ready');
+        setStage('difference-glow',false); // after all four glow, hold the completed frame for 1.5s
       }
+    }
+    if(st.stage==='difference-glow'&&st.elapsed>=1.5){
+      setStage('difference-fade',false);
+    }
+    if(st.stage==='difference-fade'&&st.elapsed>=.95){
+      directCommit('metal',st.diffOperation||'a² − b²','width-ready');
     }
     if(st.stage==='demo'){
       st.demoClock+=dt;
@@ -3363,15 +4401,16 @@ function tick(now){
         };
       }
       const measure=square?st.squareMeasure:null;
-      const u=clamp(st.elapsed/(measure?.duration??1.52),0,1),s=u*u*(3-2*u);
-      const target=measure?.target??(st.stage==='width-measuring'?park:new THREE.Vector3(0,1.87,3.24));
-      const targetScale=measure?.length??(st.stage==='sum-measuring'?4.70:1);
+      const u=clamp(st.elapsed/(measure?.duration??(st.stage==='width-measuring'?2.10:1.90)),0,1),s=u*u*(3-2*u);
+      // The 8m ruler aligns exactly with BOTH ends of the checked-grid bar.
+      const target=measure?.target??(st.stage==='width-measuring'?park:new THREE.Vector3(0,1.96,4.76));
+      const targetScale=measure?.length??(st.stage==='sum-measuring'?5.0:1);
       if(st.stage==='width-measuring'){
         f25Ruler.visible=u<.34;
         f25Ruler.position.copy(park);
         f25Ruler.scale.x=1;
         splitRulers.forEach((r,i)=>{
-          const v=clamp((u-.08-i*.06)/.56,0,1),k=v*v*(3-2*v);
+          const v=clamp((u-.08-i*.06)/.77,0,1),k=v*v*(3-2*v);
           r.visible=v>0;
           r.position.lerpVectors(splitOrigin,r.userData.end,k);
           r.position.y+=Math.sin(k*Math.PI)*.36;
@@ -3386,11 +4425,17 @@ function tick(now){
         st.squareMeasure=null;
         if(st.stage==='a-measuring')setPending('a','a','a-area');
         else if(st.stage==='b-measuring')setPending('b','b','b-area');
-        else if(st.stage==='width-measuring')flyToBoard('width','1','diff');
+        else if(st.stage==='width-measuring')setPending('width','1','diff');
         else if(st.stage==='sum-measuring'){
-          setPending('sum','8','identity');
+          setPending('sum','8','identity'); // keep ruler and bars until confirmation on right
         }
       }
+    }
+    if(st.sumReturning){st.sumReturning.progress=Math.min(1,st.sumReturning.progress+dt/1.25);
+      if(st.sumReturning.progress>=1){st.sumReturning=null;sumRail.scale.setScalar(1);}}
+    if(st.meterReturning){
+      st.meterReturning.progress=Math.min(1,st.meterReturning.progress+dt/1.05);
+      if(st.meterReturning.progress>=1)st.meterReturning=null;
     }
     if(st.rulerReturn){
       st.rulerReturn.time+=dt;
@@ -3446,8 +4491,9 @@ function tick(now){
     if(st.stage==='loadingAnim'){
       // Single deterministic timeline for all four parts; never modifies conveyor jobs.
       F25.loadClock+=dt;
-      const period=3.05,total=period*4;
-      const idx=Math.min(3,Math.floor(F25.loadClock/period));
+      const period=3.05,returnPeriod=.95,total=period*4+returnPeriod;
+      const loadingSpan=period*4;
+      const idx=Math.min(3,Math.floor(Math.min(F25.loadClock,loadingSpan-.0001)/period));
       const u=clamp((F25.loadClock-idx*period)/period,0,1);
       const easing=t=>{t=clamp(t,0,1);return t*t*(3-2*t);};
       for(let i=0;i<4;i++){
@@ -3491,11 +4537,18 @@ function tick(now){
         if(u>.82)hidePartDimensions(part);
         F25.loadHookWorld=p.clone();
         const hook=f25Bridge.worldToLocal(p.clone());
-        f25BridgeHoist.position.x=clamp(hook.x,-10.3,10.3);
-        f25BridgeHoist.position.z=clamp(hook.z,-8.35,8.35);
+        f25BridgeHoist.position.x=clamp(hook.x,-9.55,9.55);
+        f25BridgeHoist.position.z=clamp(hook.z,-7.05,7.05);
         const wire=Math.max(.65,5.75-hook.y);
         f25BridgeCable.scale.y=wire/1.75;
         f25BridgeCable.position.y=-wire/2;f25BridgeGrab.position.y=-wire;
+      }
+      if(F25.loadClock>=loadingSpan){
+        const back=clamp((F25.loadClock-loadingSpan)/returnPeriod,0,1),rb=back*back*(3-2*back);
+        f25BridgeHoist.position.x=THREE.MathUtils.lerp(f25BridgeHoist.position.x,0,rb);
+        f25BridgeHoist.position.z=THREE.MathUtils.lerp(f25BridgeHoist.position.z,-1.7,rb);
+        const wire=THREE.MathUtils.lerp(Math.max(.65,1.75*f25BridgeCable.scale.y),1.75,rb);
+        f25BridgeCable.scale.y=wire/1.75;f25BridgeCable.position.y=-wire/2;f25BridgeGrab.position.y=-wire;
       }
       if(F25.loadClock>=total){
         for(let i=0;i<4;i++){
@@ -3531,6 +4584,10 @@ function tick(now){
         miniSocketMarks[i].material.opacity=.18+.65*local;
       });
     }
+    for(const [key,mesh] of Object.entries(physicalFormulaMap))if(mesh.userData.onJournal){
+      mesh.visible=true;mesh.position.copy(boardSlotLocal(key,false));mesh.position.z=.195;
+      mesh.rotation.set(0,0,0);mesh.scale.setScalar(key==='a2'?.69:.75);
+    }
     appearance();drawScreen();v83UpdateControls();v85UpdateDisplay();positionUndo();
     document.getElementById('v63Brief').classList.toggle('v74Active', benchActive && st.stage==='brief');
     if(benchActive)f63BenchCamera(dt);
@@ -3546,7 +4603,10 @@ function tick(now){
   v64Marker.visible=false;
   const v64Distance=document.getElementById('v35DockDistance');
   f25MoveCart=function(dt){
-    if(!F25.cartMode){v64Marker.visible=false;v64Distance.classList.remove('active');return;}
+    if(!F25.cartMode){v64Marker.visible=false;
+      if(st.stage==='dock'){v64Distance.textContent='';v64Distance.classList.remove('active','dock-reached');}
+      else {v64Distance.classList.remove('active','dock-reached');}
+      return;}
     const turn=THREE.MathUtils.clamp(joyX+(keys.d||keys.arrowright?1:0)-(keys.a||keys.arrowleft?1:0),-1,1);
     const forward=THREE.MathUtils.clamp(-joyY+(keys.w||keys.arrowup?1:0)-(keys.s||keys.arrowdown?1:0),-1,1);
     f25Cart.rotation.y-=turn*.25*dt;
@@ -3556,9 +4616,7 @@ function tick(now){
     const nx=THREE.MathUtils.clamp(f25Cart.position.x+Math.sin(ang)*F25.v35CartSpeed*dt,-35,25);
     const nz=THREE.MathUtils.clamp(f25Cart.position.z+Math.cos(ang)*F25.v35CartSpeed*dt,-44,20);
     f25Cart.position.set(nx,0,nz);
-    player.position.set(nx-Math.sin(ang)*2.8,0,nz-Math.cos(ang)*2.8);
-    player.rotation.y=ang;playerHeading=ang;
-    f25PlaceCrew(true);
+    f25PlaceCrew(true,F25.v35CartSpeed,dt);
     // V89: human-height, directly behind the cart; no side view or initial turn.
     const heading=new THREE.Vector3(Math.sin(ang),0,Math.cos(ang));
     const eye=f25Cart.position.clone().addScaledVector(heading,-11.6).add(new THREE.Vector3(0,5.05,0));
@@ -3567,14 +4625,14 @@ function tick(now){
     camera.fov=THREE.MathUtils.lerp(camera.fov,innerHeight>innerWidth?75:62,Math.min(1,dt*3));
     camera.updateProjectionMatrix();
     const distanceToDock=f25Cart.position.distanceTo(v64DockTarget);
-    v64Distance.textContent='אל חזית החללית: '+Math.ceil(distanceToDock)+' מ׳';
-    v64Distance.classList.add('active');v64Marker.visible=true;
-    if(distanceToDock<4.8){
+    v64Distance.textContent='אל נקודת ההתקנה: '+Math.max(0,Math.ceil(distanceToDock-1.5))+' מ׳';
+    v64Distance.classList.add('active');v64Distance.classList.remove('dock-reached');v64Marker.visible=true;
+    if(distanceToDock<1.55){
       F25.cartMode=false;F25.v35CartSpeed=0;
       cartLabel.visible=false;cartGlow.intensity=0;
       v83FabButton.classList.remove('active');
       f25SetPhase('dock');
-      v64Distance.classList.remove('active');v64Marker.visible=false;
+      v64Distance.textContent='';v64Distance.classList.remove('active','dock-reached');v64Marker.visible=false;
       // Smooth transition: keep the previous camera and let the dock camera ease in.
     }
   };
@@ -3601,7 +4659,7 @@ function tick(now){
   f25DockButtonCap.material.emissiveIntensity=1.45;
   const v64DockHit=box(f25Dock,0,1.14,1.6,3.2,2.1,2.3,
     new THREE.MeshBasicMaterial({visible:false,transparent:true,opacity:0}));
-  const craneTag=textSprite('מנוף הרכבה',.58,'#ffe4a6');craneTag.position.set(0,2.65,1.6);f25Dock.add(craneTag);
+  // No floating text placard on the assembly gantry: the physical hardware is self-explanatory.
   // The rocket at the end of the hall is a scaled version of the tabletop model:
   // ONE blue square window and exactly FOUR empty 4x1 metal recesses.
   // Hide both older rectangular windshields that used to cause a doubled front window.
@@ -3661,7 +4719,8 @@ function tick(now){
     const lift=Math.sin(Math.PI*Math.min(1,Math.max(0,(cycle-.10)/.78)));
     // Slight approach during mounting, then a gentle return while the crane goes back down.
     const eye=facade.clone().add(portrait?new THREE.Vector3(0,-9.65+lift*.85,21.6-lift*1.2):new THREE.Vector3(0,-9.75+lift*.70,18.6-lift*1.0));
-    const aim=facade.clone().add(new THREE.Vector3(0,-2.7+lift*.28,.92));
+    const aim=facade.clone().add(new THREE.Vector3(0,-4.35+lift*.28,2.4));
+    if(F25.phase==='installing'||F25.phase==='done')player.visible=true;
     camera.position.lerp(eye,Math.min(1,dt*1.55));v85SmoothAim(dt,aim);
     camera.fov=THREE.MathUtils.lerp(camera.fov,portrait?74:60,Math.min(1,dt*2.3));
     camera.updateProjectionMatrix();
@@ -3695,6 +4754,8 @@ function tick(now){
     const next={diff:'sum-ready',total:'panels-four',panelArea:'length',length:'cut'}[key];
     keysTyped='';
     if(key==='diff'||key==='sum'||key==='total')directCommit(key,String(n),next);
+    else if(key==='panelArea'){flyToBoard('panelArea',String(n),'length');v1048StartPanelAreaFlight(n);}
+    else if(key==='length'){flyToBoard('length',String(n),'length-confirmed');v10410StartLengthFlight(n);}
     else setPending(key,String(n),next);
   }
   function v85Keypad(question){
@@ -3705,16 +4766,7 @@ function tick(now){
       const b=v85Elem('button','',value,keys);b.type='button';
       b.onclick=()=>{
         if(value==='⌫')keysTyped=keysTyped.slice(0,-1);else if(value!=='.'||!keysTyped.includes('.'))keysTyped+=value;
-        const raw=keysTyped.replace(',','.');
-        const n=Number(raw);
-        const auto=((st.stage==='diff'&&raw==='2')||((st.stage==='total'||st.stage==='evaluate')&&raw==='16')||(st.stage==='panelArea'&&raw==='4')||(st.stage==='length'&&raw==='4'));
-        if(auto&&Number.isFinite(n)){
-          const key={diff:'diff',total:'total',evaluate:'total',panelArea:'panelArea',length:'length'}[st.stage];
-          const next={diff:'sum-ready',total:'panels-four',panelArea:'length',length:'cut'}[key];
-          keysTyped='';
-          if(key==='diff'||key==='sum'||key==='total')directCommit(key,String(n),next);
-          else setPending(key,String(n),next);return;
-        }
+        // Never auto-submit a familiar number: the learner must press אישור / =.
         drawScreen(true);v85Signature='';v85UpdateDisplay();
       };
     }
@@ -3814,13 +4866,16 @@ function renderNasa(now){
  resetQualitySample();
 }
 addEventListener('resize',fitNasaRenderer);
+const v1045QualityButton=$('#v1045-quality');
+function v1045RefreshQuality(){v1045QualityButton.textContent=liteMode?'⚡ מצב קל פעיל · לחצו לאיכות מלאה':'⚡ הפעל מצב קל';v1045QualityButton.setAttribute('aria-pressed',String(liteMode));}
+v1045QualityButton.onclick=()=>{qualityButton.click();v1045RefreshQuality();v1045CloseTools();};
 qualityButton.addEventListener('click',()=>{
  liteMode=!liteMode;
  try{localStorage.setItem(qualityKey,liteMode?'lite':'full');}catch(_){}
- applyNasaQuality();
+ applyNasaQuality();v1045RefreshQuality();
 });
 window.NASA_PERFORMANCE=()=>({
- version:'V104.1',lite:liteMode,pixelRatio:renderer.getPixelRatio(),fps:qualityFPS,
+ version:'V104.6',lite:liteMode,pixelRatio:renderer.getPixelRatio(),fps:qualityFPS,
  qualityScale,drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,
  shadows:renderer.shadowMap.enabled,atWorkbench:benchActive,
  cinemaBridge:!!nasaStart,participants:v86Peers.size
@@ -3829,7 +4884,7 @@ renderer.setSize(innerWidth,innerHeight);
 applyNasaQuality();
 workBtn.textContent='▶ תחילת עבודה · חזית החללית';
 installBtn.textContent='🔧 התקנה בחללית';
-qualityButton.hidden=false;
+qualityButton.hidden=true;v1045RefreshQuality();
 $('#loading').remove();setMode('outside');
 if(nasaStart){
  player.rotation.y=playerHeading;
