@@ -2,7 +2,7 @@
 <html lang="he" dir="rtl"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="theme-color" content="#211333"><meta name="description" content="ממלכת התבונה - מפגש תלת ממדי משותף בממלכה קסומה">
-<title>ממלכת הקולנוע — V87.3</title>
+<title>ממלכת הקולנוע — V87.3.1</title>
 <style>
 /* V56: readable, correctly ordered participant names, free of mirrored textures. */
 #avatar-names{position:fixed;inset:0;z-index:7;pointer-events:none;overflow:hidden;direction:rtl}
@@ -3088,7 +3088,7 @@ let v87NasaPortalFX=null;
 function v87AnimateNasaPortal(t){
  if(!v87NasaPortalFX)return;
  const {title,halo,ringA,ringB,beacon}=v87NasaPortalFX;
- title.position.y=13.5+.33*Math.sin(t*1.2);
+ title.position.y=halo.position.y=13+.12*Math.sin(t*1.2);
  halo.material.opacity=.40+.10*Math.sin(t*1.6);
  ringA.rotation.z=.055*Math.sin(t*.45);
  ringB.rotation.z=-.11*Math.sin(t*.36);
@@ -3143,10 +3143,10 @@ function v86BuildNasaApproach(track){
  const titleTex=new THREE.CanvasTexture(titleCanvas);titleTex.colorSpace=THREE.SRGBColorSpace;
  const titleMat=new THREE.MeshBasicMaterial({map:titleTex,transparent:true,depthTest:false,depthWrite:false,side:THREE.DoubleSide,toneMapped:false});
  const title=new THREE.Mesh(new THREE.PlaneGeometry(25,9.5),titleMat);
- title.name='NASA_LUMINOUS_LETTERS_IN_CLOUDS';title.position.set(0,13.5,-2);
+ title.name='NASA_LUMINOUS_LETTERS_IN_CLOUDS';title.position.set(0,13,3.85);
  title.rotation.y=Math.PI;title.renderOrder=8;approach.add(title);
  const halo=new THREE.Mesh(new THREE.PlaneGeometry(30,11.4),new THREE.MeshBasicMaterial({map:titleTex,transparent:true,opacity:.45,depthTest:false,depthWrite:false,side:THREE.DoubleSide,blending:THREE.AdditiveBlending,toneMapped:false}));
- halo.rotation.y=Math.PI;halo.position.set(0,13.5,-1.85);halo.renderOrder=7;approach.add(halo);
+ halo.rotation.y=Math.PI;halo.position.set(0,13,3.82);halo.renderOrder=7;approach.add(halo);
  const beacon=new THREE.PointLight(0x9bddff,3,42,2);beacon.position.set(0,14,0);approach.add(beacon);
  v87NasaPortalFX={title,halo,ringA,ringB,beacon};
  track.userData.nasaV104Location={x:v86NasaEntranceX(),z:V86_NASA_FRONT_Z,frontZ:V86_NASA_FRONT_Z,road:'V872_NASA_VISUAL_RIGHT_BRANCH'};
